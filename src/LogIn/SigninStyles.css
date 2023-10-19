@@ -1,0 +1,49 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 10 19, 23, 8:04:56 PM
+    Author     : Ervhyne
+*/
+
+.backgroundRight {
+    -fx-background-color: #2b2d31;
+}
+
+.backgroundLeft{
+    -fx-background-color: #1e1f22;
+}
+
+.textField {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.loginButton {
+    -fx-background-color: linear-gradient(to bottom left, #4D9DFF, #0073FF);
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .4), 5, 0.5, 0.0, 0.0);
+    -fx-font-family: 'Roboto Condensed', sans-serif;
+    -fx-font-family: 'Roboto Flex', sans-serif;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.loginButton:hover {
+    -fx-background-color: #00B140;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0)
+}
+
+.createbtn {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #42464f, #2f3439);
+    -fx-cursor: hand;
+}
+
+.createbtn:hover {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #3b4048, #2f343a);
+    -fx-cursor: hand;
+}

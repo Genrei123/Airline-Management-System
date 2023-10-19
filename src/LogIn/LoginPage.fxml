@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="main_form" prefHeight="233.0" prefWidth="600.0" styleClass="backgroundRight" stylesheets="@SigninStyles.css">
+         <children>
+            <AnchorPane fx:id="login_form" layoutX="216.0" layoutY="8.0" prefHeight="251.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTextField fx:id="login_username" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="63.0" prefHeight="25.0" prefWidth="341.0" promptText="Username" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" />
+                  <JFXPasswordField fx:id="login_showPassword" focusColor="WHITE" labelFloat="true" layoutX="219.0" layoutY="107.0" prefHeight="25.0" prefWidth="341.0" promptText="Password" styleClass="textField" unFocusColor="WHITE" />
+                  <JFXTextField fx:id="login_password" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="107.0" prefHeight="25.0" prefWidth="341.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" />
+                  <Button fx:id="login_btn" layoutX="482.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="loginButton" stylesheets="@SigninStyles.css" text="Log In" />
+                  <JFXCheckBox fx:id="login_selectShowPassword" checkedColor="#007acc" layoutX="219.0" layoutY="144.0" text="Show Password" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXCheckBox>
+                  <Button fx:id="login_createAcc" layoutX="224.0" layoutY="204.0" mnemonicParsing="false" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Create Account" textFill="#343940" />
+                  <AnchorPane prefHeight="243.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
+                     <children>
+                        <Label layoutX="36.0" layoutY="202.0" prefHeight="27.0" prefWidth="128.0" text="Sign In Account" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#756f6f" glyphName="PAPER_PLANE" layoutX="25.0" layoutY="149.0" size="150" />
+                     </children>
+                  </AnchorPane>
+                  <Hyperlink fx:id="login_forgetPassword" layoutX="458.0" layoutY="142.0" text="Forgot Password?" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="signup_form" prefHeight="261.0" prefWidth="610.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTextField fx:id="signup_userID" focusColor="#bfbaba" labelFloat="true" layoutX="220.0" layoutY="17.0" prefHeight="25.0" prefWidth="341.0" promptText="User ID" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="20.0" />
+                  <JFXTextField fx:id="signup_password" focusColor="#bfbaba" labelFloat="true" layoutX="220.0" layoutY="57.0" prefHeight="25.0" prefWidth="341.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="65.0" />
+                  <Button fx:id="signup_btn" layoutX="502.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="loginButton" stylesheets="@SigninStyles.css" text="Create" />
+                  <Button fx:id="signup_loginAcc" layoutX="219.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Log In" textFill="#343940" />
+                  <AnchorPane prefHeight="243.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
+                     <children>
+                        <Label layoutX="36.0" layoutY="202.0" prefHeight="27.0" prefWidth="128.0" text="Create Account" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#756f6f" glyphName="USER_PLUS" layoutX="14.0" layoutY="150.0" size="150" />
+                     </children>
+                  </AnchorPane>
+                  <JFXTextField fx:id="signup_confirmPassword" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="97.0" prefHeight="25.0" prefWidth="341.0" promptText="Confirm Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="110.0" />
+                  <JFXComboBox fx:id="signup_selectQuestion" focusColor="WHITE" layoutX="219.0" layoutY="138.0" prefHeight="25.0" prefWidth="115.0" promptText="Select Question" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" AnchorPane.rightAnchor="266.0" AnchorPane.topAnchor="155.0" />
+                  <JFXTextField fx:id="signup_answer" focusColor="#bfbaba" labelFloat="true" layoutX="343.0" layoutY="138.0" prefHeight="25.0" prefWidth="218.0" promptText="Answer" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.leftAnchor="343.0" AnchorPane.topAnchor="155.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="forgot_form" layoutX="10.0" layoutY="10.0" prefHeight="271.0" prefWidth="620.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTextField fx:id="forgot_userID" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="71.0" prefHeight="25.0" prefWidth="341.0" promptText="User ID" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="71.0" />
+                  <Button fx:id="forgot_proceedBtn" layoutX="502.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="loginButton" stylesheets="@SigninStyles.css" text="Proceed" />
+                  <Button fx:id="forgot_backBtn" layoutX="219.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Back" textFill="#343940" />
+                  <AnchorPane prefHeight="243.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
+                     <children>
+                        <Label layoutX="25.0" layoutY="202.0" prefHeight="27.0" prefWidth="150.0" text="Frog Get Password" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#756f6f" glyphName="LOCK" layoutX="52.0" layoutY="162.0" size="150" />
+                     </children>
+                  </AnchorPane>
+                  <JFXComboBox fx:id="forgot_selectQuestion" focusColor="WHITE" layoutX="219.0" layoutY="113.0" prefHeight="25.0" prefWidth="115.0" promptText="Select Question" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" AnchorPane.rightAnchor="266.0" AnchorPane.topAnchor="113.0" />
+                  <JFXTextField fx:id="forgot_answer" focusColor="#bfbaba" labelFloat="true" layoutX="342.0" layoutY="113.0" prefHeight="25.0" prefWidth="218.0" promptText="Answer" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.leftAnchor="342.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="changePass_form" layoutX="10.0" layoutY="10.0" prefHeight="281.0" prefWidth="630.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTextField fx:id="changePass_password" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="71.0" prefHeight="25.0" prefWidth="341.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="71.0" />
+                  <Button fx:id="changePass_proceedBtn" layoutX="502.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="loginButton" stylesheets="@SigninStyles.css" text="Proceed" />
+                  <Button fx:id="changePass_backBtn" layoutX="219.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Back" textFill="#343940" />
+                  <AnchorPane prefHeight="243.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
+                     <children>
+                        <Label layoutX="25.0" layoutY="202.0" prefHeight="27.0" prefWidth="150.0" text="Frog Get Password" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#756f6f" glyphName="LOCK" layoutX="52.0" layoutY="162.0" size="150" />
+                     </children>
+                  </AnchorPane>
+                  <JFXTextField fx:id="changePass_confirmPassword" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="113.0" prefHeight="25.0" prefWidth="341.0" promptText="Confirm Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.leftAnchor="219.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
