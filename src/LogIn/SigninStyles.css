@@ -47,3 +47,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: linear-gradient(to bottom, #3b4048, #2f343a);
     -fx-cursor: hand;
 }
+
+
+/* FOR COMBO BOX DESIGN */
+.combo-box {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #9a9393;
+}
+
+.combo-box .list-cell:focused {
+    -fx-text-fill: white;
+}
+
+.combo-box .list-view .list-cell:focused {
+    -fx-background-color: #9a9393;
+}

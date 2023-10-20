@@ -14,7 +14,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -192,10 +196,23 @@ public class LoginPageController implements Initializable {
             }
         }
     }
+    
+    private String[] questionList = {"Who is the most handsome prof?","What is OOP"};
+    public void questions(){
+        List<String> listQ = new ArrayList<>();
+        
+        for(String data : questionList){
+            listQ.add(data);
+        }
+        
+        ObservableList listData = FXCollections.observableArrayList(listQ);
+        signup_selectQuestion.setItems(listData); 
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        questions();
     }
 
 }
