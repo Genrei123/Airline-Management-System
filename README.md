@@ -1,7 +1,7 @@
 # Airline-Ticketing-System
 
 ## How to run this application
-- Download Java JDK
+- Download Java JDK (1.8)
 - Download SceneBuilder Java 8
 - Download IDE for Java (IntelliJ/Eclipse/Netbeans)
 
