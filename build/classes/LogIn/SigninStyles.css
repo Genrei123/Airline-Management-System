@@ -36,6 +36,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0)
 }
 
+.createAccBtn {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #42464f, #2f3439);
+    -fx-cursor: hand;
+}
+
+.createAccBtn:hover {
+    -fx-background-color: #00B140;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0)
+}
+
 .createbtn {
     -fx-text-fill: white;
     -fx-background-color: linear-gradient(to bottom, #42464f, #2f3439);

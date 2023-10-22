@@ -15,10 +15,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -137,19 +141,10 @@ public class LoginPageController implements Initializable {
     }
 
     public void login() {
-
-    }
-
-    
-    // FOR ALERTS
-    public void setAlertText(String message) {
-        signup_alert.setText(message);
-        signup_alert.setVisible(true); // Show the label
-    }
-
-    public void clearAlert() {
-        signup_alert.setText("");
-        signup_alert.setVisible(false); // Hide the label
+        if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
+            AlertManager.setAlertText(signup_alert, "Please fill in all required fields.", "red");
+            
+        }
     }
 
     public void createAcc() {
@@ -159,11 +154,11 @@ public class LoginPageController implements Initializable {
                 || signup_confirmPassword.getText().isEmpty()
                 || signup_selectQuestion.getSelectionModel().getSelectedItem() == null
                 || signup_answer.getText().isEmpty()) {
-            setAlertText("Please fill in all required fields.");
+            AlertManager.setAlertText(signup_alert, "Please fill in all required fields.", "red");
         } else if (!signup_password.getText().equals(signup_confirmPassword.getText())) {
-            setAlertText("Password does not match.");
+            AlertManager.setAlertText(signup_alert, "Password does not match.", "red");
         } else if (signup_password.getText().length() < 8) {
-            setAlertText("Invalid Password, at least 8 characters needed.");
+            AlertManager.setAlertText(signup_alert, "Invalid Password, at least 8 characters needed.", "red");
         } else {
             // CHECK IF THE USERNAME IS ALREADY TAKEN
             String checkUsername = "SELECT * FROM signin_users WHERE username = '"
@@ -175,11 +170,11 @@ public class LoginPageController implements Initializable {
                 result = statement.executeQuery(checkUsername);
 
                 if (result.next()) {
-                    setAlertText(signup_userID.getText() + " is already taken.");
+                    AlertManager.setAlertText(signup_alert, signup_userID.getText() + " is already taken", "red");
                 } else {
                     String insertData = "INSERT INTO signin_users"
-                            + "(username, password, question, answer)"
-                            + "VALUES (?,?,?,?)";
+                            + "(username, password, question, answer, date)"
+                            + "VALUES (?,?,?,?,?)";
 
                     prepare = connect.prepareStatement(insertData);
                     prepare.setString(1, signup_userID.getText());
@@ -187,26 +182,64 @@ public class LoginPageController implements Initializable {
                     prepare.setString(3, (String) signup_selectQuestion.getSelectionModel().getSelectedItem());
                     prepare.setString(4, signup_answer.getText());
 
+                    Date date = new Date();
+                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                    prepare.setString(5, String.valueOf(sqlDate));
+
                     prepare.executeUpdate();
 
-                    setAlertText("Registered Successfully!");
+                    AlertManager.setAlertText(signup_alert, "Registered Successfully!", "green");
+
+                    createAccClearFields();
+
+                    // Clear and hide the alert after a certain period
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            AlertManager.hideAlert(signup_alert);
+                        }
+                    }, 5000); // Hide the alert after 5 seconds (adjust as needed)
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-    
-    private String[] questionList = {"Who is the most handsome prof?","What is OOP"};
-    public void questions(){
+
+    //CLEAR FIELDS OF CREATE ACC FORM
+    public void createAccClearFields() {
+        signup_userID.setText("");
+        signup_password.setText("");
+        signup_selectQuestion.getSelectionModel().clearSelection();
+        signup_confirmPassword.setText("");
+        signup_answer.setText("");
+    }
+
+    public void switchForm(ActionEvent event) {
+        if (event.getSource() == signup_loginAcc) {
+            signup_form.setVisible(false);
+            login_form.setVisible(true);
+            forgot_form.setVisible(false);
+            changePass_form.setVisible(false);
+        } else if (event.getSource() == login_createAcc) {
+            signup_form.setVisible(true);
+            login_form.setVisible(false);
+            forgot_form.setVisible(false);
+            changePass_form.setVisible(false);
+        }
+    }
+
+    private String[] questionList = {"Who is the most handsome prof?", "What is OOP"};
+
+    public void questions() {
         List<String> listQ = new ArrayList<>();
-        
-        for(String data : questionList){
+
+        for (String data : questionList) {
             listQ.add(data);
         }
-        
+
         ObservableList listData = FXCollections.observableArrayList(listQ);
-        signup_selectQuestion.setItems(listData); 
+        signup_selectQuestion.setItems(listData);
     }
 
     @Override
