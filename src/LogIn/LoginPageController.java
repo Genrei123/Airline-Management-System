@@ -28,6 +28,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -45,11 +46,11 @@ public class LoginPageController implements Initializable {
     @FXML
     private JFXTextField login_username;
 
-    @FXML
-    private JFXPasswordField login_showPassword;
+      @FXML
+    private JFXTextField login_showPassword;
 
     @FXML
-    private JFXTextField login_password;
+    private JFXPasswordField login_password;
 
     @FXML
     private Button login_btn;
@@ -62,6 +63,9 @@ public class LoginPageController implements Initializable {
 
     @FXML
     private Hyperlink login_forgetPassword;
+
+    @FXML
+    private Label signin_alert;
 
     @FXML
     private AnchorPane signup_form;
@@ -142,11 +146,44 @@ public class LoginPageController implements Initializable {
 
     public void login() {
         if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
-            AlertManager.setAlertText(signup_alert, "Please fill in all required fields.", "red");
-            
+            AlertManager.setAlertText(signin_alert, "Please fill in all required fields.", "red");
+        } else {
+            String selectData = "SELECT username,password FROM signin_users WHERE " + "username = ? and password = ?";
+
+            connect = connectDB();
+
+            try {
+                prepare = connect.prepareStatement(selectData);
+                prepare.setString(1, login_username.getText());
+                prepare.setString(2, login_password.getText());
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    AlertManager.setAlertText(signin_alert, "Successfully Login!", "green");
+
+                } else {
+                    AlertManager.setAlertText(signin_alert, "Incorrect Username/Password", "red");
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    public void showPassword(){
+        if(login_selectShowPassword.isSelected()){
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(true);
+            login_password.setVisible(false);
+        } else {
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(false);
+            login_password.setVisible(true);
+        }
+    }
+    
     public void createAcc() {
         // CHECK IF WE HAVE EMPTY FIELD
         if (signup_userID.getText().isEmpty()
