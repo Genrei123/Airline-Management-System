@@ -36,6 +36,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0)
 }
 
+.createAccBtn {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #42464f, #2f3439);
+    -fx-cursor: hand;
+}
+
+.createAccBtn:hover {
+    -fx-background-color: #00B140;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0)
+}
+
 .createbtn {
     -fx-text-fill: white;
     -fx-background-color: linear-gradient(to bottom, #42464f, #2f3439);
@@ -46,4 +58,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: white;
     -fx-background-color: linear-gradient(to bottom, #3b4048, #2f343a);
     -fx-cursor: hand;
+}
+
+
+/* FOR COMBO BOX DESIGN */
+.combo-box {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #9a9393;
+}
+
+.combo-box .list-cell:focused {
+    -fx-text-fill: white;
+}
+
+.combo-box .list-view .list-cell:focused {
+    -fx-background-color: #9a9393;
 }

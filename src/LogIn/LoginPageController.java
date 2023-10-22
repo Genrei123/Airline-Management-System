@@ -4,13 +4,13 @@
  */
 package LogIn;
 
+import Database.Connector;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -45,11 +45,11 @@ public class LoginPageController implements Initializable {
     @FXML
     private JFXTextField login_username;
 
-    @FXML
-    private JFXPasswordField login_showPassword;
+      @FXML
+    private JFXTextField login_showPassword;
 
     @FXML
-    private JFXTextField login_password;
+    private JFXPasswordField login_password;
 
     @FXML
     private Button login_btn;
@@ -62,6 +62,9 @@ public class LoginPageController implements Initializable {
 
     @FXML
     private Hyperlink login_forgetPassword;
+
+    @FXML
+    private Label signin_alert;
 
     @FXML
     private AnchorPane signup_form;
@@ -123,30 +126,55 @@ public class LoginPageController implements Initializable {
     @FXML
     private JFXTextField changePass_confirmPassword;
 
+
+    // Create class for alert class
+    private AlertManager alert = new AlertManager(signup_alert);
+    // SQL variables
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
     private Statement statement;
-
-    public Connection connectDB() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connect
-                    = DriverManager.getConnection("jdbc:mysql://localhost/erminoairlines", "root", "");
-            return connect;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    private Connector connectDB = new Connector();
 
     public void login() {
         if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
-            AlertManager.setAlertText(signup_alert, "Please fill in all required fields.", "red");
-            
+            alert.setAlertText(signin_alert, "Please fill in all required fields.", "red");
+        } else {
+            String selectData = "SELECT username,password FROM signin_users WHERE " + "username = ? and password = ?";
+            connect = connectDB.connectDB();
+
+            try {
+                prepare = connect.prepareStatement(selectData);
+                prepare.setString(1, login_username.getText());
+                prepare.setString(2, login_password.getText());
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    alert.setAlertText(signin_alert, "Successfully Login!", "green");
+
+                } else {
+                    alert.setAlertText(signin_alert, "Incorrect Username/Password", "red");
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    public void showPassword(){
+        if(login_selectShowPassword.isSelected()){
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(true);
+            login_password.setVisible(false);
+        } else {
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(false);
+            login_password.setVisible(true);
+        }
+    }
+    
     public void createAcc() {
         // CHECK IF WE HAVE EMPTY FIELD
         if (signup_userID.getText().isEmpty()
@@ -154,23 +182,23 @@ public class LoginPageController implements Initializable {
                 || signup_confirmPassword.getText().isEmpty()
                 || signup_selectQuestion.getSelectionModel().getSelectedItem() == null
                 || signup_answer.getText().isEmpty()) {
-            AlertManager.setAlertText(signup_alert, "Please fill in all required fields.", "red");
+            alert.setAlertText(signup_alert, "Please fill in all required fields.", "red");
         } else if (!signup_password.getText().equals(signup_confirmPassword.getText())) {
-            AlertManager.setAlertText(signup_alert, "Password does not match.", "red");
+            alert.setAlertText(signup_alert, "Password does not match.", "red");
         } else if (signup_password.getText().length() < 8) {
-            AlertManager.setAlertText(signup_alert, "Invalid Password, at least 8 characters needed.", "red");
+            alert.setAlertText(signup_alert, "Invalid Password, at least 8 characters needed.", "red");
         } else {
             // CHECK IF THE USERNAME IS ALREADY TAKEN
             String checkUsername = "SELECT * FROM signin_users WHERE username = '"
                     + signup_userID.getText() + "'";
-            connect = connectDB();
+            connect = connectDB.connectDB();
 
             try {
                 statement = connect.createStatement();
                 result = statement.executeQuery(checkUsername);
 
                 if (result.next()) {
-                    AlertManager.setAlertText(signup_alert, signup_userID.getText() + " is already taken", "red");
+                    alert.setAlertText(signup_alert, signup_userID.getText() + " is already taken", "red");
                 } else {
                     String insertData = "INSERT INTO signin_users"
                             + "(username, password, question, answer, date)"
@@ -188,7 +216,7 @@ public class LoginPageController implements Initializable {
 
                     prepare.executeUpdate();
 
-                    AlertManager.setAlertText(signup_alert, "Registered Successfully!", "green");
+                    alert.setAlertText(signup_alert, "Registered Successfully!", "green");
 
                     createAccClearFields();
 
@@ -196,7 +224,7 @@ public class LoginPageController implements Initializable {
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            AlertManager.hideAlert(signup_alert);
+                            alert.hideAlert(signup_alert);
                         }
                     }, 5000); // Hide the alert after 5 seconds (adjust as needed)
                 }

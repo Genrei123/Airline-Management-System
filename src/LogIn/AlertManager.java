@@ -12,13 +12,18 @@ import javafx.scene.control.Label;
  * @author Ervhyne
  */
 public class AlertManager {
-    public static void setAlertText(Label label, String message, String color) {
+    Label label;
+    public AlertManager(Label label){
+        this.label = label;
+    }
+
+    public void setAlertText(Label label, String message, String color) {
         label.setText(message);
         label.setStyle("-fx-text-fill: " + color + ";");
         label.setVisible(true);
     }
 
-    public static void hideAlert(Label label) {
+    public void hideAlert(Label label) {
         Platform.runLater(() -> {
             label.setText("");
             label.setVisible(false);
