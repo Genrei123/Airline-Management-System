@@ -137,8 +137,10 @@ public class LoginPageController implements Initializable {
     private Connector connectDB = new Connector();
 
     public void login() {
+        AlertManager alert = new AlertManager(signin_alert);
+
         if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
-            alert.setAlertText(signin_alert, "Please fill in all required fields.", "red");
+            alert.setAlertText("Please fill in all required fields.", "red");
         } else {
             String selectData = "SELECT username,password FROM signin_users WHERE " + "username = ? and password = ?";
             connect = connectDB.connectDB();
@@ -151,10 +153,10 @@ public class LoginPageController implements Initializable {
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    alert.setAlertText(signin_alert, "Successfully Login!", "green");
+                    alert.setAlertText("Successfully Login!", "green");
 
                 } else {
-                    alert.setAlertText(signin_alert, "Incorrect Username/Password", "red");
+                    alert.setAlertText("Incorrect Username/Password", "red");
 
                 }
             } catch (Exception e) {
@@ -176,17 +178,19 @@ public class LoginPageController implements Initializable {
     }
     
     public void createAcc() {
+        AlertManager alert = new AlertManager(signup_alert);
+
         // CHECK IF WE HAVE EMPTY FIELD
         if (signup_userID.getText().isEmpty()
                 || signup_password.getText().isEmpty()
                 || signup_confirmPassword.getText().isEmpty()
                 || signup_selectQuestion.getSelectionModel().getSelectedItem() == null
                 || signup_answer.getText().isEmpty()) {
-            alert.setAlertText(signup_alert, "Please fill in all required fields.", "red");
+            alert.setAlertText("Please fill in all required fields.", "red");
         } else if (!signup_password.getText().equals(signup_confirmPassword.getText())) {
-            alert.setAlertText(signup_alert, "Password does not match.", "red");
+            alert.setAlertText("Password does not match.", "red");
         } else if (signup_password.getText().length() < 8) {
-            alert.setAlertText(signup_alert, "Invalid Password, at least 8 characters needed.", "red");
+            alert.setAlertText("Invalid Password, at least 8 characters needed.", "red");
         } else {
             // CHECK IF THE USERNAME IS ALREADY TAKEN
             String checkUsername = "SELECT * FROM signin_users WHERE username = '"
@@ -198,7 +202,7 @@ public class LoginPageController implements Initializable {
                 result = statement.executeQuery(checkUsername);
 
                 if (result.next()) {
-                    alert.setAlertText(signup_alert, signup_userID.getText() + " is already taken", "red");
+                    alert.setAlertText(signup_userID.getText() + " is already taken", "red");
                 } else {
                     String insertData = "INSERT INTO signin_users"
                             + "(username, password, question, answer, date)"
@@ -216,7 +220,7 @@ public class LoginPageController implements Initializable {
 
                     prepare.executeUpdate();
 
-                    alert.setAlertText(signup_alert, "Registered Successfully!", "green");
+                    alert.setAlertText("Registered Successfully!", "green");
 
                     createAccClearFields();
 
@@ -224,7 +228,7 @@ public class LoginPageController implements Initializable {
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            alert.hideAlert(signup_alert);
+                            alert.hideAlert();
                         }
                     }, 5000); // Hide the alert after 5 seconds (adjust as needed)
                 }
