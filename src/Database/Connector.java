@@ -1,8 +1,11 @@
 package Database;
 
+import LogIn.AlertManager;
+
 import java.sql.*;
 
 public class Connector {
+
     public Connection connectDB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");

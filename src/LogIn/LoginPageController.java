@@ -145,22 +145,30 @@ public class LoginPageController implements Initializable {
             String selectData = "SELECT username,password FROM signin_users WHERE " + "username = ? and password = ?";
             connect = connectDB.connectDB();
 
-            try {
-                prepare = connect.prepareStatement(selectData);
-                prepare.setString(1, login_username.getText());
-                prepare.setString(2, login_password.getText());
+            if (connect == null)
+            {
+                alert.setAlertText("Unable to connect to the database!", "red");
+            }
 
-                result = prepare.executeQuery();
+            else {
 
-                if (result.next()) {
-                    alert.setAlertText("Successfully Login!", "green");
+                try {
+                    prepare = connect.prepareStatement(selectData);
+                    prepare.setString(1, login_username.getText());
+                    prepare.setString(2, login_password.getText());
 
-                } else {
-                    alert.setAlertText("Incorrect Username/Password", "red");
+                    result = prepare.executeQuery();
 
+                    if (result.next()) {
+                        alert.setAlertText("Successfully Login!", "green");
+
+                    } else {
+                        alert.setAlertText("Incorrect Username/Password", "red");
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
@@ -197,43 +205,51 @@ public class LoginPageController implements Initializable {
                     + signup_userID.getText() + "'";
             connect = connectDB.connectDB();
 
-            try {
-                statement = connect.createStatement();
-                result = statement.executeQuery(checkUsername);
+            if (connect == null)
+            {
+                alert.setAlertText("Unable to connect to the database!", "red");
+            }
 
-                if (result.next()) {
-                    alert.setAlertText(signup_userID.getText() + " is already taken", "red");
-                } else {
-                    String insertData = "INSERT INTO signin_users"
-                            + "(username, password, question, answer, date)"
-                            + "VALUES (?,?,?,?,?)";
+            else {
 
-                    prepare = connect.prepareStatement(insertData);
-                    prepare.setString(1, signup_userID.getText());
-                    prepare.setString(2, signup_password.getText());
-                    prepare.setString(3, (String) signup_selectQuestion.getSelectionModel().getSelectedItem());
-                    prepare.setString(4, signup_answer.getText());
+                try {
+                    statement = connect.createStatement();
+                    result = statement.executeQuery(checkUsername);
 
-                    Date date = new Date();
-                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                    prepare.setString(5, String.valueOf(sqlDate));
+                    if (result.next()) {
+                        alert.setAlertText(signup_userID.getText() + " is already taken", "red");
+                    } else {
+                        String insertData = "INSERT INTO signin_users"
+                                + "(username, password, question, answer, date)"
+                                + "VALUES (?,?,?,?,?)";
 
-                    prepare.executeUpdate();
+                        prepare = connect.prepareStatement(insertData);
+                        prepare.setString(1, signup_userID.getText());
+                        prepare.setString(2, signup_password.getText());
+                        prepare.setString(3, (String) signup_selectQuestion.getSelectionModel().getSelectedItem());
+                        prepare.setString(4, signup_answer.getText());
 
-                    alert.setAlertText("Registered Successfully!", "green");
+                        Date date = new Date();
+                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                        prepare.setString(5, String.valueOf(sqlDate));
 
-                    createAccClearFields();
+                        prepare.executeUpdate();
 
-                    // Clear and hide the alert after a certain period
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            alert.hideAlert();
-                        }
-                    }, 5000); // Hide the alert after 5 seconds (adjust as needed)
+                        alert.setAlertText("Registered Successfully!", "green");
+
+                        createAccClearFields();
+
+                        // Clear and hide the alert after a certain period
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                alert.hideAlert();
+                            }
+                        }, 5000); // Hide the alert after 5 seconds (adjust as needed)
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
