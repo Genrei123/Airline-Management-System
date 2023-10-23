@@ -45,7 +45,7 @@ public class LoginPageController implements Initializable {
     @FXML
     private JFXTextField login_username;
 
-      @FXML
+    @FXML
     private JFXTextField login_showPassword;
 
     @FXML
@@ -112,6 +112,9 @@ public class LoginPageController implements Initializable {
     private JFXTextField forgot_answer;
 
     @FXML
+    private Label forgot_alert;
+
+    @FXML
     private AnchorPane changePass_form;
 
     @FXML
@@ -126,45 +129,52 @@ public class LoginPageController implements Initializable {
     @FXML
     private JFXTextField changePass_confirmPassword;
 
+    @FXML
+    private Label changePass_alert;
 
-    // Create class for alert class
-    private AlertManager alert = new AlertManager(signup_alert);
     // SQL variables
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
     private Statement statement;
     private Connector connectDB = new Connector();
+    private boolean showPasswordChecked = false;
 
+    //LOGIN FORM PART
     public void login() {
         AlertManager alert = new AlertManager(signin_alert);
 
-        if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
+        if (login_username.getText().isEmpty() || (login_password.getText().isEmpty() && login_showPassword.getText().isEmpty())) {
             alert.setAlertText("Please fill in all required fields.", "red");
         } else {
-            String selectData = "SELECT username,password FROM signin_users WHERE " + "username = ? and password = ?";
+            String selectData = "SELECT username, password FROM signin_users WHERE " + "username = ?";
+
             connect = connectDB.connectDB();
 
-            if (connect == null)
-            {
+            if (connect == null) {
                 alert.setAlertText("Unable to connect to the database!", "red");
-            }
-
-            else {
-
+            } else {
                 try {
                     prepare = connect.prepareStatement(selectData);
                     prepare.setString(1, login_username.getText());
-                    prepare.setString(2, login_password.getText());
 
                     result = prepare.executeQuery();
 
                     if (result.next()) {
-                        alert.setAlertText("Successfully Login!", "green");
+                        // Check if the password matches the retrieved user's password
+                        String storedPassword = result.getString("password");
 
+                        String inputPassword = showPasswordChecked
+                                ? login_showPassword.getText()
+                                : login_password.getText();
+
+                        if (storedPassword.equals(inputPassword)) {
+                            alert.setAlertText("Successfully Login!", "green");
+                        } else {
+                            alert.setAlertText("Incorrect Password", "red");
+                        }
                     } else {
-                        alert.setAlertText("Incorrect Username/Password", "red");
-
+                        alert.setAlertText("Account doesn't exist", "red");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -173,8 +183,9 @@ public class LoginPageController implements Initializable {
         }
     }
 
-    public void showPassword(){
-        if(login_selectShowPassword.isSelected()){
+    public void showPassword() {
+        showPasswordChecked = login_selectShowPassword.isSelected();
+        if (showPasswordChecked) {
             login_showPassword.setText(login_password.getText());
             login_showPassword.setVisible(true);
             login_password.setVisible(false);
@@ -184,7 +195,104 @@ public class LoginPageController implements Initializable {
             login_password.setVisible(true);
         }
     }
-    
+
+    //FORGOT PASS FORM PART
+    public void forgotPass() {
+        AlertManager alert = new AlertManager(forgot_alert);
+        if (forgot_userID.getText().isEmpty()
+                || (forgot_selectQuestion.getSelectionModel().getSelectedItem() == null
+                || forgot_answer.getText().isEmpty())) {
+            alert.setAlertText("Please fill in all required fields.", "red");
+        } else {
+            String checkData = "Select username, question, answer FROM signin_users "
+                    + "WHERE username = ? AND question = ? AND answer = ?";
+
+            connect = connectDB.connectDB();
+
+            try {
+                prepare = connect.prepareStatement(checkData);
+                prepare.setString(1, forgot_userID.getText());
+                prepare.setString(2, (String) forgot_selectQuestion.getSelectionModel().getSelectedItem());
+                prepare.setString(3, forgot_answer.getText());
+
+                result = prepare.executeQuery();
+
+                //IF CORRECT
+                if (result.next()) {
+                    //PROCEED TO CHANGE PASSWORD
+                    signup_form.setVisible(false);
+                    login_form.setVisible(false);
+                    forgot_form.setVisible(false);
+                    changePass_form.setVisible(true);
+                } else {
+                    alert.setAlertText("Incorrect Information", "red");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public void forgotListQuestions() {
+        List<String> listQ = new ArrayList<>();
+
+        for (String data : questionList) {
+            listQ.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listQ);
+        forgot_selectQuestion.setItems(listData);
+    }
+
+    public void changePass() {
+        AlertManager alert = new AlertManager(changePass_alert);
+
+        //CHECK ALL FIELDS IF EMPTY OR NOT
+        if (changePass_password.getText().isEmpty() || changePass_confirmPassword.getText().isEmpty()) {
+            alert.setAlertText("Please fill in all required fields.", "red");
+
+        } else if (!changePass_password.getText().equals(changePass_confirmPassword.getText())) {
+            //CHECK IF THE PASSWORD AND CONFIRMATION ARE NOT MATCH
+            alert.setAlertText("Password does not match", "red");
+        } else if (signup_password.getText().length() < 8) {
+            //CHECK IF THE PASSWORD IS LESS THAN 8
+            alert.setAlertText("Invalid Password, at least 8 characters needed.", "red");
+        } else {
+            String updateData = "UPDATE sigin_users SET password = ?, update_date = ? "
+                    + "WHERE username = '" + forgot_userID.getText() + "'";
+            connect = connectDB.connectDB();
+
+            try {
+                prepare = connect.prepareStatement(updateData);
+                prepare.setString(1, changePass_password.getText());
+
+                Date date = new Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                prepare.setString(2, String.valueOf(sqlDate));
+
+                prepare.executeUpdate();
+                alert.setAlertText("Succesfully changed Password", "green");
+
+                //LOGIN WILL APPEAR
+                signup_form.setVisible(false);
+                login_form.setVisible(true);
+                forgot_form.setVisible(false);
+                changePass_form.setVisible(false);
+
+                changePass_password.setText("");
+                changePass_confirmPassword.setText("");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    //CREATE ACC FORM PART
     public void createAcc() {
         AlertManager alert = new AlertManager(signup_alert);
 
@@ -205,12 +313,9 @@ public class LoginPageController implements Initializable {
                     + signup_userID.getText() + "'";
             connect = connectDB.connectDB();
 
-            if (connect == null)
-            {
+            if (connect == null) {
                 alert.setAlertText("Unable to connect to the database!", "red");
-            }
-
-            else {
+            } else {
 
                 try {
                     statement = connect.createStatement();
@@ -263,8 +368,9 @@ public class LoginPageController implements Initializable {
         signup_answer.setText("");
     }
 
+    //SWITCH FORMS WHERE YOU WANT
     public void switchForm(ActionEvent event) {
-        if (event.getSource() == signup_loginAcc) {
+        if (event.getSource() == signup_loginAcc || event.getSource() == forgot_backBtn) {
             signup_form.setVisible(false);
             login_form.setVisible(true);
             forgot_form.setVisible(false);
@@ -273,6 +379,19 @@ public class LoginPageController implements Initializable {
             signup_form.setVisible(true);
             login_form.setVisible(false);
             forgot_form.setVisible(false);
+            changePass_form.setVisible(false);
+        } else if (event.getSource() == login_forgetPassword) {
+            signup_form.setVisible(false);
+            login_form.setVisible(false);
+            forgot_form.setVisible(true);
+            changePass_form.setVisible(false);
+
+            //TO SHOW THE DATA OF OUR COMBO-BOX
+            forgotListQuestions();
+        } else if (event.getSource() == changePass_backBtn) {
+            signup_form.setVisible(false);
+            login_form.setVisible(false);
+            forgot_form.setVisible(true);
             changePass_form.setVisible(false);
         }
     }
@@ -294,6 +413,8 @@ public class LoginPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         questions();
+        forgotListQuestions();
+
     }
 
 }

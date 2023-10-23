@@ -78,3 +78,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .combo-box .list-view .list-cell:focused {
     -fx-background-color: #9a9393;
 }
+
+.hyperlink-no-border{
+    -fx-text-fill: #1A658F;
+}
+
+.hyperlink-no-border:pressed {
+    -fx-border-color: transparent;
+}
