@@ -154,7 +154,7 @@ public class LoginPageController implements Initializable {
         if (login_username.getText().isEmpty() || (login_password.getText().isEmpty() && login_showPassword.getText().isEmpty())) {
             alert.setAlertText("Please fill in all required fields.", "red");
         } else {
-            String selectData = "SELECT * FROM signin_users WHERE " + "username = ?";
+            String selectData = "SELECT * FROM signin_users WHERE BINARY username = ?"; // Use BINARY for case-sensitive comparison
 
             connect = connectDB.connectDB();
 
@@ -183,12 +183,10 @@ public class LoginPageController implements Initializable {
                             Stage stage = new Stage();
                             Scene scene = new Scene(root);
 
-                            /*
-                            Image icon = new Image(getClass().getResourceAsStream("/img/(picture file here)"));
+                            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
                             stage.getIcons().add(icon);
-
-                            stage.initStyle(StageStyle.DECORATED);
-                             */
+                            stage.setTitle("Dashboard"); // Set a title for your window
+                            stage.setResizable(false); // Make it unresizable
                             stage.setScene(scene);
                             //TO SHOW OUR DASHBOARD FORM
                             stage.show();
@@ -238,9 +236,10 @@ public class LoginPageController implements Initializable {
 
             try {
                 // Check if the username exists
-                String checkUsername = "SELECT username FROM signin_users WHERE username = ?";
+                String checkUsername = "SELECT username FROM signin_users WHERE BINARY username = ?"; // Use BINARY for case-sensitive comparison
                 prepare = connect.prepareStatement(checkUsername);
-                prepare.setString(1, forgot_userID.getText());
+                prepare.setString(1, forgot_userID.getText()); // Make sure this is case-sensitive
+
                 result = prepare.executeQuery();
                 if (!result.next()) {
                     // Show an alert for incorrect username
@@ -252,9 +251,9 @@ public class LoginPageController implements Initializable {
                     alert.setAlertText("", "#2b2d31");
                     // Proceed with the rest of the code
                     String checkData = "Select username, question, answer FROM signin_users "
-                            + "WHERE username = ? AND question = ? AND answer = ?";
+                            + "WHERE BINARY username = ? AND question = ? AND BINARY answer = ?"; // Use BINARY for case-sensitive comparison
                     prepare = connect.prepareStatement(checkData);
-                    prepare.setString(1, forgot_userID.getText());
+                    prepare.setString(1, forgot_userID.getText()); // Make sure this is case-sensitive
                     prepare.setString(2, (String) forgot_selectQuestion.getSelectionModel().getSelectedItem());
                     prepare.setString(3, forgot_answer.getText());
 
