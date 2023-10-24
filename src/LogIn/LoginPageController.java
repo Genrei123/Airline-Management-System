@@ -154,20 +154,24 @@ public class LoginPageController implements Initializable {
         if (login_username.getText().isEmpty() || (login_password.getText().isEmpty() && login_showPassword.getText().isEmpty())) {
             alert.setAlertText("Please fill in all required fields.", "red");
         } else {
+            alert.setAlertText("", "red");
+
             String selectData = "SELECT * FROM signin_users WHERE BINARY username = ?"; // Use BINARY for case-sensitive comparison
 
             connect = connectDB.connectDB();
 
             if (connect == null) {
-                alert.setAlertText("Unable to connect to the database!", "red");
+
             } else {
                 try {
+
                     prepare = connect.prepareStatement(selectData);
                     prepare.setString(1, login_username.getText());
 
                     result = prepare.executeQuery();
 
                     if (result.next()) {
+
                         // Check if the password matches the retrieved user's password
                         String storedPassword = result.getString("password");
 
@@ -424,7 +428,6 @@ public class LoginPageController implements Initializable {
         signup_password.setText("");
         signup_selectQuestion.getSelectionModel().clearSelection();
         signup_confirmPassword.setText("");
-        signup_answer.setText("");
     }
 
     //SWITCH FORMS WHERE YOU WANT
@@ -434,24 +437,35 @@ public class LoginPageController implements Initializable {
             login_form.setVisible(true);
             forgot_form.setVisible(false);
             changePass_form.setVisible(false);
+
+            // Clear the login alert when coming back to the login form
+            signin_alert.setText("");
         } else if (event.getSource() == login_createAcc) {
             signup_form.setVisible(true);
             login_form.setVisible(false);
             forgot_form.setVisible(false);
             changePass_form.setVisible(false);
+            
+            
         } else if (event.getSource() == login_forgetPassword) {
             signup_form.setVisible(false);
             login_form.setVisible(false);
             forgot_form.setVisible(true);
             changePass_form.setVisible(false);
 
-            //TO SHOW THE DATA OF OUR COMBO-BOX
+            // Clear the login alert when going to the forgot password form
+            signin_alert.setText("");
+
+            // TO SHOW THE DATA OF OUR COMBO-BOX
             forgotListQuestions();
         } else if (event.getSource() == changePass_backBtn) {
             signup_form.setVisible(false);
             login_form.setVisible(false);
             forgot_form.setVisible(true);
             changePass_form.setVisible(false);
+
+            // Clear the login alert when coming back to the forgot password form
+            signin_alert.setText("");
         }
     }
 
