@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -15,14 +16,17 @@ import javafx.stage.Stage;
  * @author Ervhyne
  */
 public class Main extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/LogIn/LoginPage.fxml"));
-        
+        Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+        stage.getIcons().add(icon);
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
+        stage.setTitle("Login Page"); // Set a title for your window
+        stage.setResizable(false); // Make it unresizable
         stage.show();
     }
 
@@ -32,5 +36,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

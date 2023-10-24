@@ -145,6 +145,7 @@ public class LoginPageController implements Initializable {
     private Statement statement;
     private Connector connectDB = new Connector();
     private boolean showPasswordChecked = false;
+    private String storedUsername;
 
     //LOGIN FORM PART
     public void login() {
@@ -187,12 +188,11 @@ public class LoginPageController implements Initializable {
                             stage.getIcons().add(icon);
 
                             stage.initStyle(StageStyle.DECORATED);
-                            */
-
+                             */
                             stage.setScene(scene);
                             //TO SHOW OUR DASHBOARD FORM
                             stage.show();
-                            
+
                             //TO HIDE THE WINDOW OF LOG IN FORM
                             login_btn.getScene().getWindow().hide();
                         } else {
@@ -224,6 +224,7 @@ public class LoginPageController implements Initializable {
     //FORGOT PASS FORM PART
     public void forgotPass() {
         AlertManager alert = new AlertManager(forgot_alert);
+
         if (forgot_userID.getText().isEmpty()
                 || (forgot_selectQuestion.getSelectionModel().getSelectedItem() == null
                 || forgot_answer.getText().isEmpty())) {
@@ -245,6 +246,8 @@ public class LoginPageController implements Initializable {
                     // Show an alert for incorrect username
                     alert.setAlertText("Username does not exist", "red");
                 } else {
+                    // Store the username for later use
+                    storedUsername = forgot_userID.getText();
                     // Clear the alert for the username
                     alert.setAlertText("", "#2b2d31");
                     // Proceed with the rest of the code
@@ -257,9 +260,9 @@ public class LoginPageController implements Initializable {
 
                     result = prepare.executeQuery();
 
-                    //IF CORRECT
+                    // IF CORRECT
                     if (result.next()) {
-                        //PROCEED TO CHANGE PASSWORD
+                        // PROCEED TO CHANGE PASSWORD
                         signup_form.setVisible(false);
                         login_form.setVisible(false);
                         forgot_form.setVisible(false);
@@ -294,19 +297,22 @@ public class LoginPageController implements Initializable {
     public void changePass() {
         AlertManager alert = new AlertManager(changePass_alert);
 
-        //CHECK ALL FIELDS IF EMPTY OR NOT
+        // CHECK ALL FIELDS IF EMPTY OR NOT
         if (changePass_password.getText().isEmpty() || changePass_confirmPassword.getText().isEmpty()) {
             alert.setAlertText("Please fill in all required fields.", "red");
-
         } else if (!changePass_password.getText().equals(changePass_confirmPassword.getText())) {
-            //CHECK IF THE PASSWORD AND CONFIRMATION ARE NOT MATCH
+            // CHECK IF THE PASSWORD AND CONFIRMATION ARE NOT MATCH
             alert.setAlertText("Password does not match", "red");
         } else if (changePass_password.getText().length() < 8) {
-            //CHECK IF THE PASSWORD IS LESS THAN 8
+            // CHECK IF THE PASSWORD IS LESS THAN 8
             alert.setAlertText("Invalid Password, at least 8 characters needed.", "red");
         } else {
+            //CLEAR ALERT WHEN SUCCESSFULLY CHANGED
+            alert.setAlertText("", "#2b2d31");
+
+            // Construct the SQL query to update the password
             String updateData = "UPDATE signin_users SET password = ?, update_date = ? "
-                    + "WHERE username = '" + forgot_userID.getText() + "'";
+                    + "WHERE username = ?";
             connect = connectDB.connectDB();
 
             try {
@@ -316,7 +322,10 @@ public class LoginPageController implements Initializable {
                 Date date = new Date();
                 java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-                prepare.setString(2, String.valueOf(sqlDate));
+                prepare.setDate(2, sqlDate);
+
+                // Use the stored username
+                prepare.setString(3, storedUsername);
 
                 prepare.executeUpdate();
 
