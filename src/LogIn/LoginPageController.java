@@ -183,7 +183,7 @@ public class LoginPageController implements Initializable {
                             alert.setAlertText("Successfully Login!", "green");
 
                             //TO LINK TO DASHBOARD FORM
-                            Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
+                            Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
                             Stage stage = new Stage();
                             Scene scene = new Scene(root);
 
