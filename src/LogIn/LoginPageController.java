@@ -157,22 +157,23 @@ public class LoginPageController implements Initializable {
         } else {
             alert.setAlertText("", "red");
 
+            // Trim leading and trailing spaces from the entered account name
+            String enteredAccountName = login_username.getText().trim();
+
             String selectData = "SELECT * FROM signin_users WHERE BINARY username = ?"; // Use BINARY for case-sensitive comparison
 
             connect = connectDB.connectDB();
 
             if (connect == null) {
-
+                // Handle the case where the database connection fails
             } else {
                 try {
-
                     prepare = connect.prepareStatement(selectData);
-                    prepare.setString(1, login_username.getText());
+                    prepare.setString(1, enteredAccountName);
 
                     result = prepare.executeQuery();
 
                     if (result.next()) {
-
                         // Check if the password matches the retrieved user's password
                         String storedPassword = result.getString("password");
 
@@ -183,8 +184,8 @@ public class LoginPageController implements Initializable {
                         if (storedPassword.equals(inputPassword)) {
                             alert.setAlertText("Successfully Login!", "green");
 
-                            //TO LINK TO DASHBOARD FORM
-                            //Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
+                            // TO LINK TO DASHBOARD FORM
+                            // Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
                             Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
                             Stage stage = new Stage();
                             Scene scene = new Scene(root);
@@ -194,10 +195,10 @@ public class LoginPageController implements Initializable {
                             stage.setTitle("Dashboard"); // Set a title for your window
                             stage.setResizable(false); // Make it unresizable
                             stage.setScene(scene);
-                            //TO SHOW OUR DASHBOARD FORM
+                            // TO SHOW OUR DASHBOARD FORM
                             stage.show();
 
-                            //TO HIDE THE WINDOW OF LOG IN FORM
+                            // TO HIDE THE WINDOW OF LOG IN FORM
                             login_btn.getScene().getWindow().hide();
                         } else {
                             alert.setAlertText("Incorrect Password", "red");
@@ -447,8 +448,7 @@ public class LoginPageController implements Initializable {
             login_form.setVisible(false);
             forgot_form.setVisible(false);
             changePass_form.setVisible(false);
-            
-            
+
         } else if (event.getSource() == login_forgetPassword) {
             signup_form.setVisible(false);
             login_form.setVisible(false);
@@ -489,7 +489,7 @@ public class LoginPageController implements Initializable {
         // TODO
         questions();
         forgotListQuestions();
-        
+
         // Listen for Enter key press in the login form
         login_form.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
