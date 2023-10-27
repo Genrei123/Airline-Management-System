@@ -32,6 +32,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -183,7 +184,8 @@ public class LoginPageController implements Initializable {
                             alert.setAlertText("Successfully Login!", "green");
 
                             //TO LINK TO DASHBOARD FORM
-                            Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
+                            //Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
+                            Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
                             Stage stage = new Stage();
                             Scene scene = new Scene(root);
 
@@ -487,6 +489,14 @@ public class LoginPageController implements Initializable {
         // TODO
         questions();
         forgotListQuestions();
+        
+        // Listen for Enter key press in the login form
+        login_form.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                // Handle the Enter key press (e.g., call the login() method)
+                login();
+            }
+        });
 
     }
 
