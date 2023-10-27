@@ -41,6 +41,9 @@ public class DashboardController implements Initializable {
     }
 
     private void toggleAdminMenu() {
+        // Disable the button while the animation is in progress
+        dashboard_menu.setDisable(true);
+
         if (isMenuVisible) {
             hideMenu();
         } else {
@@ -53,6 +56,13 @@ public class DashboardController implements Initializable {
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(dashboard_slider);
         slide.setToX(0);
+
+        // Set an event handler for when the animation is finished
+        slide.setOnFinished(event -> {
+            // Enable the button when the animation is complete
+            dashboard_menu.setDisable(false);
+        });
+
         slide.play();
 
         centerSlide.setDuration(Duration.seconds(0.4));
@@ -68,6 +78,13 @@ public class DashboardController implements Initializable {
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(dashboard_slider);
         slide.setToX(-dashboard_slider.getWidth());
+
+        // Set an event handler for when the animation is finished
+        slide.setOnFinished(event -> {
+            // Enable the button when the animation is complete
+            dashboard_menu.setDisable(false);
+        });
+
         slide.play();
 
         centerSlide.setDuration(Duration.seconds(0.4));
