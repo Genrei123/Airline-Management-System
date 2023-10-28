@@ -149,6 +149,7 @@ public class LoginPageController implements Initializable {
     private Database checkAcc = new Database();
 
     //LOGIN FORM PART
+    // Modified login function to handle both password and showPassword fields
     public void login() {
         AlertManager alert = new AlertManager(signin_alert);
 
@@ -156,9 +157,11 @@ public class LoginPageController implements Initializable {
             alert.setAlertText("Please fill in all required fields.", "red");
         } else {
             alert.setAlertText("", "red");
-            // Trim leading and trailing spaces from the entered account name
+
             String enteredAccountName = login_username.getText().trim();
-            String enteredPassword = login_password.getText();
+            
+            //TO USE SHOW PASSWORD FOR LOGGING IN
+            String enteredPassword = showPasswordChecked ? login_showPassword.getText() : login_password.getText();
 
             try {
                 boolean isValid = checkAcc.checkAccount(enteredAccountName, enteredPassword);
@@ -179,12 +182,11 @@ public class LoginPageController implements Initializable {
                     stage.setScene(scene);
                     // TO SHOW OUR DASHBOARD FORM
                     stage.show();
-                }
-
-                else {
+                    // TO HIDE THE WINDOW OF LOG IN FORM
+                    login_btn.getScene().getWindow().hide();
+                } else {
                     alert.setAlertText("Please try again.", "red");
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -198,7 +200,7 @@ public class LoginPageController implements Initializable {
             login_showPassword.setVisible(true);
             login_password.setVisible(false);
         } else {
-            login_showPassword.setText(login_password.getText());
+            login_password.setText(login_showPassword.getText());
             login_showPassword.setVisible(false);
             login_password.setVisible(true);
         }
@@ -409,6 +411,7 @@ public class LoginPageController implements Initializable {
         signup_password.setText("");
         signup_selectQuestion.getSelectionModel().clearSelection();
         signup_confirmPassword.setText("");
+        signup_answer.setText("");
     }
 
     //SWITCH FORMS WHERE YOU WANT
