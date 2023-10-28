@@ -365,7 +365,6 @@ public class LoginPageController implements Initializable {
 
             Database checkAccount = new Database();
             boolean isValid = false;
-
             try {
                 isValid = checkAccount.checkAccount(signup_userID.getText());
 
