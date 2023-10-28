@@ -203,5 +203,44 @@ public class Database {
         return false;
     }
 
+    public boolean checkAccount(String username, String question, String answer) throws SQLException {
+        String query = "SELECT username, question, answer " +
+                "FROM `signin_users` WHERE BINARY username = ? AND BINARY question = ? AND BINARY answer = ?";
+
+        connector = connectDB.connectDB();
+
+        if (connector == null)
+        {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        }
+
+        else
+        {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, username); // Make sure this is case-sensitive
+                prepare.setString(2, question);
+                prepare.setString(3, answer);
+
+                result = prepare.executeQuery();
+
+                if (result.next())
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
 
 }

@@ -227,13 +227,11 @@ public class LoginPageController implements Initializable {
             }
 
             try {
-                // Check if the username exists
-                String checkUsername = "SELECT username FROM signin_users WHERE BINARY username = ?"; // Use BINARY for case-sensitive comparison
-                prepare = connect.prepareStatement(checkUsername);
-                prepare.setString(1, forgot_userID.getText()); // Make sure this is case-sensitive
+                Database checkUsername = new Database();
+                boolean isValidUser;
 
-                result = prepare.executeQuery();
-                if (!result.next()) {
+                isValidUser = checkUsername.checkAccount(forgot_userID.getText());
+                if (!isValidUser) {
                     // Show an alert for incorrect username
                     alert.setAlertText("Username does not exist", "red");
                 } else {
@@ -241,18 +239,12 @@ public class LoginPageController implements Initializable {
                     storedUsername = forgot_userID.getText();
                     // Clear the alert for the username
                     alert.setAlertText("", "#2b2d31");
-                    // Proceed with the rest of the code
-                    String checkData = "Select username, question, answer FROM signin_users "
-                            + "WHERE BINARY username = ? AND question = ? AND BINARY answer = ?"; // Use BINARY for case-sensitive comparison
-                    prepare = connect.prepareStatement(checkData);
-                    prepare.setString(1, forgot_userID.getText()); // Make sure this is case-sensitive
-                    prepare.setString(2, (String) forgot_selectQuestion.getSelectionModel().getSelectedItem());
-                    prepare.setString(3, forgot_answer.getText());
 
-                    result = prepare.executeQuery();
+                    Database checkAccount = new Database();
+                    boolean isValid = checkAccount.checkAccount(storedUsername,(String) forgot_selectQuestion.getSelectionModel().getSelectedItem(), forgot_answer.getText());
 
                     // IF CORRECT
-                    if (result.next()) {
+                    if (isValid) {
                         // PROCEED TO CHANGE PASSWORD
                         signup_form.setVisible(false);
                         login_form.setVisible(false);
