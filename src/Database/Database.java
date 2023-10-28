@@ -1,6 +1,7 @@
 package Database;
 
 import java.sql.*;
+import java.util.List;
 
 public class Database {
     // Variable declaration
@@ -12,17 +13,40 @@ public class Database {
     PreparedStatement prepare;
     ResultSet result;
 
-    public void insertData (String table, String value) throws SQLException {
+    public void insertData (String tableName, List<String> columnNames, List<Object> values) throws SQLException {
+
+
+        StringBuilder query = new StringBuilder("INSERT INTO " + tableName + " (" + String.join(",", columnNames) + ") VALUES (");
+        for (int i = 0; i < columnNames.size(); i++)
+        {
+            query.append("?");
+            if (i < columnNames.size() - 1) {
+                query.append(", ");
+            }
+        }
+        query.append(")");
+
 
         connector = connectDB.connectDB();
-        String query = "INSERT INTO " + table;
-        // Iniisip ko pa yung logic kung paano maraming where clause or maraming data iinsert which is hindi possible pag string lang.
-        // Idea is to magcreate ng isa pang function na nagttake naman ng array
-    }
+        if (connector == null)
+        {
+            System.out.println("Cannot connect to the database.");
+        }
 
-    public void pullData (String table, String value) throws SQLException {
+        else
+        {
+            prepare = connector.prepareStatement(query.toString());
 
+            for (int i = 0; i < values.size() ; i++)
+            {
+                prepare.setObject(i + 1, values.get(i));
+            }
 
+            prepare.executeUpdate();
+
+            prepare.close();
+            connector.close();
+        }
     }
 
     public boolean checkAccount(String username, String password) throws SQLException {
@@ -41,6 +65,42 @@ public class Database {
                 prepare = connector.prepareStatement(query);
                 prepare.setString(1, username);
                 prepare.setString(2, password);
+
+                result = prepare.executeQuery();
+
+                if (result.next())
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
+    public boolean checkAccount(String username) throws SQLException {
+        String query = "SELECT * FROM `signin_users` WHERE BINARY username = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null)
+        {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        }
+
+        else
+        {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, username);
 
                 result = prepare.executeQuery();
 

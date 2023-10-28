@@ -35,6 +35,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.Arrays;
+
+
+
 /**
  *
  * @author Ervhyne
@@ -359,48 +363,51 @@ public class LoginPageController implements Initializable {
                     + signup_userID.getText() + "'";
             connect = connectDB.connectDB();
 
-            if (connect == null) {
-                alert.setAlertText("Unable to connect to the database!", "red");
-            } else {
+            Database checkAccount = new Database();
+            boolean isValid = false;
 
-                try {
-                    statement = connect.createStatement();
-                    result = statement.executeQuery(checkUsername);
+            try {
+                isValid = checkAccount.checkAccount(signup_userID.getText());
 
-                    if (result.next()) {
-                        alert.setAlertText(signup_userID.getText() + " is already taken", "red");
-                    } else {
-                        String insertData = "INSERT INTO signin_users"
-                                + "(username, password, question, answer, date)"
-                                + "VALUES (?,?,?,?,?)";
+                if (!isValid)
+                {
+                    Date date = new Date();
+                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-                        prepare = connect.prepareStatement(insertData);
-                        prepare.setString(1, signup_userID.getText());
-                        prepare.setString(2, signup_password.getText());
-                        prepare.setString(3, (String) signup_selectQuestion.getSelectionModel().getSelectedItem());
-                        prepare.setString(4, signup_answer.getText());
+                    List<String> columnNames = Arrays.asList(
+                            "username",
+                            "password",
+                            "question",
+                            "answer",
+                            "date");
 
-                        Date date = new Date();
-                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                        prepare.setString(5, String.valueOf(sqlDate));
+                    List<Object> values = Arrays.asList(
+                            signup_userID.getText(),
+                            signup_password.getText(),
+                            (String) signup_selectQuestion.getSelectionModel().getSelectedItem(),
+                            signup_answer.getText(),
+                            sqlDate);
 
-                        prepare.executeUpdate();
+                    checkAccount.insertData("signin_users", columnNames, values);
+                    alert.setAlertText("Registered Successfully!", "green");
+                    createAccClearFields();
 
-                        alert.setAlertText("Registered Successfully!", "green");
-
-                        createAccClearFields();
-
-                        // Clear and hide the alert after a certain period
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                alert.hideAlert();
-                            }
-                        }, 5000); // Hide the alert after 5 seconds (adjust as needed)
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    // Clear and hide the alert after a certain period
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            alert.hideAlert();
+                        }
+                    }, 5000); // Hide the alert after 5 seconds (adjust as needed)
                 }
+
+                else
+                {
+                    alert.setAlertText(signup_userID.getText() + " is already taken", "red");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
