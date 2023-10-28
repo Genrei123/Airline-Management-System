@@ -22,10 +22,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #0071BC;
 }
 
+
+
 .jfx-button-dashboard {
     -fx-background-color: transparent; /* Set the background color to transparent */
     -fx-background-insets: 0; /* Remove any background insets */
-    -fx-background-radius: 0; /* Remove any background radius */
+    -fx-background-radius: 50px; /* Remove any background radius */
     -fx-border-color: transparent; /* Remove any border color */
-    -fx-font-weight: bold; /* Ensure no bold font weight */
+    -fx-border-radius: 50%;
+
+}
+/* Set the border to transparent when the button is in the "pressed" state */
+.jfx-button-dashboard:pressed {
+    -fx-border-color: transparent;
+}
+
+.overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
 }

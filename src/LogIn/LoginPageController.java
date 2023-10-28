@@ -35,6 +35,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.xml.crypto.Data;
 import java.util.Arrays;
 
 
@@ -300,24 +301,31 @@ public class LoginPageController implements Initializable {
             //CLEAR ALERT WHEN SUCCESSFULLY CHANGED
             alert.setAlertText("", "#2b2d31");
 
-            // Construct the SQL query to update the password
-            String updateData = "UPDATE signin_users SET password = ?, update_date = ? "
-                    + "WHERE username = ?";
-            connect = connectDB.connectDB();
+            Database update = new Database();
+            Date date = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+            List<String> updateColumn = Arrays.asList(
+                    "password",
+                    "update_date"
+            );
+
+            List<Object> values = Arrays.asList(
+                    changePass_password.getText(),
+                    sqlDate
+            );
+
+            List<String> condition = Arrays.asList(
+                    "username"
+            );
+
+            List<Object> conditionValue = Arrays.asList(
+                    storedUsername
+            );
+
 
             try {
-                prepare = connect.prepareStatement(updateData);
-                prepare.setString(1, changePass_password.getText());
-
-                Date date = new Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-                prepare.setDate(2, sqlDate);
-
-                // Use the stored username
-                prepare.setString(3, storedUsername);
-
-                prepare.executeUpdate();
+                update.updateData("signin_users", updateColumn, values, condition, conditionValue);
 
                 login_username.setText("");
                 login_password.setVisible(true);
@@ -338,7 +346,6 @@ public class LoginPageController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 

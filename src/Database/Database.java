@@ -49,6 +49,45 @@ public class Database {
         }
     }
 
+    public void updateData (String tableName, List<String> updateColumn, List<Object> values, List<String> condition, List<Object> conditionValue) throws SQLException {
+
+        StringBuilder query = new StringBuilder("UPDATE " + tableName + " SET ");
+        for (int i = 0; i < updateColumn.size(); i++) {
+            query.append(updateColumn.get(i) + " = ?");
+            if (i < updateColumn.size() - 1) {
+                query.append(", ");
+            }
+        }
+
+        if (!condition.isEmpty()) {
+            query.append("WHERE ");
+            for (int i = 0; i < condition.size(); i++) {
+                query.append(condition.get(i) + " = ?");
+                if (i < condition.size() - 1) {
+                    query.append(" AND ");
+                }
+            }
+        }
+
+        connector = connectDB.connectDB();
+        prepare = connector.prepareStatement(query.toString());
+
+        // Set the update values
+        for (int i = 0; i < values.size(); i++) {
+            prepare.setObject(i + 1, values.get(i));
+        }
+
+        // Set the condition values
+        for (int i = 0; i < conditionValue.size(); i++) {
+            prepare.setObject(values.size() + i + 1, conditionValue.get(i));
+        }
+
+        prepare.executeUpdate();
+        prepare.close();
+        connector.close();
+    }
+
+
     public List<String[]> pullData (String tableName, List<String> columnNames)
     {
         StringBuilder query = new StringBuilder("SELECT ");
@@ -88,7 +127,6 @@ public class Database {
         {
             System.out.println("Cannot connect to the database");
         }
-
         return null;
     }
 
