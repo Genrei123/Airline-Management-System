@@ -6,4 +6,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 10 25, 23, 8:28:17 PM
     Author     : Ervhyne
 */
+.top-pane {
+    -fx-background-color: #1e1f22;
+}
 
+.sidebar-bg {
+    -fx-background-color: #232428;
+}
+
+.pane-bg {
+    -fx-background-color: #2b2d31;
+}
+
+.ui-bg {
+    -fx-background-color: #0071BC;
+}
+
+.jfx-button-dashboard {
+    -fx-background-color: transparent; /* Set the background color to transparent */
+    -fx-background-insets: 0; /* Remove any background insets */
+    -fx-background-radius: 0; /* Remove any background radius */
+    -fx-border-color: transparent; /* Remove any border color */
+    -fx-font-weight: bold; /* Ensure no bold font weight */
+}

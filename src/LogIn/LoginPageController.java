@@ -5,15 +5,13 @@
 package LogIn;
 
 import Database.Connector;
+import Database.Database;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -148,6 +146,8 @@ public class LoginPageController implements Initializable {
     private boolean showPasswordChecked = false;
     private String storedUsername;
 
+    private Database checkAcc = new Database();
+
     //LOGIN FORM PART
     public void login() {
         AlertManager alert = new AlertManager(signin_alert);
@@ -156,59 +156,37 @@ public class LoginPageController implements Initializable {
             alert.setAlertText("Please fill in all required fields.", "red");
         } else {
             alert.setAlertText("", "red");
-
             // Trim leading and trailing spaces from the entered account name
             String enteredAccountName = login_username.getText().trim();
+            String enteredPassword = login_password.getText();
 
-            String selectData = "SELECT * FROM signin_users WHERE BINARY username = ?"; // Use BINARY for case-sensitive comparison
+            try {
+                boolean isValid = checkAcc.checkAccount(enteredAccountName, enteredPassword);
 
-            connect = connectDB.connectDB();
+                if (isValid) {
+                    alert.setAlertText("Successful Login!", "green");
 
-            if (connect == null) {
-                // Handle the case where the database connection fails
-            } else {
-                try {
-                    prepare = connect.prepareStatement(selectData);
-                    prepare.setString(1, enteredAccountName);
+                    // TO LINK TO DASHBOARD FORM
+                    // Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
 
-                    result = prepare.executeQuery();
-
-                    if (result.next()) {
-                        // Check if the password matches the retrieved user's password
-                        String storedPassword = result.getString("password");
-
-                        String inputPassword = showPasswordChecked
-                                ? login_showPassword.getText()
-                                : login_password.getText();
-
-                        if (storedPassword.equals(inputPassword)) {
-                            alert.setAlertText("Successfully Login!", "green");
-
-                            // TO LINK TO DASHBOARD FORM
-                            // Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
-                            Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
-                            Stage stage = new Stage();
-                            Scene scene = new Scene(root);
-
-                            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
-                            stage.getIcons().add(icon);
-                            stage.setTitle("Dashboard"); // Set a title for your window
-                            stage.setResizable(false); // Make it unresizable
-                            stage.setScene(scene);
-                            // TO SHOW OUR DASHBOARD FORM
-                            stage.show();
-
-                            // TO HIDE THE WINDOW OF LOG IN FORM
-                            login_btn.getScene().getWindow().hide();
-                        } else {
-                            alert.setAlertText("Incorrect Password", "red");
-                        }
-                    } else {
-                        alert.setAlertText("Account doesn't exist", "red");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+                    stage.getIcons().add(icon);
+                    stage.setTitle("Dashboard"); // Set a title for your window
+                    stage.setResizable(false); // Make it unresizable
+                    stage.setScene(scene);
+                    // TO SHOW OUR DASHBOARD FORM
+                    stage.show();
                 }
+
+                else {
+                    alert.setAlertText("Please try again.", "red");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

@@ -9,6 +9,8 @@ public class Database {
 
     Connection connector;
     Connector connectDB = new Connector();
+    PreparedStatement prepare;
+    ResultSet result;
 
     public void insertData (String table, String value) throws SQLException {
 
@@ -21,6 +23,43 @@ public class Database {
     public void pullData (String table, String value) throws SQLException {
 
 
+    }
+
+    public boolean checkAccount(String username, String password) throws SQLException {
+        String query = "SELECT * FROM `signin_users` WHERE BINARY username = ? AND password = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null)
+        {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        }
+
+        else
+        {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, username);
+                prepare.setString(2, password);
+
+                result = prepare.executeQuery();
+
+                if (result.next())
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
     }
 
 
