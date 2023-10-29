@@ -1,5 +1,8 @@
 # Airline-Ticketing-System
 
+## Description
+This program aims to create an airline seat reservation system.
+
 ## How to run this application
 - Download Java JDK (1.8)
 - Download SceneBuilder Java 8
@@ -18,7 +21,7 @@
   
 ![image](https://github.com/Genrei123/Airline-Ticketing-System/assets/109770981/7d4e97d1-8240-481a-b88b-b3a67b99619d)
 
-# If Scenebuilder is unable to open the FXML file do the following:
+#### If Scenebuilder is unable to open the FXML file do the following:
 - Open SceneBuilder
 - Press Create New Project
 - Then look for the widget.
