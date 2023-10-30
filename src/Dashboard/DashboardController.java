@@ -1,6 +1,7 @@
 package Dashboard;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTreeTableView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,6 +36,9 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXButton logout_btn;
+            
+    @FXML
+    private JFXTreeTableView<?> bookedFlight_table;
 
     private boolean isMenuVisible = false;
 

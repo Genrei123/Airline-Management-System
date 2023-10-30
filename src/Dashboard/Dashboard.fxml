@@ -4,6 +4,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -33,7 +35,23 @@
       <AnchorPane fx:id="overlayPane" layoutY="46.0" prefHeight="554.0" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0" />
       <AnchorPane fx:id="centerPane" layoutY="46.0" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <AnchorPane fx:id="dashboard_slider" prefHeight="200.0" prefWidth="150.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="sales_form" prefHeight="554.0" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="ticketRecords_form" layoutX="10.0" layoutY="10.0" prefHeight="564.0" prefWidth="1034.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="flightRecords_form" layoutX="10.0" layoutY="10.0" prefHeight="574.0" prefWidth="1044.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="bookedFlights_form" layoutX="10.0" layoutY="10.0" prefHeight="584.0" prefWidth="1054.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="bookedFlights_table" layoutX="129.0" layoutY="99.0" prefHeight="381.0" prefWidth="865.0" styleClass="draggable" stylesheets="@DashboardStyles.css">
+                    <columns>
+                      <TableColumn prefWidth="183.0" resizable="false" sortType="DESCENDING" text="Name" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Flight Number" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Departure" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Date of Booking" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Destination From" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="dashboard_slider" prefHeight="200.0" prefWidth="150.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox prefHeight="285.0" prefWidth="150.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="269.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
