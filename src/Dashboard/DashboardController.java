@@ -79,7 +79,7 @@ public class DashboardController implements Initializable {
 
             // Get the stage from the current button's scene
             Stage stage = (Stage) logout_btn.getScene().getWindow();
-
+            stage.setResizable(false); // Make it unresizable
             stage.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
