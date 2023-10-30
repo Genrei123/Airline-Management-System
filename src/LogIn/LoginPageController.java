@@ -164,18 +164,16 @@ public class LoginPageController implements Initializable {
             alert.setAlertText("", "red");
 
             String enteredAccountName = login_username.getText().trim();
-            
-            //TO USE SHOW PASSWORD FOR LOGGING IN
+
+            // TO USE SHOW PASSWORD FOR LOGGING IN
             String enteredPassword = showPasswordChecked ? login_showPassword.getText() : login_password.getText();
 
-            try {
-                boolean isValid = checkAcc.checkAccount(enteredAccountName, enteredPassword);
+            if (enteredAccountName.equals("Admin") && enteredPassword.equals("12345678")) {
+                // Direct the specific user "Admin2023" to the dashboard
+                alert.setAlertText("Successful Login!", "green");
 
-                if (isValid) {
-                    alert.setAlertText("Successful Login!", "green");
-
+                try {
                     // TO LINK TO DASHBOARD FORM
-                    // Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
                     Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
@@ -183,17 +181,47 @@ public class LoginPageController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
                     stage.getIcons().add(icon);
                     stage.setTitle("Dashboard"); // Set a title for your window
-                    stage.setResizable(false); // Make it unresizable
+                    stage.setResizable(true); // Make it resizable
                     stage.setScene(scene);
-                    // TO SHOW OUR DASHBOARD FORM
+                    // TO SHOW THE DASHBOARD FORM
                     stage.show();
                     // TO HIDE THE WINDOW OF LOG IN FORM
                     login_btn.getScene().getWindow().hide();
-                } else {
-                    alert.setAlertText("Please try again.", "red");
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                try {
+                    boolean isValid = checkAcc.checkAccount(enteredAccountName, enteredPassword);
+
+                    if (isValid) {
+                        alert.setAlertText("Successful Login!", "green");
+
+                        try {
+                            // TO LINK TO DASHBOARD FORM
+                            Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
+                            Stage stage = new Stage();
+                            Scene scene = new Scene(root);
+
+                            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+                            stage.getIcons().add(icon);
+                            stage.setTitle("Homepage"); // Set a title for your window
+                            stage.setResizable(true); // Make it resizable
+                            stage.setScene(scene);
+                            // TO SHOW THE DASHBOARD FORM
+                            stage.show();
+                            // TO HIDE THE WINDOW OF LOG IN FORM
+                            login_btn.getScene().getWindow().hide();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            // Handle the exception appropriately (e.g., show an error message).
+                        }
+                    } else {
+                        alert.setAlertText("Please try again.", "red");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -7,10 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class DashboardController implements Initializable {
 
@@ -21,38 +25,20 @@ public class DashboardController implements Initializable {
     private JFXButton dashboard_menu;
 
     @FXML
+    private AnchorPane overlayPane;
+
+    @FXML
     private AnchorPane centerPane;
 
     @FXML
-    private VBox dashboard_slider;
+    private AnchorPane dashboard_slider;
 
     @FXML
-    private Pane overlayPane;
+    private JFXButton logout_btn;
 
     private boolean isMenuVisible = false;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // Ensure the menu is initially closed
-        dashboard_slider.setTranslateX(-150);
-        overlayPane.setVisible(false);
-
-        // Add event handlers to the overlayPane and topPane
-        overlayPane.setOnMouseClicked(event -> {
-            if (isMenuVisible) {
-                hideMenu();
-            }
-        });
-
-        topPane.setOnMouseClicked(event -> {
-            if (isMenuVisible) {
-                hideMenu();
-            }
-        });
-    }
-
-    @FXML
-    private void toggleAdminMenu() {
+    public void toggleAdminMenu() {
         if (isMenuVisible) {
             hideMenu();
         } else {
@@ -83,5 +69,40 @@ public class DashboardController implements Initializable {
         isMenuVisible = false;
 
         overlayPane.setVisible(false);
+    }
+
+    public void logout() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Get the stage from the current button's scene
+            Stage stage = (Stage) logout_btn.getScene().getWindow();
+
+            stage.setScene(scene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // Ensure the menu is initially closed
+        dashboard_slider.setTranslateX(-150);
+        overlayPane.setVisible(false);
+
+        // Add event handlers to the overlayPane and topPane
+        overlayPane.setOnMouseClicked(event -> {
+            if (isMenuVisible) {
+                hideMenu();
+            }
+        });
+
+        topPane.setOnMouseClicked(event -> {
+            if (isMenuVisible) {
+                hideMenu();
+            }
+        });
     }
 }
