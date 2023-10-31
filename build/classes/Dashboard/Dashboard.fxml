@@ -4,6 +4,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -12,7 +14,7 @@
    <children>
       <AnchorPane fx:id="topPane" prefHeight="46.0" prefWidth="1024.0" styleClass="top-pane" stylesheets="@DashboardStyles.css">
          <children>
-            <Label layoutX="41.0" layoutY="12.0" text="Ermino Airlines" textFill="WHITE" AnchorPane.leftAnchor="49.0">
+            <Label layoutX="41.0" layoutY="12.0" text="Ermino Airlines" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="12.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -20,7 +22,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="PLANE" size="20" />
                </graphic>
             </Label>
-            <JFXButton fx:id="dashboard_menu" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="6.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" ripplerFill="#d0d0d0" styleClass="jfx-button-dashboard" stylesheets="@DashboardStyles.css" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="7.0">
+            <JFXButton fx:id="dashboard_menu" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="6.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" ripplerFill="#d0d0d0" styleClass="jfx-button-dashboard" stylesheets="@DashboardStyles.css" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" />
                </graphic>
@@ -30,57 +32,112 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="overlayPane" layoutY="46.0" prefHeight="554.0" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0" />
       <AnchorPane fx:id="centerPane" layoutY="46.0" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <AnchorPane fx:id="dashboard_slider" prefHeight="200.0" prefWidth="150.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="sales_form" prefHeight="554.0" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox prefHeight="285.0" prefWidth="150.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="269.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <JFXButton alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="150.0" text="Booked Flights" textFill="LIGHTGRAY">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView fill="GAINSBORO" glyphName="BOOK" size="30" text="" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="150.0" text="Flight Records" textFill="LIGHTGRAY">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <graphic>
-                              <MaterialDesignIconView fill="GAINSBORO" fontSmoothingType="LCD" glyphName="BOOK_OPEN" size="30" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="150.0" text="Ticket Records" textFill="LIGHTGRAY">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <graphic>
-                              <MaterialDesignIconView fill="GAINSBORO" glyphName="TICKET_ACCOUNT" size="30" text="" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="150.0" text="Sales" textFill="LIGHTGRAY">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView fill="GAINSBORO" fontSmoothingType="LCD" glyphName="BAR_CHART" size="30" />
-                           </graphic>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-                  <JFXButton fx:id="logout_btn" alignment="BASELINE_LEFT" layoutY="502.0" onAction="#logout" prefHeight="30.0" prefWidth="150.0" text="Log Out" textFill="LIGHTGRAY" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Label text="sales" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="300.0" />
+               </children></AnchorPane>
+            <AnchorPane fx:id="ticketRecords_form" layoutX="10.0" layoutY="10.0" prefHeight="564.0" prefWidth="1034.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="ticket records" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="300.0" />
+               </children></AnchorPane>
+            <AnchorPane fx:id="flightRecords_form" layoutX="10.0" layoutY="10.0" prefHeight="574.0" prefWidth="1044.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="flight records" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="300.0" />
+               </children></AnchorPane>
+            <AnchorPane fx:id="bookedFlights_form" layoutX="10.0" layoutY="10.0" prefHeight="584.0" prefWidth="1054.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="bookedFlights_table" layoutX="59.0" layoutY="139.0" prefHeight="381.0" prefWidth="865.0" stylesheets="@DashboardStyles.css" visible="false">
+                    <columns>
+                      <TableColumn prefWidth="183.0" resizable="false" sortType="DESCENDING" text="Name" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Flight Number" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Departure" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Date of Booking" />
+                        <TableColumn prefWidth="152.0" resizable="false" sortType="DESCENDING" text="Destination From" />
+                    </columns>
+                  </TableView>
+                  <Label text="booked flights" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="300.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="370.0" layoutY="212.0" text="Dashboard" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="dashboard_slider" prefHeight="200.0" prefWidth="180.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox layoutY="47.0" prefHeight="331.0" prefWidth="180.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="222.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+               <children>
+                  <JFXButton fx:id="dashboardForm_btn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="125.0" prefHeight="30.0" prefWidth="180.0" ripplerFill="BLACK" text="Dashboard" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView fill="GAINSBORO" glyphName="LOGOUT" size="30" />
+                        <MaterialDesignIconView fill="WHITE" fontSmoothingType="LCD" glyphName="VIEW_DASHBOARD" size="30" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="bookedForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="180.0" ripplerFill="BLACK" text="Booked Flights" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="30" text="" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="flightForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="180.0" ripplerFill="BLACK" text="Flight Records" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" fontSmoothingType="LCD" glyphName="BOOK_OPEN" size="30" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="ticketForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="180.0" ripplerFill="BLACK" text="Ticket Records" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="TICKET_ACCOUNT" size="30" text="" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="salesForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="180.0" ripplerFill="BLACK" text="Sales" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="BAR_CHART" size="30" />
                      </graphic>
                   </JFXButton>
                </children>
-            </AnchorPane>
+            </VBox>
+            <JFXButton fx:id="logout_btn" alignment="BASELINE_LEFT" layoutY="502.0" onAction="#logout" prefHeight="30.0" prefWidth="150.0" text="Log Out" textFill="LIGHTGRAY" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="GAINSBORO" glyphName="LOGOUT" size="30" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="62.0" layoutY="22.0" text="Ermino Airlines" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="12.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLANE" size="20" />
+               </graphic>
+            </Label>
+            <JFXButton fx:id="slider_menu" ellipsisString="" graphicTextGap="0.0" layoutX="24.0" layoutY="16.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" ripplerFill="#d0d0d0" styleClass="jfx-button-dashboard" stylesheets="@DashboardStyles.css" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" />
+               </graphic>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

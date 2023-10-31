@@ -6,6 +6,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 10 25, 23, 8:28:17 PM
     Author     : Ervhyne
 */
+
+/*BACKGROUND DESIGNS*/
 .top-pane {
     -fx-background-color: #1e1f22;
 }
@@ -22,6 +24,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #0071BC;
 }
 
+/*DASHBOARD DESIGNS*/
 .jfx-button-dashboard {
     -fx-background-color: transparent; /* Set the background color to transparent */
     -fx-background-insets: 0; /* Remove any background insets */
@@ -36,7 +39,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .overlay {
-    -fx-background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    -fx-background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+}
+
+.selected-button {
+    -fx-background-color: #7c7b7b; /* Set the background color for the selected button */
 }
 
 /*Table CSS Designs*/ 
@@ -90,3 +97,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: transparent;
     -fx-background-radius: 0;
 }
+
