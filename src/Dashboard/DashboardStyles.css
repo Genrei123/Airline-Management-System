@@ -44,6 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .selected-button {
     -fx-background-color: #7c7b7b; /* Set the background color for the selected button */
+    -fx-text-fill: white;
 }
 
 /*Table CSS Designs*/ 
