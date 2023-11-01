@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 /*BACKGROUND DESIGNS*/
-.top-pane {
+/*.top-pane {
     -fx-background-color: #1e1f22;
 }
 
@@ -18,7 +18,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .pane-bg {
     -fx-background-color: #2b2d31;
+}*/
+
+.top-pane {
+    -fx-background-color: #2e2e2e;
 }
+
+.sidebar-bg {
+    -fx-background-color: #2e2e2e;
+}
+
+.pane-bg {
+    -fx-background-color: #2e2e2e;
+}
+
+.line-bg {
+    -fx-background-color: linear-gradient(to bottom, #221C35, #221C35 0%, lightblue 50%, #221C35 100%);
+}
+
 
 .ui-bg {
     -fx-background-color: #0071BC;
@@ -44,17 +61,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .selected-button {
     -fx-background-color: #7c7b7b; /* Set the background color for the selected button */
-    -fx-text-fill: white;
 }
 
-/*Table CSS Designs*/ 
+/*Table CSS Designs*/
 .table-view{
     -fx-base: #2A2A2A;
     -fx-control-inner-background: #2A2A2A;
     -fx-background-color: #3f4248;
     -fx-table-cell-border-color: transparent;
     -fx-padding: 1;
-    -fx-selection-bar-non-focused: #008287 ;   
+    -fx-selection-bar-non-focused: #008287 ;
 }
 
 .table-view .column-header-background{

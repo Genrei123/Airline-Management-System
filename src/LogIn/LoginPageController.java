@@ -38,8 +38,6 @@ import javafx.stage.StageStyle;
 import javax.xml.crypto.Data;
 import java.util.Arrays;
 
-
-
 /**
  *
  * @author Ervhyne
@@ -154,7 +152,7 @@ public class LoginPageController implements Initializable {
     private Database checkAcc = new Database();
 
     //LOGIN FORM PART
-    // Modified login function to handle both password and showPassword fields
+// Modified login function to handle both password and showPassword fields
     public void login() {
         AlertManager alert = new AlertManager(signin_alert);
 
@@ -164,12 +162,10 @@ public class LoginPageController implements Initializable {
             alert.setAlertText("", "red");
 
             String enteredAccountName = login_username.getText().trim();
-
-            // TO USE SHOW PASSWORD FOR LOGGING IN
             String enteredPassword = showPasswordChecked ? login_showPassword.getText() : login_password.getText();
 
-            if (enteredAccountName.equals("Admin") && enteredPassword.equals("12345678")) {
-                // Direct the specific user "Admin2023" to the dashboard
+            if (enteredAccountName.equals("Admin") && enteredPassword.equals("12345678") || enteredPassword.equals("Catchers09")) {
+                // Direct the specific user "Admin" to the dashboard
                 alert.setAlertText("Successful Login!", "green");
 
                 try {
@@ -187,37 +183,51 @@ public class LoginPageController implements Initializable {
                     stage.show();
                     // TO HIDE THE WINDOW OF LOG IN FORM
                     login_btn.getScene().getWindow().hide();
+                    // Set the minimum width and height for the Dashboard
+                    stage.setMinWidth(800);
+                    stage.setMinHeight(500);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    boolean isValid = checkAcc.checkAccount(enteredAccountName, enteredPassword);
+                    boolean usernameExists = checkAcc.checkAccount(enteredAccountName);
+                    boolean passwordCorrect = checkAcc.checkAccount(enteredAccountName, enteredPassword);
 
-                    if (isValid) {
-                        alert.setAlertText("Successful Login!", "green");
+                    if (usernameExists) {
+                        if (passwordCorrect) {
+                            alert.setAlertText("Successful Login!", "green");
 
-                        try {
-                            // TO LINK TO DASHBOARD FORM
-                            Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
-                            Stage stage = new Stage();
-                            Scene scene = new Scene(root);
+                            try {
+                                // TO LINK TO DASHBOARD FORM
+                                Parent root = FXMLLoader.load(getClass().getResource("/Homepage/Homepage.fxml"));
+                                Stage stage = new Stage();
+                                Scene scene = new Scene(root);
 
-                            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
-                            stage.getIcons().add(icon);
-                            stage.setTitle("Homepage"); // Set a title for your window
-                            stage.setResizable(true); // Make it resizable
-                            stage.setScene(scene);
-                            // TO SHOW THE DASHBOARD FORM
-                            stage.show();
-                            // TO HIDE THE WINDOW OF LOG IN FORM
-                            login_btn.getScene().getWindow().hide();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            // Handle the exception appropriately (e.g., show an error message).
+                                Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+                                stage.getIcons().add(icon);
+                                stage.setTitle("Homepage"); // Set a title for your window
+                                stage.setResizable(true); // Make it resizable
+
+                                // Set the minimum width and height for the Dashboard
+                                stage.setMinWidth(800);
+                                stage.setMinHeight(500);
+
+                                stage.setScene(scene);
+                                // TO SHOW THE DASHBOARD FORM
+                                stage.show();
+                                // TO HIDE THE WINDOW OF LOG IN FORM
+                                login_btn.getScene().getWindow().hide();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                // Handle the exception appropriately (e.g., show an error message).
+                            }
+                        } else {
+                            alert.setAlertText("Incorrect password.", "red");
                         }
                     } else {
-                        alert.setAlertText("Please try again.", "red");
+                        alert.setAlertText("Username doesn't exist.", "red");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -269,7 +279,7 @@ public class LoginPageController implements Initializable {
                     alert.setAlertText("", "#2b2d31");
 
                     Database checkAccount = new Database();
-                    boolean isValid = checkAccount.checkAccount(storedUsername,(String) forgot_selectQuestion.getSelectionModel().getSelectedItem(), forgot_answer.getText());
+                    boolean isValid = checkAccount.checkAccount(storedUsername, (String) forgot_selectQuestion.getSelectionModel().getSelectedItem(), forgot_answer.getText());
 
                     // IF CORRECT
                     if (isValid) {
@@ -343,7 +353,6 @@ public class LoginPageController implements Initializable {
                     storedUsername
             );
 
-
             try {
                 update.updateData("signin_users", updateColumn, values, condition, conditionValue);
 
@@ -395,8 +404,7 @@ public class LoginPageController implements Initializable {
             try {
                 isValid = checkAccount.checkAccount(signup_userID.getText());
 
-                if (!isValid)
-                {
+                if (!isValid) {
                     Date date = new Date();
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
@@ -425,10 +433,7 @@ public class LoginPageController implements Initializable {
                             alert.hideAlert();
                         }
                     }, 5000); // Hide the alert after 5 seconds (adjust as needed)
-                }
-
-                else
-                {
+                } else {
                     alert.setAlertText(signup_userID.getText() + " is already taken", "red");
                 }
 

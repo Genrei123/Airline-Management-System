@@ -115,6 +115,11 @@ public class DashboardController implements Initializable {
 
             // Get the stage from the current button's scene
             Stage stage = (Stage) logout_btn.getScene().getWindow();
+
+            // Set the minimum width and height for the Dashboard
+            stage.setMinWidth(600);
+            stage.setMinHeight(233);
+
             stage.setResizable(false); // Make it unresizable
             stage.setScene(scene);
         } catch (Exception e) {
