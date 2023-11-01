@@ -106,10 +106,10 @@
                      </font>
                   </Label>
                   <TextField layoutX="30.0" layoutY="380.0" prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.topAnchor="375.0" />
-                  <JFXTimePicker layoutX="150.0" layoutY="324.0" prefHeight="25.0" prefWidth="113.0" styleClass="jfx-date-picker" stylesheets="@DashboardStyles.css" />
+                  <JFXTimePicker layoutX="150.0" layoutY="324.0" prefHeight="25.0" prefWidth="113.0" styleClass="jfx-time-picker" stylesheets="@DashboardStyles.css" />
                   <AnchorPane layoutX="29.0" layoutY="324.0" prefHeight="31.0" prefWidth="104.0" styleClass="calendar-bg" stylesheets="@DashboardStyles.css">
                      <children>
-                        <JFXDatePicker layoutY="2.0" prefHeight="25.0" prefWidth="100.0" styleClass="jfx-date-picker" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="4.0" />
+                        <JFXDatePicker layoutY="2.0" prefHeight="25.0" prefWidth="100.0" promptText="Date" styleClass="jfx-date-picker" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="4.0" />
                      </children>
                   </AnchorPane>
                </children>
