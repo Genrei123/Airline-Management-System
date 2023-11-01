@@ -150,7 +150,7 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Ensure the menu is initially closed
-        dashboard_slider.setTranslateX(-180);
+        dashboard_slider.setTranslateX(-210);
         overlayPane.setVisible(false);
 
         // Add event handlers to the overlayPane and topPane

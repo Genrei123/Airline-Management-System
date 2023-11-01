@@ -164,7 +164,7 @@ public class LoginPageController implements Initializable {
             String enteredAccountName = login_username.getText().trim();
             String enteredPassword = showPasswordChecked ? login_showPassword.getText() : login_password.getText();
 
-            if (enteredAccountName.equals("Admin") && enteredPassword.equals("12345678") || enteredPassword.equals("Catchers09")) {
+            if (enteredAccountName.equals("Admin") && enteredPassword.equals("12345678")) {
                 // Direct the specific user "Admin" to the dashboard
                 alert.setAlertText("Successful Login!", "green");
 

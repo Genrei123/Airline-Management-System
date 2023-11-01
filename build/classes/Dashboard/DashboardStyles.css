@@ -8,18 +8,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 /*BACKGROUND DESIGNS*/
-/*.top-pane {
-    -fx-background-color: #1e1f22;
-}
-
-.sidebar-bg {
-    -fx-background-color: #232428;
-}
-
-.pane-bg {
-    -fx-background-color: #2b2d31;
-}*/
-
 .top-pane {
     -fx-background-color: #2e2e2e;
 }
@@ -32,10 +20,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #2e2e2e;
 }
 
-.line-bg {
-    -fx-background-color: linear-gradient(to bottom, #221C35, #221C35 0%, lightblue 50%, #221C35 100%);
+.menu {
+    -fx-cursor: hand;
 }
-
+.menu:hover {
+    -fx-background-color: #414141;
+}
 
 .ui-bg {
     -fx-background-color: #0071BC;
@@ -113,5 +103,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-shape: "";
     -fx-background-color: transparent;
     -fx-background-radius: 0;
+}
+
+.label-shadow {
+    -fx-effect: dropshadow(three-pass-box, black, 2, 0, 0.5, 2);
+}
+
+.textField {
+    -fx-background-color:  #363636;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.jfx-date-picker {
+    -fx-background-color:  #363636;
+}
+
+.jfx-date-picker .text-field{
+    -jfx-unfocus-color: #b2a4a4;
+    -fx-text-fill: white;
 }
 
