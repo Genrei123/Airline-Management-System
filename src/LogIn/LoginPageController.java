@@ -185,7 +185,7 @@ public class LoginPageController implements Initializable {
                     login_btn.getScene().getWindow().hide();
                     // Set the minimum width and height for the Dashboard
                     stage.setMinWidth(800);
-                    stage.setMinHeight(500);
+                    stage.setMinHeight(600);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -208,11 +208,7 @@ public class LoginPageController implements Initializable {
                                 Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
                                 stage.getIcons().add(icon);
                                 stage.setTitle("Homepage"); // Set a title for your window
-                                stage.setResizable(true); // Make it resizable
-
-                                // Set the minimum width and height for the Dashboard
-                                stage.setMinWidth(800);
-                                stage.setMinHeight(500);
+                                stage.setResizable(false); // Make it resizable
 
                                 stage.setScene(scene);
                                 // TO SHOW THE DASHBOARD FORM
