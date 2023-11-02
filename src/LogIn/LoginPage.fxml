@@ -4,14 +4,14 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogIn.LoginPageController">
    <children>
@@ -31,12 +31,11 @@
                   <Button fx:id="login_createAcc" layoutX="219.0" layoutY="204.0" mnemonicParsing="false" onAction="#switchForm" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Create Account" textFill="#343940" />
                   <AnchorPane prefHeight="250.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
                      <children>
-                        <Label layoutX="36.0" layoutY="202.0" prefHeight="27.0" prefWidth="128.0" text="Sign In Account" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <FontAwesomeIconView fill="#756f6f" glyphName="PAPER_PLANE" layoutX="25.0" layoutY="149.0" size="150" />
+                        <ImageView fitHeight="259.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/LogInBG.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <Hyperlink fx:id="login_forgetPassword" layoutX="458.0" layoutY="142.0" onAction="#switchForm" styleClass="hyperlink-no-border" stylesheets="@SigninStyles.css" text="Forgot Password?" />
@@ -51,12 +50,11 @@
                   <Button fx:id="signup_loginAcc" layoutX="218.0" layoutY="213.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="25.0" prefWidth="78.0" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Log In" textFill="#343940" />
                   <AnchorPane prefHeight="250.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
                      <children>
-                        <Label layoutX="36.0" layoutY="202.0" prefHeight="27.0" prefWidth="128.0" text="Create Account" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <FontAwesomeIconView fill="#756f6f" glyphName="USER_PLUS" layoutX="14.0" layoutY="150.0" size="150" />
+                        <ImageView fitHeight="263.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/CreateAccBG.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <JFXTextField fx:id="signup_confirmPassword" focusColor="#bfbaba" labelFloat="true" layoutX="396.0" layoutY="65.0" prefHeight="25.0" prefWidth="165.0" promptText="Confirm Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="65.0" />
@@ -72,12 +70,11 @@
                   <Button fx:id="forgot_backBtn" layoutX="219.0" layoutY="204.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="25.0" prefWidth="78.0" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Back" textFill="#343940" />
                   <AnchorPane prefHeight="250.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
                      <children>
-                        <Label layoutX="25.0" layoutY="202.0" prefHeight="27.0" prefWidth="150.0" text="Frog Get Password" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <FontAwesomeIconView fill="#756f6f" glyphName="LOCK" layoutX="52.0" layoutY="162.0" size="150" />
+                        <ImageView fitHeight="273.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/ForgotPassBG.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <JFXComboBox fx:id="forgot_selectQuestion" focusColor="WHITE" layoutX="220.0" layoutY="77.0" prefHeight="25.0" prefWidth="341.0" promptText="Select Question" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" AnchorPane.topAnchor="77.0" />
@@ -92,12 +89,11 @@
                   <Button fx:id="changePass_backBtn" layoutX="219.0" layoutY="204.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="25.0" prefWidth="78.0" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Back" textFill="#343940" />
                   <AnchorPane prefHeight="250.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
                      <children>
-                        <Label layoutX="25.0" layoutY="202.0" prefHeight="27.0" prefWidth="150.0" text="Frog Get Password" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <FontAwesomeIconView fill="#756f6f" glyphName="LOCK" layoutX="52.0" layoutY="162.0" size="150" />
+                        <ImageView fitHeight="250.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/ChangePassBG.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <JFXTextField fx:id="changePass_confirmPassword" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="113.0" prefHeight="25.0" prefWidth="341.0" promptText="Confirm Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.leftAnchor="219.0" />
