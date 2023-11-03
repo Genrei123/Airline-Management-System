@@ -1,6 +1,8 @@
 package Dashboard;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.controls.JFXTreeTableView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -8,11 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
@@ -27,22 +33,154 @@ public class DashboardController implements Initializable {
     private JFXButton dashboard_menu;
 
     @FXML
+    private AnchorPane topPane_line;
+
+    @FXML
     private AnchorPane centerPane;
 
     @FXML
     private AnchorPane sales_form;
 
     @FXML
+    private TextField sl_search;
+
+    @FXML
+    private Label sl_ticketSoldPrv;
+
+    @FXML
+    private Label sl_ticketSoldNo;
+
+    @FXML
+    private Label sl_bookedFlightsNo;
+
+    @FXML
+    private Label sl_earningsNoPrv;
+
+    @FXML
+    private Label sl_earningsNo;
+
+    @FXML
+    private TableView<?> sl_table;
+
+    @FXML
     private AnchorPane ticketRecords_form;
+
+    @FXML
+    private TextField tr_search;
+
+    @FXML
+    private TableView<?> tr_table;
+
+    @FXML
+    private TableColumn<?, ?> trt_flightNo;
+
+    @FXML
+    private TableColumn<?, ?> trt_airplaneNo;
+
+    @FXML
+    private TableColumn<?, ?> trt_initialDep;
+
+    @FXML
+    private TableColumn<?, ?> trt_departure;
+
+    @FXML
+    private TableColumn<?, ?> trt_destination;
+
+    @FXML
+    private TableColumn<?, ?> trt_origin;
+
+    @FXML
+    private TableColumn<?, ?> trt_seatNo;
+
+    @FXML
+    private TableColumn<?, ?> trt_class;
 
     @FXML
     private AnchorPane flightRecords_form;
 
     @FXML
+    private TextField fr_search;
+
+    @FXML
+    private JFXButton fr_showRecent;
+
+    @FXML
+    private JFXButton fr_showAll;
+
+    @FXML
+    private JFXButton fr_searchFilter;
+
+    @FXML
+    private TableView<?> fr_table;
+
+    @FXML
+    private TableColumn<?, ?> frt_flightNo;
+
+    @FXML
+    private TableColumn<?, ?> frt_destination;
+
+    @FXML
+    private TableColumn<?, ?> frt_origin;
+
+    @FXML
+    private TableColumn<?, ?> frt_timeDep;
+
+    @FXML
+    private TableColumn<?, ?> frt_dateDep;
+
+    @FXML
+    private TableColumn<?, ?> frt_passengerQty;
+
+    @FXML
     private AnchorPane bookedFlights_form;
 
     @FXML
+    private TextField bf_search;
+
+    @FXML
     private TableView<?> bookedFlights_table;
+
+    @FXML
+    private TableColumn<?, ?> bft_name;
+
+    @FXML
+    private TableColumn<?, ?> bft_flightNo;
+
+    @FXML
+    private TableColumn<?, ?> bft_seatNo;
+
+    @FXML
+    private TableColumn<?, ?> bft_class;
+
+    @FXML
+    private TableColumn<?, ?> bft_departure;
+
+    @FXML
+    private TableColumn<?, ?> bft_dateOfBooking;
+
+    @FXML
+    private TableColumn<?, ?> bft_destFrom;
+
+    @FXML
+    private TableColumn<?, ?> bft_destTo;
+
+    @FXML
+    private JFXDatePicker bf_date;
+
+    @FXML
+    private JFXTimePicker bf_time;
+
+    @FXML
+    private JFXButton bf_addBtn;
+
+    @FXML
+    private JFXButton bf_updateBtn;
+
+    @FXML
+    private JFXButton bf_clearBtn;
+
+    @FXML
+    private JFXButton bf_deleteBtn;
 
     @FXML
     private AnchorPane dashboard_form;
@@ -70,6 +208,9 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXButton logout_btn;
+
+    @FXML
+    private JFXButton slider_menu;
 
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
