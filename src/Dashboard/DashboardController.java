@@ -39,6 +39,9 @@ public class DashboardController implements Initializable {
     private AnchorPane centerPane;
 
     @FXML
+    private AnchorPane customSupp_form;
+
+    @FXML
     private AnchorPane sales_form;
 
     @FXML
@@ -183,6 +186,9 @@ public class DashboardController implements Initializable {
     private JFXButton bf_deleteBtn;
 
     @FXML
+    private AnchorPane flightManager_form;
+
+    @FXML
     private AnchorPane dashboard_form;
 
     @FXML
@@ -198,13 +204,19 @@ public class DashboardController implements Initializable {
     private JFXButton bookedForm_btn;
 
     @FXML
-    private JFXButton flightForm_btn;
+    private JFXButton flightManForm_btn;
+
+    @FXML
+    private JFXButton flightRecForm_btn;
 
     @FXML
     private JFXButton ticketForm_btn;
 
     @FXML
     private JFXButton salesForm_btn;
+
+    @FXML
+    private JFXButton customerSupp_btn;
 
     @FXML
     private JFXButton logout_btn;
@@ -319,9 +331,11 @@ public class DashboardController implements Initializable {
         // Add button click event handlers
         dashboardForm_btn.setOnAction(e -> switchForm(dashboard_form, dashboardForm_btn));
         bookedForm_btn.setOnAction(e -> switchForm(bookedFlights_form, bookedForm_btn));
-        flightForm_btn.setOnAction(e -> switchForm(flightRecords_form, flightForm_btn));
+        flightRecForm_btn.setOnAction(e -> switchForm(flightRecords_form, flightRecForm_btn));
         ticketForm_btn.setOnAction(e -> switchForm(ticketRecords_form, ticketForm_btn));
         salesForm_btn.setOnAction(e -> switchForm(sales_form, salesForm_btn));
+        flightManForm_btn.setOnAction(e -> switchForm(flightManager_form, flightManForm_btn));
+        customerSupp_btn.setOnAction(e -> switchForm(customSupp_form, customerSupp_btn));
 
     }
 }

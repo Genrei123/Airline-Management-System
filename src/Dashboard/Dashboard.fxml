@@ -6,6 +6,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import java.lang.String?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -43,6 +44,15 @@
       </AnchorPane>
       <AnchorPane fx:id="centerPane" layoutY="46.0" pickOnBounds="false" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
+            <AnchorPane fx:id="customSupp_form" layoutX="20.0" layoutY="20.0" prefHeight="614.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="288.0" layoutY="103.0" text="Customer Support" textFill="WHITE">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="sales_form" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="SALES PAGE" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="7.0">
@@ -88,7 +98,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="333.0" layoutY="69.0" prefHeight="124.0" prefWidth="215.0" style="-fx-background-color: #252525; -fx-background-radius: 10;" AnchorPane.leftAnchor="332.0" AnchorPane.topAnchor="69.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="BOOKED FLIGHTS" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MONTHLY EARNINGS" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>
@@ -254,7 +264,7 @@
                            </font>
                         </Label>
                         <TextField prefWidth="104.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="125.0" />
-                        <Label layoutX="159.0" layoutY="105.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="CLASS-SEAT" textFill="#ffffffe5" AnchorPane.leftAnchor="159.0">
+                        <Label layoutX="159.0" layoutY="105.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="CLASS" textFill="#ffffffe5" AnchorPane.leftAnchor="159.0">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>
@@ -319,11 +329,27 @@
                               <Font name="Segoe UI" size="12.0" />
                            </font>
                         </JFXButton>
+                        <Label layoutX="157.0" layoutY="62.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="SEAT" textFill="#ffffffe5">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="161.0" layoutY="81.0" prefHeight="25.0" prefWidth="96.0" />
+                        <ComboBox layoutX="161.0" layoutY="125.0" prefHeight="25.0" prefWidth="96.0" />
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="flightManager_form" layoutX="10.0" layoutY="10.0" prefHeight="604.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="288.0" layoutY="103.0" text="flight Manager" textFill="WHITE">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
                      <font>
@@ -334,9 +360,9 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutY="47.0" prefHeight="331.0" prefWidth="180.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="222.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+            <VBox layoutY="47.0" prefHeight="484.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>
                   <JFXButton fx:id="dashboardForm_btn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="125.0" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Dashboard" textFill="#dfdfdf">
                      <font>
@@ -354,7 +380,15 @@
                         <FontAwesomeIconView fill="#dfdfdf" glyphName="BOOK" size="30" text="" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="flightForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Flight Records" textFill="#dfdfdf">
+                  <JFXButton fx:id="flightManForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Flights Manager" textFill="#dfdfdf">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#dfdfdf" glyphName="AIRPLANE" size="30" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="flightRecForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Flight Records" textFill="#dfdfdf">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -376,6 +410,14 @@
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="#dfdfdf" fontSmoothingType="LCD" glyphName="BAR_CHART" size="30" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="customerSupp_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Customer Support" textFill="#dfdfdf">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#dfdfdf" glyphName="HEADSET" size="30" />
                      </graphic>
                   </JFXButton>
                </children>

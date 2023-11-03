@@ -251,13 +251,4 @@ public class Database {
 
         return false;
     }
-
-
-    /*public boolean checkUsername(String enteredAccountName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public boolean checkPassword(String enteredAccountName, String enteredPassword) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
 }
