@@ -8,18 +8,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 /*BACKGROUND DESIGNS*/
-/*.top-pane {
-    -fx-background-color: #1e1f22;
-}
-
-.sidebar-bg {
-    -fx-background-color: #232428;
-}
-
-.pane-bg {
-    -fx-background-color: #2b2d31;
-}*/
-
 .top-pane {
     -fx-background-color: #2e2e2e;
 }
@@ -32,10 +20,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #2e2e2e;
 }
 
-.line-bg {
-    -fx-background-color: linear-gradient(to bottom, #221C35, #221C35 0%, lightblue 50%, #221C35 100%);
+.menu {
+    -fx-cursor: hand;
 }
-
+.menu:hover {
+    -fx-background-color: #414141;
+}
 
 .ui-bg {
     -fx-background-color: #0071BC;
@@ -114,4 +104,101 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: transparent;
     -fx-background-radius: 0;
 }
+
+.label-shadow {
+    -fx-effect: dropshadow(three-pass-box, black, 2, 0, 0.5, 2);
+}
+
+.textField {
+    -fx-background-color:  #363636;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.calendar-bg {
+    -fx-background-color:  #363636;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+
+/*DATE PICKER*/
+/* To style JFXDatePicker and its calendar */
+.jfx-date-picker {
+    -fx-header-background: #292b2f; /* Header background color */
+}
+
+.data-picker-list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #292b2f;  
+}
+
+.spinner-label {
+    -fx-text-fill: black;
+}
+
+.date-cell {
+    -fx-text-fill: rgb(220, 220, 220);
+}
+
+/* To style the calendar columns */
+.jfx-date-picker .calendar-grid {
+    -fx-background-color: #292b2f; /* Calendar columns background color */
+
+}
+
+/* To style the background of day number when mouse hovers over it */
+.jfx-date-picker .calendar-grid .date-cell:hover {
+    -fx-background-color: #797979; /* Background color when mouse hovers */
+}
+
+/* To style the background of selected day number */
+.jfx-date-picker .calendar-grid .selected {
+    -fx-background-color: orange; /* Background color when selected */
+}
+
+/* To style the color of day numbers */
+.jfx-date-picker .calendar-grid .date-cell .cell-label {
+    -fx-text-fill: white; /* Color of day numbers */
+}
+
+/*To style days color*/
+.jfx-date-picker .calendar-grid .day-cell,
+.jfx-date-picker .data-picker-list-cell {
+    -fx-text-fill: white;
+}
+
+.jfx-date-picker .text-field{
+    -jfx-unfocus-color: #b2a4a4;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+.date-picker-popup .time-pane{
+    -fx-background-color: #b2a4a4;
+}
+
+.jfx-time-picker {
+    -fx-header-background: #292b2f; /* Header background color */
+}
+
+.spinner-label {
+    -fx-text-fill: black;
+}
+
+.jfx-time-picker .text-field {
+    -jfx-unfocus-color: #b2a4a4;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.time-picker-popup {
+    -fx-background-color: #b2a4a4; /* Background color for the time picker popup */
+}
+
+
+
+
+
+
 
