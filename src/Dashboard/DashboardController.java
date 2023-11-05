@@ -99,7 +99,7 @@ public class DashboardController implements Initializable {
     private TableColumn<?, ?> trt_class;
 
     @FXML
-    private AnchorPane flightRecords_form;
+    private AnchorPane flightManager_form;
 
     @FXML
     private TextField fr_search;
@@ -186,9 +186,6 @@ public class DashboardController implements Initializable {
     private JFXButton bf_deleteBtn;
 
     @FXML
-    private AnchorPane flightManager_form;
-
-    @FXML
     private AnchorPane dashboard_form;
 
     @FXML
@@ -205,9 +202,6 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXButton flightManForm_btn;
-
-    @FXML
-    private JFXButton flightRecForm_btn;
 
     @FXML
     private JFXButton ticketForm_btn;
@@ -284,10 +278,9 @@ public class DashboardController implements Initializable {
         // Hide all forms
         dashboard_form.setVisible(false);
         bookedFlights_form.setVisible(false);
-        flightRecords_form.setVisible(false);
+        flightManager_form.setVisible(false);
         ticketRecords_form.setVisible(false);
         sales_form.setVisible(false);
-        flightManager_form.setVisible(false);
         customSupp_form.setVisible(false);
 
         // Show the selected form
@@ -333,7 +326,6 @@ public class DashboardController implements Initializable {
         // Add button click event handlers
         dashboardForm_btn.setOnAction(e -> switchForm(dashboard_form, dashboardForm_btn));
         bookedForm_btn.setOnAction(e -> switchForm(bookedFlights_form, bookedForm_btn));
-        flightRecForm_btn.setOnAction(e -> switchForm(flightRecords_form, flightRecForm_btn));
         ticketForm_btn.setOnAction(e -> switchForm(ticketRecords_form, ticketForm_btn));
         salesForm_btn.setOnAction(e -> switchForm(sales_form, salesForm_btn));
         flightManForm_btn.setOnAction(e -> switchForm(flightManager_form, flightManForm_btn));
