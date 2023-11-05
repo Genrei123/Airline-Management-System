@@ -6,15 +6,19 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import java.lang.String?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1024.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dashboard.DashboardController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dashboard.DashboardController">
    <children>
-      <AnchorPane fx:id="topPane" prefHeight="38.0" prefWidth="1024.0" styleClass="top-pane" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="topPane" prefHeight="600.0" prefWidth="1200.0" styleClass="top-pane" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="41.0" layoutY="12.0" text="ADMIN PAGE" textFill="WHITE" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="7.0">
                <font>
@@ -24,107 +28,354 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="PLANE" size="35" />
                </graphic>
             </Label>
-            <JFXButton fx:id="dashboard_menu" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="6.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" ripplerFill="#d0d0d0" stylesheets="@DashboardStyles.css" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
+            <JFXButton fx:id="dashboard_menu" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="6.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="4.0" stylesheets="@DashboardStyles.css" text="Button" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" />
                </graphic>
-               <font>
-                  <Font size="8.0" />
-               </font>
                <styleClass>
                   <String fx:value="jfx-button-dashboard" />
                   <String fx:value="menu" />
                </styleClass>
+               <font>
+                  <Font size="8.0" />
+               </font>
             </JFXButton>
             <AnchorPane fx:id="topPane_line" layoutX="49.0" layoutY="38.0" prefHeight="2.0" prefWidth="950.0" style="-fx-background-color: #0071bc;" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="44.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="centerPane" layoutY="46.0" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+      <AnchorPane fx:id="centerPane" layoutY="46.0" pickOnBounds="false" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <AnchorPane fx:id="sales_form" prefHeight="554.0" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="customSupp_form" layoutX="20.0" layoutY="20.0" prefHeight="614.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label text="sales" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="300.0" />
-               </children></AnchorPane>
-            <AnchorPane fx:id="ticketRecords_form" layoutX="10.0" layoutY="10.0" prefHeight="564.0" prefWidth="1034.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label text="ticket records" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="300.0" />
-               </children></AnchorPane>
-            <AnchorPane fx:id="flightRecords_form" layoutX="10.0" layoutY="10.0" prefHeight="574.0" prefWidth="1044.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label text="flight records" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="300.0" />
-               </children></AnchorPane>
-            <AnchorPane fx:id="bookedFlights_form" layoutX="14.0" prefHeight="584.0" prefWidth="924.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="23.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="BOOKED FLIGHTS" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="19.0">
+                  <Label layoutX="288.0" layoutY="103.0" text="Customer Support" textFill="WHITE">
                      <font>
-                        <Font name="Gill Sans MT" size="32.0" />
+                        <Font size="50.0" />
                      </font>
                   </Label>
-                  <Label layoutX="23.0" layoutY="43.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Browse Flights" textFill="#f2f2f299" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="52.0">
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="sales_form" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="SALES PAGE" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="7.0">
+                     <font>
+                        <Font name="Gill Sans MT" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Browse Financial Records" textFill="#f2f2f299" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="40.0">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="24.0" layoutY="88.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="FLIGHT NO." textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="105.0">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="24.0" layoutY="107.0" prefWidth="104.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="125.0" />
-                  <Label layoutX="161.0" layoutY="105.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="CLASS-SEAT" textFill="#ffffffe5" AnchorPane.leftAnchor="159.0">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="161.0" layoutY="124.0" prefWidth="104.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="159.0" />
-                  <Label layoutX="30.0" layoutY="167.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION FROM" textFill="#ffffffe5" AnchorPane.topAnchor="155.0">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="30.0" layoutY="186.0" prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="175.0" />
-                  <Label layoutX="30.0" layoutY="208.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION TO" textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="205.0">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="30.0" layoutY="228.0" prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="224.0" />
-                  <Label layoutX="30.0" layoutY="255.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="BOOKING DATE" textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="255.0">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="30.0" layoutY="275.0" prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="275.0" />
-                  <Label layoutX="30.0" layoutY="307.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DEPARTURE" textFill="#ffffffe5" AnchorPane.topAnchor="305.0">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="30.0" layoutY="360.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="NAME" textFill="#ffffffe5" AnchorPane.topAnchor="355.0">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="30.0" layoutY="380.0" prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.topAnchor="375.0" />
-                  <JFXTimePicker layoutX="150.0" layoutY="324.0" prefHeight="25.0" prefWidth="113.0" styleClass="jfx-time-picker" stylesheets="@DashboardStyles.css" />
-                  <AnchorPane layoutX="29.0" layoutY="324.0" prefHeight="31.0" prefWidth="104.0" styleClass="calendar-bg" stylesheets="@DashboardStyles.css">
+                  <TextField fx:id="sl_search" layoutX="285.0" layoutY="36.0" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
+                     <styleClass>
+                        <String fx:value="search" />
+                        <String fx:value="search-focused" />
+                     </styleClass>
+                  </TextField>
+                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="867.1428565979004" layoutY="40.14285659790039" size="20" text="" wrappingWidth="18.571428298950195" AnchorPane.rightAnchor="314.2857151031494" AnchorPane.topAnchor="23.0" />
+                  <AnchorPane layoutX="75.0" layoutY="77.0" prefHeight="124.0" prefWidth="215.0" style="-fx-background-color: #252525; -fx-background-radius: 10;" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="69.0">
                      <children>
-                        <JFXDatePicker layoutY="2.0" prefHeight="25.0" prefWidth="100.0" promptText="Date" styleClass="jfx-date-picker" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="4.0" />
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="TICKETS SOLD TODAY" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="91.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="PRV:" textFill="#7c7c7c" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="16.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sl_ticketSoldPrv" alignment="CENTER_RIGHT" layoutX="169.0" layoutY="88.0" prefHeight="19.0" prefWidth="150.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="000" textFill="#7c7c7c" AnchorPane.rightAnchor="15.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sl_ticketSoldNo" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="40.0" prefHeight="43.0" prefWidth="203.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="45" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                           <font>
+                              <Font name="Segoe UI" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="333.0" layoutY="69.0" prefHeight="124.0" prefWidth="215.0" style="-fx-background-color: #252525; -fx-background-radius: 10;" AnchorPane.leftAnchor="332.0" AnchorPane.topAnchor="69.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MONTHLY EARNINGS" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sl_bookedFlightsNo" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="40.0" prefHeight="43.0" prefWidth="203.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="0000" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                           <font>
+                              <Font name="Segoe UI" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="590.0" layoutY="69.0" prefHeight="124.0" style="-fx-background-color: #252525; -fx-background-radius: 10;" AnchorPane.leftAnchor="583.0" AnchorPane.rightAnchor="32.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="EARNINGS TODAY" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="91.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="PRV:" textFill="#7c7c7c" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="16.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sl_earningsNoPrv" alignment="CENTER_RIGHT" layoutX="169.0" layoutY="88.0" prefHeight="19.0" prefWidth="150.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="₱ 000" textFill="#7c7c7c" AnchorPane.rightAnchor="15.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sl_earningsNo" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="40.0" prefHeight="43.0" prefWidth="567.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="₱50.0" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                           <font>
+                              <Font name="Segoe UI" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <TableView fx:id="sl_table" layoutX="75.0" layoutY="207.0" prefHeight="281.0" prefWidth="917.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="206.0">
+                    <columns>
+                      <TableColumn prefWidth="77.0" resizable="false" text="TICKET NO." />
+                        <TableColumn prefWidth="82.0" resizable="false" text="FLIGHT NO." />
+                        <TableColumn prefWidth="100.0" resizable="false" text="CLASS-SEAT" />
+                        <TableColumn prefWidth="262.0" resizable="false" text="NAME" />
+                        <TableColumn prefWidth="88.0" resizable="false" text="PAYMENT DATE" />
+                        <TableColumn prefWidth="136.0" resizable="false" text="STATUS" />
+                        <TableColumn prefWidth="174.0" resizable="false" text="TICKET AGENT" />
+                        <TableColumn prefWidth="173.0" resizable="false" text="TICKET BRANCH" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+            <AnchorPane fx:id="ticketRecords_form" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="TICKET RECORDS" textFill="WHITE" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Gill Sans MT" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Ticket History" textFill="#f2f2f299" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="47.0">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tr_search" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="302.0" AnchorPane.topAnchor="26.0">
+                     <styleClass>
+                        <String fx:value="search" />
+                        <String fx:value="search-focused" />
+                     </styleClass>
+                  </TextField>
+                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="309.0" layoutY="53.0" size="20" AnchorPane.leftAnchor="309.0" AnchorPane.topAnchor="27.85714340209961" />
+                  <TableView fx:id="tr_table" layoutX="46.0" layoutY="86.0" prefHeight="416.0" prefWidth="937.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="86.0">
+                    <columns>
+                      <TableColumn fx:id="trt_flightNo" prefWidth="88.0" resizable="false" text="FLIGHT NO." />
+                      <TableColumn fx:id="trt_airplaneNo" prefWidth="103.0" resizable="false" text="AIRPLANE NO." />
+                        <TableColumn fx:id="trt_initialDep" prefWidth="131.0" resizable="false" text="INITIAL DEPARTURE" />
+                        <TableColumn fx:id="trt_departure" prefWidth="92.0" resizable="false" text="DEPARTURE" />
+                        <TableColumn fx:id="trt_destination" prefWidth="228.0" resizable="false" text="DESTINATION" />
+                        <TableColumn fx:id="trt_origin" prefWidth="229.0" resizable="false" text="ORIGIN" />
+                        <TableColumn fx:id="trt_seatNo" prefWidth="120.0" resizable="false" text="SEAT NO." />
+                        <TableColumn fx:id="trt_class" prefWidth="121.0" resizable="false" text="CLASS" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+            <AnchorPane fx:id="flightRecords_form" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="FLIGHT RECORDS" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
+                     <font>
+                        <Font name="Gill Sans MT" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Recorded Flights" textFill="#f2f2f299" AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="44.0">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fr_search" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="20.0">
+                     <styleClass>
+                        <String fx:value="search" />
+                        <String fx:value="search-focused" />
+                     </styleClass>
+                  </TextField>
+                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="305.0" layoutY="39.0" size="20" AnchorPane.leftAnchor="336.0" />
+                  <JFXButton fx:id="fr_showRecent" layoutX="109.0" layoutY="130.0" prefHeight="61.0" prefWidth="235.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../../../Documents/NetBeansProjects/roomDeserv-RRS-main/src/dashboard/dashboardDesign.css" text="SHOW RECENT" textFill="#f8f8f8" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="88.0">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="fr_showAll" layoutX="491.0" layoutY="88.0" prefHeight="61.0" prefWidth="235.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../../../Documents/NetBeansProjects/roomDeserv-RRS-main/src/dashboard/dashboardDesign.css" text="SHOW ALL" textFill="#f8f8f8" AnchorPane.topAnchor="88.0">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="fr_searchFilter" layoutX="693.0" layoutY="88.0" prefHeight="61.0" prefWidth="235.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../../../Documents/NetBeansProjects/roomDeserv-RRS-main/src/dashboard/dashboardDesign.css" text="SEARCH FILTER" textFill="#f8f8f8" AnchorPane.leftAnchor="889.0" AnchorPane.topAnchor="88.0">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <TableView fx:id="fr_table" layoutX="292.0" layoutY="188.0" prefHeight="334.0" prefWidth="937.0" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="173.0">
+                    <columns>
+                      <TableColumn fx:id="frt_flightNo" prefWidth="182.0" resizable="false" text="FLIGHT ID NO." />
+                        <TableColumn fx:id="frt_destination" prefWidth="226.0" resizable="false" text="DESTINATION" />
+                        <TableColumn fx:id="frt_origin" prefWidth="212.0" resizable="false" text="ORIGIN" />
+                        <TableColumn fx:id="frt_timeDep" prefWidth="156.0" resizable="false" text="TIME DEPARTED" />
+                        <TableColumn fx:id="frt_dateDep" prefWidth="155.0" resizable="false" text="DATE DEPARTED" />
+                        <TableColumn fx:id="frt_passengerQty" prefWidth="181.0" resizable="false" text="PASSENGER QTY." />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+            <AnchorPane fx:id="bookedFlights_form" layoutY="6.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane layoutX="312.0" layoutY="74.0" prefHeight="470.0" prefWidth="4.0" style="-fx-background-color: white; -fx-background-radius: 5px;" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="286.0" AnchorPane.topAnchor="25.0" />
+                  <TextField fx:id="bf_search" layoutX="325.0" layoutY="59.0" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="39.0">
+                     <styleClass>
+                        <String fx:value="search" />
+                        <String fx:value="search-focused" />
+                     </styleClass>
+                  </TextField>
+                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="876.0" layoutY="58.0" size="20" AnchorPane.rightAnchor="305.4285717010498" AnchorPane.topAnchor="40.85714340209961" />
+                  <TableView fx:id="bookedFlights_table" layoutX="309.0" layoutY="75.0" prefHeight="411.0" prefWidth="681.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="84.0">
+                    <columns>
+                      <TableColumn fx:id="bft_name" prefWidth="147.0" resizable="false" text="NAME" />
+                      <TableColumn fx:id="bft_flightNo" prefWidth="67.0" resizable="false" text="FLIGHT NO." />
+                        <TableColumn fx:id="bft_seatNo" minWidth="0.0" prefWidth="56.0" resizable="false" text="SEAT NO." />
+                        <TableColumn fx:id="bft_class" prefWidth="73.0" resizable="false" text="CLASS" />
+                        <TableColumn fx:id="bft_departure" prefWidth="110.0" resizable="false" text="DEPARTURE" />
+                        <TableColumn fx:id="bft_dateOfBooking" prefWidth="108.0" resizable="false" text="DATE OF BOOKING" />
+                        <TableColumn fx:id="bft_destFrom" minWidth="0.0" prefWidth="150.0" resizable="false" text="DESTIONATION FROM" />
+                        <TableColumn fx:id="bft_destTo" minWidth="0.0" prefWidth="151.0" resizable="false" text="DESTIONATION TO" />
+                    </columns>
+                  </TableView>
+                  <AnchorPane layoutX="4.0" prefHeight="554.0" prefWidth="278.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="BOOKED FLIGHTS" textFill="WHITE" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="22.0">
+                           <font>
+                              <Font name="Gill Sans MT" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Browse Flights" textFill="#f2f2f299" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="52.0">
+                           <font>
+                              <Font name="Segoe UI" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="FLIGHT NO." textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="105.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField prefWidth="104.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="125.0" />
+                        <Label layoutX="159.0" layoutY="105.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="CLASS" textFill="#ffffffe5" AnchorPane.leftAnchor="159.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="159.0" layoutY="125.0" prefWidth="104.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="125.0" />
+                        <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION FROM" textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="155.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="175.0" />
+                        <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION TO" textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="205.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="224.0" />
+                        <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="BOOKING DATE" textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="255.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="275.0" />
+                        <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DEPARTURE" textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="305.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="NAME" textFill="#ffffffe5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="358.0">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="378.0" />
+                        <AnchorPane prefHeight="31.0" prefWidth="104.0" styleClass="calendar-bg" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="325.0">
+                           <children>
+                              <JFXDatePicker fx:id="bf_date" prefHeight="25.0" prefWidth="100.0" promptText="Date" styleClass="jfx-date-picker" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="2.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="31.0" prefWidth="104.0" styleClass="calendar-bg" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="325.0">
+                           <children>
+                              <JFXTimePicker fx:id="bf_time" prefHeight="25.0" prefWidth="100.0" promptText="TIME" styleClass="jfx-time-picker" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="2.0" />
+                           </children>
+                        </AnchorPane>
+                        <JFXButton fx:id="bf_addBtn" layoutX="48.0" layoutY="444.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../../../Documents/NetBeansProjects/roomDeserv-RRS-main/src/dashboard/dashboardDesign.css" text="Add" textFill="#f8f8f8" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="444.0">
+                           <font>
+                              <Font name="Segoe UI" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="bf_updateBtn" layoutX="148.0" layoutY="444.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../../../Documents/NetBeansProjects/roomDeserv-RRS-main/src/dashboard/dashboardDesign.css" text="Update" textFill="#f8f8f8" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="444.0">
+                           <font>
+                              <Font name="Segoe UI" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="bf_clearBtn" layoutX="48.0" layoutY="484.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../../../Documents/NetBeansProjects/roomDeserv-RRS-main/src/dashboard/dashboardDesign.css" text="Clear" textFill="#f8f8f8" AnchorPane.leftAnchor="48.0">
+                           <font>
+                              <Font name="Segoe UI" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="bf_deleteBtn" layoutX="148.0" layoutY="484.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../../../Documents/NetBeansProjects/roomDeserv-RRS-main/src/dashboard/dashboardDesign.css" text="Delete" textFill="#f8f8f8" AnchorPane.leftAnchor="148.0">
+                           <font>
+                              <Font name="Segoe UI" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <Label layoutX="157.0" layoutY="62.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="SEAT" textFill="#ffffffe5">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="161.0" layoutY="81.0" prefHeight="25.0" prefWidth="96.0" />
+                        <ComboBox layoutX="161.0" layoutY="125.0" prefHeight="25.0" prefWidth="96.0" />
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="flightManager_form" layoutX="10.0" layoutY="10.0" prefHeight="604.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="370.0" layoutY="212.0" text="Dashboard" textFill="WHITE" />
+                  <Label layoutX="14.0" layoutY="14.0" text="flight Manager" textFill="WHITE">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="279.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="441.0" prefWidth="185.0" style="-fx-background-color: #434343;" stylesheets="@DashboardStyles.css">
+                           <children>
+                              <Label layoutX="65.0" layoutY="52.0" text="1" textFill="#fffafa" />
+                              <Label layoutX="125.0" layoutY="355.0" text="1" textFill="#fffafa" />
+                              <Label layoutX="79.0" layoutY="232.0" text="1" textFill="#fffafa" />
+                              <Label layoutX="62.0" layoutY="283.0" text="1" textFill="#fffafa" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font size="50.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1024.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutY="47.0" prefHeight="331.0" prefWidth="180.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="222.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+            <VBox layoutY="47.0" prefHeight="276.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>
                   <JFXButton fx:id="dashboardForm_btn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="125.0" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Dashboard" textFill="#dfdfdf">
                      <font>
@@ -142,7 +393,15 @@
                         <FontAwesomeIconView fill="#dfdfdf" glyphName="BOOK" size="30" text="" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="flightForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Flight Records" textFill="#dfdfdf">
+                  <JFXButton fx:id="flightManForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Flights Manager" textFill="#dfdfdf">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#dfdfdf" glyphName="AIRPLANE" size="30" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="flightRecForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Flight Records" textFill="#dfdfdf">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -166,6 +425,14 @@
                         <FontAwesomeIconView fill="#dfdfdf" fontSmoothingType="LCD" glyphName="BAR_CHART" size="30" />
                      </graphic>
                   </JFXButton>
+                  <JFXButton fx:id="customerSupp_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Customer Support" textFill="#dfdfdf">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#dfdfdf" glyphName="HEADSET" size="30" />
+                     </graphic>
+                  </JFXButton>
                </children>
             </VBox>
             <JFXButton fx:id="logout_btn" alignment="BASELINE_LEFT" layoutY="502.0" onAction="#logout" prefHeight="30.0" prefWidth="150.0" text="Log Out" textFill="LIGHTGRAY" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -176,17 +443,17 @@
                   <MaterialDesignIconView fill="GAINSBORO" glyphName="LOGOUT" size="30" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="slider_menu" ellipsisString="" graphicTextGap="0.0" layoutX="24.0" layoutY="16.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" ripplerFill="#d0d0d0" stylesheets="@DashboardStyles.css" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
+            <JFXButton fx:id="slider_menu" ellipsisString="" graphicTextGap="0.0" layoutX="24.0" layoutY="16.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" />
                </graphic>
-               <font>
-                  <Font size="8.0" />
-               </font>
                <styleClass>
                   <String fx:value="jfx-button-dashboard" />
                   <String fx:value="menu" />
                </styleClass>
+               <font>
+                  <Font size="8.0" />
+               </font>
             </JFXButton>
             <Label text="ADMIN PAGE" textFill="WHITE" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="7.0">
                <font>

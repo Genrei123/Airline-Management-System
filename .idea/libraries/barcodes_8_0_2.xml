@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="barcodes-8.0.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/barcodes-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/bouncy-castle-adapter-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/bouncy-castle-connector-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/bouncy-castle-fips-adapter-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/commons-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/forms-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/io-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/kernel-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/layout-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/pdfa-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/pdftest-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/sign-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/styled-xml-parser-8.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText/svg-8.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

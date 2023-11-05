@@ -7,3 +7,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Ervhyne
 */
 
+.pane_background{
+    -fx-background-color: #ffffff;
+
+}
+
+
+.header_color{
+    -fx-background-color: #7CD0EC;
+
+}
+
+.menu_button{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10%;
+    -fx-border-radius: 10%;
+}
+
+.menu_bar{
+    -fx-background-color: #29ABE2;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+}
+
+.topPane {
+    -fx-background-color: linear-gradient(to bottom left, #004AAD, #5DE0E6);
+}
