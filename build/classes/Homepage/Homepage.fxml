@@ -16,7 +16,7 @@
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="topPane" prefHeight="53.0" prefWidth="900.0" style="-fx-background-color: #7CD0EC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="topPane" prefHeight="53.0" prefWidth="1000.0" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Text fill="WHITE" layoutX="819.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ermino Airlines">
                      <font>
@@ -179,7 +179,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_logout" alignment="BASELINE_LEFT" layoutY="274.0" maxHeight="-Infinity" prefHeight="43.0" prefWidth="238.0" text="Log out" textFill="WHITE">
+                  <JFXButton fx:id="menu_logout" alignment="BASELINE_LEFT" layoutY="274.0" maxHeight="-Infinity" onAction="#logout" prefHeight="43.0" prefWidth="238.0" text="Log out" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>

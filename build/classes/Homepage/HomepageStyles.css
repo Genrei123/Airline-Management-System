@@ -25,7 +25,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .menu_bar{
-      -fx-background-color: #29ABE2;
-      -fx-background-radius: 0 20 20 0;
-      -fx-border-radius: 0 20 20 0;
+    -fx-background-color: #29ABE2;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+}
+
+.topPane {
+    -fx-background-color: linear-gradient(to bottom left, #004AAD, #5DE0E6);
 }

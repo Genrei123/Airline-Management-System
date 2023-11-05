@@ -16,6 +16,10 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  *
@@ -68,6 +72,26 @@ public class HomepageController implements Initializable {
             openMenuSlider();
         }
     }
+    
+    public void logout() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Get the stage from the current button's scene
+            Stage stage = (Stage) menu_logout.getScene().getWindow();
+
+            // Set the minimum width and height for the LogIn
+            stage.setMinWidth(600);
+            stage.setMinHeight(233);
+
+            stage.setResizable(false); // Make it unresizable
+            stage.setScene(scene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void openMenuSlider() {
         // Define the animation for opening the menu slider
@@ -92,6 +116,8 @@ public class HomepageController implements Initializable {
         menuOpen = false;
     }
 
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the menu slider in the closed state
