@@ -27,24 +27,24 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="PLANE" size="35" />
                </graphic>
             </Label>
-            <JFXButton fx:id="dashboard_menu" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="6.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" ripplerFill="#d0d0d0" stylesheets="@DashboardStyles.css" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
+            <JFXButton fx:id="dashboard_menu" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="6.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="4.0" stylesheets="@DashboardStyles.css" text="Button" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" />
                </graphic>
-               <font>
-                  <Font size="8.0" />
-               </font>
                <styleClass>
                   <String fx:value="jfx-button-dashboard" />
                   <String fx:value="menu" />
                </styleClass>
+               <font>
+                  <Font size="8.0" />
+               </font>
             </JFXButton>
             <AnchorPane fx:id="topPane_line" layoutX="49.0" layoutY="38.0" prefHeight="2.0" prefWidth="950.0" style="-fx-background-color: #0071bc;" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="44.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="centerPane" layoutY="46.0" pickOnBounds="false" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <AnchorPane fx:id="customSupp_form" layoutX="20.0" layoutY="20.0" prefHeight="614.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="customSupp_form" layoutX="20.0" layoutY="20.0" prefHeight="614.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="288.0" layoutY="103.0" text="Customer Support" textFill="WHITE">
                      <font>
@@ -349,7 +349,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
                      <font>
@@ -360,7 +360,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutY="47.0" prefHeight="484.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>
@@ -430,17 +430,17 @@
                   <MaterialDesignIconView fill="GAINSBORO" glyphName="LOGOUT" size="30" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="slider_menu" ellipsisString="" graphicTextGap="0.0" layoutX="24.0" layoutY="16.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" ripplerFill="#d0d0d0" stylesheets="@DashboardStyles.css" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
+            <JFXButton fx:id="slider_menu" ellipsisString="" graphicTextGap="0.0" layoutX="24.0" layoutY="16.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="25.0" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" />
                </graphic>
-               <font>
-                  <Font size="8.0" />
-               </font>
                <styleClass>
                   <String fx:value="jfx-button-dashboard" />
                   <String fx:value="menu" />
                </styleClass>
+               <font>
+                  <Font size="8.0" />
+               </font>
             </JFXButton>
             <Label text="ADMIN PAGE" textFill="WHITE" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="7.0">
                <font>

@@ -287,6 +287,8 @@ public class DashboardController implements Initializable {
         flightRecords_form.setVisible(false);
         ticketRecords_form.setVisible(false);
         sales_form.setVisible(false);
+        flightManager_form.setVisible(false);
+        customSupp_form.setVisible(false);
 
         // Show the selected form
         targetForm.setVisible(true);

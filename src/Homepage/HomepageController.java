@@ -17,95 +17,84 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static oracle.net.aso.C05.e;
-
 /**
  *
  * @author Ervhyne
  */
-public class HomepageController implements Initializable{
+public class HomepageController implements Initializable {
 
     @FXML
-    private JFXButton menuOpen;
+    private AnchorPane topPane;
 
     @FXML
-    private JFXButton menuClose;
+    private AnchorPane centrePane;
 
     @FXML
-    private VBox menuPanel;
+    private AnchorPane menuSlider;
 
     @FXML
-    private AnchorPane centerPane;
+    private JFXButton menu_home;
 
-    private boolean isMenuVisible = true; // Initially, the menu is open
+    @FXML
+    private JFXButton menu_flightStats;
 
-    private TranslateTransition centerSlide = new TranslateTransition();
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Ensure the menu is initially open
-        centerSlide.setDuration(Duration.seconds(0.4));
-        centerSlide.setNode(centerPane);
-        centerSlide.setToX(menuPanel.getWidth());
+    @FXML
+    private JFXButton menu_whereWeFly;
 
-        // Play the animation initially (no transition)
-        centerSlide.playFrom(centerSlide.getTotalDuration());
+    @FXML
+    private JFXButton menu_account;
 
-        menuOpen.setOnAction(actionEvent -> toggleAdminMenu());
-    }
+    @FXML
+    private JFXButton menu_TOP;
 
-    private void toggleAdminMenu() {
-        // Disable the button while the animation is in progress
-        menuOpen.setDisable(true);
+    @FXML
+    private JFXButton menu_aboutUs;
 
-        if (isMenuVisible) {
-            hideMenu();
+    @FXML
+    private JFXButton menu_logout;
+
+    @FXML
+    private JFXButton menuBtn;
+
+    private boolean menuOpen = false;
+
+    private double defaultSliderWidth = 232;
+    private double defaultSliderHeight = 43;
+
+    public void toggleMenuSlider() {
+        if (menuOpen) {
+            closeMenuSlider();
         } else {
-            showMenu();
+            openMenuSlider();
         }
     }
 
-    private void showMenu() {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.4));
-        slide.setNode(menuPanel);
-        slide.setToX(0);
+    private void openMenuSlider() {
+        // Define the animation for opening the menu slider
+        TranslateTransition openTransition = new TranslateTransition(Duration.millis(300), menuSlider);
+        openTransition.setToX(0);
+        openTransition.play();
 
-        // Set an event handler for when the animation is finished
-        slide.setOnFinished(event -> {
-            // Enable the button when the animation is complete
-            menuOpen.setDisable(false);
-        });
-
-        slide.play();
-
-        centerSlide.setDuration(Duration.seconds(0.4));
-        centerSlide.setNode(centerPane);
-        centerSlide.setToX(0); // Keep centerPane in its initial position
-        centerSlide.play();
-
-        isMenuVisible = true;
+        // Update the menuOpen flag
+        menuOpen = true;
     }
 
-    private void hideMenu() {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.4));
-        slide.setNode(menuPanel);
-        slide.setToX(-menuPanel.getWidth());
+    private void closeMenuSlider() {
+        // Set the height explicitly
+        menuSlider.setPrefHeight(defaultSliderHeight);
 
-        // Set an event handler for when the animation is finished
-        slide.setOnFinished(event -> {
-            // Enable the button when the animation is complete
-            menuOpen.setDisable(false);
-        });
+        // Define the animation for closing the menu slider
+        TranslateTransition closeTransition = new TranslateTransition(Duration.millis(300), menuSlider);
+        closeTransition.setToX(-defaultSliderWidth);
+        closeTransition.play();
 
-        slide.play();
-
-        centerSlide.setDuration(Duration.seconds(0.4));
-        centerSlide.setNode(centerPane);
-        centerSlide.setToX(-menuPanel.getWidth()); // Move centerPane to the left
-        centerSlide.play();
-
-        isMenuVisible = false;
+        // Update the menuOpen flag
+        menuOpen = false;
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Initialize the menu slider in the closed state
+        closeMenuSlider();
+    }
 }
