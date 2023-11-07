@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
@@ -182,7 +183,7 @@
                     </columns>
                   </TableView>
                </children></AnchorPane>
-            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="fm_managerBtn" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MANAGER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
                      <font>
@@ -221,7 +222,7 @@
                               <TableColumn prefWidth="65.0" resizable="false" text="DATE" />
                           </columns>
                         </TableView>
-                        <ScrollPane layoutX="788.0" layoutY="34.0" prefHeight="425.0" prefWidth="398.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="34.0">
+                        <ScrollPane layoutX="788.0" layoutY="36.0" prefHeight="425.0" prefWidth="398.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="36.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="383.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css">
                                  <children>
@@ -236,42 +237,46 @@
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="12.0" layoutY="97.0" prefHeight="35.0" prefWidth="359.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.topAnchor="120.0" />
+                                    <TextField layoutX="12.0" layoutY="97.0" prefHeight="35.0" prefWidth="359.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="120.0" />
                                     <Label layoutX="12.0" layoutY="169.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="STATUS" textFill="#ffffffe5" AnchorPane.topAnchor="268.0">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="12.0" layoutY="188.0" prefHeight="35.0" prefWidth="359.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.topAnchor="290.0" />
-                                    <Label layoutX="12.0" layoutY="174.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="ORIGIN" textFill="#ffffffe5" AnchorPane.topAnchor="183.0">
+                                    <Label layoutX="12.0" layoutY="174.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Estimated Time of Arrival" textFill="#ffffffe5" AnchorPane.topAnchor="183.0">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="12.0" layoutY="193.0" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.topAnchor="205.0" />
-                                    <Label layoutX="205.0" layoutY="185.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION" textFill="#ffffffe5" AnchorPane.topAnchor="183.0">
+                                    <TextField layoutX="12.0" layoutY="193.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="205.0" />
+                                    <Label layoutX="205.0" layoutY="185.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DATE DEPARTED" textFill="#ffffffe5" AnchorPane.topAnchor="183.0">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="205.0" layoutY="204.0" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.topAnchor="205.0" />
-                                    <Label layoutX="12.0" layoutY="347.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="ETOA(Estimated Time of Arrival)" textFill="#ffffffe5">
+                                    <TextField layoutX="205.0" layoutY="204.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.topAnchor="205.0" />
+                                    <Label layoutX="12.0" layoutY="347.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="ORIGIN" textFill="#ffffffe5">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="10.0" layoutY="369.0" prefHeight="35.0" prefWidth="337.0" style="-fx-background-color: #7B7B7B;" stylesheets="@DashboardStyles.css" />
-                                    <JFXTimePicker defaultColor="#008f81" layoutX="19.0" layoutY="373.0" prefHeight="26.0" prefWidth="361.0" stylesheets="@DashboardStyles.css" />
-                                    <Label layoutX="12.0" layoutY="436.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DATE DEPARTED" textFill="#ffffffe5" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="438.0">
+                                    <TextField layoutX="10.0" layoutY="369.0" prefHeight="35.0" prefWidth="359.0" style="-fx-background-color: #7B7B7B;" styleClass="textFill" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="12.0" />
+                                    <JFXTimePicker defaultColor="#008f81" layoutX="18.0" layoutY="210.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@DashboardStyles.css" />
+                                    <Label layoutX="12.0" layoutY="436.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION" textFill="#ffffffe5" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="438.0">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="12.0" layoutY="436.0" prefHeight="35.0" prefWidth="337.0" style="-fx-background-color: #7B7B7B;" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="460.0" />
-                                    <JFXDatePicker layoutX="21.0" layoutY="463.0" prefHeight="25.0" prefWidth="361.0" />
+                                    <TextField layoutX="12.0" layoutY="436.0" prefHeight="35.0" prefWidth="359.0" style="-fx-background-color: #7B7B7B;" styleClass="textFill" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="460.0" />
+                                    <JFXDatePicker layoutX="213.0" layoutY="210.0" prefHeight="25.0" prefWidth="148.0" />
                                     <JFXButton layoutX="57.0" layoutY="521.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="ADD" textFill="WHITE" AnchorPane.leftAnchor="25.0" />
                                     <JFXButton layoutX="179.0" layoutY="521.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="UPDATE" textFill="WHITE" AnchorPane.leftAnchor="146.0" />
                                     <JFXButton layoutX="255.0" layoutY="521.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="DELETE" textFill="WHITE" AnchorPane.leftAnchor="267.0" />
+                                    <AnchorPane layoutX="10.0" layoutY="251.0" prefHeight="35.0" prefWidth="359.0" style="-fx-background-color: #7B7B7B; -fx-background-radius: 3;" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="290.0">
+                                       <children>
+                                          <JFXComboBox focusColor="#7b7b7b" layoutX="5.0" layoutY="5.0" prefHeight="25.0" prefWidth="354.0" styleClass="textFill" stylesheets="@DashboardStyles.css" unFocusColor="#7b7b7b" />
+                                       </children>
+                                    </AnchorPane>
                                  </children>
                               </AnchorPane>
                           </content>
@@ -400,7 +405,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
                      <font>
@@ -411,7 +416,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutY="47.0" prefHeight="276.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>
