@@ -32,7 +32,7 @@
             </Label>
             <JFXButton fx:id="dashboard_menu" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="6.0" onAction="#toggleAdminMenu" prefHeight="33.0" prefWidth="4.0" stylesheets="@DashboardStyles.css" text="Button" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="6.0">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="22" text="" />
                </graphic>
                <styleClass>
                   <String fx:value="jfx-button-dashboard" />
@@ -182,9 +182,17 @@
                     </columns>
                   </TableView>
                </children></AnchorPane>
-            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MANAGER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
+                  <Label fx:id="fm_managerBtn" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MANAGER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
+                     <font>
+                        <Font name="Gill Sans MT" size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="fm_recordsBtn" layoutX="229.0" layoutY="11.0" prefHeight="35.0" prefWidth="138.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="RECORDS" textFill="#a18b8b">
                      <font>
                         <Font name="Gill Sans MT" size="30.0" />
                      </font>
@@ -200,17 +208,9 @@
                   </TextField>
                   <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="395.0" layoutY="38.0" size="20" AnchorPane.leftAnchor="395.0" />
                   <Separator layoutX="221.0" layoutY="15.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="5.0" />
-                  <Label layoutX="229.0" layoutY="11.0" prefHeight="35.0" prefWidth="138.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="RECORDS" textFill="#a18b8b">
-                     <font>
-                        <Font name="Gill Sans MT" size="30.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <AnchorPane layoutY="55.0" prefHeight="497.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0">
+                  <AnchorPane fx:id="fm_managerForm" layoutY="55.0" prefHeight="497.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                      <children>
-                        <TableView prefHeight="425.0" prefWidth="746.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="34.0">
+                        <TableView prefHeight="425.0" prefWidth="746.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="438.0" AnchorPane.topAnchor="34.0">
                           <columns>
                             <TableColumn prefWidth="75.0" resizable="false" text="AIRPLANE ID" />
                             <TableColumn prefWidth="79.0" resizable="false" text="FLIGHT ID" />
@@ -221,11 +221,11 @@
                               <TableColumn prefWidth="65.0" resizable="false" text="DATE" />
                           </columns>
                         </TableView>
-                        <ScrollPane layoutX="788.0" layoutY="34.0" prefHeight="425.0" prefWidth="398.0" styleClass="scrollpane-background-design" stylesheets="@../Homepage/HomepageStyles.css" AnchorPane.rightAnchor="14.0">
+                        <ScrollPane layoutX="788.0" layoutY="34.0" prefHeight="425.0" prefWidth="398.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="34.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="383.0" styleClass="scrollpane-background-design" stylesheets="@../Homepage/HomepageStyles.css">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="383.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="21.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="AIRPLANE ID" textFill="#ffffffe5" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="15.0">
+                                    <Label layoutX="14.0" layoutY="21.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="AIRPLANE ID" textFill="#ffffffe5" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
@@ -276,6 +276,11 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="fm_recordsForm" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
+                     <children>
+                        <Label layoutX="340.0" layoutY="276.0" text="records" textFill="#fcfcfc" />
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
@@ -395,7 +400,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
                      <font>
@@ -406,7 +411,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutY="47.0" prefHeight="276.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>

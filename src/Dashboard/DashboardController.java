@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class DashboardController implements Initializable {
@@ -102,37 +103,19 @@ public class DashboardController implements Initializable {
     private AnchorPane flightManager_form;
 
     @FXML
+    private Label fm_managerBtn;
+
+    @FXML
+    private Label fm_recordsBtn;
+
+    @FXML
     private TextField fr_search;
 
     @FXML
-    private JFXButton fr_showRecent;
+    private AnchorPane fm_managerForm;
 
     @FXML
-    private JFXButton fr_showAll;
-
-    @FXML
-    private JFXButton fr_searchFilter;
-
-    @FXML
-    private TableView<?> fr_table;
-
-    @FXML
-    private TableColumn<?, ?> frt_flightNo;
-
-    @FXML
-    private TableColumn<?, ?> frt_destination;
-
-    @FXML
-    private TableColumn<?, ?> frt_origin;
-
-    @FXML
-    private TableColumn<?, ?> frt_timeDep;
-
-    @FXML
-    private TableColumn<?, ?> frt_dateDep;
-
-    @FXML
-    private TableColumn<?, ?> frt_passengerQty;
+    private AnchorPane fm_recordsForm;
 
     @FXML
     private AnchorPane bookedFlights_form;
@@ -295,6 +278,19 @@ public class DashboardController implements Initializable {
         currentSelectedButton.getStyleClass().add("selected-button");
     }
 
+    private void switchForm(AnchorPane targetForm, Label selectedLabel, Label unselectedLabel) {
+        // Hide all forms
+        fm_managerForm.setVisible(false);
+        fm_recordsForm.setVisible(false);
+
+        // Show the selected form
+        targetForm.setVisible(true);
+
+        // Update label styles
+        selectedLabel.setTextFill(Color.WHITE);
+        unselectedLabel.setTextFill(Color.web("#a18b8b"));
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Ensure the menu is initially closed
@@ -330,6 +326,13 @@ public class DashboardController implements Initializable {
         salesForm_btn.setOnAction(e -> switchForm(sales_form, salesForm_btn));
         flightManForm_btn.setOnAction(e -> switchForm(flightManager_form, flightManForm_btn));
         customerSupp_btn.setOnAction(e -> switchForm(customSupp_form, customerSupp_btn));
+        
+        // Add button click event handlers
+        fm_managerBtn.setOnMouseClicked(e -> switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn));
+        fm_recordsBtn.setOnMouseClicked(e -> switchForm(fm_recordsForm, fm_recordsBtn, fm_managerBtn));
+
+        // Set the default form to fm_managerForm
+        switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
 
     }
 }
