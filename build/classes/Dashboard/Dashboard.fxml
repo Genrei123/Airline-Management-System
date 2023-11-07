@@ -183,7 +183,7 @@
                     </columns>
                   </TableView>
                </children></AnchorPane>
-            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="fm_managerBtn" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MANAGER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
                      <font>
@@ -405,7 +405,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
                      <font>
@@ -416,7 +416,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutY="47.0" prefHeight="276.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>
