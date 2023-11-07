@@ -10,5 +10,7 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="javafx-swt" level="project" />
     <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="barcodes-8.0.2" level="project" />
+    <orderEntry type="library" name="ant-junit-1.6.5" level="project" />
   </component>
 </module>

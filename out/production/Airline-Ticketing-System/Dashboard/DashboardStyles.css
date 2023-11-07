@@ -31,6 +31,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #0071BC;
 }
 
+.textFill {
+    -fx-text-fill: white;
+}
+
 /*DASHBOARD DESIGNS*/
 .jfx-button-dashboard {
     -fx-background-color: transparent; /* Set the background color to transparent */

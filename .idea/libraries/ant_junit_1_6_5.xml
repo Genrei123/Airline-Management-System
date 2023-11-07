@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="ant-junit-1.6.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Libraries/SLJ4/ant-junit-1.6.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/SLJ4/junit-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/SLJ4/org.apache.felix.framework-5.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/SLJ4/org.apache.felix.main-5.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/SLJ4/slf4j-api-1.7.32.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
