@@ -7,6 +7,7 @@ This program aims to create an airline seat reservation system.
 - Download Java JDK (1.8)
 - Download SceneBuilder Java 8
 - Download IDE for Java (IntelliJ/Eclipse/Netbeans)
+- Include the JAR files in the Libraries folder to your classpath
 
 ### IntelliJ way
 - Open the project with IntelliJ
