@@ -226,6 +226,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 /*----------------------- Scroll Pane & Bar styles ----------------------- */
+.scroll-pane {
+  -fx-background-color: #2e2e2e;
+}
+
 .scrollpane-background-design {
     -fx-background-color:  #434343;
 }
@@ -243,6 +247,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 /* ScrollBar Arrows */
 .scroll-bar:vertical .increment-button,
 .scroll-bar:vertical .decrement-button {
+    -fx-background-color: #555; /* Color of the arrow buttons */
+}
+
+/* ScrollBar Thumb */
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #333; /* Color of the thumb */
+}
+
+/* ScrollBar Track */
+.scroll-bar:horizontal .track {
+    -fx-background-color: #444; /* Color of the track */
+}
+
+/* ScrollBar Arrows */
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
     -fx-background-color: #555; /* Color of the arrow buttons */
 }
 

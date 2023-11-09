@@ -8,17 +8,32 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="AirlineTicketingSystem.jar" size="554955" download="eager" />
+    <jar href="AirlineTicketingSystem.jar" size="561001" download="eager" />
     <jar href="lib\barcodes-8.0.2.jar" size="151287" download="eager" />
+    <jar href="lib\bouncy-castle-adapter-8.0.2.jar" size="139872" download="eager" />
+    <jar href="lib\bouncy-castle-connector-8.0.2.jar" size="11002" download="eager" />
+    <jar href="lib\bouncy-castle-fips-adapter-8.0.2.jar" size="143667" download="eager" />
     <jar href="lib\charm-glisten-4.4.1-javadoc.jar" size="2817088" download="eager" />
     <jar href="lib\charm-glisten-4.4.1.jar" size="1040787" download="eager" />
+    <jar href="lib\commons-8.0.2.jar" size="174721" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\font-asian-8.0.2.jar" size="2816939" download="eager" />
     <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\forms-8.0.2.jar" size="271836" download="eager" />
+    <jar href="lib\hyph-8.0.2.jar" size="984049" download="eager" />
+    <jar href="lib\io-8.0.2.jar" size="812947" download="eager" />
     <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+    <jar href="lib\kernel-8.0.2.jar" size="1269926" download="eager" />
+    <jar href="lib\layout-8.0.2.jar" size="580879" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.15.jar" size="2134905" download="eager" />
     <jar href="lib\ojdbc14-10.2.0.2.0.jar" size="1545954" download="eager" />
+    <jar href="lib\pdfa-8.0.2.jar" size="78729" download="eager" />
+    <jar href="lib\pdftest-8.0.2.jar" size="33846" download="eager" />
+    <jar href="lib\sign-8.0.2.jar" size="155498" download="eager" />
+    <jar href="lib\styled-xml-parser-8.0.2.jar" size="619350" download="eager" />
+    <jar href="lib\svg-8.0.2.jar" size="168927" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="Main.Main"  name="AirlineTicketingSystem" />
   <update check="always"/>
