@@ -1,17 +1,17 @@
 package Receipt;
 
 
+import com.itextpdf.barcodes.BarcodeQRCode;
+import com.itextpdf.io.image.ImageData;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.draw.DashedLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.LineSeparator;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.*;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -86,6 +86,62 @@ public class ReceiptMaker {
         document.add(flightInfobody);
 
         // Space
+        document.add(new Paragraph("\n"));
+
+        // Cut here
+        DashedLine dashedLine = new DashedLine(1);
+        document.add(new LineSeparator(dashedLine));
+
+        // Space
+        document.add(new Paragraph("\n"));
+
+        // Header2
+        float twoColumnWidth2[] = {285+150, 285};
+        Table header2 = new Table(twoColumnWidth2);
+
+        header2.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER));
+        header2.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + TICKET_NUMBER + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
+        document.add(header2);
+
+        // Space
+        document.add(new Paragraph("\n"));
+
+        // Body2
+        float twoColumnWidthBody2[] = {285+150};
+        Table passengerInfobody2 = new Table(twoColumnWidthBody2);
+
+        passengerInfobody2.addCell(new Cell().add(new Paragraph("FLIGHT NUMBER: " + "ER-123" +"\n"
+                + "CLASS SEAT: " + "Economy" + "\n"
+                + "SEAT NO. : " + "12A" + "\n")).setBorder(Border.NO_BORDER));
+
+        document.add(passengerInfobody2);
+
+        // Space
+        document.add(new Paragraph("\n"));
+
+        // Breakdown of expenses
+        float threeColumnWidthBody2[] = {200, 200, 200};
+        Table items = new Table(threeColumnWidthBody2);
+        items.addCell(new Cell().add(new Paragraph("Feature/Item").setBold()));
+        items.addCell(new Cell().add(new Paragraph("Quantity").setBold()));
+        items.addCell(new Cell().add(new Paragraph("Price").setBold()));
+
+        document.add(items);
+
+        // QR code
+        String url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        BarcodeQRCode QRCode = new BarcodeQRCode(url);
+
+        Image qrCodeImage = new Image(QRCode.createFormXObject(pdfDocument));
+        qrCodeImage.scale(5, 5);
+
+        document.add(qrCodeImage);
+
+
+
+
+
+
 
 
         document.close();
