@@ -37,6 +37,7 @@ import javafx.stage.StageStyle;
 
 import javax.xml.crypto.Data;
 import java.util.Arrays;
+import javafx.scene.input.KeyEvent;
 
 /**
  *
@@ -422,13 +423,18 @@ public class LoginPageController implements Initializable {
                     alert.setAlertText("Registered Successfully!", "green");
                     createAccClearFields();
 
+                    // Redirect to the login form
+                    login_form.setVisible(true);
+                    signup_form.setVisible(false);
+
                     // Clear and hide the alert after a certain period
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
                             alert.hideAlert();
                         }
-                    }, 5000); // Hide the alert after 5 seconds (adjust as needed)
+                    }, 1000); // Hide the alert after 5 seconds (adjust as needed)
+
                 } else {
                     alert.setAlertText(signup_userID.getText() + " is already taken", "red");
                 }
@@ -513,6 +519,28 @@ public class LoginPageController implements Initializable {
             }
         });
 
-    }
+        // Set a key event filter on the signup_form
+        signup_form.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                // Handle the Enter key press (e.g., call the createAcc() method)
+                createAcc();
+            }
+        });
 
+        // Set a key event filter on the forgot_form
+        forgot_form.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                // Handle the Enter key press (e.g., call the forgotPass() method)
+                forgotPass();
+            }
+        });
+
+        // Set a key event filter on the changePass_form
+        changePass_form.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                // Handle the Enter key press (e.g., call the changePass() method)
+                changePass();
+            }
+        });
+    }
 }
