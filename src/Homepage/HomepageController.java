@@ -23,7 +23,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -46,10 +49,25 @@ public class HomepageController implements Initializable {
     private Pane starsPane;
 
     @FXML
+    private AnchorPane hf_home;
+
+    @FXML
     private JFXButton cheapestFlights_btn;
 
     @FXML
     private JFXButton bookFlight_btn;
+
+    @FXML
+    private AnchorPane hf_searchDesti;
+
+    @FXML
+    private Label promptLabel1;
+
+    @FXML
+    private Label promptLabel2;
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private AnchorPane flightStats_form;
@@ -92,6 +110,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXButton menuBtn;
+
+    @FXML
+    private Label antonFont;
 
     private boolean menuOpen = false;
 
@@ -257,5 +278,31 @@ public class HomepageController implements Initializable {
         starsPane.setVisible(true);
 
         createTwinklingStars();
+
+        // Initially, set the labels to be visible
+        promptLabel1.setVisible(true);
+        promptLabel2.setVisible(true);
+
+        // Add focus event handler to hide labels when TextField is focused
+        searchTextField.setOnMouseClicked(e -> {
+            promptLabel1.setVisible(false);
+            promptLabel2.setVisible(false);
+        });
+
+        // Add focus event handler to show labels when TextField loses focus and is empty
+        searchTextField.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal && searchTextField.getText().isEmpty()) {
+                promptLabel1.setVisible(true);
+                promptLabel2.setVisible(true);
+            }
+        });
+
+        // Add text change event handler to hide labels when text is entered
+        searchTextField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.isEmpty()) {
+                promptLabel1.setVisible(false);
+                promptLabel2.setVisible(false);
+            }
+        });
     }
 }

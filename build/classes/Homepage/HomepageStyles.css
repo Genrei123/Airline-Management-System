@@ -35,3 +35,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 /*----------------------------------------------------*/
+
+.searchText {
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+#promptLabel1, #promptLabel2 {
+    -fx-text-fill: white;
+}
