@@ -127,7 +127,7 @@ public class HomepageController implements Initializable {
 
     //FOR HOMEPAGE STAR BG ANIMATION
     private void createTwinklingStars() {
-        int numStars = 100;
+        int numStars = 60;
         ParallelTransition parallelTransition = new ParallelTransition();
 
         for (int i = 0; i < numStars; i++) {
