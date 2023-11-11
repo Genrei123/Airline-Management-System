@@ -19,9 +19,11 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -71,7 +73,6 @@ public class HomepageController implements Initializable {
     private double defaultSliderWidth = 232;
     private double defaultSliderHeight = 43;
 
-    
     //MENU BAR SLIDER FUNCTION AND ANIMATION
     public void toggleMenuSlider() {
         if (menuOpen) {
@@ -111,15 +112,20 @@ public class HomepageController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            // Get the stage from the current button's scene
-            Stage stage = (Stage) menu_logout.getScene().getWindow();
+            Stage currentStage = (Stage) menu_logout.getScene().getWindow();
+            currentStage.setScene(scene);
+            currentStage.setTitle("Login Page"); // Set a title for your window
 
-            // Set the minimum width and height for the LogIn
-            stage.setMinWidth(600);
-            stage.setMinHeight(233);
+            // Center the login window on the primary screen
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            currentStage.setX((primScreenBounds.getWidth() - currentStage.getWidth()) / 2);
+            currentStage.setY((primScreenBounds.getHeight() - currentStage.getHeight()) / 2);
 
-            stage.setResizable(false); // Make it unresizable
-            stage.setScene(scene);
+            currentStage.setMinWidth(600);
+            currentStage.setMinHeight(233);
+            currentStage.setResizable(false); // Make it unresizable
+
+            currentStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -172,6 +178,10 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the menu slider in the closed state
         closeMenuSlider();
+
+        // Make the starsPane visible when the application is running
+        starsPane.setVisible(true);
+
         createTwinklingStars();
     }
 }

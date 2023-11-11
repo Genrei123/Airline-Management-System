@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class DashboardController implements Initializable {
@@ -243,15 +245,20 @@ public class DashboardController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            // Get the stage from the current button's scene
-            Stage stage = (Stage) logout_btn.getScene().getWindow();
+            Stage currentStage = (Stage) logout_btn.getScene().getWindow();
+            currentStage.setScene(scene);
+            currentStage.setTitle("Login Page"); // Set a title for your window
 
-            // Set the minimum width and height for the LogIn
-            stage.setMinWidth(600);
-            stage.setMinHeight(233);
+            // Center the login window on the primary screen
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            currentStage.setX((primScreenBounds.getWidth() - currentStage.getWidth()) / 2);
+            currentStage.setY((primScreenBounds.getHeight() - currentStage.getHeight()) / 2);
 
-            stage.setResizable(false); // Make it unresizable
-            stage.setScene(scene);
+            currentStage.setMinWidth(600);
+            currentStage.setMinHeight(233);
+            currentStage.setResizable(false); // Make it unresizable
+
+            currentStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -290,7 +297,7 @@ public class DashboardController implements Initializable {
         selectedLabel.setTextFill(Color.WHITE);
         unselectedLabel.setTextFill(Color.web("#a18b8b"));
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Ensure the menu is initially closed
@@ -326,7 +333,7 @@ public class DashboardController implements Initializable {
         salesForm_btn.setOnAction(e -> switchForm(sales_form, salesForm_btn));
         flightManForm_btn.setOnAction(e -> switchForm(flightManager_form, flightManForm_btn));
         customerSupp_btn.setOnAction(e -> switchForm(customSupp_form, customerSupp_btn));
-        
+
         // Add button click event handlers
         fm_managerBtn.setOnMouseClicked(e -> switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn));
         fm_recordsBtn.setOnMouseClicked(e -> switchForm(fm_recordsForm, fm_recordsBtn, fm_managerBtn));

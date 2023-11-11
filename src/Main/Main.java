@@ -6,9 +6,11 @@ package Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -17,13 +19,19 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/LogIn/LoginPage.fxml"));
         Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
         stage.getIcons().add(icon);
         Scene scene = new Scene(root);
+
+        // Center the login window on the primary screen after it is shown
+        stage.setOnShown(event -> {
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+        });
 
         stage.setScene(scene);
         stage.setTitle("Login Page"); // Set a title for your window

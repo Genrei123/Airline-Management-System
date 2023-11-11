@@ -37,7 +37,9 @@ import javafx.stage.StageStyle;
 
 import javax.xml.crypto.Data;
 import java.util.Arrays;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 
 /**
  *
@@ -175,6 +177,13 @@ public class LoginPageController implements Initializable {
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
 
+                    // Center the login window on the primary screen after it is shown
+                    stage.setOnShown(event -> {
+                        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+                        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+                    });
+
                     Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
                     stage.getIcons().add(icon);
                     stage.setTitle("Dashboard"); // Set a title for your window
@@ -206,6 +215,13 @@ public class LoginPageController implements Initializable {
                                 Stage stage = new Stage();
                                 Scene scene = new Scene(root);
 
+                                // Center the login window on the primary screen after it is shown
+                                stage.setOnShown(event -> {
+                                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                                    stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+                                    stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+                                });
+
                                 Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
                                 stage.getIcons().add(icon);
                                 stage.setTitle("Homepage"); // Set a title for your window
@@ -214,6 +230,7 @@ public class LoginPageController implements Initializable {
                                 stage.setScene(scene);
                                 // TO SHOW THE DASHBOARD FORM
                                 stage.show();
+
                                 // TO HIDE THE WINDOW OF LOG IN FORM
                                 login_btn.getScene().getWindow().hide();
                             } catch (Exception e) {
