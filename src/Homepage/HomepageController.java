@@ -18,6 +18,7 @@ import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -39,7 +40,31 @@ public class HomepageController implements Initializable {
     private AnchorPane centrePane;
 
     @FXML
+    private AnchorPane home_form;
+
+    @FXML
     private Pane starsPane;
+
+    @FXML
+    private JFXButton cheapestFlights_btn;
+
+    @FXML
+    private JFXButton bookFlight_btn;
+
+    @FXML
+    private AnchorPane flightStats_form;
+
+    @FXML
+    private AnchorPane whereWeFly_form;
+
+    @FXML
+    private AnchorPane account_form;
+
+    @FXML
+    private AnchorPane top_form;
+
+    @FXML
+    private AnchorPane aboutUs_form;
 
     @FXML
     private AnchorPane menuSlider;
@@ -72,6 +97,9 @@ public class HomepageController implements Initializable {
 
     private double defaultSliderWidth = 232;
     private double defaultSliderHeight = 43;
+
+    // Create a reference to the currently selected button
+    private JFXButton currentSelectedButton;
 
     //MENU BAR SLIDER FUNCTION AND ANIMATION
     public void toggleMenuSlider() {
@@ -172,6 +200,52 @@ public class HomepageController implements Initializable {
         star.setOpacity(1.0);
 
         return star;
+    }
+
+    @FXML
+    private void switchToForm(ActionEvent event) {
+        JFXButton selectedButton = (JFXButton) event.getSource();
+        AnchorPane targetForm = null;
+
+        // Determine the target form based on the selected button
+        if (selectedButton == menu_home) {
+            targetForm = home_form;
+        } else if (selectedButton == menu_flightStats) {
+            targetForm = flightStats_form;
+        } else if (selectedButton == menu_whereWeFly) {
+            targetForm = whereWeFly_form;
+        } else if (selectedButton == menu_account) {
+            targetForm = account_form;
+        } else if (selectedButton == menu_TOP) {
+            targetForm = top_form;
+        } else if (selectedButton == menu_aboutUs) {
+            targetForm = aboutUs_form;
+        }
+
+        if (targetForm != null) {
+            switchForm(targetForm, selectedButton);
+        }
+    }
+
+    private void switchForm(AnchorPane targetForm, JFXButton selectedButton) {
+        // Hide all forms
+        home_form.setVisible(false);
+        flightStats_form.setVisible(false);
+        whereWeFly_form.setVisible(false);
+        account_form.setVisible(false);
+        top_form.setVisible(false);
+        aboutUs_form.setVisible(false);
+
+        // Show the selected form
+        targetForm.setVisible(true);
+
+        // Update button styles
+        if (currentSelectedButton != null) {
+            currentSelectedButton.getStyleClass().remove("selected-button");
+        }
+
+        currentSelectedButton = selectedButton;
+        currentSelectedButton.getStyleClass().add("selected-button");
     }
 
     @Override

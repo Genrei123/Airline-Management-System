@@ -102,11 +102,51 @@
                         </JFXButton>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="214.0" layoutY="150.0" prefHeight="53.0" prefWidth="198.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="500.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="whereWeFly_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="Where We Fly" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="top_form" layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="Terms of Policies" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="About Us" textFill="WHITE" AnchorPane.leftAnchor="500.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
@@ -124,7 +164,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_flightStats" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="44.0" maxHeight="-Infinity" prefHeight="45.0" prefWidth="238.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
+                  <JFXButton fx:id="menu_flightStats" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="44.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="45.0" prefWidth="238.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -137,12 +177,12 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_whereWeFly" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="90.0" maxHeight="-Infinity" prefHeight="47.0" prefWidth="238.0" text="Where we fly" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
+                  <JFXButton fx:id="menu_whereWeFly" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="90.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="47.0" prefWidth="238.0" text="Where we fly" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="menu_account" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" prefHeight="48.0" prefWidth="238.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
+                  <JFXButton fx:id="menu_account" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="48.0" prefWidth="238.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -155,7 +195,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="185.0" maxHeight="-Infinity" prefHeight="43.0" prefWidth="238.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
+                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="185.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="238.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
