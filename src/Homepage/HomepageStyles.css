@@ -17,14 +17,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .inriaSans-FontStyle {
     -fx-font-family: 'Inria Sans', sans-serif;
-    -fx-font-weight: regular;
-
+    -fx-font-weight: normal;
 }
 
 .inriaSansBold-FontStyle {
     -fx-font-family: 'Inria Sans', sans-serif;
     -fx-font-weight: bold;
-
     -fx-font-size: 32;
 }
 .label-shadow {

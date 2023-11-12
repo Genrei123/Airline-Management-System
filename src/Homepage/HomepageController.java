@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+     * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+     * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Homepage;
 
@@ -25,7 +25,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
@@ -53,9 +52,6 @@ public class HomepageController implements Initializable {
     private AnchorPane hf_home;
 
     @FXML
-    private JFXButton cheapestFlights_btn;
-
-    @FXML
     private JFXButton bookFlight_btn;
 
     @FXML
@@ -69,6 +65,12 @@ public class HomepageController implements Initializable {
 
     @FXML
     private TextField searchTextField;
+
+    @FXML
+    private AnchorPane hf_chooseSeat;
+
+    @FXML
+    private AnchorPane hf_bookFlight;
 
     @FXML
     private AnchorPane flightStats_form;
@@ -111,9 +113,6 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXButton menuBtn;
-
-    @FXML
-    private Label antonFont;
 
     private boolean menuOpen = false;
 
@@ -158,26 +157,24 @@ public class HomepageController implements Initializable {
     //LOG OUT FUNCTION
     public void logout() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/LogIn/LoginPage.fxml"));
-            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            // Center the login window on the primary screen after it is shown
-            stage.setOnShown(event -> {
-                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
-                stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
-            });
+            Stage currentStage = (Stage) menu_logout.getScene().getWindow();
+            currentStage.setScene(scene);
+            currentStage.setTitle("Login Page"); // Set a title for your window
 
-            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
-            stage.getIcons().add(icon);
-            stage.setTitle("Dashboard"); // Set a title for your window
-            stage.setResizable(true); // Make it resizable
-            stage.setScene(scene);
-            // TO SHOW THE DASHBOARD FORM
-            stage.show();
-            // TO HIDE THE WINDOW OF LOG IN FORM
-            menu_logout.getScene().getWindow().hide();
+            // Center the login window on the primary screen
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            currentStage.setX((primScreenBounds.getWidth() - currentStage.getWidth()) / 2);
+            currentStage.setY((primScreenBounds.getHeight() - currentStage.getHeight()) / 2);
+
+            currentStage.setMinWidth(600);
+            currentStage.setMinHeight(233);
+            currentStage.setResizable(false); // Make it unresizable
+
+            currentStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,6 +223,7 @@ public class HomepageController implements Initializable {
         return star;
     }
 
+    //SWITCH FORM FUNCTIONS
     @FXML
     private void switchToForm(ActionEvent event) {
         JFXButton selectedButton = (JFXButton) event.getSource();
@@ -244,10 +242,13 @@ public class HomepageController implements Initializable {
             targetForm = top_form;
         } else if (selectedButton == menu_aboutUs) {
             targetForm = aboutUs_form;
+        } else if (selectedButton == bookFlight_btn) {
+            targetForm = hf_searchDesti;  // Update this line to use hf_searchDesti
         }
 
         if (targetForm != null) {
             switchForm(targetForm, selectedButton);
+            switchPages(targetForm, selectedButton);
         }
     }
 
@@ -270,6 +271,21 @@ public class HomepageController implements Initializable {
 
         currentSelectedButton = selectedButton;
         currentSelectedButton.getStyleClass().add("selected-button");
+    }
+
+    private void switchPages(AnchorPane targetForm, JFXButton selectedButton) {
+        // Hide all pages
+        hf_home.setVisible(false);
+        hf_searchDesti.setVisible(false);
+
+        // Show the selected page
+        if (targetForm == home_form) {
+            hf_home.setVisible(true);
+        } else if (targetForm == hf_searchDesti) {
+            hf_searchDesti.setVisible(true);
+        }
+
+        currentSelectedButton = selectedButton;
     }
 
     @Override
@@ -307,5 +323,6 @@ public class HomepageController implements Initializable {
                 promptLabel2.setVisible(false);
             }
         });
+
     }
 }
