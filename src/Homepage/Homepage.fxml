@@ -36,7 +36,7 @@
                   <AnchorPane fx:id="home_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Pane fx:id="starsPane" layoutY="215.0" prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <AnchorPane fx:id="hf_home" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_home" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="191.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -58,9 +58,9 @@
                                     <Font name="Arial Black" size="1.0" />
                                  </font>
                                  <graphic>
-                                    <Label ellipsisString="" graphicTextGap="5.0" prefHeight="47.0" prefWidth="454.0" text="cheapest flights" textFill="WHITE" textOverrun="CLIP">
+                                    <Label ellipsisString="" graphicTextGap="5.0" prefHeight="47.0" prefWidth="454.0" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="cheapest flights" textFill="WHITE" textOverrun="CLIP">
                                        <graphic>
-                                          <Label text="Explore the" textFill="WHITE">
+                                          <Label style="-fx-font-size: 32;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Explore the" textFill="WHITE">
                                              <font>
                                                 <Font name="Arial" size="32.0" />
                                              </font>
@@ -232,8 +232,8 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_chooseSeat" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <AnchorPane fx:id="hf_bookFlight" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_chooseSeat" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane fx:id="hf_bookFlight" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="397.0" layoutY="32.0" text="Booking Details" textFill="WHITE">
                                  <font>
@@ -349,7 +349,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="238.0" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="0.0">
                      <font>
