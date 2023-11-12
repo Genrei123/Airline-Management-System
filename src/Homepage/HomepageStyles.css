@@ -12,15 +12,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 /*------------------ FONT STYLES ---------------------*/
 .antonFontStyle {
     -fx-font-family: 'Anton', sans-serif;
-    -fx-spacing: 10px; 
+    -fx-spacing: 10px;
 }
 
 .inriaSans-FontStyle {
     -fx-font-family: 'Inria Sans', sans-serif;
+    -fx-font-weight: regular;
+
 }
 
 .inriaSansBold-FontStyle {
     -fx-font-family: 'Inria Sans', sans-serif;
+    -fx-font-weight: bold;
+
+    -fx-font-size: 32;
 }
 .label-shadow {
     -fx-effect: dropshadow(three-pass-box, #5a5a5a, 1, 0, 3, 2);

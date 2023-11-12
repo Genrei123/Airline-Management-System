@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
@@ -157,24 +158,26 @@ public class HomepageController implements Initializable {
     //LOG OUT FUNCTION
     public void logout() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
+            Stage stage = new Stage();
             Scene scene = new Scene(root);
 
-            Stage currentStage = (Stage) menu_logout.getScene().getWindow();
-            currentStage.setScene(scene);
-            currentStage.setTitle("Login Page"); // Set a title for your window
+            // Center the login window on the primary screen after it is shown
+            stage.setOnShown(event -> {
+                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+                stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+            });
 
-            // Center the login window on the primary screen
-            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-            currentStage.setX((primScreenBounds.getWidth() - currentStage.getWidth()) / 2);
-            currentStage.setY((primScreenBounds.getHeight() - currentStage.getHeight()) / 2);
-
-            currentStage.setMinWidth(600);
-            currentStage.setMinHeight(233);
-            currentStage.setResizable(false); // Make it unresizable
-
-            currentStage.show();
+            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+            stage.getIcons().add(icon);
+            stage.setTitle("Dashboard"); // Set a title for your window
+            stage.setResizable(true); // Make it resizable
+            stage.setScene(scene);
+            // TO SHOW THE DASHBOARD FORM
+            stage.show();
+            // TO HIDE THE WINDOW OF LOG IN FORM
+            menu_logout.getScene().getWindow().hide();
         } catch (Exception e) {
             e.printStackTrace();
         }

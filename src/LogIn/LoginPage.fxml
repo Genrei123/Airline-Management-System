@@ -15,9 +15,9 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogIn.LoginPageController">
    <children>
-      <AnchorPane fx:id="main_form" prefHeight="233.0" prefWidth="600.0" styleClass="backgroundRight" stylesheets="@SigninStyles.css">
+      <AnchorPane fx:id="main_form" styleClass="backgroundRight" stylesheets="@SigninStyles.css">
          <children>
-            <AnchorPane fx:id="login_form" layoutX="216.0" layoutY="8.0" prefHeight="250.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="login_form" layoutX="216.0" layoutY="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="login_username" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="63.0" prefHeight="25.0" prefWidth="341.0" promptText="Username" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.leftAnchor="219.0" />
                   <JFXTextField fx:id="login_showPassword" focusColor="WHITE" labelFloat="true" layoutX="219.0" layoutY="107.0" prefHeight="25.0" prefWidth="341.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" visible="false" />
@@ -29,9 +29,9 @@
                      </cursor>
                   </JFXCheckBox>
                   <Button fx:id="login_createAcc" layoutX="219.0" layoutY="204.0" mnemonicParsing="false" onAction="#switchForm" styleClass="createbtn" stylesheets="@SigninStyles.css" text="Create Account" textFill="#343940" />
-                  <AnchorPane prefHeight="250.0" prefWidth="200.0" styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
+                  <AnchorPane styleClass="backgroundLeft" stylesheets="@SigninStyles.css">
                      <children>
-                        <ImageView fitHeight="259.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/LogInBG.png" />
                            </image>
@@ -42,7 +42,7 @@
                   <Label fx:id="signin_alert" alignment="CENTER" contentDisplay="CENTER" layoutX="290.0" layoutY="165.0" prefHeight="17.0" prefWidth="200.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="signup_form" prefHeight="250.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="signup_form" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="signup_userID" focusColor="#bfbaba" labelFloat="true" layoutX="220.0" layoutY="17.0" prefHeight="25.0" prefWidth="341.0" promptText="Username" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="20.0" />
                   <JFXTextField fx:id="signup_password" focusColor="#bfbaba" labelFloat="true" layoutX="220.0" layoutY="65.0" prefHeight="25.0" prefWidth="165.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="65.0" />
@@ -63,7 +63,7 @@
                   <Label fx:id="signup_alert" alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="187.0" prefHeight="17.0" prefWidth="341.0" style="-fx-text-fill: white;" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="forgot_form" layoutX="10.0" layoutY="10.0" prefHeight="271.0" prefWidth="620.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="forgot_form" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="forgot_userID" focusColor="#bfbaba" labelFloat="true" layoutX="220.0" layoutY="35.0" prefHeight="25.0" prefWidth="341.0" promptText="Username" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" />
                   <Button fx:id="forgot_proceedBtn" layoutX="483.0" layoutY="204.0" mnemonicParsing="false" onAction="#forgotPass" prefHeight="25.0" prefWidth="78.0" styleClass="createAccBtn" stylesheets="@SigninStyles.css" text="Proceed" />
@@ -82,7 +82,7 @@
                   <Label fx:id="forgot_alert" alignment="CENTER" contentDisplay="CENTER" layoutX="233.0" layoutY="156.0" prefHeight="17.0" prefWidth="314.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="changePass_form" prefHeight="281.0" prefWidth="630.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="changePass_form" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="changePass_password" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="71.0" prefHeight="25.0" prefWidth="341.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="71.0" />
                   <Button fx:id="changePass_proceedBtn" layoutX="445.0" layoutY="204.0" mnemonicParsing="false" onAction="#changePass" prefHeight="25.0" prefWidth="115.0" styleClass="createAccBtn" stylesheets="@SigninStyles.css" text="Change Password" />
