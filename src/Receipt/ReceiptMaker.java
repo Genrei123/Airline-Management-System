@@ -128,22 +128,6 @@ public class ReceiptMaker {
 
         document.add(items);
 
-        // QR code
-        String url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-        BarcodeQRCode QRCode = new BarcodeQRCode(url);
-
-        Image qrCodeImage = new Image(QRCode.createFormXObject(pdfDocument));
-        qrCodeImage.scale(5, 5);
-
-        document.add(qrCodeImage);
-
-
-
-
-
-
-
-
         document.close();
     }
 }

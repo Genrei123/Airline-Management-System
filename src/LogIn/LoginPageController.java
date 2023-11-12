@@ -4,6 +4,7 @@
  */
 package LogIn;
 
+import Animations.SwitchForms;
 import Database.Connector;
 import Database.Database;
 import com.jfoenix.controls.JFXCheckBox;
@@ -172,30 +173,8 @@ public class LoginPageController implements Initializable {
                 alert.setAlertText("Successful Login!", "green");
 
                 try {
-                    // TO LINK TO DASHBOARD FORM
-                    Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-
-                    // Center the login window on the primary screen after it is shown
-                    stage.setOnShown(event -> {
-                        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
-                        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
-                    });
-
-                    Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
-                    stage.getIcons().add(icon);
-                    stage.setTitle("Dashboard"); // Set a title for your window
-                    stage.setResizable(true); // Make it resizable
-                    stage.setScene(scene);
-                    // TO SHOW THE DASHBOARD FORM
-                    stage.show();
-                    // TO HIDE THE WINDOW OF LOG IN FORM
-                    login_btn.getScene().getWindow().hide();
-                    // Set the minimum width and height for the Dashboard
-                    stage.setMinWidth(800);
-                    stage.setMinHeight(600);
+                    SwitchForms switchForms = new SwitchForms();
+                    switchForms.Link((Stage) login_btn.getScene().getWindow(), "Dashboard");
 
                 } catch (Exception e) {
                     e.printStackTrace();

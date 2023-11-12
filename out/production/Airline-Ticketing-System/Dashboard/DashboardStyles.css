@@ -7,6 +7,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Ervhyne
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inria+Sans&display=swap');
+/*------------------ FONT STYLES ---------------------*/
+.inriaSans-FontStyle {
+    -fx-font-family: 'Inria Sans', sans-serif;
+}
+
+
 /*BACKGROUND DESIGNS*/
 .top-pane {
     -fx-background-color: #2e2e2e;
@@ -227,7 +234,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 /*----------------------- Scroll Pane & Bar styles ----------------------- */
 .scroll-pane {
-  -fx-background-color: #2e2e2e;
+    -fx-background-color: #2e2e2e;
 }
 
 .scrollpane-background-design {

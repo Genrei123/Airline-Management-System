@@ -1,5 +1,6 @@
 package Dashboard;
 
+import Animations.SwitchForms;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
@@ -8,6 +9,8 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -239,29 +242,9 @@ public class DashboardController implements Initializable {
         overlayPane.setVisible(false);
     }
 
-    public void logout() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            Stage currentStage = (Stage) logout_btn.getScene().getWindow();
-            currentStage.setScene(scene);
-            currentStage.setTitle("Login Page"); // Set a title for your window
-
-            // Center the login window on the primary screen
-            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-            currentStage.setX((primScreenBounds.getWidth() - currentStage.getWidth()) / 2);
-            currentStage.setY((primScreenBounds.getHeight() - currentStage.getHeight()) / 2);
-
-            currentStage.setMinWidth(600);
-            currentStage.setMinHeight(233);
-            currentStage.setResizable(false); // Make it unresizable
-
-            currentStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void logout() throws IOException {
+        SwitchForms switchForms = new SwitchForms();
+        switchForms.Logout((Stage) logout_btn.getScene().getWindow());
     }
 
     private void switchForm(AnchorPane targetForm, JFXButton selectedButton) {
