@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -239,13 +240,62 @@
                                     <Font name="Segoe UI" size="30.0" />
                                  </font>
                               </Label>
-                              <AnchorPane layoutX="150.0" layoutY="189.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7CD0EC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="99.0">
+                              <AnchorPane layoutX="150.0" layoutY="189.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7CD0EC;" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="99.0">
                                  <children>
-                                    <Label fx:id="antonFont" layoutX="132.0" layoutY="43.0" text="UCC-NC" textFill="#fcfcfc">
+                                    <Label layoutX="81.0" layoutY="58.0" style="-fx-font-size: 55;" stylesheets="@HomepageStyles.css" text="UCC-NC" textFill="#fcfcfc" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="58.0">
                                        <font>
                                           <Font name="Segoe UI" size="12.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="antonFontStyle" />
+                                          <String fx:value="label-shadow" />
+                                       </styleClass>
                                     </Label>
+                                    <Label layoutX="112.0" layoutY="40.0" style="-fx-font-size: 35;" stylesheets="@HomepageStyles.css" text="ORIGIN" textFill="#fcfcfc" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="16.0">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="antonFontStyle" />
+                                          <String fx:value="label-shadow" />
+                                       </styleClass>
+                                    </Label>
+                                    <Label layoutX="558.0" layoutY="58.0" style="-fx-font-size: 55;" stylesheets="@HomepageStyles.css" text="UCC-NC" textFill="#fcfcfc" AnchorPane.topAnchor="58.0">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="antonFontStyle" />
+                                          <String fx:value="label-shadow" />
+                                       </styleClass>
+                                    </Label>
+                                    <Label layoutX="558.0" layoutY="16.0" style="-fx-font-size: 35;" stylesheets="@HomepageStyles.css" text="ORIGIN" textFill="#fcfcfc" AnchorPane.topAnchor="16.0">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="antonFontStyle" />
+                                          <String fx:value="label-shadow" />
+                                       </styleClass>
+                                    </Label>
+                                    <Label layoutX="109.0" layoutY="227.0" style="-fx-font-size: 16;" stylesheets="@HomepageStyles.css" text="FIRST NAME" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="199.0">
+                                       <styleClass>
+                                          <String fx:value="inriaSans-FontStyle" />
+                                          <String fx:value="text-shadow" />
+                                       </styleClass>
+                                    </Label>
+                                    <AnchorPane layoutX="230.0" layoutY="179.0" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <Label layoutX="-159.0" layoutY="105.0" style="-fx-font-size: 16;" stylesheets="@HomepageStyles.css" text="FIRST NAME">
+                                             <styleClass>
+                                                <String fx:value="inriaSans-FontStyle" />
+                                                <String fx:value="text-shadow" />
+                                             </styleClass>
+                                          </Label>
+                                          <TextField layoutX="-112.0" layoutY="75.0" prefWidth="258.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
+                                       </children>
+                                    </AnchorPane>
+                                    <TextField layoutX="156.0" layoutY="197.0" prefWidth="258.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" AnchorPane.leftAnchor="150.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -299,7 +349,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" prefHeight="43.0" prefWidth="238.0" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="0.0">
                      <font>
