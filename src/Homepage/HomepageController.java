@@ -158,7 +158,7 @@ public class HomepageController implements Initializable {
     //LOG OUT FUNCTION
     public void logout() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Dashboard/Dashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/LogIn/LoginPage.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
 
