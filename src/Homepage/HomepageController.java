@@ -4,7 +4,9 @@
  */
 package Homepage;
 
+import Animations.SwitchForms;
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -155,30 +157,11 @@ public class HomepageController implements Initializable {
     }
 
     //LOG OUT FUNCTION
-    public void logout() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            Stage currentStage = (Stage) menu_logout.getScene().getWindow();
-            currentStage.setScene(scene);
-            currentStage.setTitle("Login Page"); // Set a title for your window
-
-            // Center the login window on the primary screen
-            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-            currentStage.setX((primScreenBounds.getWidth() - currentStage.getWidth()) / 2);
-            currentStage.setY((primScreenBounds.getHeight() - currentStage.getHeight()) / 2);
-
-            currentStage.setMinWidth(600);
-            currentStage.setMinHeight(233);
-            currentStage.setResizable(false); // Make it unresizable
-
-            currentStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void logout() throws IOException {
+        SwitchForms switchForms = new SwitchForms();
+        switchForms.Logout((Stage) menu_logout.getScene().getWindow());
     }
+    
 
     //FOR HOMEPAGE STAR BG ANIMATION
     private void createTwinklingStars() {
