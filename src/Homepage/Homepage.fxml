@@ -33,61 +33,8 @@
             </AnchorPane>
             <AnchorPane fx:id="centrePane" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #201414;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0">
                <children>
-                  <AnchorPane fx:id="home_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Pane fx:id="starsPane" layoutY="215.0" prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label layoutX="214.0" layoutY="150.0" prefHeight="53.0" prefWidth="198.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="500.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="whereWeFly_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="Where We Fly" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="top_form" layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="Terms of Policies" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="About Us" textFill="WHITE" AnchorPane.leftAnchor="500.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
-                     </children>
-                  </AnchorPane>
+                  <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" visible="false" />
+                  <AnchorPane fx:id="home_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <AnchorPane fx:id="hf_bookFlight" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label layoutX="397.0" layoutY="32.0" text="Booking Details" textFill="WHITE">
@@ -155,8 +102,16 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="hf_chooseSeat" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="hf_chooseSeat" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <JFXButton fx:id="returnToDesti_btn" layoutX="921.0" layoutY="14.0" onAction="#switchToForm" ripplerFill="#201414" style="-fx-font-size: 15;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Return" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="172.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -194,7 +149,7 @@
                            <children>
                               <AnchorPane layoutX="35.0" layoutY="23.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
                                  <children>
-                                    <JFXButton layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
+                                    <JFXButton fx:id="booking_btn1" layoutX="851.0" layoutY="20.0" onAction="#switchToForm" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
@@ -213,7 +168,7 @@
                               </AnchorPane>
                               <AnchorPane layoutX="45.0" layoutY="33.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
                                  <children>
-                                    <JFXButton layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
+                                    <JFXButton fx:id="booking_btn4" layoutX="851.0" layoutY="20.0" onAction="#switchToForm" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
@@ -232,7 +187,7 @@
                               </AnchorPane>
                               <AnchorPane layoutX="55.0" layoutY="43.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
                                  <children>
-                                    <JFXButton layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
+                                    <JFXButton fx:id="booking_btn3" layoutX="851.0" layoutY="20.0" onAction="#switchToForm" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
@@ -251,7 +206,7 @@
                               </AnchorPane>
                               <AnchorPane layoutX="65.0" layoutY="53.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="119.0">
                                  <children>
-                                    <JFXButton layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
+                                    <JFXButton fx:id="booking_btn2" layoutX="851.0" layoutY="20.0" onAction="#switchToForm" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
@@ -270,17 +225,14 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="941.0" layoutY="14.0" text="Return" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
+                        <JFXButton fx:id="returnToHome_btn" layoutX="921.0" layoutY="13.0" onAction="#switchToForm" ripplerFill="#201414" style="-fx-font-size: 15;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Home" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                        </Label>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="hf_home" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="hf_home" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="191.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -349,6 +301,56 @@
                               </JFXButton>
                            </children>
                         </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="214.0" layoutY="150.0" prefHeight="53.0" prefWidth="198.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="500.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="whereWeFly_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="Where We Fly" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="top_form" layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="Terms of Policies" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="198.0" text="About Us" textFill="WHITE" AnchorPane.leftAnchor="500.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
                </children>
@@ -451,7 +453,6 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <Pane fx:id="starsPane" layoutY="51.0" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" />
          </children>
       </AnchorPane>
    </children>

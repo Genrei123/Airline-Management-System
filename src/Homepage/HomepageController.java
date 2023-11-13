@@ -69,7 +69,25 @@ public class HomepageController implements Initializable {
     private TextField searchTextField;
 
     @FXML
+    private JFXButton booking_btn1;
+
+    @FXML
+    private JFXButton booking_btn4;
+
+    @FXML
+    private JFXButton booking_btn3;
+
+    @FXML
+    private JFXButton booking_btn2;
+
+    @FXML
+    private JFXButton returnToHome_btn;
+
+    @FXML
     private AnchorPane hf_chooseSeat;
+
+    @FXML
+    private JFXButton returnToDesti_btn;
 
     @FXML
     private AnchorPane hf_bookFlight;
@@ -161,7 +179,6 @@ public class HomepageController implements Initializable {
         SwitchForms switchForms = new SwitchForms();
         switchForms.Logout((Stage) menu_logout.getScene().getWindow());
     }
-    
 
     //FOR HOMEPAGE STAR BG ANIMATION
     private void createTwinklingStars() {
@@ -226,8 +243,20 @@ public class HomepageController implements Initializable {
         } else if (selectedButton == menu_aboutUs) {
             targetForm = aboutUs_form;
         } else if (selectedButton == bookFlight_btn) {
-            targetForm = hf_searchDesti;  // Update this line to use hf_searchDesti
-        }
+            targetForm = hf_searchDesti;
+        } else if (selectedButton == returnToHome_btn) {
+            targetForm = hf_home;
+        } else if (selectedButton == returnToDesti_btn) {
+            targetForm = hf_searchDesti;
+        } else if (selectedButton == booking_btn1) {
+            targetForm = hf_chooseSeat;
+        } else if (selectedButton == booking_btn2) {
+            targetForm = hf_chooseSeat;
+        } else if (selectedButton == booking_btn3) {
+            targetForm = hf_chooseSeat;
+        } else if (selectedButton == booking_btn4) {
+            targetForm = hf_chooseSeat;
+        } 
 
         if (targetForm != null) {
             switchForm(targetForm, selectedButton);
@@ -260,14 +289,19 @@ public class HomepageController implements Initializable {
         // Hide all pages
         hf_home.setVisible(false);
         hf_searchDesti.setVisible(false);
+        hf_chooseSeat.setVisible(false);
 
         // Show the selected page
         if (targetForm == home_form) {
             hf_home.setVisible(true);
         } else if (targetForm == hf_searchDesti) {
             hf_searchDesti.setVisible(true);
+        } else if (targetForm == hf_chooseSeat) {
+            hf_chooseSeat.setVisible(true);
         }
 
+        // Show the selected form
+        targetForm.setVisible(true);
         currentSelectedButton = selectedButton;
     }
 
