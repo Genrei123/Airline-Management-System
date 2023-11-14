@@ -355,6 +355,15 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
+            <AnchorPane prefHeight="43.0" prefWidth="47.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+               <children>
+                  <JFXButton fx:id="menuBtn1" ellipsisString="" onAction="#toggleMenuSlider" prefHeight="43.0" prefWidth="47.0" style="-fx-background-radius: 0 20 0 0;">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="238.0" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="0.0">

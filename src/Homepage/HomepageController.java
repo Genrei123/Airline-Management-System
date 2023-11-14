@@ -136,7 +136,7 @@ public class HomepageController implements Initializable {
 
     private boolean menuOpen = false;
 
-    private double defaultSliderWidth = 232;
+    private double defaultSliderWidth = 280;
     private double defaultSliderHeight = 43;
 
     // Create a reference to the currently selected button
