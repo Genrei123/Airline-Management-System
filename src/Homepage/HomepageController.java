@@ -52,6 +52,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private AnchorPane hf_bookFlight;
+    
+    @FXML
+    private JFXButton returnToDesti_btn1;
 
     @FXML
     private AnchorPane hf_chooseSeat;
@@ -256,6 +259,8 @@ public class HomepageController implements Initializable {
             targetForm = hf_home;
         } else if (selectedButton == returnToDesti_btn) {
             targetForm = hf_searchDesti;
+        } else if (selectedButton == returnToDesti_btn1) {
+            targetForm = hf_searchDesti;
         } else if (selectedButton == booking_btn1) {
             targetForm = hf_chooseSeat;
         } else if (selectedButton == booking_btn2) {
@@ -266,7 +271,7 @@ public class HomepageController implements Initializable {
             targetForm = hf_chooseSeat;
         } else if (selectedButton == proceed_btn) {
             targetForm = hf_bookFlight;
-        }
+        } 
 
         if (targetForm != null) {
             switchForm(targetForm, selectedButton);
@@ -310,7 +315,7 @@ public class HomepageController implements Initializable {
         } else if (targetForm == hf_chooseSeat) {
             hf_chooseSeat.setVisible(true);
         } else if (targetForm == hf_bookFlight) {
-            hf_chooseSeat.setVisible(true);
+            hf_bookFlight.setVisible(true);
         }
 
         // Show the selected form
