@@ -1,5 +1,8 @@
 package Database;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +65,7 @@ public class Database {
                 }
             }
         }
+        System.out.println("Generated SQL Query for updateData: " + query);
 
         connector = connectDB.connectDB();
         prepare = connector.prepareStatement(query.toString());
@@ -81,7 +85,13 @@ public class Database {
         connector.close();
     }
 
-    public List<String[]> pullData(String tableName, List<String> columnNames) {
+    public ObservableList<String[]> pullData(String tableName, List<String> columnNames) {
+
+        if (!doesTableExist(tableName)) {
+            System.out.println("Table " + tableName + " does not exist.");
+            return null;
+        }
+
         StringBuilder query = new StringBuilder("SELECT ");
         for (int i = 0; i < columnNames.size(); i++) {
             query.append(columnNames.get(i));
@@ -89,7 +99,9 @@ public class Database {
                 query.append(", ");
             }
         }
-        query.append("FROM ").append(tableName);
+        query.append(" FROM ").append(tableName);
+        System.out.println("Generated SQL Query for pullData: " + query);
+
 
         connector = connectDB.connectDB();
         if (connector != null) {
@@ -105,7 +117,7 @@ public class Database {
                     }
                     rows.add(row);
                 }
-                return rows;
+                return FXCollections.observableArrayList(rows);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -240,6 +252,29 @@ public class Database {
                 prepare = connector.prepareStatement(query);
                 prepare.setString(1, username);
                 prepare.setString(2, password);
+
+                result = prepare.executeQuery();
+
+                return result.next();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
+    private boolean doesTableExist(String tableName) {
+        String query = "SELECT * FROM information_schema.tables WHERE table_schema = 'erminoairlines' AND table_name = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, tableName);
 
                 result = prepare.executeQuery();
 

@@ -1,34 +1,32 @@
 package Dashboard;
 
 import Animations.SwitchForms;
+import Database.Database;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
-import com.jfoenix.controls.JFXTreeTableView;
 import javafx.animation.TranslateTransition;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 public class DashboardController implements Initializable {
 
@@ -129,7 +127,7 @@ public class DashboardController implements Initializable {
     private TextField bf_search;
 
     @FXML
-    private TableView<?> bookedFlights_table;
+    private TableView<String[]> bookedFlights_table;
 
     @FXML
     private TableColumn<?, ?> bft_name;
@@ -206,6 +204,17 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXButton slider_menu;
 
+    @FXML
+    private TableView<String[]> testtable;
+
+    @FXML
+    private TableColumn<String[], String> column1;
+
+    @FXML
+    private TableColumn<String[], String> column2;
+
+
+
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
 
@@ -281,8 +290,33 @@ public class DashboardController implements Initializable {
         unselectedLabel.setTextFill(Color.web("#a18b8b"));
     }
 
+    public void setBf_clearBtn() {
+        bf_clearBtn.setOnAction((ActionEvent event) -> {
+            // Lagyan pa ng name yung ibang textfields
+            bf_date.setValue(null);
+            bf_time.setValue(null);
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        // SAMPLE KUNG PAPAANO GAMITIN YUNG PULL DATA
+        Database database = new Database();
+        List<String> Column = Arrays.asList(
+                "username",
+                "password"
+        );
+        ObservableList<String[]> rows = database.pullData("signin_users", Column);
+
+        if (rows != null) {
+            testtable.setItems(rows);
+
+            column1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
+            column2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
+
+        }
+
         // Ensure the menu is initially closed
         dashboard_slider.setTranslateX(-210);
         overlayPane.setVisible(false);
@@ -323,6 +357,5 @@ public class DashboardController implements Initializable {
 
         // Set the default form to fm_managerForm
         switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
-
     }
 }
