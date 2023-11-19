@@ -3,6 +3,7 @@ package Dashboard;
 import Animations.SwitchForms;
 import Database.Database;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
 import javafx.animation.TranslateTransition;
@@ -15,6 +16,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,7 +28,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 public class DashboardController implements Initializable {
 
@@ -76,31 +77,34 @@ public class DashboardController implements Initializable {
     private TextField tr_search;
 
     @FXML
-    private TableView<?> tr_table;
+    private TableView<String[]> tr_table;
 
     @FXML
-    private TableColumn<?, ?> trt_flightNo;
+    private TableColumn<String[], String> trt_flightNo;
 
     @FXML
-    private TableColumn<?, ?> trt_airplaneNo;
+    private TableColumn<String[], String> trt_airplaneNo;
 
     @FXML
-    private TableColumn<?, ?> trt_initialDep;
+    private TableColumn<String[], String> trt_initialDep;
 
     @FXML
-    private TableColumn<?, ?> trt_departure;
+    private TableColumn<String[], String> trt_departure;
 
     @FXML
-    private TableColumn<?, ?> trt_destination;
+    private TableColumn<String[], String> trt_destination;
 
     @FXML
-    private TableColumn<?, ?> trt_origin;
+    private TableColumn<String[], String> trt_origin;
 
     @FXML
-    private TableColumn<?, ?> trt_seatNo;
+    private TableColumn<String[], String> trt_seatNo;
 
     @FXML
-    private TableColumn<?, ?> trt_class;
+    private TableColumn<String[], String> trt_class;
+
+    @FXML
+    private JFXComboBox<String> trt_searchBy;
 
     @FXML
     private AnchorPane flightManager_form;
@@ -204,16 +208,6 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXButton slider_menu;
 
-    @FXML
-    private TableView<String[]> testtable;
-
-    @FXML
-    private TableColumn<String[], String> column1;
-
-    @FXML
-    private TableColumn<String[], String> column2;
-
-
 
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
@@ -298,6 +292,61 @@ public class DashboardController implements Initializable {
         });
     }
 
+    public void tr_search() {
+        List<String> text = Arrays.asList(tr_search.getText());
+        List<String> searchBy = Arrays.asList(trt_searchBy.getSelectionModel().getSelectedItem());
+
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "Airplane_no", "initial_depart", "departure", "destination", "origin", "seat_no", "class"), searchBy, text);
+        if (data != null) {
+            System.out.println("Data is not null");
+            tr_table.setItems(data);
+
+            trt_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            trt_airplaneNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            trt_initialDep.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
+            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+
+    }
+
+    public void tr_clear() {
+        tr_search.setText("");
+        getTicketRecords();
+    }
+
+    public void getTicketRecords() {
+        // For Ticket Records
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "airplane_no", "initial_depart", "departure", "destination", "origin", "seat_no", "class"));
+
+        if (data != null) {
+            System.out.println("Data is not null");
+            tr_table.setItems(data);
+
+            trt_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            trt_airplaneNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            trt_initialDep.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
+            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Ensure the menu is initially closed
@@ -340,5 +389,23 @@ public class DashboardController implements Initializable {
 
         // Set the default form to fm_managerForm
         switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
+
+        // For Ticket Records
+        getTicketRecords();
+
+        // For searching
+        String[] search_choices = {"flight_no", "airplane_no", "initial_departure", "departure", "destination", "origin", "seat_no", "class"};
+        List<String> listQ = new ArrayList<>();
+
+        for (String data1 : search_choices) {
+            listQ.add(data1);
+        }
+        ObservableList listData = FXCollections.observableArrayList(listQ);
+        trt_searchBy.setItems(listData);
+        trt_searchBy.setValue("flight_no");
+
+        // Ticket Records Ends here
     }
+
+
 }
