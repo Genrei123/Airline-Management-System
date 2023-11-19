@@ -300,23 +300,6 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        // SAMPLE KUNG PAPAANO GAMITIN YUNG PULL DATA
-        Database database = new Database();
-        List<String> Column = Arrays.asList(
-                "username",
-                "password"
-        );
-        ObservableList<String[]> rows = database.pullData("signin_users", Column);
-
-        if (rows != null) {
-            testtable.setItems(rows);
-
-            column1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
-            column2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
-
-        }
-
         // Ensure the menu is initially closed
         dashboard_slider.setTranslateX(-210);
         overlayPane.setVisible(false);
