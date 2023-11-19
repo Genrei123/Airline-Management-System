@@ -558,7 +558,7 @@
                               <Font name="Segoe UI" size="12.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="bf_clearBtn" layoutX="48.0" layoutY="484.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Clear" textFill="#f8f8f8" AnchorPane.leftAnchor="48.0">
+                        <JFXButton fx:id="bf_clearBtn" layoutX="48.0" layoutY="484.0" onAction="#setBf_clearBtn" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Clear" textFill="#f8f8f8" AnchorPane.leftAnchor="48.0">
                            <font>
                               <Font name="Segoe UI" size="12.0" />
                            </font>
@@ -577,7 +577,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
                      <font>

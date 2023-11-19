@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="AirlineTicketingSystem.jar" size="566302" download="eager" />
+    <jar href="AirlineTicketingSystem.jar" size="663423" download="eager" />
     <jar href="lib\barcodes-8.0.2.jar" size="151287" download="eager" />
     <jar href="lib\bouncy-castle-adapter-8.0.2.jar" size="139872" download="eager" />
     <jar href="lib\bouncy-castle-connector-8.0.2.jar" size="11002" download="eager" />

@@ -109,9 +109,33 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
+                        <AnchorPane layoutX="23.0" layoutY="176.0" prefHeight="367.0" prefWidth="315.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 50;" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="88.0">
+                           <children>
+                              <Label layoutX="52.0" layoutY="54.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Your seat number is" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="35.0" />
+                              <Label layoutX="28.0" layoutY="107.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Airplane number:" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="101.0" />
+                              <Label layoutX="28.0" layoutY="217.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Destination: " textFill="WHITE" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="28.0" />
+                              <Label layoutX="28.0" layoutY="277.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Origin: " textFill="WHITE" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="28.0" />
+                              <Label layoutX="28.0" layoutY="154.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Class: " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="166.0" />
+                           </children>
+                        </AnchorPane>
+                        <ImageView fitHeight="211.0" fitWidth="531.0" layoutX="450.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="67.0">
+                           <image>
+                              <Image url="@../Images/Plane%20seats.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="226.0" fitWidth="531.0" layoutX="407.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/Plane%20seats%202.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="proceed_btn" layoutX="421.0" layoutY="525.0" onAction="#switchToForm" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #29ABE2;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="PROCEED" textFill="#fcfcfc">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="172.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -232,7 +256,7 @@
                         </JFXButton>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="hf_home" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="hf_home" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="191.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                            <image>

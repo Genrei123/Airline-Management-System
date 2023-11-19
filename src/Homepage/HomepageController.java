@@ -45,16 +45,22 @@ public class HomepageController implements Initializable {
     private AnchorPane centrePane;
 
     @FXML
-    private AnchorPane home_form;
-
-    @FXML
     private Pane starsPane;
 
     @FXML
-    private AnchorPane hf_home;
+    private AnchorPane home_form;
 
     @FXML
-    private JFXButton bookFlight_btn;
+    private AnchorPane hf_bookFlight;
+
+    @FXML
+    private AnchorPane hf_chooseSeat;
+
+    @FXML
+    private JFXButton returnToDesti_btn;
+
+    @FXML
+    private JFXButton proceed_btn;
 
     @FXML
     private AnchorPane hf_searchDesti;
@@ -84,13 +90,10 @@ public class HomepageController implements Initializable {
     private JFXButton returnToHome_btn;
 
     @FXML
-    private AnchorPane hf_chooseSeat;
+    private AnchorPane hf_home;
 
     @FXML
-    private JFXButton returnToDesti_btn;
-
-    @FXML
-    private AnchorPane hf_bookFlight;
+    private JFXButton bookFlight_btn;
 
     @FXML
     private AnchorPane flightStats_form;
@@ -106,6 +109,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private AnchorPane aboutUs_form;
+
+    @FXML
+    private JFXButton menuBtn1;
 
     @FXML
     private AnchorPane menuSlider;
@@ -156,6 +162,7 @@ public class HomepageController implements Initializable {
         TranslateTransition openTransition = new TranslateTransition(Duration.millis(300), menuSlider);
         openTransition.setToX(0);
         openTransition.play();
+        openTransition.setNode(menuSlider);
 
         // Update the menuOpen flag
         menuOpen = true;
@@ -169,6 +176,7 @@ public class HomepageController implements Initializable {
         TranslateTransition closeTransition = new TranslateTransition(Duration.millis(300), menuSlider);
         closeTransition.setToX(-defaultSliderWidth);
         closeTransition.play();
+        closeTransition.setNode(menuSlider);
 
         // Update the menuOpen flag
         menuOpen = false;
@@ -256,7 +264,9 @@ public class HomepageController implements Initializable {
             targetForm = hf_chooseSeat;
         } else if (selectedButton == booking_btn4) {
             targetForm = hf_chooseSeat;
-        } 
+        } else if (selectedButton == proceed_btn) {
+            targetForm = hf_bookFlight;
+        }
 
         if (targetForm != null) {
             switchForm(targetForm, selectedButton);
@@ -290,6 +300,7 @@ public class HomepageController implements Initializable {
         hf_home.setVisible(false);
         hf_searchDesti.setVisible(false);
         hf_chooseSeat.setVisible(false);
+        hf_bookFlight.setVisible(false);
 
         // Show the selected page
         if (targetForm == home_form) {
@@ -297,6 +308,8 @@ public class HomepageController implements Initializable {
         } else if (targetForm == hf_searchDesti) {
             hf_searchDesti.setVisible(true);
         } else if (targetForm == hf_chooseSeat) {
+            hf_chooseSeat.setVisible(true);
+        } else if (targetForm == hf_bookFlight) {
             hf_chooseSeat.setVisible(true);
         }
 
@@ -309,6 +322,19 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the menu slider in the closed state
         closeMenuSlider();
+
+        // Add event handlers to the overlayPane and topPane
+        centrePane.setOnMouseClicked(event -> {
+            if (menuOpen) {
+                closeMenuSlider();
+            }
+        });
+
+        topPane.setOnMouseClicked(event -> {
+            if (menuOpen) {
+                closeMenuSlider();
+            }
+        });
 
         // Make the starsPane visible when the application is running
         starsPane.setVisible(true);
