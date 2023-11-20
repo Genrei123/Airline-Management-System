@@ -5,8 +5,11 @@
 package Homepage;
 
 import Animations.SwitchForms;
+import Database.Database;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+
+import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.util.*;
+
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -147,6 +151,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXButton menuBtn;
+
+    @FXML
+    private TextField f_name, m_name, l_name, suffix, birth_date,  age, destination, origin, s_class, seat, mode_payment;
 
     private boolean menuOpen = false;
 
@@ -331,7 +338,50 @@ public class HomepageController implements Initializable {
         currentSelectedButton = selectedButton;
     }
 
-    public void book() {
+    public void book() throws SQLException {
+        // Insert Data
+        List<String> columnNames;
+        List<Object> values;
+
+        String flight_id = "test";
+        String flight_no = "test";
+
+        columnNames = Arrays.asList(
+                "flight_id",
+                "first_name",
+                "middle_name",
+                "last_name",
+                "suffix",
+                "age",
+                "birth_date",
+                "destination",
+                "origin",
+                "class",
+                "seat",
+                "mode_payment",
+                "flight_no"
+        );
+
+        values = Arrays.asList(
+                flight_id,
+                f_name.getText(),
+                m_name.getText(),
+                l_name.getText(),
+                suffix.getText(),
+                Integer.parseInt(age.getText()),
+                birth_date.getText(),
+                destination.getText(),
+                origin.getText(),
+                s_class.getText(),
+                seat.getText(),
+                mode_payment.getText(),
+                flight_no
+        );
+
+        Database booked_flights = new Database();
+        booked_flights.insertData("booked_flights", columnNames, values);
+
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
             Parent root = loader.load();

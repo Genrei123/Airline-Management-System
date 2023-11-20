@@ -150,7 +150,7 @@
                     </columns>
                   </TableView>
                </children></AnchorPane>
-            <AnchorPane fx:id="ticketRecords_form" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="ticketRecords_form" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="TICKET RECORDS" textFill="WHITE" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="14.0">
                      <font>
