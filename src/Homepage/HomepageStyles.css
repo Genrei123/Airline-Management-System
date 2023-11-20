@@ -6,15 +6,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 10 25, 23, 8:28:17 PM
     Author     : Ervhyne
 */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inria+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&family=Inter:wght@400;700&display=swap');
 
 /*------------------ FONT STYLES ---------------------*/
-.antonFontStyle {
-    -fx-font-family: 'Anton', sans-serif;
-    -fx-spacing: 10px;
-}
-
 .inriaSans-FontStyle {
     -fx-font-family: 'Inria Sans', sans-serif;
     -fx-font-weight: normal;
@@ -23,8 +17,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .inriaSansBold-FontStyle {
     -fx-font-family: 'Inria Sans', sans-serif;
     -fx-font-weight: bold;
-    -fx-font-size: 32;
 }
+
+.interReg-FontStyle {
+    -fx-font-family: 'Inter', sans-serif;
+    -fx-font-weight: normal;
+}
+
+.interBold-FontStyle {
+    -fx-font-family: 'Inter', sans-serif;
+    -fx-font-weight: bold;
+}
+
 .label-shadow {
     -fx-effect: dropshadow(three-pass-box, #5a5a5a, 1, 0, 3, 2);
 }
