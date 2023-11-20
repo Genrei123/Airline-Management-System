@@ -2,6 +2,7 @@ package Dashboard;
 
 import Animations.SwitchForms;
 import Database.Database;
+import LogIn.Admin;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -349,6 +350,10 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        Admin admin = Admin.getInstance();
+        System.out.println(admin.getUsername());
+
         // Ensure the menu is initially closed
         dashboard_slider.setTranslateX(-210);
         overlayPane.setVisible(false);

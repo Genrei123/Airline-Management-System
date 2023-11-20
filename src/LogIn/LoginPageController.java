@@ -173,6 +173,8 @@ public class LoginPageController implements Initializable {
             if (enteredAccountName.equals("Admin") && enteredPassword.equals("12345678")) {
                 // Direct the specific user "Admin" to the dashboard
                 alert.setAlertText("Successful Login!", "green");
+                Admin admin = Admin.getInstance();
+                admin.setUsername(enteredAccountName);
 
                 try {
                     SwitchForms switchForms = new SwitchForms();

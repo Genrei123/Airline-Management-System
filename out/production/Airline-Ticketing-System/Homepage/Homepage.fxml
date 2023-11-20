@@ -35,7 +35,7 @@
                <children>
                   <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" visible="false" />
                   <AnchorPane fx:id="home_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <AnchorPane fx:id="hf_bookFlight" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="hf_bookFlight" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label layoutX="397.0" layoutY="32.0" text="Booking Details" textFill="WHITE">
                            <font>
@@ -100,6 +100,11 @@
                               <TextField layoutX="156.0" layoutY="197.0" prefWidth="258.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" AnchorPane.leftAnchor="150.0" />
                            </children>
                         </AnchorPane>
+                        <JFXButton fx:id="returnToDesti_btn1" layoutX="920.0" layoutY="14.0" onAction="#switchToForm" ripplerFill="#201414" style="-fx-font-size: 15;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Return" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="hf_chooseSeat" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -109,9 +114,33 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
+                        <AnchorPane layoutX="23.0" layoutY="176.0" prefHeight="367.0" prefWidth="315.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 50;" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="88.0">
+                           <children>
+                              <Label layoutX="52.0" layoutY="54.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Your seat number is" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="35.0" />
+                              <Label layoutX="28.0" layoutY="107.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Airplane number:" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="101.0" />
+                              <Label layoutX="28.0" layoutY="217.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Destination: " textFill="WHITE" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="28.0" />
+                              <Label layoutX="28.0" layoutY="277.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Origin: " textFill="WHITE" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="28.0" />
+                              <Label layoutX="28.0" layoutY="154.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Class: " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="166.0" />
+                           </children>
+                        </AnchorPane>
+                        <ImageView fitHeight="211.0" fitWidth="531.0" layoutX="450.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="67.0">
+                           <image>
+                              <Image url="@../Images/Plane%20seats.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="226.0" fitWidth="531.0" layoutX="407.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/Plane%20seats%202.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="proceed_btn" layoutX="421.0" layoutY="525.0" onAction="#switchToForm" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #29ABE2;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="PROCEED" textFill="#fcfcfc">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="172.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -366,20 +395,12 @@
             </AnchorPane>
             <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
-                  <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="238.0" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="0.0">
+                  <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0" proportional="false">
-                           <stops>
-                              <Stop color="WHITE" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_flightStats" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="44.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="45.0" prefWidth="238.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
+                  <JFXButton fx:id="menu_flightStats" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="44.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="45.0" prefWidth="280.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -392,25 +413,12 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_whereWeFly" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="90.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="47.0" prefWidth="238.0" text="Where we fly" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
+                  <JFXButton fx:id="menu_whereWeFly" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="90.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="47.0" prefWidth="280.0" text="Where we fly" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="menu_account" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="48.0" prefWidth="238.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
-                     <font>
-                        <Font name="Arial Black" size="20.0" />
-                     </font>
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="WHITE" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                  </JFXButton>
-                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="185.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="238.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0">
+                  <JFXButton fx:id="menu_account" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="48.0" prefWidth="280.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -423,7 +431,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_aboutUs" alignment="BASELINE_LEFT" layoutY="230.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="238.0" text="About us" textFill="WHITE">
+                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="185.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="280.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -436,7 +444,20 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_logout" alignment="BASELINE_LEFT" layoutY="274.0" maxHeight="-Infinity" onAction="#logout" prefHeight="43.0" prefWidth="238.0" text="Log out" textFill="WHITE">
+                  <JFXButton fx:id="menu_aboutUs" alignment="BASELINE_LEFT" layoutY="230.0" maxHeight="-Infinity" onAction="#switchToForm" prefHeight="43.0" prefWidth="280.0" text="About us" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="20.0" />
+                     </font>
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <JFXButton fx:id="menu_logout" alignment="BASELINE_LEFT" layoutY="274.0" maxHeight="-Infinity" onAction="#logout" prefHeight="43.0" prefWidth="280.0" style="-fx-background-radius: 0 0 20 0;" text="Log out" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
