@@ -27,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
@@ -52,18 +53,21 @@ public class HomepageController implements Initializable {
 
     @FXML
     private AnchorPane hf_bookFlight;
-    
+
     @FXML
     private JFXButton returnToDesti_btn1;
+
+    @FXML
+    private JFXButton book_btn;
 
     @FXML
     private AnchorPane hf_chooseSeat;
 
     @FXML
-    private JFXButton returnToDesti_btn;
+    private JFXButton proceed_btn;
 
     @FXML
-    private JFXButton proceed_btn;
+    private JFXButton returnToDesti_btn;
 
     @FXML
     private AnchorPane hf_searchDesti;
@@ -271,7 +275,7 @@ public class HomepageController implements Initializable {
             targetForm = hf_chooseSeat;
         } else if (selectedButton == proceed_btn) {
             targetForm = hf_bookFlight;
-        } 
+        }
 
         if (targetForm != null) {
             switchForm(targetForm, selectedButton);
@@ -322,7 +326,41 @@ public class HomepageController implements Initializable {
         targetForm.setVisible(true);
         currentSelectedButton = selectedButton;
     }
+    
+    
+    public void book() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
+            Parent root = loader.load();
+            Stage notifStage = new Stage();
+            Scene scene = new Scene(root);
 
+            notifStage.setOnShown(event -> {
+                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                notifStage.setX((primScreenBounds.getWidth() - notifStage.getWidth()) / 2);
+                notifStage.setY((primScreenBounds.getHeight() - notifStage.getHeight()) / 2);
+            });
+
+            notifStage.setResizable(false);
+            notifStage.setScene(scene);
+
+            // Get the controller of Notif.fxml to set the reference to HomepageController
+            NotifController notifController = loader.getController();
+            notifController.setHomepageController(this);
+
+            notifStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to switch the form to hf_searchDesti
+    public void switchToSearchDestiForm() {
+        switchForm(hf_searchDesti, returnToDesti_btn);
+        switchPages(hf_searchDesti, returnToDesti_btn);
+    }
+  
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the menu slider in the closed state

@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SwitchForms {
+
     Stage currentStage;
     Stage nextStage;
 
@@ -20,7 +21,6 @@ public class SwitchForms {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-
 
         Stage Login = new Stage();
         Login.setScene(scene);
@@ -37,6 +37,8 @@ public class SwitchForms {
 
         Login.show();
     }
+
+
 
     public void Link(Stage currentStage, String toLink) throws IOException {
         currentStage.close();

@@ -76,7 +76,7 @@
                               <Label layoutX="555.0" layoutY="305.0" prefHeight="25.0" prefWidth="100.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="MODE OF " textFill="WHITE" AnchorPane.topAnchor="305.0" />
                               <TextField focusTraversable="false" layoutX="691.0" layoutY="317.0" prefHeight="19.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
                               <Label layoutX="556.0" layoutY="332.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="PAYMERNT:" textFill="WHITE" />
-                              <JFXButton layoutX="653.0" layoutY="420.0" prefHeight="39.0" prefWidth="255.0" style="-fx-font-size: 25; -fx-background-radius: 50; -fx-background-color: #29ABE2;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BOOK" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
+                              <JFXButton fx:id="book_btn" layoutX="653.0" layoutY="420.0" onAction="#book" prefHeight="39.0" prefWidth="255.0" style="-fx-font-size: 25; -fx-background-radius: 50; -fx-background-color: #29ABE2;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BOOK" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
