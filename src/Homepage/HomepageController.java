@@ -32,6 +32,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -155,6 +156,9 @@ public class HomepageController implements Initializable {
     // Create a reference to the currently selected button
     private JFXButton currentSelectedButton;
 
+    private double x = 0;
+    private double y = 0;
+    
     //MENU BAR SLIDER FUNCTION AND ANIMATION
     public void toggleMenuSlider() {
         if (menuOpen) {
@@ -326,8 +330,7 @@ public class HomepageController implements Initializable {
         targetForm.setVisible(true);
         currentSelectedButton = selectedButton;
     }
-    
-    
+
     public void book() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
@@ -341,8 +344,22 @@ public class HomepageController implements Initializable {
                 notifStage.setY((primScreenBounds.getHeight() - notifStage.getHeight()) / 2);
             });
 
+            Image icon = new Image(getClass().getResourceAsStream("/Images/Plane logo.png"));
+            notifStage.initStyle(StageStyle.UNDECORATED);
             notifStage.setResizable(false);
             notifStage.setScene(scene);
+
+            root.setOnMousePressed((javafx.scene.input.MouseEvent event) -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+
+            root.setOnMouseDragged((javafx.scene.input.MouseEvent event) -> {
+                notifStage.setX(event.getScreenX() - x);
+                notifStage.setY(event.getScreenY() - y);
+
+            });
+
 
             // Get the controller of Notif.fxml to set the reference to HomepageController
             NotifController notifController = loader.getController();
@@ -359,8 +376,7 @@ public class HomepageController implements Initializable {
         switchForm(hf_searchDesti, returnToDesti_btn);
         switchPages(hf_searchDesti, returnToDesti_btn);
     }
-  
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the menu slider in the closed state
