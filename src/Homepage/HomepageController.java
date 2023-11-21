@@ -22,8 +22,11 @@ import java.util.*;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -108,6 +111,51 @@ public class HomepageController implements Initializable {
     private JFXButton bookFlight_btn;
 
     @FXML
+    private JFXButton slideToLeft_btn;
+
+    @FXML
+    private JFXButton slideToRight_btn;
+
+    @FXML
+    private AnchorPane carousel;
+
+    @FXML
+    private AnchorPane c_slide3;
+
+    @FXML
+    private JFXButton c_bookingBtn7;
+
+    @FXML
+    private JFXButton c_bookingBtn8;
+
+    @FXML
+    private JFXButton c_bookingBtn9;
+
+    @FXML
+    private AnchorPane c_slide2;
+
+    @FXML
+    private JFXButton c_bookingBtn4;
+
+    @FXML
+    private JFXButton c_bookingBtn5;
+
+    @FXML
+    private JFXButton c_bookingBtn6;
+
+    @FXML
+    private AnchorPane c_slide1;
+
+    @FXML
+    private JFXButton c_bookingBtn1;
+
+    @FXML
+    private JFXButton c_bookingBtn2;
+
+    @FXML
+    private JFXButton c_bookingBtn3;
+
+    @FXML
     private AnchorPane flightStats_form;
 
     @FXML
@@ -153,19 +201,21 @@ public class HomepageController implements Initializable {
     private JFXButton menuBtn;
 
     @FXML
-    private TextField f_name, m_name, l_name, suffix, birth_date,  age, destination, origin, s_class, seat, mode_payment;
+    private TextField f_name, m_name, l_name, suffix, birth_date, age, destination, origin, s_class, seat, mode_payment;
 
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
     private double defaultSliderHeight = 43;
 
+    private int currentSlideIndex = 1; // Assuming you start at the first slide
+
     // Create a reference to the currently selected button
     private JFXButton currentSelectedButton;
 
     private double x = 0;
     private double y = 0;
-    
+
     //MENU BAR SLIDER FUNCTION AND ANIMATION
     public void toggleMenuSlider() {
         if (menuOpen) {
@@ -249,93 +299,101 @@ public class HomepageController implements Initializable {
         return star;
     }
 
-    //SWITCH FORM FUNCTIONS
+    // Modify the existing slideToLeft and slideToRight methods
     @FXML
-    private void switchToForm(ActionEvent event) {
-        JFXButton selectedButton = (JFXButton) event.getSource();
-        AnchorPane targetForm = null;
-
-        // Determine the target form based on the selected button
-        if (selectedButton == menu_home) {
-            targetForm = home_form;
-        } else if (selectedButton == menu_flightStats) {
-            targetForm = flightStats_form;
-        } else if (selectedButton == menu_whereWeFly) {
-            targetForm = whereWeFly_form;
-        } else if (selectedButton == menu_account) {
-            targetForm = account_form;
-        } else if (selectedButton == menu_TOP) {
-            targetForm = top_form;
-        } else if (selectedButton == menu_aboutUs) {
-            targetForm = aboutUs_form;
-        } else if (selectedButton == bookFlight_btn) {
-            targetForm = hf_searchDesti;
-        } else if (selectedButton == returnToHome_btn) {
-            targetForm = hf_home;
-        } else if (selectedButton == returnToDesti_btn) {
-            targetForm = hf_searchDesti;
-        } else if (selectedButton == returnToDesti_btn1) {
-            targetForm = hf_searchDesti;
-        } else if (selectedButton == booking_btn1) {
-            targetForm = hf_chooseSeat;
-        } else if (selectedButton == booking_btn2) {
-            targetForm = hf_chooseSeat;
-        } else if (selectedButton == booking_btn3) {
-            targetForm = hf_chooseSeat;
-        } else if (selectedButton == booking_btn4) {
-            targetForm = hf_chooseSeat;
-        } else if (selectedButton == proceed_btn) {
-            targetForm = hf_bookFlight;
-        }
-
-        if (targetForm != null) {
-            switchForm(targetForm, selectedButton);
-            switchPages(targetForm, selectedButton);
-        }
+    private void slideToLeft(ActionEvent event) {
+        switchSlide(currentSlideIndex - 1);
     }
 
+    @FXML
+    private void slideToRight(ActionEvent event) {
+        switchSlide(currentSlideIndex + 1);
+    }
+
+    // Method to switch to a specific slide
+    private void switchSlide(int newIndex) {
+        int totalSlides = 3; // Assuming you have 3 slides (c_slide1, c_slide2, c_slide3)
+
+        if (newIndex < 1) {
+            newIndex = totalSlides;
+        } else if (newIndex > totalSlides) {
+            newIndex = 1;
+        }
+
+        double targetX = -((newIndex - 1) * carousel.getPrefWidth());
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), new KeyValue(carousel.layoutXProperty(), targetX))
+        );
+
+        timeline.play();
+
+        currentSlideIndex = newIndex;
+    }
+
+    //SWITCH FORM FUNCTIONS FOR home_form
     private void switchForm(AnchorPane targetForm, JFXButton selectedButton) {
-        // Hide all forms
-        home_form.setVisible(false);
-        flightStats_form.setVisible(false);
-        whereWeFly_form.setVisible(false);
-        account_form.setVisible(false);
-        top_form.setVisible(false);
-        aboutUs_form.setVisible(false);
-
-        // Show the selected form
-        targetForm.setVisible(true);
-
-        // Update button styles
-        if (currentSelectedButton != null) {
-            currentSelectedButton.getStyleClass().remove("selected-button");
-        }
-
-        currentSelectedButton = selectedButton;
-        currentSelectedButton.getStyleClass().add("selected-button");
-    }
-
-    private void switchPages(AnchorPane targetForm, JFXButton selectedButton) {
-        // Hide all pages
         hf_home.setVisible(false);
         hf_searchDesti.setVisible(false);
         hf_chooseSeat.setVisible(false);
         hf_bookFlight.setVisible(false);
-
-        // Show the selected page
-        if (targetForm == home_form) {
-            hf_home.setVisible(true);
-        } else if (targetForm == hf_searchDesti) {
-            hf_searchDesti.setVisible(true);
-        } else if (targetForm == hf_chooseSeat) {
-            hf_chooseSeat.setVisible(true);
-        } else if (targetForm == hf_bookFlight) {
-            hf_bookFlight.setVisible(true);
-        }
-
         // Show the selected form
         targetForm.setVisible(true);
-        currentSelectedButton = selectedButton;
+
+    }
+
+    //SWITCH FORM FUNCTIONS FOR home_form
+    public void switchForm(ActionEvent event) {
+        if (event.getSource() == menu_home) {
+            home_form.setVisible(true);
+            flightStats_form.setVisible(false);
+            whereWeFly_form.setVisible(false);
+            account_form.setVisible(false);
+            top_form.setVisible(false);
+            aboutUs_form.setVisible(false);
+
+        } else if (event.getSource() == menu_flightStats) {
+            home_form.setVisible(false);
+            flightStats_form.setVisible(true);
+            whereWeFly_form.setVisible(false);
+            account_form.setVisible(false);
+            top_form.setVisible(false);
+            aboutUs_form.setVisible(false);
+
+        } else if (event.getSource() == menu_whereWeFly) {
+            home_form.setVisible(false);
+            flightStats_form.setVisible(false);
+            whereWeFly_form.setVisible(true);
+            account_form.setVisible(false);
+            top_form.setVisible(false);
+            aboutUs_form.setVisible(false);
+        } else if (event.getSource() == menu_account) {
+            home_form.setVisible(false);
+            flightStats_form.setVisible(false);
+            whereWeFly_form.setVisible(false);
+            account_form.setVisible(true);
+            top_form.setVisible(false);
+            aboutUs_form.setVisible(false);
+        } else if (event.getSource() == menu_TOP) {
+            home_form.setVisible(false);
+            flightStats_form.setVisible(false);
+            whereWeFly_form.setVisible(false);
+            account_form.setVisible(false);
+            top_form.setVisible(true);
+            aboutUs_form.setVisible(false);
+        } else if (event.getSource() == menu_aboutUs) {
+            home_form.setVisible(false);
+            flightStats_form.setVisible(false);
+            whereWeFly_form.setVisible(false);
+            account_form.setVisible(false);
+            top_form.setVisible(false);
+            aboutUs_form.setVisible(true);
+        } /*else if (event.getSource() == returnToHome_btn) {
+            hf_home.setVisible(true);
+            hf_searchDesti.setVisible(false);
+            hf_chooseSeat.setVisible(false);
+            hf_bookFlight.setVisible(false);
+        }*/
     }
 
     public void book() throws SQLException {
@@ -381,7 +439,6 @@ public class HomepageController implements Initializable {
         Database booked_flights = new Database();
         booked_flights.insertData("booked_flights", columnNames, values);
 
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
             Parent root = loader.load();
@@ -410,7 +467,6 @@ public class HomepageController implements Initializable {
 
             });
 
-
             // Get the controller of Notif.fxml to set the reference to HomepageController
             NotifController notifController = loader.getController();
             notifController.setHomepageController(this);
@@ -424,7 +480,6 @@ public class HomepageController implements Initializable {
     // Method to switch the form to hf_searchDesti
     public void switchToSearchDestiForm() {
         switchForm(hf_searchDesti, returnToDesti_btn);
-        switchPages(hf_searchDesti, returnToDesti_btn);
     }
 
     @Override
@@ -449,6 +504,21 @@ public class HomepageController implements Initializable {
         starsPane.setVisible(true);
 
         createTwinklingStars();
+
+        // Switch Forms for home_form
+        bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
+        // Booking buttons switch form
+        booking_btn1.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn1));
+        booking_btn2.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn2));
+        booking_btn3.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn3));
+        booking_btn4.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn4));
+
+        proceed_btn.setOnAction(e -> switchForm(hf_bookFlight, proceed_btn));
+
+        // Return actions for home_form
+        returnToHome_btn.setOnAction(e -> switchForm(hf_home, returnToHome_btn));
+        returnToDesti_btn.setOnAction(e -> switchForm(hf_searchDesti, returnToDesti_btn));
+        returnToDesti_btn1.setOnAction(e -> switchForm(hf_searchDesti, returnToDesti_btn1));
 
         // Initially, set the labels to be visible
         promptLabel1.setVisible(true);
