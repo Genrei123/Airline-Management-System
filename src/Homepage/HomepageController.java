@@ -30,6 +30,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -208,7 +209,10 @@ public class HomepageController implements Initializable {
     private double defaultSliderWidth = 280;
     private double defaultSliderHeight = 43;
 
-    private int currentSlideIndex = 1; // Assuming you start at the first slide
+    // Create a Timeline for auto-sliding
+    private Timeline autoSlideTimeline;
+    // Variable to store the time of the last manual slide change
+    private long lastSlideChangeTime = 0;
 
     // Create a reference to the currently selected button
     private JFXButton currentSelectedButton;
@@ -299,36 +303,77 @@ public class HomepageController implements Initializable {
         return star;
     }
 
-    // Modify the existing slideToLeft and slideToRight methods
-    @FXML
-    private void slideToLeft(ActionEvent event) {
-        switchSlide(currentSlideIndex - 1);
+    private void initializeAutoSlideTimeline() {
+        // Set the duration and create a KeyFrame
+        Duration duration = Duration.seconds(5); // adjust the duration as needed
+        KeyFrame keyFrame = new KeyFrame(duration, this::autoSlide);
+
+        // Create a timeline with the keyframe, set it to indefinite to repeat
+        autoSlideTimeline = new Timeline(keyFrame);
+        autoSlideTimeline.setCycleCount(Timeline.INDEFINITE);
+
+        // Play the auto-slide timeline
+        autoSlideTimeline.play();
     }
+
+    // Auto-slide method
+    private void autoSlide(ActionEvent event) {
+        // If the user manually changed slides recently, wait for 10s before resuming auto-slide
+        if (System.currentTimeMillis() - lastSlideChangeTime < 10000) {
+            return;
+        }
+
+        // Perform the auto-slide action (slide to the left)
+        slideToLeft(event);
+    }
+
+    // Modify the existing slideToLeft and slideToRight methods
+    int show = 0;
 
     @FXML
     private void slideToRight(ActionEvent event) {
-        switchSlide(currentSlideIndex + 1);
-    }
-
-    // Method to switch to a specific slide
-    private void switchSlide(int newIndex) {
-        int totalSlides = 3; // Assuming you have 3 slides (c_slide1, c_slide2, c_slide3)
-
-        if (newIndex < 1) {
-            newIndex = totalSlides;
-        } else if (newIndex > totalSlides) {
-            newIndex = 1;
+        if (show == 0) {
+            switchForm(c_slide2);
+            show++;
+        } else if (show == 1) {
+            switchForm(c_slide3);
+            show++;
+        } else if (show == 2) {
+            switchForm(c_slide1);
+            show = 0;
         }
 
-        double targetX = -((newIndex - 1) * carousel.getPrefWidth());
+        // Record the time of the manual slide change
+        lastSlideChangeTime = System.currentTimeMillis();
+        autoSlideTimeline.playFromStart(); // Resume auto-slide
+    }
 
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), new KeyValue(carousel.layoutXProperty(), targetX))
-        );
+    @FXML
+    private void slideToLeft(ActionEvent event) {
+        if (show == 0) {
+            switchForm(c_slide3);
+            show = 2;
+        } else if (show == 1) {
+            switchForm(c_slide1);
+            show--;
+        } else if (show == 2) {
+            switchForm(c_slide2);
+            show--;
+        }
 
-        timeline.play();
+        // Record the time of the manual slide change
+        lastSlideChangeTime = System.currentTimeMillis();
+        autoSlideTimeline.playFromStart(); // Resume auto-slide
+    }
 
-        currentSlideIndex = newIndex;
+    private void switchForm(AnchorPane targetForm) {
+        //carousel slides
+        c_slide1.setVisible(false);
+        c_slide2.setVisible(false);
+        c_slide3.setVisible(false);
+
+        // Show the selected form or carousel slide
+        targetForm.setVisible(true);
     }
 
     //SWITCH FORM FUNCTIONS FOR home_form
@@ -339,7 +384,6 @@ public class HomepageController implements Initializable {
         hf_bookFlight.setVisible(false);
         // Show the selected form
         targetForm.setVisible(true);
-
     }
 
     //SWITCH FORM FUNCTIONS FOR home_form
@@ -388,12 +432,7 @@ public class HomepageController implements Initializable {
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(true);
-        } /*else if (event.getSource() == returnToHome_btn) {
-            hf_home.setVisible(true);
-            hf_searchDesti.setVisible(false);
-            hf_chooseSeat.setVisible(false);
-            hf_bookFlight.setVisible(false);
-        }*/
+        }
     }
 
     public void book() throws SQLException {
@@ -486,6 +525,9 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the menu slider in the closed state
         closeMenuSlider();
+
+        // Initialize the auto-slide timeline
+        initializeAutoSlideTimeline();
 
         // Add event handlers to the overlayPane and topPane
         centrePane.setOnMouseClicked(event -> {
