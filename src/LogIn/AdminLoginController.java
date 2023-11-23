@@ -391,14 +391,16 @@ public class AdminLoginController implements Initializable {
                             "password",
                             "question",
                             "answer",
-                            "date");
+                            "date",
+                            "admin");
 
                     List<Object> values = Arrays.asList(
                             signup_userID.getText(),
                             signup_password.getText(),
                             (String) signup_selectQuestion.getSelectionModel().getSelectedItem(),
                             signup_answer.getText(),
-                            sqlDate);
+                            sqlDate,
+                            1);
 
                     checkAccount.insertData("signin_users", columnNames, values);
                     alert.setAlertText("Registered Successfully!", "green");
