@@ -345,4 +345,29 @@ public class Database {
 
         return false;
     }
+
+    public int sum(String tableName, String columnName) {
+        String query = "SELECT SUM(" + columnName + ") FROM " + tableName;
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return 0;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    return result.getInt(1);
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 0;
+    }
 }

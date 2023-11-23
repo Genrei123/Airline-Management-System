@@ -17,10 +17,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -69,7 +67,7 @@ public class DashboardController implements Initializable {
     private Label sl_earningsNo;
 
     @FXML
-    private TableView<?> sl_table;
+    private TableView<String[]> sl_table;
 
     @FXML
     private AnchorPane ticketRecords_form;
@@ -209,6 +207,10 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXButton slider_menu;
 
+    @FXML
+    private TableColumn<String[], String> s_ticketNo, s_flightNo, s_seat, s_name, s_paymentDate, s_status, s_agent, s_ticketBranch, s_price;
+
+
 
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
@@ -325,12 +327,12 @@ public class DashboardController implements Initializable {
     }
 
     public void getTicketRecords() {
+        System.out.println("Getting ticket records");
         // For Ticket Records
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "airplane_no", "initial_depart", "departure", "destination", "origin", "seat_no", "class"));
 
         if (data != null) {
-            System.out.println("Data is not null");
             tr_table.setItems(data);
 
             trt_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
@@ -346,6 +348,44 @@ public class DashboardController implements Initializable {
         else {
             System.out.println("Data is null");
         }
+    }
+
+    public void getSales() {
+        System.out.println("Getting sales");
+        Database database = new Database();
+        Date date = new Date();
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"));
+
+        if (data != null) {
+            sl_table.setItems(data);
+            s_ticketNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            s_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            s_seat.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            s_name.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            s_paymentDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            s_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            s_agent.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
+            s_ticketBranch.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+            s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[8]));
+
+            // For the labels
+            sl_ticketSoldNo.setText(String.valueOf(data.size()));
+
+            // For the earnings
+            double earnings = 0;
+            for (String[] data1 : data) {
+                earnings += Double.parseDouble(data1[8]);
+            }
+            sl_earningsNo.setText(String.valueOf("₱" + earnings));
+            sl_bookedFlightsNo.setText(String.valueOf("₱" + earnings));
+
+
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+
     }
 
     @Override
@@ -397,6 +437,9 @@ public class DashboardController implements Initializable {
 
         // For Ticket Records
         getTicketRecords();
+
+        // For sales
+        getSales();
 
         // For searching
         String[] search_choices = {"flight_no", "airplane_no", "initial_departure", "departure", "destination", "origin", "seat_no", "class"};
