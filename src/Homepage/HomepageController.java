@@ -7,6 +7,7 @@ package Homepage;
 import Animations.SwitchForms;
 import Database.Database;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
@@ -27,6 +28,8 @@ import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -58,6 +61,21 @@ public class HomepageController implements Initializable {
     private Pane starsPane;
 
     @FXML
+    private AnchorPane aboutUs_form;
+
+    @FXML
+    private AnchorPane top_form;
+
+    @FXML
+    private AnchorPane account_form;
+
+    @FXML
+    private AnchorPane whereWeFly_form;
+
+    @FXML
+    private AnchorPane flightStats_form;
+
+    @FXML
     private AnchorPane home_form;
 
     @FXML
@@ -73,10 +91,28 @@ public class HomepageController implements Initializable {
     private AnchorPane hf_chooseSeat;
 
     @FXML
+    private JFXTextField cs_destination;
+
+    @FXML
+    private JFXTextField cs_origin;
+
+    @FXML
+    private JFXTextField cs_seatNum;
+
+    @FXML
+    private JFXComboBox<?> cs_seatClass;
+
+    @FXML
     private JFXButton proceed_btn;
 
     @FXML
     private JFXButton returnToDesti_btn;
+
+    @FXML
+    private AnchorPane topPlaneSeat;
+
+    @FXML
+    private JFXButton planeSeat_1;
 
     @FXML
     private AnchorPane hf_searchDesti;
@@ -91,9 +127,6 @@ public class HomepageController implements Initializable {
     private TextField searchTextField;
 
     @FXML
-    private JFXButton booking_btn1;
-
-    @FXML
     private JFXButton booking_btn4;
 
     @FXML
@@ -101,6 +134,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXButton booking_btn2;
+
+    @FXML
+    private JFXButton booking_btn1;
 
     @FXML
     private JFXButton returnToHome_btn;
@@ -112,37 +148,7 @@ public class HomepageController implements Initializable {
     private JFXButton bookFlight_btn;
 
     @FXML
-    private JFXButton slideToLeft_btn;
-
-    @FXML
-    private JFXButton slideToRight_btn;
-
-    @FXML
     private AnchorPane carousel;
-
-    @FXML
-    private AnchorPane c_slide3;
-
-    @FXML
-    private JFXButton c_bookingBtn7;
-
-    @FXML
-    private JFXButton c_bookingBtn8;
-
-    @FXML
-    private JFXButton c_bookingBtn9;
-
-    @FXML
-    private AnchorPane c_slide2;
-
-    @FXML
-    private JFXButton c_bookingBtn4;
-
-    @FXML
-    private JFXButton c_bookingBtn5;
-
-    @FXML
-    private JFXButton c_bookingBtn6;
 
     @FXML
     private AnchorPane c_slide1;
@@ -157,19 +163,34 @@ public class HomepageController implements Initializable {
     private JFXButton c_bookingBtn3;
 
     @FXML
-    private AnchorPane flightStats_form;
+    private AnchorPane c_slide2;
 
     @FXML
-    private AnchorPane whereWeFly_form;
+    private JFXButton c_bookingBtn4;
 
     @FXML
-    private AnchorPane account_form;
+    private JFXButton c_bookingBtn5;
 
     @FXML
-    private AnchorPane top_form;
+    private JFXButton c_bookingBtn6;
 
     @FXML
-    private AnchorPane aboutUs_form;
+    private AnchorPane c_slide3;
+
+    @FXML
+    private JFXButton c_bookingBtn7;
+
+    @FXML
+    private JFXButton c_bookingBtn8;
+
+    @FXML
+    private JFXButton c_bookingBtn9;
+
+    @FXML
+    private JFXButton slideToLeft_btn;
+
+    @FXML
+    private JFXButton slideToRight_btn;
 
     @FXML
     private JFXButton menuBtn1;
@@ -303,6 +324,7 @@ public class HomepageController implements Initializable {
         return star;
     }
 
+    //CAROUSEL FUNCTIONS
     private void initializeAutoSlideTimeline() {
         // Set the duration and create a KeyFrame
         Duration duration = Duration.seconds(5); // adjust the duration as needed
@@ -365,7 +387,7 @@ public class HomepageController implements Initializable {
         lastSlideChangeTime = System.currentTimeMillis();
         autoSlideTimeline.playFromStart(); // Resume auto-slide
     }
-
+    //SWITCH FORM FUNCTIONS FOR CAROUSEL
     private void switchForm(AnchorPane targetForm) {
         //carousel slides
         c_slide1.setVisible(false);
@@ -521,8 +543,21 @@ public class HomepageController implements Initializable {
         switchForm(hf_searchDesti, returnToDesti_btn);
     }
 
+    private String[] classList = {"Economy", "Premium Economy", "Business", "First Class"};
+
+    public void seatClass() {
+        List<String> listQ = new ArrayList<>();
+
+        for (String data : classList) {
+            listQ.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listQ);
+        cs_seatClass.setItems(listData);
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        seatClass();
         // Initialize the menu slider in the closed state
         closeMenuSlider();
 

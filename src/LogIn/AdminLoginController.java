@@ -46,7 +46,7 @@ import javafx.stage.Screen;
  *
  * @author Ervhyne
  */
-public class LoginPageController implements Initializable {
+public class AdminLoginController implements Initializable {
 
     @FXML
     private AnchorPane main_form;
@@ -170,18 +170,19 @@ public class LoginPageController implements Initializable {
 
             // TEMPORARY STATEMENTS
 
-            if (enteredAccountName.equals("Homepage") && enteredPassword.equals("12345678")) {
+            if (enteredAccountName.equals("Admin") && enteredPassword.equals("12345678")) {
                 // Direct the specific user "Admin" to the dashboard
                 alert.setAlertText("Successful Login!", "green");
+                Admin admin = Admin.getInstance();
+                admin.setUsername(enteredAccountName);
 
                 try {
                     SwitchForms switchForms = new SwitchForms();
-                    switchForms.Link((Stage) login_btn.getScene().getWindow(), "Homepage");
+                    switchForms.Link((Stage) login_btn.getScene().getWindow(), "Dashboard");
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
             else {
@@ -195,7 +196,7 @@ public class LoginPageController implements Initializable {
 
                             try {
                                 SwitchForms switchForms = new SwitchForms();
-                                switchForms.Link((Stage) login_btn.getScene().getWindow(), "Homepage");
+                                switchForms.Link((Stage) login_btn.getScene().getWindow(), "Dashboard");
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 // Handle the exception appropriately (e.g., show an error message).

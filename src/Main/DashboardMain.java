@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Main;
 
@@ -13,11 +13,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class DashboardMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/LogIn/LoginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/LogIn/AdminLogin.fxml"));
         Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
         stage.getIcons().add(icon);
         Scene scene = new Scene(root);
@@ -30,7 +30,7 @@ public class Main extends Application {
         });
 
         stage.setScene(scene);
-        stage.setTitle("Login Page"); // Set a title for your window
+        stage.setTitle("Admin Login Page"); // Set a title for your window
         stage.setResizable(false); // Make it unresizable
         stage.show();
     }

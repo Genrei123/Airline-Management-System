@@ -6,6 +6,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -139,18 +140,34 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_chooseSeat" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_chooseSeat" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="23.0" layoutY="176.0" prefHeight="367.0" prefWidth="315.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 50;" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="88.0">
                                  <children>
-                                    <Label layoutX="52.0" layoutY="54.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Your seat number is" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="35.0" />
+                                    <Label layoutX="52.0" layoutY="54.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Origin: " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="35.0" />
                                     <Label layoutX="28.0" layoutY="107.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Destination: " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="112.0" />
                                     <Label layoutX="26.0" layoutY="276.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Class: " textFill="WHITE" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="266.0" />
-                                    <Label layoutX="28.0" layoutY="154.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Origin: " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="189.0" />
-                                    <JFXTextField disable="true" focusColor="#8c8c8c00" layoutX="28.0" layoutY="131.0" prefHeight="25.0" prefWidth="220.0" unFocusColor="#fafafa" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="138.0" />
-                                    <JFXTextField disable="true" focusColor="#8c8c8c00" layoutX="28.0" layoutY="204.0" prefHeight="25.0" prefWidth="220.0" unFocusColor="#fafafa" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="215.0" />
-                                    <JFXTextField disable="true" focusColor="#8c8c8c00" layoutX="28.0" layoutY="65.0" prefHeight="25.0" prefWidth="47.0" unFocusColor="#fafafa" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="61.0" />
-                                    <JFXComboBox focusColor="TRANSPARENT" layoutX="26.0" layoutY="306.0" prefHeight="25.0" prefWidth="220.0" unFocusColor="#f8f8f8" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="292.0" />
+                                    <Label layoutX="28.0" layoutY="154.0" style="-fx-font-size: 23;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Your seat number is:" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="189.0" />
+                                    <JFXTextField fx:id="cs_destination" disable="true" focusColor="#8c8c8c00" layoutX="28.0" layoutY="131.0" prefHeight="25.0" prefWidth="220.0" stylesheets="@HomepageStyles.css" unFocusColor="#fafafa" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="138.0">
+                                       <styleClass>
+                                          <String fx:value="inriaSans-FontStyle" />
+                                          <String fx:value="textFill" />
+                                       </styleClass></JFXTextField>
+                                    <JFXTextField fx:id="cs_origin" disable="true" focusColor="#8c8c8c00" layoutX="28.0" layoutY="204.0" prefHeight="25.0" prefWidth="220.0" stylesheets="@HomepageStyles.css" unFocusColor="#fafafa" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="61.0">
+                                       <styleClass>
+                                          <String fx:value="inriaSans-FontStyle" />
+                                          <String fx:value="textFill" />
+                                       </styleClass></JFXTextField>
+                                    <JFXTextField fx:id="cs_seatNum" disable="true" focusColor="#8c8c8c00" layoutX="28.0" layoutY="65.0" prefHeight="25.0" prefWidth="47.0" stylesheets="@HomepageStyles.css" unFocusColor="#fafafa" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="215.0">
+                                       <styleClass>
+                                          <String fx:value="inriaSans-FontStyle" />
+                                          <String fx:value="textFill" />
+                                       </styleClass></JFXTextField>
+                                    <JFXComboBox fx:id="cs_seatClass" focusColor="#0a78a100" layoutX="26.0" layoutY="306.0" onAction="#seatClass" prefHeight="25.0" prefWidth="220.0" stylesheets="@HomepageStyles.css" unFocusColor="#f8f8f8" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="292.0">
+                                       <styleClass>
+                                          <String fx:value="textFill" />
+                                          <String fx:value="inriaSans-FontStyle" />
+                                       </styleClass></JFXComboBox>
                                  </children>
                               </AnchorPane>
                               <ImageView fitHeight="226.0" fitWidth="531.0" layoutX="407.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
@@ -174,14 +191,14 @@
                                     <Font size="1.0" />
                                  </font>
                               </JFXButton>
-                              <AnchorPane fx:id="topPlaneSeat" layoutX="492.0" layoutY="57.0" prefHeight="193.0" prefWidth="531.0">
+                              <AnchorPane fx:id="topPlaneSeat" layoutX="492.0" layoutY="57.0" prefHeight="193.0" prefWidth="531.0" style="-fx-background-color: white; -fx-background-radius: 150 0 0 150;">
                                  <children>
-                                    <ImageView fitHeight="211.0" fitWidth="531.0" layoutX="71.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <image>
-                                          <Image url="@../Images/Plane%20seats.png" />
-                                       </image>
-                                    </ImageView>
-                                    <JFXButton fx:id="planeSeat_1" ellipsisString="1A" layoutX="145.0" layoutY="15.0" prefHeight="35.0" prefWidth="22.0" style="-fx-background-color: #502061;" textFill="WHITE">
+                                    <JFXButton fx:id="planeSeat_1" ellipsisString="" layoutX="145.0" layoutY="15.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #502061;" text="1A" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="planeSeat_2" ellipsisString="" layoutX="184.0" layoutY="15.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #502061;" text="2B" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -311,7 +328,7 @@
                               </JFXButton>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="191.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -529,7 +546,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
