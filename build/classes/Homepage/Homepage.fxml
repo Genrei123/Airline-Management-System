@@ -7,6 +7,7 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -97,10 +98,10 @@
                            <children>
                               <AnchorPane layoutX="150.0" layoutY="189.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7CD0EC;" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="99.0">
                                  <children>
-                                    <Label layoutX="47.0" layoutY="53.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="FIRST NAME:" textFill="WHITE" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="53.0" />
-                                    <TextField fx:id="f_name" focusTraversable="false" layoutX="186.0" layoutY="52.0" prefHeight="21.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="186.0" AnchorPane.topAnchor="52.0" />
-                                    <Label layoutX="27.0" layoutY="114.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="MIDDLE NAME:" textFill="WHITE" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="114.0" />
-                                    <JFXButton fx:id="returnToDesti_btn1" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="927.0" layoutY="429.0" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" style="-fx-background-radius: 80; -fx-border-radius: 100; -fx-border-color: black; -fx-background-color: white; -fx-border-width: 3;" stylesheets="@HomepageStyles.css" textAlignment="CENTER" textFill="#ffffff00" textOverrun="CLIP" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="38.0">
+                                    <Label focusTraversable="false" layoutX="47.0" layoutY="53.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="FIRST NAME:" textFill="WHITE" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="53.0" />
+                                    <TextField fx:id="f_name" layoutX="186.0" layoutY="52.0" prefHeight="21.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="186.0" AnchorPane.topAnchor="52.0" />
+                                    <Label focusTraversable="false" layoutX="27.0" layoutY="114.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="MIDDLE NAME:" textFill="WHITE" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="114.0" />
+                                    <JFXButton fx:id="returnToDesti_btn1" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="927.0" layoutY="429.0" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" style="-fx-background-radius: 80; -fx-border-radius: 100; -fx-border-color: black; -fx-background-color: white; -fx-border-width: 3;" stylesheets="@HomepageStyles.css" textAlignment="CENTER" textFill="#ffffff00" textOverrun="CLIP" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="38.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -111,36 +112,41 @@
                                           <Font size="1.0" />
                                        </font>
                                     </JFXButton>
-                                    <TextField fx:id="m_name" focusTraversable="false" layoutX="186.0" layoutY="113.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="49.0" layoutY="175.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="LAST NAME:" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="175.0" />
-                                    <TextField fx:id="l_name" focusTraversable="false" layoutX="186.0" layoutY="174.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="96.0" layoutY="238.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SUFFIX:" textFill="WHITE" AnchorPane.leftAnchor="96.0" AnchorPane.topAnchor="238.0" />
-                                    <TextField fx:id="suffix" focusTraversable="false" layoutX="186.0" layoutY="237.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="124.0" layoutY="297.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="AGE:" textFill="WHITE" AnchorPane.leftAnchor="124.0" AnchorPane.topAnchor="297.0" />
-                                    <TextField fx:id="age" focusTraversable="false" layoutX="186.0" layoutY="296.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="48.0" layoutY="358.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BIRTH DATE:" textFill="WHITE" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="358.0" />
-                                    <TextField fx:id="birth_date" focusTraversable="false" layoutX="186.0" layoutY="357.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="533.0" layoutY="53.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION:" textFill="WHITE" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="53.0" />
-                                    <TextField fx:id="destination" focusTraversable="false" layoutX="691.0" layoutY="52.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="600.0" layoutY="116.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ORIGIN:" textFill="WHITE" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="116.0" />
-                                    <TextField fx:id="origin" focusTraversable="false" layoutX="691.0" layoutY="115.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="602.0" layoutY="179.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CLASS:" textFill="WHITE" AnchorPane.topAnchor="179.0" />
-                                    <TextField fx:id="s_class" focusTraversable="false" layoutX="691.0" layoutY="178.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="616.0" layoutY="242.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SEAT:" textFill="WHITE" AnchorPane.topAnchor="242.0" />
-                                    <TextField fx:id="seat" focusTraversable="false" layoutX="691.0" layoutY="241.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="555.0" layoutY="305.0" prefHeight="25.0" prefWidth="100.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="MODE OF " textFill="WHITE" AnchorPane.topAnchor="305.0" />
-                                    <TextField fx:id="mode_payment" focusTraversable="false" layoutX="691.0" layoutY="317.0" prefHeight="19.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" />
-                                    <Label layoutX="556.0" layoutY="332.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="PAYMERNT:" textFill="WHITE" />
-                                    <JFXButton fx:id="book_btn" layoutX="653.0" layoutY="420.0" onAction="#book" prefHeight="39.0" prefWidth="255.0" style="-fx-font-size: 25; -fx-background-radius: 50; -fx-background-color: #29ABE2;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BOOK" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
+                                    <TextField fx:id="m_name" layoutX="186.0" layoutY="113.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="49.0" layoutY="175.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="LAST NAME:" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="175.0" />
+                                    <TextField fx:id="l_name" layoutX="186.0" layoutY="174.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="96.0" layoutY="238.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SUFFIX:" textFill="WHITE" AnchorPane.leftAnchor="96.0" AnchorPane.topAnchor="238.0" />
+                                    <TextField fx:id="suffix" layoutX="186.0" layoutY="237.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="124.0" layoutY="297.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="AGE:" textFill="WHITE" AnchorPane.leftAnchor="124.0" AnchorPane.topAnchor="297.0" />
+                                    <TextField fx:id="age" layoutX="186.0" layoutY="296.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="48.0" layoutY="358.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BIRTH DATE:" textFill="WHITE" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="358.0" />
+                                    <TextField fx:id="birth_date" layoutX="186.0" layoutY="357.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="533.0" layoutY="53.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION:" textFill="WHITE" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="53.0" />
+                                    <TextField fx:id="destination" disable="true" editable="false" focusTraversable="false" layoutX="691.0" layoutY="52.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="600.0" layoutY="116.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ORIGIN:" textFill="WHITE" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="116.0" />
+                                    <TextField fx:id="origin" disable="true" editable="false" focusTraversable="false" layoutX="691.0" layoutY="115.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="602.0" layoutY="179.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CLASS:" textFill="WHITE" AnchorPane.topAnchor="179.0" />
+                                    <TextField fx:id="s_class" disable="true" editable="false" focusTraversable="false" layoutX="691.0" layoutY="178.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="616.0" layoutY="242.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SEAT:" textFill="WHITE" AnchorPane.topAnchor="242.0" />
+                                    <TextField fx:id="seat" disable="true" editable="false" focusTraversable="false" layoutX="691.0" layoutY="241.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <Label focusTraversable="false" layoutX="555.0" layoutY="305.0" prefHeight="25.0" prefWidth="100.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="MODE OF " textFill="WHITE" AnchorPane.topAnchor="305.0" />
+                                    <Label focusTraversable="false" layoutX="556.0" layoutY="332.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="PAYMERNT:" textFill="WHITE" />
+                                    <JFXButton fx:id="book_btn" layoutX="704.0" layoutY="423.0" onAction="#book" prefHeight="39.0" prefWidth="255.0" style="-fx-font-size: 25; -fx-background-radius: 50; -fx-background-color: #29ABE2;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BOOK" textFill="WHITE" AnchorPane.bottomAnchor="29.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
+                                    <JFXComboBox fx:id="typeOfPayment" focusColor="#405aa800" focusTraversable="false" layoutX="691.0" layoutY="310.0" onAction="#paymentType" prefHeight="45.0" prefWidth="280.0" style="-fx-background-color: White; -fx-background-radius: 28; -fx-padding: 0px 0px 0px 10px;" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </JFXComboBox>
+                                    <Label fx:id="book_alert" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="722.0" layoutY="471.0" prefHeight="17.0" prefWidth="220.0" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_chooseSeat" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_chooseSeat" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="23.0" layoutY="176.0" prefHeight="367.0" prefWidth="315.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 50;" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="88.0">
                                  <children>
@@ -191,14 +197,19 @@
                                     <Font size="1.0" />
                                  </font>
                               </JFXButton>
-                              <AnchorPane fx:id="topPlaneSeat" layoutX="492.0" layoutY="57.0" prefHeight="193.0" prefWidth="531.0" style="-fx-background-color: white; -fx-background-radius: 150 0 0 150;">
+                              <AnchorPane fx:id="topPlaneSeat" layoutX="492.0" layoutY="57.0" prefHeight="193.0" prefWidth="531.0" style="-fx-background-color: white; -fx-background-radius: 100 0 0 100;">
                                  <children>
-                                    <JFXButton fx:id="planeSeat_1" ellipsisString="" layoutX="145.0" layoutY="15.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #502061;" text="1A" textFill="WHITE">
+                                    <JFXButton fx:id="planeSeat_1" ellipsisString="" layoutX="107.0" layoutY="15.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #502061;" text="1A" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="planeSeat_2" ellipsisString="" layoutX="184.0" layoutY="15.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #502061;" text="2B" textFill="WHITE">
+                                    <JFXButton fx:id="planeSeat_2" ellipsisString="" layoutX="158.0" layoutY="15.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #502061;" text="2A" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="planeSeat_3" ellipsisString="" layoutX="204.0" layoutY="15.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #502061;" text="3A" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -207,7 +218,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_searchDesti" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_searchDesti" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="172.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -250,12 +261,12 @@
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </JFXButton>
-                                          <Label layoutX="35.0" layoutY="1.0" text="PAMPANGA" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
+                                          <Label layoutX="35.0" layoutY="1.0" text="BOHOL" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
                                              <font>
                                                 <Font name="Segoe UI Bold" size="38.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to BRCY" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
+                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to BOHOL" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
                                              <font>
                                                 <Font name="Segoe UI Bold" size="15.0" />
                                              </font>
@@ -274,7 +285,7 @@
                                                 <Font name="Segoe UI Bold" size="38.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to BRCY" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
+                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to SAMAR" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
                                              <font>
                                                 <Font name="Segoe UI Bold" size="15.0" />
                                              </font>
@@ -288,12 +299,12 @@
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </JFXButton>
-                                          <Label layoutX="35.0" layoutY="1.0" text="MANILA" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
+                                          <Label layoutX="35.0" layoutY="1.0" text="CORON" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
                                              <font>
                                                 <Font name="Segoe UI Bold" size="38.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to BRCY" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
+                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to CORON" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
                                              <font>
                                                 <Font name="Segoe UI Bold" size="15.0" />
                                              </font>
@@ -321,7 +332,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <JFXButton fx:id="returnToHome_btn" layoutX="921.0" layoutY="13.0" ripplerFill="#201414" style="-fx-font-size: 15;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Home" textFill="WHITE">
+                              <JFXButton fx:id="returnToHome_btn" focusTraversable="false" layoutX="987.0" layoutY="13.0" ripplerFill="#fcfcfc" style="-fx-font-size: 15; -fx-background-color: #004AAD;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Home" textFill="WHITE">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -546,7 +557,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>

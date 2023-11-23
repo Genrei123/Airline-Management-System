@@ -39,7 +39,7 @@ public class NotifController implements Initializable {
 
         // Call the method in HomepageController to switch to hf_searchDesti form
         if (homepageController != null) {
-            homepageController.switchToSearchDestiForm();
+            homepageController.handleReturnToDestiButtonClick();
         }
     }
 

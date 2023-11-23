@@ -6,6 +6,7 @@ package Homepage;
 
 import Animations.SwitchForms;
 import Database.Database;
+import LogIn.AlertManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
+import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -223,6 +225,12 @@ public class HomepageController implements Initializable {
     private JFXButton menuBtn;
 
     @FXML
+    private JFXComboBox<?> typeOfPayment;
+
+    @FXML
+    private Label book_alert;
+
+    @FXML
     private TextField f_name, m_name, l_name, suffix, birth_date, age, destination, origin, s_class, seat, mode_payment;
 
     private boolean menuOpen = false;
@@ -387,6 +395,7 @@ public class HomepageController implements Initializable {
         lastSlideChangeTime = System.currentTimeMillis();
         autoSlideTimeline.playFromStart(); // Resume auto-slide
     }
+
     //SWITCH FORM FUNCTIONS FOR CAROUSEL
     private void switchForm(AnchorPane targetForm) {
         //carousel slides
@@ -411,6 +420,7 @@ public class HomepageController implements Initializable {
     //SWITCH FORM FUNCTIONS FOR home_form
     public void switchForm(ActionEvent event) {
         if (event.getSource() == menu_home) {
+            //For PARENT FORMS
             home_form.setVisible(true);
             flightStats_form.setVisible(false);
             whereWeFly_form.setVisible(false);
@@ -418,6 +428,11 @@ public class HomepageController implements Initializable {
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
 
+            //For home_form
+            hf_home.setVisible(true);
+            hf_searchDesti.setVisible(false);
+            hf_chooseSeat.setVisible(false);
+            hf_bookFlight.setVisible(false);
         } else if (event.getSource() == menu_flightStats) {
             home_form.setVisible(false);
             flightStats_form.setVisible(true);
@@ -458,6 +473,25 @@ public class HomepageController implements Initializable {
     }
 
     public void book() throws SQLException {
+        // Check if any of the required fields is empty
+        if (f_name.getText().isEmpty() || m_name.getText().isEmpty() || l_name.getText().isEmpty()
+                || suffix.getText().isEmpty() || age.getText().isEmpty() || birth_date.getText().isEmpty()
+                || destination.getText().isEmpty() || origin.getText().isEmpty() || s_class.getText().isEmpty()
+                || seat.getText().isEmpty() || mode_payment.getText().isEmpty()) {
+
+            // Use your AlertManager to show an alert for empty fields
+            AlertManager alert = new AlertManager(book_alert);
+            alert.setAlertText("Please fill in all required fields.", "red");
+
+            // Schedule a task to hide the alert after 5 seconds
+            PauseTransition delay = new PauseTransition(Duration.seconds(5));
+            delay.setOnFinished(event -> alert.hideAlert());
+            delay.play();
+
+            return; // Exit the method since the fields are empty
+        }
+
+        // Continue with the booking process if fields are not empty
         // Insert Data
         List<String> columnNames;
         List<Object> values;
@@ -517,17 +551,6 @@ public class HomepageController implements Initializable {
             notifStage.setResizable(false);
             notifStage.setScene(scene);
 
-            root.setOnMousePressed((javafx.scene.input.MouseEvent event) -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-
-            root.setOnMouseDragged((javafx.scene.input.MouseEvent event) -> {
-                notifStage.setX(event.getScreenX() - x);
-                notifStage.setY(event.getScreenY() - y);
-
-            });
-
             // Get the controller of Notif.fxml to set the reference to HomepageController
             NotifController notifController = loader.getController();
             notifController.setHomepageController(this);
@@ -538,26 +561,79 @@ public class HomepageController implements Initializable {
         }
     }
 
-    // Method to switch the form to hf_searchDesti
-    public void switchToSearchDestiForm() {
-        switchForm(hf_searchDesti, returnToDesti_btn);
-    }
-
+    //COMBO-BOX for Seat Class
     private String[] classList = {"Economy", "Premium Economy", "Business", "First Class"};
 
     public void seatClass() {
-        List<String> listQ = new ArrayList<>();
+        List<String> listC = new ArrayList<>();
 
         for (String data : classList) {
-            listQ.add(data);
+            listC.add(data);
         }
 
-        ObservableList listData = FXCollections.observableArrayList(listQ);
+        ObservableList listData = FXCollections.observableArrayList(listC);
         cs_seatClass.setItems(listData);
     }
+
+    //COMBO-BOX for Type of Payment
+    private String[] paymentTypeList = {"Credit/Debit Card", "Bank Account", "Paypal", "G-Cash"};
+
+    public void paymentType() {
+        List<String> listP = new ArrayList<>();
+
+        for (String data : paymentTypeList) {
+            listP.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listP);
+        typeOfPayment.setItems(listData);
+    }
+
+    // Method to handle booking button click
+    private void handleBookingButtonClick(JFXButton bookingButton) {
+        if (bookingButton == booking_btn1) {
+            switchForm(hf_chooseSeat, booking_btn1);
+            setDestinationAndOrigin("Boracay", "Manila");
+        } else if (bookingButton == booking_btn2) {
+            switchForm(hf_chooseSeat, booking_btn2);
+            setDestinationAndOrigin("Coron", "Manila");
+        } else if (bookingButton == booking_btn3) {
+            switchForm(hf_chooseSeat, booking_btn3);
+            setDestinationAndOrigin("Samar", "Manila");
+        } else if (bookingButton == booking_btn4) {
+            switchForm(hf_chooseSeat, booking_btn4);
+            setDestinationAndOrigin("Bohol", "Manila");
+        }
+        // Add more else if blocks for other booking buttons
+
+        // ... (other booking buttons)
+    }
+
+    // Method to set destination and origin in cs_destination and cs_origin text fields
+    private void setDestinationAndOrigin(String destination, String origin) {
+        cs_destination.setText(destination);
+        cs_origin.setText(origin);
+    }
+
+    // Method to clear seat selection fields
+    private void clearSeatSelectionFields() {
+        cs_seatNum.clear();
+        cs_seatClass.getSelectionModel().clearSelection(); // Clear the selection
+        // If cs_seatClass is of type JFXComboBox<String>, you can also try clearing the items
+        cs_seatClass.getItems().clear();
+    }
+
+    // Method to handle return to destination button click
+    public void handleReturnToDestiButtonClick() {
+        switchForm(hf_searchDesti, returnToDesti_btn);
+        clearSeatSelectionFields();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Combo-Box initialize
         seatClass();
+        paymentType();
         // Initialize the menu slider in the closed state
         closeMenuSlider();
 
@@ -584,11 +660,13 @@ public class HomepageController implements Initializable {
 
         // Switch Forms for home_form
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
+        //Clear textFields of hf_chooseSeat textFields
+        returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
         // Booking buttons switch form
-        booking_btn1.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn1));
-        booking_btn2.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn2));
-        booking_btn3.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn3));
-        booking_btn4.setOnAction(e -> switchForm(hf_chooseSeat, booking_btn4));
+        booking_btn1.setOnAction(e -> handleBookingButtonClick(booking_btn1));
+        booking_btn2.setOnAction(e -> handleBookingButtonClick(booking_btn2));
+        booking_btn3.setOnAction(e -> handleBookingButtonClick(booking_btn3));
+        booking_btn4.setOnAction(e -> handleBookingButtonClick(booking_btn4));
 
         proceed_btn.setOnAction(e -> switchForm(hf_bookFlight, proceed_btn));
 
