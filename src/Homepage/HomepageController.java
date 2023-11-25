@@ -453,6 +453,9 @@ public class HomepageController implements Initializable {
             hf_searchDesti.setVisible(false);
             hf_chooseSeat.setVisible(false);
             hf_bookFlight.setVisible(false);
+
+            // Clear the text fields in hf_chooseSeat when switching to home
+            clearSeatSelectionFields();
         } else if (event.getSource() == menu_flightStats) {
             home_form.setVisible(false);
             flightStats_form.setVisible(true);

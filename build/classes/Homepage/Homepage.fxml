@@ -251,7 +251,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a3" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="370.0" layoutY="14.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #004AAD; -fx-padding: 0 0 0 0;" text="4A" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="375.0">
+                                    <JFXButton fx:id="seat_a3" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="327.0" layoutY="14.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #004AAD; -fx-padding: 0 0 0 0;" text="3A" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="330.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -262,7 +262,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a4" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="327.0" layoutY="14.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #004AAD; -fx-padding: 0 0 0 0;" text="3A" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="330.0">
+                                    <JFXButton fx:id="seat_a4" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="370.0" layoutY="14.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #004AAD; -fx-padding: 0 0 0 0;" text="4A" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="375.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
