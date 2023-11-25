@@ -105,6 +105,18 @@ public class HomepageController implements Initializable {
     private JFXComboBox<?> cs_seatClass;
 
     @FXML
+    private JFXButton seat_a1;
+
+    @FXML
+    private JFXButton seat_a2;
+
+    @FXML
+    private JFXButton seat_a3;
+
+    @FXML
+    private JFXButton seat_a4;
+
+    @FXML
     private JFXButton proceed_btn;
 
     @FXML
@@ -195,6 +207,9 @@ public class HomepageController implements Initializable {
     private JFXButton slideToRight_btn;
 
     @FXML
+    private AnchorPane overlayPane;
+
+    @FXML
     private JFXButton menuBtn1;
 
     @FXML
@@ -267,6 +282,9 @@ public class HomepageController implements Initializable {
 
         // Update the menuOpen flag
         menuOpen = true;
+
+        overlayPane.setVisible(true);
+        overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
     }
 
     private void closeMenuSlider() {
@@ -281,6 +299,8 @@ public class HomepageController implements Initializable {
 
         // Update the menuOpen flag
         menuOpen = false;
+
+        overlayPane.setVisible(false);
     }
 
     //LOG OUT FUNCTION
@@ -567,9 +587,7 @@ public class HomepageController implements Initializable {
     public void seatClass() {
         List<String> listC = new ArrayList<>();
 
-        for (String data : classList) {
-            listC.add(data);
-        }
+        listC.addAll(Arrays.asList(classList));
 
         ObservableList listData = FXCollections.observableArrayList(listC);
         cs_seatClass.setItems(listData);
@@ -581,32 +599,27 @@ public class HomepageController implements Initializable {
     public void paymentType() {
         List<String> listP = new ArrayList<>();
 
-        for (String data : paymentTypeList) {
-            listP.add(data);
-        }
+        listP.addAll(Arrays.asList(paymentTypeList));
 
         ObservableList listData = FXCollections.observableArrayList(listP);
         typeOfPayment.setItems(listData);
     }
 
-    // Method to handle booking button click
-    private void handleBookingButtonClick(JFXButton bookingButton) {
-        if (bookingButton == booking_btn1) {
-            switchForm(hf_chooseSeat, booking_btn1);
-            setDestinationAndOrigin("Boracay", "Manila");
-        } else if (bookingButton == booking_btn2) {
-            switchForm(hf_chooseSeat, booking_btn2);
-            setDestinationAndOrigin("Coron", "Manila");
-        } else if (bookingButton == booking_btn3) {
-            switchForm(hf_chooseSeat, booking_btn3);
-            setDestinationAndOrigin("Samar", "Manila");
-        } else if (bookingButton == booking_btn4) {
-            switchForm(hf_chooseSeat, booking_btn4);
-            setDestinationAndOrigin("Bohol", "Manila");
-        }
-        // Add more else if blocks for other booking buttons
+    // Add this method to initialize the booking buttons
+    private void initializeBookingButtons() {
+        setBookingButtonAction(booking_btn1, "Boracay", "Manila");
+        setBookingButtonAction(booking_btn2, "Coron", "Manila");
+        setBookingButtonAction(booking_btn3, "Samar", "Manila");
+        setBookingButtonAction(booking_btn4, "Bohol", "Manila");
+        // Add more booking buttons as needed
+    }
 
-        // ... (other booking buttons)
+// Generic method to set the action for booking buttons
+    private void setBookingButtonAction(JFXButton bookingButton, String destination, String origin) {
+        bookingButton.setOnAction(event -> {
+            switchForm(hf_chooseSeat, bookingButton);
+            setDestinationAndOrigin(destination, origin);
+        });
     }
 
     // Method to set destination and origin in cs_destination and cs_origin text fields
@@ -619,14 +632,47 @@ public class HomepageController implements Initializable {
     private void clearSeatSelectionFields() {
         cs_seatNum.clear();
         cs_seatClass.getSelectionModel().clearSelection(); // Clear the selection
-        // If cs_seatClass is of type JFXComboBox<String>, you can also try clearing the items
-        cs_seatClass.getItems().clear();
+        typeOfPayment.getSelectionModel().clearSelection(); // Clear the selection
     }
 
     // Method to handle return to destination button click
     public void handleReturnToDestiButtonClick() {
         switchForm(hf_searchDesti, returnToDesti_btn);
+        switchForm(hf_searchDesti, returnToDesti_btn1);
+
         clearSeatSelectionFields();
+    }
+
+    // Add this method to initialize the seat buttons
+    private void initializeSeatButtons() {
+        setSeatButtonAction(seat_a1, "A1");
+        setSeatButtonAction(seat_a2, "A2");
+        setSeatButtonAction(seat_a3, "A3");
+        setSeatButtonAction(seat_a4, "A4");
+        // Add more seat buttons as needed
+    }
+
+    // Generic method to set the action for seat buttons
+    private void setSeatButtonAction(JFXButton seatButton, String seatNumber) {
+        seatButton.setOnAction(event -> {
+            cs_seatNum.setText(seatNumber);
+        });
+    }
+
+    // Method to handle proceed button click
+    public void proceedBooking() {
+        // Switch form to hf_bookFlight
+        switchForm(hf_bookFlight, proceed_btn);
+
+        // Set values in text fields
+        seat.setText(cs_seatNum.getText());
+        destination.setText(cs_destination.getText());
+        origin.setText(cs_origin.getText());
+
+        // Check if cs_seatClass has a selected item before accessing it
+        if (cs_seatClass.getSelectionModel().getSelectedItem() != null) {
+            s_class.setText(cs_seatClass.getSelectionModel().getSelectedItem().toString());
+        }
     }
 
     @Override
@@ -640,14 +686,10 @@ public class HomepageController implements Initializable {
         // Initialize the auto-slide timeline
         initializeAutoSlideTimeline();
 
-        // Add event handlers to the overlayPane and topPane
-        centrePane.setOnMouseClicked(event -> {
-            if (menuOpen) {
-                closeMenuSlider();
-            }
-        });
+        overlayPane.setVisible(false);
 
-        topPane.setOnMouseClicked(event -> {
+        // Add event handlers to the overlayPane and topPane
+        overlayPane.setOnMouseClicked(event -> {
             if (menuOpen) {
                 closeMenuSlider();
             }
@@ -662,18 +704,10 @@ public class HomepageController implements Initializable {
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
         //Clear textFields of hf_chooseSeat textFields
         returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
-        // Booking buttons switch form
-        booking_btn1.setOnAction(e -> handleBookingButtonClick(booking_btn1));
-        booking_btn2.setOnAction(e -> handleBookingButtonClick(booking_btn2));
-        booking_btn3.setOnAction(e -> handleBookingButtonClick(booking_btn3));
-        booking_btn4.setOnAction(e -> handleBookingButtonClick(booking_btn4));
-
-        proceed_btn.setOnAction(e -> switchForm(hf_bookFlight, proceed_btn));
+        returnToDesti_btn1.setOnAction(e -> handleReturnToDestiButtonClick());
 
         // Return actions for home_form
         returnToHome_btn.setOnAction(e -> switchForm(hf_home, returnToHome_btn));
-        returnToDesti_btn.setOnAction(e -> switchForm(hf_searchDesti, returnToDesti_btn));
-        returnToDesti_btn1.setOnAction(e -> switchForm(hf_searchDesti, returnToDesti_btn1));
 
         // Initially, set the labels to be visible
         promptLabel1.setVisible(true);
@@ -700,6 +734,12 @@ public class HomepageController implements Initializable {
                 promptLabel2.setVisible(false);
             }
         });
+
+        // Initialize seat buttons
+        initializeSeatButtons();
+
+        // Initialize booking buttons
+        initializeBookingButtons();
 
     }
 }
