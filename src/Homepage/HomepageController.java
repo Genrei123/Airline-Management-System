@@ -558,7 +558,7 @@ public class HomepageController implements Initializable {
         booked_flights.insertData("booked_flights", columnNames, values);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Payment.fxml"));
             Parent root = loader.load();
             Stage notifStage = new Stage();
             Scene scene = new Scene(root);

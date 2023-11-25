@@ -15,3 +15,13 @@
 .combo-box .list-view .list-cell:focused {
     -fx-background-color: #004AAD;
 }
+
+/* FOR BUTTONS DESIGN */
+.paymentButton {
+    -fx-background-color: #5865f2;
+    -fx-cursor: hand;
+}
+
+.paymentButton:hover {
+    -fx-background-color: #4752c4;
+}
