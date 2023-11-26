@@ -597,7 +597,8 @@ public class HomepageController implements Initializable {
     }
 
     //COMBO-BOX for Type of Payment
-    private String[] paymentTypeList = {"Credit/Debit Card", "Bank Account", "Paypal", "G-Cash"};
+    // typeOfPayment
+    /* private String[] paymentTypeList = {"Credit/Debit Card", "Bank Account", "Paypal", "G-Cash"};
 
     public void paymentType() {
         List<String> listP = new ArrayList<>();
@@ -606,7 +607,7 @@ public class HomepageController implements Initializable {
 
         ObservableList listData = FXCollections.observableArrayList(listP);
         typeOfPayment.setItems(listData);
-    }
+    } */
 
     // Add this method to initialize the booking buttons
     private void initializeBookingButtons() {
@@ -682,7 +683,7 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //Combo-Box initialize
         seatClass();
-        paymentType();
+        // paymentType(); typeOfPayment
         // Initialize the menu slider in the closed state
         closeMenuSlider();
 
