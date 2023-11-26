@@ -7,6 +7,7 @@ package Homepage;
 import Animations.SwitchForms;
 import Database.Database;
 import LogIn.AlertManager;
+import LogIn.Customer;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
@@ -744,5 +745,7 @@ public class HomepageController implements Initializable {
         // Initialize booking buttons
         initializeBookingButtons();
 
+        // Initialize customer class
+        Customer customer = Customer.getInstance();
     }
 }

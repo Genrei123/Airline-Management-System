@@ -15,3 +15,39 @@
 .combo-box .list-view .list-cell:focused {
     -fx-background-color: #004AAD;
 }
+
+/* FOR BUTTONS DESIGN */
+.paymentButton {
+    -fx-background-color: #5865f2;
+    -fx-cursor: hand;
+}
+
+.paymentButton:hover {
+    -fx-background-color: #4752c4;
+}
+
+.paymentBG {
+    -fx-background-color: #313338;
+}
+
+.textfieldBG {
+    -fx-background-color: #1e1f22;
+}
+
+.bottomBG {
+    -fx-background-color: #2b2d31;
+}
+
+
+.defaultDetail {
+    -fx-background-color: #5865f2;
+}
+
+.text-shadow {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
+}
+
+.backBtn:hover {
+    -fx-underline: true;
+}
+
