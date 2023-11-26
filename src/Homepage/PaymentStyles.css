@@ -1,0 +1,18 @@
+/* FOR COMBO BOX DESIGN */
+.combo-box {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #a4a8af;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color:  #35373c;
+}
+
+.combo-box .list-cell:focused {
+    -fx-text-fill: white;
+    -fx-background-color:  #2b2d31;
+}
+
+.combo-box .list-view .list-cell:focused {
+    -fx-background-color: #3f4248;
+}

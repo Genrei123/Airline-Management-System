@@ -240,9 +240,6 @@ public class HomepageController implements Initializable {
     private JFXButton menuBtn;
 
     @FXML
-    private JFXComboBox<?> typeOfPayment;
-
-    @FXML
     private Label book_alert;
 
     @FXML
@@ -597,7 +594,8 @@ public class HomepageController implements Initializable {
     }
 
     //COMBO-BOX for Type of Payment
-    // typeOfPayment
+    // 
+    
     /* private String[] paymentTypeList = {"Credit/Debit Card", "Bank Account", "Paypal", "G-Cash"};
 
     public void paymentType() {
@@ -606,7 +604,8 @@ public class HomepageController implements Initializable {
         listP.addAll(Arrays.asList(paymentTypeList));
 
         ObservableList listData = FXCollections.observableArrayList(listP);
-        typeOfPayment.setItems(listData);
+        
+    .setItems(listData);
     } */
 
     // Add this method to initialize the booking buttons
@@ -636,7 +635,6 @@ public class HomepageController implements Initializable {
     private void clearSeatSelectionFields() {
         cs_seatNum.clear();
         cs_seatClass.getSelectionModel().clearSelection(); // Clear the selection
-        typeOfPayment.getSelectionModel().clearSelection(); // Clear the selection
     }
 
     // Method to handle return to destination button click
@@ -683,7 +681,8 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //Combo-Box initialize
         seatClass();
-        // paymentType(); typeOfPayment
+        // paymentType(); 
+        
         // Initialize the menu slider in the closed state
         closeMenuSlider();
 

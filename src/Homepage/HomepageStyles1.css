@@ -32,6 +32,8 @@
 
 .textfieldBG {
     -fx-background-color: #1e1f22;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #a4a8af;
 }
 
 .bottomBG {
