@@ -577,13 +577,13 @@ public class HomepageController implements Initializable {
             Stage paymentStage = new Stage();
             paymentStage.setScene(new Scene(root));
             paymentStage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
-    private void handleNextBtn(ActionEvent event) throws SQLException {
+    private void handleNextBtn() throws SQLException {
 
         // Collect other data...
        /* try {

@@ -1,0 +1,39 @@
+/* FOR COMBO BOX DESIGN */
+.combo-box {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #a4a8af;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color:  #35373c;
+}
+
+.combo-box .list-cell:focused {
+    -fx-text-fill: white;
+    -fx-background-color:  #2b2d31;
+}
+
+.combo-box .list-view .list-cell:focused {
+    -fx-background-color: #3f4248;
+}
+
+/* FOR BTNS DESIGN */
+.closeBtn{
+    -fx-opacity: 0.6;
+}
+
+.closeBtn:hover{
+    -fx-opacity: 1;
+    -fx-background-color: #212121;
+
+}
+
+/* FOR BUTTONS DESIGN */
+.paymentButton {
+    -fx-background-color: #5865f2;
+    -fx-cursor: hand;
+}
+
+.paymentButton:hover {
+    -fx-background-color: #4752c4;
+}
