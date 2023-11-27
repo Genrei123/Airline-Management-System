@@ -163,6 +163,9 @@
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </JFXButton>
                               <JFXButton fx:id="returnToDesti_btn" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="981.0" layoutY="541.0" onAction="#handleReturnToDestiButtonClick" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" style="-fx-background-radius: 80; -fx-border-radius: 100; -fx-border-color: black; -fx-background-color: white; -fx-border-width: 3;" stylesheets="@HomepageStyles.css" textAlignment="CENTER" textFill="#ffffff00" textOverrun="CLIP">
                                  <cursor>
@@ -321,6 +324,9 @@
                                              <font>
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </JFXButton>
                                           <Label layoutX="35.0" layoutY="1.0" text="BOHOL" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
                                              <font>
@@ -340,6 +346,9 @@
                                              <font>
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </JFXButton>
                                           <Label layoutX="35.0" layoutY="1.0" text="SAMAR" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
                                              <font>
@@ -359,6 +368,9 @@
                                              <font>
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </JFXButton>
                                           <Label layoutX="35.0" layoutY="1.0" text="CORON" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
                                              <font>
@@ -378,6 +390,9 @@
                                              <font>
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </JFXButton>
                                           <Label layoutX="35.0" layoutY="1.0" text="BORACAY" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
                                              <font>
@@ -466,6 +481,9 @@
                                        <font>
                                           <Font name="Arial Black" size="1.0" />
                                        </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </JFXButton>
                                  </children>
                               </AnchorPane>

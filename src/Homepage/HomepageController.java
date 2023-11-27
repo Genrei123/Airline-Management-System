@@ -26,32 +26,24 @@ import java.util.*;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- *
- * @author Ervhyne
- */
 public class HomepageController implements Initializable {
 
     @FXML
@@ -493,13 +485,9 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void book() throws SQLException {
+    public void book() {
         // Check if any of the required fields is empty
-        if (f_name.getText().isEmpty() || m_name.getText().isEmpty() || l_name.getText().isEmpty()
-                || suffix.getText().isEmpty() || age.getText().isEmpty() || birth_date.getText().isEmpty()
-                || destination.getText().isEmpty() || origin.getText().isEmpty() || s_class.getText().isEmpty()
-                || seat.getText().isEmpty() || mode_payment.getText().isEmpty()) {
-
+        if (areFieldsEmpty()) {
             // Use your AlertManager to show an alert for empty fields
             AlertManager alert = new AlertManager(book_alert);
             alert.setAlertText("Please fill in all required fields.", "red");
@@ -513,6 +501,122 @@ public class HomepageController implements Initializable {
         }
 
         // Continue with the booking process if fields are not empty
+        openPaymentForm();
+    }
+
+    private boolean areFieldsEmpty() {
+        // Check if all fields (except suffix) are empty
+        boolean allFieldsEmpty = f_name.getText().isEmpty()
+                && m_name.getText().isEmpty()
+                && l_name.getText().isEmpty()
+                && age.getText().isEmpty()
+                && birth_date.getText().isEmpty()
+                && destination.getText().isEmpty()
+                && origin.getText().isEmpty()
+                && s_class.getText().isEmpty()
+                && seat.getText().isEmpty()
+                && mode_payment.getText().isEmpty();
+
+        // If all fields (except suffix) are empty, show an alert
+        if (allFieldsEmpty && suffix.getText().isEmpty()) {
+            AlertManager alert = new AlertManager(book_alert);
+            alert.setAlertText("Please fill in at least one field (excluding suffix).", "red");
+
+            // Schedule a task to hide the alert after 5 seconds
+            PauseTransition delay = new PauseTransition(Duration.seconds(5));
+            delay.setOnFinished(event -> alert.hideAlert());
+            delay.play();
+
+            return true; // Exit the method since all fields (except suffix) are empty
+        }
+
+        // Check if any of the required fields (excluding suffix) is empty
+        boolean anyFieldEmpty = isNullOrEmpty(f_name)
+                || isNullOrEmpty(m_name)
+                || isNullOrEmpty(l_name)
+                || isNullOrEmpty(age)
+                || isNullOrEmpty(birth_date)
+                || isNullOrEmpty(destination)
+                || isNullOrEmpty(origin)
+                || isNullOrEmpty(s_class)
+                || isNullOrEmpty(seat)
+                || isNullOrEmpty(mode_payment);
+
+        // If any required field (excluding suffix) is empty, show an alert
+        if (anyFieldEmpty) {
+            AlertManager alert = new AlertManager(book_alert);
+            alert.setAlertText("Please fill in all required fields.", "red");
+
+            // Schedule a task to hide the alert after 5 seconds
+            PauseTransition delay = new PauseTransition(Duration.seconds(5));
+            delay.setOnFinished(event -> alert.hideAlert());
+            delay.play();
+
+            return true; // Exit the method since any required field (excluding suffix) is empty
+        }
+
+        return false; // All required fields (excluding suffix) are filled
+    }
+
+    private boolean isNullOrEmpty(TextField textField) {
+        return textField != null && textField.getText().trim().isEmpty();
+    }
+
+    private void openPaymentForm() {
+        try {
+            // Create an instance of PaymentController
+            PaymentController paymentController = new PaymentController(
+                    this, f_name, m_name, l_name, suffix, age, birth_date, destination, origin, s_class, seat, mode_payment
+            );
+
+            // Load the Payment.fxml and set the controller
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Payment.fxml"));
+            loader.setController(paymentController);
+
+            Parent root = loader.load();
+            Stage paymentStage = new Stage();
+            paymentStage.setScene(new Scene(root));
+            paymentStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleNextBtn(ActionEvent event) throws SQLException {
+
+        // Collect other data...
+       /* try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Payment.fxml"));
+            Parent root = loader.load();
+            Stage paymentStage = new Stage();
+            Scene scene = new Scene(root);
+
+            // Pass data to PaymentController constructor
+            PaymentController paymentController = new PaymentController(
+                    this,
+                    f_name,
+                    m_name,
+                    l_name,
+                    suffix,
+                    age,
+                    birth_date,
+                    destination,
+                    origin,
+                    s_class,
+                    seat,
+                    mode_payment
+            // Add any other parameters here
+            );
+            // Set the controller for the Payment.fxml
+            loader.setController(paymentController);
+
+            paymentStage.setScene(scene);
+            paymentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+*/
         // Insert Data
         List<String> columnNames;
         List<Object> values;
@@ -554,32 +658,6 @@ public class HomepageController implements Initializable {
 
         Database booked_flights = new Database();
         booked_flights.insertData("booked_flights", columnNames, values);
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Payment.fxml"));
-            Parent root = loader.load();
-            Stage notifStage = new Stage();
-            Scene scene = new Scene(root);
-
-            notifStage.setOnShown(event -> {
-                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                notifStage.setX((primScreenBounds.getWidth() - notifStage.getWidth()) / 2);
-                notifStage.setY((primScreenBounds.getHeight() - notifStage.getHeight()) / 2);
-            });
-
-            Image icon = new Image(getClass().getResourceAsStream("/Images/Plane logo.png"));
-            notifStage.initStyle(StageStyle.UNDECORATED);
-            notifStage.setResizable(false);
-            notifStage.setScene(scene);
-
-            // Get the controller of Notif.fxml to set the reference to HomepageController
-            NotifController notifController = loader.getController();
-            notifController.setHomepageController(this);
-
-            notifStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     //COMBO-BOX for Seat Class
@@ -593,21 +671,6 @@ public class HomepageController implements Initializable {
         ObservableList listData = FXCollections.observableArrayList(listC);
         cs_seatClass.setItems(listData);
     }
-
-    //COMBO-BOX for Type of Payment
-    // 
-    
-    /* private String[] paymentTypeList = {"Credit/Debit Card", "Bank Account", "Paypal", "G-Cash"};
-
-    public void paymentType() {
-        List<String> listP = new ArrayList<>();
-
-        listP.addAll(Arrays.asList(paymentTypeList));
-
-        ObservableList listData = FXCollections.observableArrayList(listP);
-        
-    .setItems(listData);
-    } */
 
     // Add this method to initialize the booking buttons
     private void initializeBookingButtons() {
@@ -678,12 +741,18 @@ public class HomepageController implements Initializable {
         }
     }
 
+    // Method to update the state of the proceed button based on cs_seatNum and cs_seatClass
+    private void updateProceedButtonState() {
+        boolean isDisabled = cs_seatNum.getText().isEmpty() || cs_seatClass.getSelectionModel().isEmpty();
+        proceed_btn.setDisable(isDisabled);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Combo-Box initialize
         seatClass();
         // paymentType(); 
-        
+
         // Initialize the menu slider in the closed state
         closeMenuSlider();
 
@@ -747,5 +816,12 @@ public class HomepageController implements Initializable {
 
         // Initialize customer class
         Customer customer = Customer.getInstance();
+
+        // Add listeners to cs_seatNum and cs_seatClass
+        cs_seatNum.textProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
+        cs_seatClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
+
+        // Initially update the state of the proceed button
+        updateProceedButtonState();
     }
 }
