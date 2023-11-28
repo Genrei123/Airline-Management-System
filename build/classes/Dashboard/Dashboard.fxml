@@ -68,7 +68,7 @@
                         <Font name="Segoe UI" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="sl_search" layoutX="285.0" layoutY="36.0" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
+                  <TextField fx:id="sl_search" layoutX="285.0" layoutY="36.0" onKeyPressed="#sl_search" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
                      <styleClass>
                         <String fx:value="search" />
                         <String fx:value="search-focused" />
@@ -150,6 +150,8 @@
                         <TableColumn fx:id="s_price" prefWidth="146.0" resizable="false" text="PRICE" />
                     </columns>
                   </TableView>
+                  <JFXComboBox fx:id="sl_searchBy" focusColor="#405aa800" layoutX="702.0" layoutY="21.0" prefHeight="25.0" prefWidth="148.0" styleClass="search" stylesheets="@DashboardStyles.css" unFocusColor="TRANSPARENT" />
+                  <JFXButton layoutX="599.0" layoutY="20.0" onAction="#sl_clear" style="-fx-background-color: #5b5b5b;" styleClass="jfx-button-dashboard" stylesheets="@DashboardStyles.css" text="Clear Searches" textFill="WHITE" />
                </children></AnchorPane>
             <AnchorPane fx:id="ticketRecords_form" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -586,102 +588,6 @@
                      <font>
                         <Font size="50.0" />
                      </font></Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="sales_form1" layoutX="10.0" layoutY="10.0" visible="false">
-               <children>
-                  <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="SALES PAGE" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="7.0">
-                     <font>
-                        <Font name="Gill Sans MT" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Browse Financial Records" textFill="#f2f2f299" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="40.0">
-                     <font>
-                        <Font name="Segoe UI" size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="sl_search1" layoutX="285.0" layoutY="36.0" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
-                     <styleClass>
-                        <String fx:value="search" />
-                        <String fx:value="search-focused" />
-                     </styleClass>
-                  </TextField>
-                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="867.1428565979004" layoutY="40.14285659790039" size="20" text="" wrappingWidth="18.571428298950195" AnchorPane.rightAnchor="314.2857151031494" AnchorPane.topAnchor="23.0" />
-                  <AnchorPane layoutX="75.0" layoutY="77.0" prefHeight="124.0" prefWidth="215.0" style="-fx-background-color: #252525; -fx-background-radius: 10;" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="69.0">
-                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="TICKETS SOLD TODAY" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
-                           <font>
-                              <Font name="Segoe UI" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="16.0" layoutY="91.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="PRV:" textFill="#7c7c7c" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="16.0">
-                           <font>
-                              <Font name="Segoe UI" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="sl_ticketSoldPrv1" alignment="CENTER_RIGHT" layoutX="169.0" layoutY="88.0" prefHeight="19.0" prefWidth="150.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="000" textFill="#7c7c7c" AnchorPane.rightAnchor="15.0">
-                           <font>
-                              <Font name="Segoe UI" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="sl_ticketSoldNo1" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="40.0" prefHeight="43.0" prefWidth="203.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="45" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
-                           <font>
-                              <Font name="Segoe UI" size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="333.0" layoutY="69.0" prefHeight="124.0" prefWidth="215.0" style="-fx-background-color: #252525; -fx-background-radius: 10;" AnchorPane.leftAnchor="332.0" AnchorPane.topAnchor="69.0">
-                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MONTHLY EARNINGS" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
-                           <font>
-                              <Font name="Segoe UI" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="sl_bookedFlightsNo1" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="40.0" prefHeight="43.0" prefWidth="203.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="0000" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
-                           <font>
-                              <Font name="Segoe UI" size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="590.0" layoutY="69.0" prefHeight="124.0" style="-fx-background-color: #252525; -fx-background-radius: 10;" AnchorPane.leftAnchor="583.0" AnchorPane.rightAnchor="32.0">
-                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="EARNINGS TODAY" textFill="#f0f0f0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
-                           <font>
-                              <Font name="Segoe UI" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="16.0" layoutY="91.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="PRV:" textFill="#7c7c7c" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="16.0">
-                           <font>
-                              <Font name="Segoe UI" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="sl_earningsNoPrv1" alignment="CENTER_RIGHT" layoutX="169.0" layoutY="88.0" prefHeight="19.0" prefWidth="150.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="₱ 000" textFill="#7c7c7c" AnchorPane.rightAnchor="15.0">
-                           <font>
-                              <Font name="Segoe UI" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="sl_earningsNo1" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="40.0" prefHeight="43.0" prefWidth="567.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="₱50.0" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
-                           <font>
-                              <Font name="Segoe UI" size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <TableView fx:id="sl_table1" layoutX="30.0" layoutY="207.0" prefHeight="308.0" prefWidth="1138.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="206.0">
-                     <columns>
-                        <TableColumn fx:id="s_ticketNo1" prefWidth="77.0" resizable="false" text="TICKET NO." />
-                        <TableColumn fx:id="s_flightNo1" prefWidth="82.0" resizable="false" text="FLIGHT NO." />
-                        <TableColumn fx:id="s_seat1" prefWidth="100.0" resizable="false" text="CLASS-SEAT" />
-                        <TableColumn fx:id="s_name1" prefWidth="163.0" resizable="false" text="NAME" />
-                        <TableColumn fx:id="s_paymentDate1" prefWidth="194.0" resizable="false" text="PAYMENT DATE" />
-                        <TableColumn fx:id="s_status1" prefWidth="129.0" resizable="false" text="STATUS" />
-                        <TableColumn fx:id="s_agent1" prefWidth="137.0" text="TICKET AGENT" />
-                        <TableColumn fx:id="s_ticketBranch1" prefWidth="141.0" resizable="false" text="TICKET BRANCH" />
-                        <TableColumn fx:id="s_price1" prefWidth="146.0" resizable="false" text="PRICE" />
-                     </columns>
-                  </TableView>
                </children>
             </AnchorPane>
          </children>

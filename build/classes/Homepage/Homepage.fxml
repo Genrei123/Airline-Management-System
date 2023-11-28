@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
@@ -41,7 +42,7 @@
             </AnchorPane>
             <AnchorPane fx:id="centrePane" layoutY="63.0" prefHeight="599.0" prefWidth="1000.0" style="-fx-background-color: #201414;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0">
                <children>
-                  <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" visible="false" />
+                  <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" />
                   <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label prefHeight="53.0" prefWidth="198.0" text="About Us" textFill="WHITE" AnchorPane.leftAnchor="500.0">
@@ -120,7 +121,14 @@
                                     <Label focusTraversable="false" layoutX="124.0" layoutY="297.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="AGE:" textFill="WHITE" AnchorPane.leftAnchor="124.0" AnchorPane.topAnchor="297.0" />
                                     <TextField fx:id="age" layoutX="186.0" layoutY="296.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
                                     <Label focusTraversable="false" layoutX="48.0" layoutY="358.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BIRTH DATE:" textFill="WHITE" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="358.0" />
-                                    <TextField fx:id="birth_date" layoutX="186.0" layoutY="357.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <AnchorPane layoutX="186.0" layoutY="357.0" prefHeight="27.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 28;">
+                                       <children>
+                                          <JFXDatePicker fx:id="birth_date" defaultColor="#405aeb" editable="false" layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="287.0" style="-fx-padding: 3 8 3 6;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></JFXDatePicker>
+                                       </children>
+                                    </AnchorPane>
                                     <Label focusTraversable="false" layoutX="586.0" layoutY="53.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION:" textFill="WHITE" AnchorPane.leftAnchor="586.0" AnchorPane.topAnchor="53.0" />
                                     <TextField fx:id="destination" editable="false" focusTraversable="false" layoutX="744.0" layoutY="52.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: #a8d8e9; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
                                        <cursor>

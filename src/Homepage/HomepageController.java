@@ -7,9 +7,9 @@ package Homepage;
 import Animations.SwitchForms;
 import Database.Database;
 import LogIn.AlertManager;
-import LogIn.Customer;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
@@ -21,29 +21,38 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.*;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ *
+ * @author Ervhyne
+ */
 public class HomepageController implements Initializable {
 
     @FXML
@@ -233,10 +242,16 @@ public class HomepageController implements Initializable {
     private JFXButton menuBtn;
 
     @FXML
+    private JFXComboBox<?> typeOfPayment;
+
+    @FXML
     private Label book_alert;
 
     @FXML
-    private TextField f_name, m_name, l_name, suffix, birth_date, age, destination, origin, s_class, seat, mode_payment;
+    private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat;
+
+    @FXML
+    private JFXDatePicker birth_date;
 
     private boolean menuOpen = false;
 
@@ -443,9 +458,6 @@ public class HomepageController implements Initializable {
             hf_searchDesti.setVisible(false);
             hf_chooseSeat.setVisible(false);
             hf_bookFlight.setVisible(false);
-
-            // Clear the text fields in hf_chooseSeat when switching to home
-            clearSeatSelectionFields();
         } else if (event.getSource() == menu_flightStats) {
             home_form.setVisible(false);
             flightStats_form.setVisible(true);
@@ -485,10 +497,9 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void book() {
-        // Check if any of the required fields is empty
+    public void book() throws SQLException {
+        // Check if all required fields are filled
         if (areFieldsEmpty()) {
-            // Use your AlertManager to show an alert for empty fields
             AlertManager alert = new AlertManager(book_alert);
             alert.setAlertText("Please fill in all required fields.", "red");
 
@@ -497,28 +508,89 @@ public class HomepageController implements Initializable {
             delay.setOnFinished(event -> alert.hideAlert());
             delay.play();
 
-            return; // Exit the method since the fields are empty
+            return; // Exit the method since any required field is empty
         }
 
         // Continue with the booking process if fields are not empty
-        openPaymentForm();
+        // Insert Data
+        List<String> columnNames = Arrays.asList(
+                "flight_id",
+                "first_name",
+                "middle_name",
+                "last_name",
+                "suffix",
+                "age",
+                "birth_date",
+                "destination",
+                "origin",
+                "class",
+                "seat",
+                "flight_no"
+        );
+
+        List<Object> values = Arrays.asList(
+                "test", // flight_id
+                f_name.getText(),
+                m_name.getText(),
+                l_name.getText(),
+                suffix.getText(),
+                Integer.parseInt(age.getText()),
+                (birth_date.getValue() != null) ? birth_date.getValue().toString() : null, // Check for null before getting the value
+                destination.getText(),
+                origin.getText(),
+                s_class.getText(),
+                seat.getText(),
+                "test" // flight_no
+        );
+
+        Database booked_flights = new Database();
+
+        // Add debug information
+        System.out.println("booked_flights: " + booked_flights);
+        booked_flights.insertData("booked_flights", columnNames, values);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
+            Parent root = loader.load();
+            Stage notifStage = new Stage();
+            Scene scene = new Scene(root);
+
+            notifStage.setOnShown(event -> {
+                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                notifStage.setX((primScreenBounds.getWidth() - notifStage.getWidth()) / 2);
+                notifStage.setY((primScreenBounds.getHeight() - notifStage.getHeight()) / 2);
+            });
+
+            Image icon = new Image(getClass().getResourceAsStream("/Images/Plane logo.png"));
+            notifStage.initStyle(StageStyle.UNDECORATED);
+            notifStage.setResizable(false);
+            notifStage.setScene(scene);
+
+            // Get the controller of Notif.fxml to set the reference to HomepageController
+            NotifController notifController = loader.getController();
+            notifController.setHomepageController(this);
+
+            notifStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean areAllFieldsExceptSuffixEmpty() {
+        return f_name.getText().isEmpty()
+                && m_name.getText().isEmpty()
+                && l_name.getText().isEmpty()
+                && age.getText().isEmpty()
+                && (birth_date.getValue() == null) // Check if JFXDatePicker value is null
+                && destination.getText().isEmpty()
+                && origin.getText().isEmpty()
+                && s_class.getText().isEmpty()
+                && seat.getText().isEmpty();
     }
 
     private boolean areFieldsEmpty() {
         // Check if all fields (except suffix) are empty
-        boolean allFieldsEmpty = f_name.getText().isEmpty()
-                && m_name.getText().isEmpty()
-                && l_name.getText().isEmpty()
-                && age.getText().isEmpty()
-                && birth_date.getText().isEmpty()
-                && destination.getText().isEmpty()
-                && origin.getText().isEmpty()
-                && s_class.getText().isEmpty()
-                && seat.getText().isEmpty()
-                && mode_payment.getText().isEmpty();
-
-        // If all fields (except suffix) are empty, show an alert
-        if (allFieldsEmpty && suffix.getText().isEmpty()) {
+        if (areAllFieldsExceptSuffixEmpty() && suffix.getText().isEmpty()) {
             AlertManager alert = new AlertManager(book_alert);
             alert.setAlertText("Please fill in at least one field (excluding suffix).", "red");
 
@@ -539,8 +611,7 @@ public class HomepageController implements Initializable {
                 || isNullOrEmpty(destination)
                 || isNullOrEmpty(origin)
                 || isNullOrEmpty(s_class)
-                || isNullOrEmpty(seat)
-                || isNullOrEmpty(mode_payment);
+                || isNullOrEmpty(seat);
 
         // If any required field (excluding suffix) is empty, show an alert
         if (anyFieldEmpty) {
@@ -558,106 +629,14 @@ public class HomepageController implements Initializable {
         return false; // All required fields (excluding suffix) are filled
     }
 
+    // Method to check if a TextField is null or empty
     private boolean isNullOrEmpty(TextField textField) {
         return textField != null && textField.getText().trim().isEmpty();
     }
 
-    private void openPaymentForm() {
-        try {
-            // Create an instance of PaymentController
-            PaymentController paymentController = new PaymentController(
-                    this, f_name, m_name, l_name, suffix, age, birth_date, destination, origin, s_class, seat, mode_payment
-            );
-
-            // Load the Payment.fxml and set the controller
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Payment.fxml"));
-            loader.setController(paymentController);
-
-            Parent root = loader.load();
-            Stage paymentStage = new Stage();
-            paymentStage.setScene(new Scene(root));
-            paymentStage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void handleNextBtn() throws SQLException {
-
-        // Collect other data...
-       /* try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Payment.fxml"));
-            Parent root = loader.load();
-            Stage paymentStage = new Stage();
-            Scene scene = new Scene(root);
-
-            // Pass data to PaymentController constructor
-            PaymentController paymentController = new PaymentController(
-                    this,
-                    f_name,
-                    m_name,
-                    l_name,
-                    suffix,
-                    age,
-                    birth_date,
-                    destination,
-                    origin,
-                    s_class,
-                    seat,
-                    mode_payment
-            // Add any other parameters here
-            );
-            // Set the controller for the Payment.fxml
-            loader.setController(paymentController);
-
-            paymentStage.setScene(scene);
-            paymentStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
-        // Insert Data
-        List<String> columnNames;
-        List<Object> values;
-
-        String flight_id = "test";
-        String flight_no = "test";
-
-        columnNames = Arrays.asList(
-                "flight_id",
-                "first_name",
-                "middle_name",
-                "last_name",
-                "suffix",
-                "age",
-                "birth_date",
-                "destination",
-                "origin",
-                "class",
-                "seat",
-                "mode_payment",
-                "flight_no"
-        );
-
-        values = Arrays.asList(
-                flight_id,
-                f_name.getText(),
-                m_name.getText(),
-                l_name.getText(),
-                suffix.getText(),
-                Integer.parseInt(age.getText()),
-                birth_date.getText(),
-                destination.getText(),
-                origin.getText(),
-                s_class.getText(),
-                seat.getText(),
-                mode_payment.getText(),
-                flight_no
-        );
-
-        Database booked_flights = new Database();
-        booked_flights.insertData("booked_flights", columnNames, values);
+    // Method to check if a JFXDatePicker is null or its value is empty
+    private boolean isNullOrEmpty(JFXDatePicker datePicker) {
+        return datePicker == null || datePicker.getValue() == null;
     }
 
     //COMBO-BOX for Seat Class
@@ -751,8 +730,6 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //Combo-Box initialize
         seatClass();
-        // paymentType(); 
-
         // Initialize the menu slider in the closed state
         closeMenuSlider();
 
@@ -813,9 +790,6 @@ public class HomepageController implements Initializable {
 
         // Initialize booking buttons
         initializeBookingButtons();
-
-        // Initialize customer class
-        Customer customer = Customer.getInstance();
 
         // Add listeners to cs_seatNum and cs_seatClass
         cs_seatNum.textProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
