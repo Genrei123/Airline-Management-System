@@ -155,7 +155,7 @@ public class Database {
             }
         }
 
-        System.out.println("Generated SQL Query for pullData: " + query + " with condition values: " + conditionValue.get(0));
+        System.out.println("Generated SQL Query for pullData: " + query);
 
         connector = connectDB.connectDB();
         if (connector != null) {

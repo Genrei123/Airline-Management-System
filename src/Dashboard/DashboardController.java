@@ -416,6 +416,7 @@ public class DashboardController implements Initializable {
             for (String[] data1 : data) {
                 earnings += Double.parseDouble(data1[8]);
             }
+            sl_ticketSoldPrv.setText(String.valueOf(data.size()));
             return earnings;
         }
 
