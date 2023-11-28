@@ -106,6 +106,9 @@ public class DashboardController implements Initializable {
     private JFXComboBox<String> trt_searchBy;
 
     @FXML
+    private JFXComboBox<String> sl_searchBy;
+
+    @FXML
     private AnchorPane flightManager_form;
 
     @FXML
@@ -388,6 +391,37 @@ public class DashboardController implements Initializable {
 
     }
 
+    public void sl_search() {
+        List<String> text = Arrays.asList(sl_search.getText());
+        List<String> searchBy = Arrays.asList(sl_searchBy.getSelectionModel().getSelectedItem());
+
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"), searchBy, text);
+        if (data != null) {
+            System.out.println("Data is not null");
+            sl_table.setItems(data);
+
+            s_ticketNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            s_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            s_seat.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            s_name.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            s_paymentDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            s_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            s_agent.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
+            s_ticketBranch.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+            s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[8]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+    }
+
+    public void sl_clear() {
+        sl_search.setText("");
+        getSales();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -441,7 +475,7 @@ public class DashboardController implements Initializable {
         // For sales
         getSales();
 
-        // For searching
+        // For searching in ticket records
         String[] search_choices = {"flight_no", "airplane_no", "initial_departure", "departure", "destination", "origin", "seat_no", "class"};
         List<String> listQ = new ArrayList<>();
 
@@ -453,6 +487,18 @@ public class DashboardController implements Initializable {
         trt_searchBy.setValue("flight_no");
 
         // Ticket Records Ends here
+
+        // For searching in sales
+        String[] search_choices2 = {"ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"};
+        List<String> listQ2 = new ArrayList<>();
+
+        for (String data1 : search_choices2) {
+            listQ2.add(data1);
+        }
+        ObservableList listData2 = FXCollections.observableArrayList(listQ2);
+        sl_searchBy.setItems(listData2);
+        sl_searchBy.setValue("ticket_no");
+
     }
 
 

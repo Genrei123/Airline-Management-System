@@ -41,7 +41,7 @@
             </AnchorPane>
             <AnchorPane fx:id="centrePane" layoutY="63.0" prefHeight="599.0" prefWidth="1000.0" style="-fx-background-color: #201414;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0">
                <children>
-                  <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" visible="false" />
+                  <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" />
                   <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label prefHeight="53.0" prefWidth="198.0" text="About Us" textFill="WHITE" AnchorPane.leftAnchor="500.0">
