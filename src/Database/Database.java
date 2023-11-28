@@ -155,7 +155,7 @@ public class Database {
             }
         }
 
-        System.out.println("Generated SQL Query for pullData: " + query);
+        System.out.println("Generated SQL Query for pullData: " + query + " with condition values: " + conditionValue.get(0));
 
         connector = connectDB.connectDB();
         if (connector != null) {
@@ -176,7 +176,9 @@ public class Database {
                     }
                     rows.add(row);
                 }
+
                 return FXCollections.observableArrayList(rows);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -346,8 +348,8 @@ public class Database {
         return false;
     }
 
-    public int sum(String tableName, String columnName) {
-        String query = "SELECT SUM(" + columnName + ") FROM " + tableName;
+    public double monthlyEarnings() {
+        String query = "SELECT SUM(price) FROM `sales` WHERE MONTH(payment_date) = MONTH(CURRENT_DATE()) AND YEAR(payment_date) = YEAR(CURRENT_DATE())";
         connector = connectDB.connectDB();
 
         if (connector == null) {
@@ -356,13 +358,15 @@ public class Database {
         } else {
             try {
                 prepare = connector.prepareStatement(query);
+
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    return result.getInt(1);
+                    return result.getDouble(1);
                 } else {
                     return 0;
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

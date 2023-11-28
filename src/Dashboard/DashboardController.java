@@ -7,6 +7,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,6 +19,9 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.*;
 
 import javafx.event.ActionEvent;
@@ -27,6 +32,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DashboardController implements Initializable {
 
@@ -353,10 +361,10 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void getSales() {
+    public void getSales()  {
         System.out.println("Getting sales");
         Database database = new Database();
-        Date date = new Date();
+
         ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"));
 
         if (data != null) {
@@ -371,17 +379,17 @@ public class DashboardController implements Initializable {
             s_ticketBranch.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
             s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[8]));
 
-            // For the labels
-            sl_ticketSoldNo.setText(String.valueOf(data.size()));
+            // Today's earnings
+            double earnings = todayEarnings();
+            sl_earningsNo.setText("₱" + earnings);
 
-            // For the earnings
-            double earnings = 0;
-            for (String[] data1 : data) {
-                earnings += Double.parseDouble(data1[8]);
-            }
-            sl_earningsNo.setText(String.valueOf("₱" + earnings));
-            sl_bookedFlightsNo.setText(String.valueOf("₱" + earnings));
+            // Yesterday's earnings
+            double yesterdayEarnings = yesterdayEarnings();
+            sl_earningsNoPrv.setText("₱" + yesterdayEarnings);
 
+            // Monthly earnings
+            double monthlyEarnings = monthlyEarnings();
+            sl_bookedFlightsNo.setText("₱" + monthlyEarnings);
 
         }
 
@@ -389,6 +397,66 @@ public class DashboardController implements Initializable {
             System.out.println("Data is null");
         }
 
+    }
+
+    private double yesterdayEarnings() {
+        Database database = new Database();
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, -1);
+        date = cal.getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = formatter.format(date);
+
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"), Arrays.asList("payment_date"), Arrays.asList(formattedDate));
+
+        if (data != null) {
+            double earnings = 0;
+            for (String[] data1 : data) {
+                earnings += Double.parseDouble(data1[8]);
+            }
+            return earnings;
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+        return 0;
+    }
+
+    private double todayEarnings() {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currentDate.format(formatter) ;
+
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"), Arrays.asList("payment_date"), Collections.singletonList(formattedDate));
+
+
+        if (data != null) {
+            // For earnings
+            double earnings = 0;
+            for (String[] data1 : data) {
+                earnings += Double.parseDouble(data1[8]);
+            }
+
+            // For the number of tickets sold today.
+            sl_ticketSoldNo.setText(String.valueOf(data.size()));
+
+            return earnings;
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+
+        return 0;
+    }
+
+    private double monthlyEarnings() {
+        Database database = new Database();
+        return database.monthlyEarnings();
     }
 
     public void sl_search() {
@@ -417,7 +485,7 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void sl_clear() {
+    public void sl_clear() throws SQLException {
         sl_search.setText("");
         getSales();
     }
@@ -498,6 +566,20 @@ public class DashboardController implements Initializable {
         ObservableList listData2 = FXCollections.observableArrayList(listQ2);
         sl_searchBy.setItems(listData2);
         sl_searchBy.setValue("ticket_no");
+
+        // Sales ends here
+
+        // Auto requery when something is changed within the database
+        // Create a timeline for periodic polling (adjust the Duration as needed)
+        Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(1), event -> {
+            // Code to re-query the database goes here
+            System.out.println("Re-querying");
+            getSales();
+            getTicketRecords();
+
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
 
     }
 
