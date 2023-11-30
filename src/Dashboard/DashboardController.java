@@ -54,6 +54,12 @@ public class DashboardController implements Initializable {
     private Label d_ticketSales;
 
     @FXML
+    private Label d_username;
+
+    @FXML
+    private TableColumn<String[], String> d_ticketNo, d_flightDate, d_flight, d_departure, d_arrival, d_fullname;
+
+    @FXML
     private AnchorPane topPane_line;
 
     @FXML
@@ -234,6 +240,11 @@ public class DashboardController implements Initializable {
 
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
+
+    public void loadDashboard() {
+        d_flightsToday.setText("0");
+        d_username.setText("Welcome, " + Admin.getInstance().getUsername());
+    }
 
     public void toggleAdminMenu() {
         if (isMenuVisible) {
@@ -545,6 +556,9 @@ public class DashboardController implements Initializable {
 
         // Set the default form to fm_managerForm
         switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
+
+        // For dashboard
+        loadDashboard();
 
         // For Ticket Records
         getTicketRecords();
