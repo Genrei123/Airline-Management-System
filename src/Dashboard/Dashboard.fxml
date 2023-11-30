@@ -582,18 +582,67 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="288.0" layoutY="103.0" text="Dashboard" textFill="WHITE">
+                  <TextField layoutX="393.0" layoutY="260.0" prefHeight="25.0" prefWidth="725.0" styleClass="search" stylesheets="@DashboardStyles.css" />
+                  <FontAwesomeIconView glyphName="SEARCH" layoutX="401.0" layoutY="276.0" />
+                  <Label layoutX="393.0" layoutY="197.0" prefHeight="17.0" prefWidth="233.0" text="Today's  Stats/Sales" textFill="#f8f8f8" />
+                  <Label layoutX="393.0" layoutY="240.0" prefHeight="17.0" prefWidth="233.0" text="Search Records" textFill="#f8f8f8" />
+                  <TableView layoutX="393.0" layoutY="298.0" prefHeight="233.0" prefWidth="732.0">
+                     <columns>
+                        <TableColumn prefWidth="103.0" text="Ticket No." />
+                        <TableColumn prefWidth="82.0" text="Flight Date" />
+                        <TableColumn prefWidth="105.0" text="Flight" />
+                        <TableColumn prefWidth="140.0" text="Departure" />
+                        <TableColumn prefWidth="142.0" text="Arrival" />
+                        <TableColumn minWidth="3.0" prefWidth="159.0" text="Full Name" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="111.0" layoutY="247.0" prefHeight="30.0" prefWidth="148.0" text="Welcome, User." textFill="#f8f8f8">
                      <font>
-                        <Font size="50.0" />
-                     </font></Label>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="393.0" layoutY="27.0" prefHeight="162.0" prefWidth="732.0" style="-fx-background-color: #252525; -fx-background-radius: 10;">
+                     <children>
+                        <Label fx:id="d_flightsToday" layoutX="62.0" layoutY="51.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="33.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="d_flightsBooked" layoutX="170.0" layoutY="51.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="33.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="d_ticketSales" layoutX="284.0" layoutY="51.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="33.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="121.0" text="Flights Today" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="166.0" layoutY="121.0" text="Flights Booked" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="284.0" layoutY="121.0" text="Ticket Sales" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutY="47.0" prefHeight="276.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>

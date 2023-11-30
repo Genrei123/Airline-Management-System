@@ -45,6 +45,15 @@ public class DashboardController implements Initializable {
     private JFXButton dashboard_menu;
 
     @FXML
+    private Label d_flightsToday;
+
+    @FXML
+    private Label d_flightsBooked;
+
+    @FXML
+    private Label d_ticketSales;
+
+    @FXML
     private AnchorPane topPane_line;
 
     @FXML
