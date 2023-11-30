@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2023 at 03:12 PM
+-- Generation Time: Nov 28, 2023 at 03:43 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,6 @@ CREATE TABLE `booked_flights` (
   `origin` varchar(255) NOT NULL,
   `class` varchar(255) NOT NULL,
   `seat` varchar(255) NOT NULL,
-  `mode_payment` varchar(255) NOT NULL,
   `flight_no` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -47,8 +46,10 @@ CREATE TABLE `booked_flights` (
 -- Dumping data for table `booked_flights`
 --
 
-INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `age`, `birth_date`, `destination`, `origin`, `class`, `seat`, `mode_payment`, `flight_no`) VALUES
-('test', '123', '123', '123', '123', 123, '2003-01-01', '', '', '', '', '123', 'test');
+INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `age`, `birth_date`, `destination`, `origin`, `class`, `seat`, `flight_no`) VALUES
+('test', '123', '123', '123', '123', 123, '2003-01-01', '', '', '', '', 'test'),
+('test', 'wdadw', 'wdad', 'wdawd', '', 12, '2023-11-16', 'Boracay', 'Manila', 'Premium Economy', 'A4', 'test'),
+('test', 'Ervhyne', 'R', 'Daludog', '', 19, '2023-11-21', 'Boracay', 'Manila', 'Economy', 'A1', 'test');
 
 -- --------------------------------------------------------
 

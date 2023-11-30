@@ -23,6 +23,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -40,7 +41,9 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -248,10 +251,136 @@ public class HomepageController implements Initializable {
     private Label book_alert;
 
     @FXML
-    private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat;
+    private JFXDatePicker birth_date;
 
     @FXML
-    private JFXDatePicker birth_date;
+    private AnchorPane overlayPane1;
+
+    @FXML
+    private AnchorPane payment_form;
+
+    @FXML
+    private AnchorPane topPane1;
+
+    @FXML
+    private Pane starsPane1;
+
+    @FXML
+    private JFXButton closeButton;
+
+    @FXML
+    private AnchorPane paymentForms;
+
+    @FXML
+    private JFXButton cardBtn;
+
+    @FXML
+    private JFXButton payPalBtn;
+
+    @FXML
+    private JFXButton gcashBtn;
+
+    @FXML
+    private AnchorPane cardForm;
+
+    @FXML
+    private ScrollPane c_form1;
+
+    @FXML
+    private JFXTextField cardNumber;
+
+    @FXML
+    private JFXTextField expirationDate;
+
+    @FXML
+    private JFXTextField securityCode;
+
+    @FXML
+    private JFXTextField cardOwner;
+
+    @FXML
+    private JFXButton c_nextBtn1;
+
+    @FXML
+    private JFXButton c_backBtn1;
+
+    @FXML
+    private ScrollPane c_form2;
+
+    @FXML
+    private JFXComboBox<String> c_country;
+
+    @FXML
+    private JFXTextField c_name;
+
+    @FXML
+    private JFXTextField c_address1;
+
+    @FXML
+    private JFXTextField c_address2;
+
+    @FXML
+    private JFXTextField c_city;
+
+    @FXML
+    private JFXTextField c_state;
+
+    @FXML
+    private JFXTextField c_postalCode;
+
+    @FXML
+    private JFXButton c_nextBtn2;
+
+    @FXML
+    private JFXButton c_backBtn2;
+
+    @FXML
+    private AnchorPane gcashForm;
+
+    @FXML
+    private ScrollPane g_form1;
+
+    @FXML
+    private JFXComboBox<String> g_country;
+
+    @FXML
+    private JFXTextField g_name;
+
+    @FXML
+    private JFXTextField g_address1;
+
+    @FXML
+    private JFXTextField g_address2;
+
+    @FXML
+    private JFXTextField g_city;
+
+    @FXML
+    private JFXTextField g_state;
+
+    @FXML
+    private JFXTextField g_postalCode;
+
+    @FXML
+    private JFXButton g_nextBtn;
+
+    @FXML
+    private JFXButton g_backBtn;
+
+    @FXML
+    private AnchorPane paypalForm;
+
+    @FXML
+    private JFXTextField p_phoneNumber;
+
+    @FXML
+    private JFXButton p_nextBtn;
+
+    @FXML
+    private JFXButton p_backBtn;
+
+    @FXML
+    private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat;
 
     private boolean menuOpen = false;
 
@@ -322,6 +451,7 @@ public class HomepageController implements Initializable {
         for (int i = 0; i < numStars; i++) {
             Pane star = createStar();
             starsPane.getChildren().add(star);
+            starsPane1.getChildren().add(star);
 
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), star);
             fadeTransition.setFromValue(1.0);
@@ -348,6 +478,8 @@ public class HomepageController implements Initializable {
 
         star.setLayoutX(new Random().nextDouble() * starsPane.getPrefWidth());
         star.setLayoutY(new Random().nextDouble() * starsPane.getPrefHeight());
+        star.setLayoutX(new Random().nextDouble() * starsPane1.getPrefWidth());
+        star.setLayoutY(new Random().nextDouble() * starsPane1.getPrefHeight());
 
         // Set the background color and radius directly
         star.setStyle("-fx-background-color: white; -fx-background-radius: 50%;");
@@ -497,22 +629,70 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void book() throws SQLException {
+    public void handleNextButtonClick(ActionEvent event) throws SQLException {
+
         // Check if all required fields are filled
         if (areFieldsEmpty()) {
-            AlertManager alert = new AlertManager(book_alert);
-            alert.setAlertText("Please fill in all required fields.", "red");
-
-            // Schedule a task to hide the alert after 5 seconds
-            PauseTransition delay = new PauseTransition(Duration.seconds(5));
-            delay.setOnFinished(event -> alert.hideAlert());
-            delay.play();
-
-            return; // Exit the method since any required field is empty
+            return; // Exit the method since there are validation issues
         }
 
-        // Continue with the booking process if fields are not empty
-        // Insert Data
+        // If no validation issues, switch to the payment form
+        payment_form.setVisible(true);
+        overlayPane1.setVisible(true);
+
+        // Switch to paymentForms initially
+        switchPaymentForm(cardBtn);
+
+        // Determine which button was clicked
+        Button clickedButton = (Button) event.getSource();
+
+        // Check the ID or other properties of the button
+        if (clickedButton.getId().equals("c_nextBtn2")) {
+            // Code for c_nextBtn2
+
+            // Insert data into the database
+            insertDataIntoDatabase();
+
+            // Show notification
+            showNotification();
+        } else if (clickedButton.getId().equals("g_nextBtn")) {
+            // Code for g_nextBtn
+
+            // Insert data into the database
+            insertDataIntoDatabase();
+
+            // Show notification
+            showNotification();
+        } else if (clickedButton.getId().equals("p_nextBtn")) {
+            // Code for p_nextBtn
+
+            // Insert data into the database
+            insertDataIntoDatabase();
+
+            // Show notification
+            showNotification();
+        }
+
+        // Rest of your code
+    }
+
+// Method to show notification
+    private void showNotification() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Notification");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+
+    private void insertDataIntoDatabase() throws SQLException {
+        // Insert Data into the database
         List<String> columnNames = Arrays.asList(
                 "flight_id",
                 "first_name",
@@ -535,7 +715,7 @@ public class HomepageController implements Initializable {
                 l_name.getText(),
                 suffix.getText(),
                 Integer.parseInt(age.getText()),
-                (birth_date.getValue() != null) ? birth_date.getValue().toString() : null, // Check for null before getting the value
+                (birth_date.getValue() != null) ? birth_date.getValue().toString() : null,
                 destination.getText(),
                 origin.getText(),
                 s_class.getText(),
@@ -544,36 +724,8 @@ public class HomepageController implements Initializable {
         );
 
         Database booked_flights = new Database();
-
-        // Add debug information
-        System.out.println("booked_flights: " + booked_flights);
         booked_flights.insertData("booked_flights", columnNames, values);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
-            Parent root = loader.load();
-            Stage notifStage = new Stage();
-            Scene scene = new Scene(root);
-
-            notifStage.setOnShown(event -> {
-                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                notifStage.setX((primScreenBounds.getWidth() - notifStage.getWidth()) / 2);
-                notifStage.setY((primScreenBounds.getHeight() - notifStage.getHeight()) / 2);
-            });
-
-            Image icon = new Image(getClass().getResourceAsStream("/Images/Plane logo.png"));
-            notifStage.initStyle(StageStyle.UNDECORATED);
-            notifStage.setResizable(false);
-            notifStage.setScene(scene);
-
-            // Get the controller of Notif.fxml to set the reference to HomepageController
-            NotifController notifController = loader.getController();
-            notifController.setHomepageController(this);
-
-            notifStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private boolean areAllFieldsExceptSuffixEmpty() {
@@ -726,6 +878,122 @@ public class HomepageController implements Initializable {
         proceed_btn.setDisable(isDisabled);
     }
 
+    // Additional methods from PaymentController to be integrated into HomepageController
+    private void initializeCountryComboBoxes() {
+        List<String> countries = getAllCountries();
+        setComboBoxItems(c_country, countries);
+        setComboBoxItems(g_country, countries);
+    }
+
+    private List<String> getAllCountries() {
+        String[] countriesArray = {
+            "Afghanistan", "Albania", "Algeria", /* ... (add all countries here) ... */ "Zimbabwe"
+        };
+
+        // Convert array to a List
+        return Arrays.asList(countriesArray);
+    }
+
+    private void setComboBoxItems(JFXComboBox<String> comboBox, List<String> items) {
+        comboBox.getItems().addAll(items);
+    }
+
+    private void switchPaymentForm(JFXButton selectedButton) {
+        cardForm.setVisible(false);
+        gcashForm.setVisible(false);
+        paypalForm.setVisible(false);
+
+        if (selectedButton == cardBtn) {
+            paymentForms.setVisible(false);
+            cardForm.setVisible(true);
+        } else if (selectedButton == gcashBtn) {
+            paymentForms.setVisible(false);
+            gcashForm.setVisible(true);
+        } else if (selectedButton == payPalBtn) {
+            paymentForms.setVisible(false);
+            paypalForm.setVisible(true);
+        }
+    }
+
+    private void switchCardForm(String buttonId) {
+        switch (buttonId) {
+            case "c_nextBtn1":
+                c_form1.setVisible(false);
+                c_form2.setVisible(true);
+                break;
+            case "c_backBtn1":
+                paymentForms.setVisible(true);
+                cardForm.setVisible(false);
+                gcashForm.setVisible(false);
+                paypalForm.setVisible(false);
+                c_form1.setVisible(true);
+                c_form2.setVisible(false);
+                break;
+            case "c_backBtn2":
+                c_form1.setVisible(true);
+                c_form2.setVisible(false);
+                break;
+            // Add more cases as needed
+        }
+    }
+
+    private void switchGcashForm(String buttonId) {
+        switch (buttonId) {
+            case "g_backBtn":
+                paymentForms.setVisible(true);
+                gcashForm.setVisible(false);
+                break;
+            // Add more cases as needed
+        }
+    }
+
+    private void switchPaypalForm(String buttonId) {
+        switch (buttonId) {
+            case "p_backBtn":
+                paymentForms.setVisible(true);
+                paypalForm.setVisible(false);
+                break;
+            // Add more cases as needed
+        }
+    }
+
+    public void handleBookButtonClick() {
+        // Open/visible the payment_form
+        payment_form.setVisible(true);
+        // Make the overlayPane1 visible and dim
+        overlayPane1.setVisible(true);
+
+        // Switch to paymentForms initially
+        switchPaymentForm(cardBtn);
+    }
+
+    public void switchPaymentForm(ActionEvent event) {
+        JFXButton selectedButton = (JFXButton) event.getSource();
+        switchPaymentForm(selectedButton);
+    }
+
+    public void switchCardForm(ActionEvent event) {
+        String buttonId = ((JFXButton) event.getSource()).getId();
+        switchCardForm(buttonId);
+    }
+
+    public void switchGcashForm(ActionEvent event) {
+        String buttonId = ((JFXButton) event.getSource()).getId();
+        switchGcashForm(buttonId);
+    }
+
+    public void switchPaypalForm(ActionEvent event) {
+        String buttonId = ((JFXButton) event.getSource()).getId();
+        switchPaypalForm(buttonId);
+    }
+
+    public void closeForm() {
+        // Hide the overlayPane1 and main_form
+        overlayPane1.setVisible(false);
+        payment_form.setVisible(false);
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Combo-Box initialize
@@ -747,6 +1015,7 @@ public class HomepageController implements Initializable {
 
         // Make the starsPane visible when the application is running
         starsPane.setVisible(true);
+        starsPane1.setVisible(true);
 
         createTwinklingStars();
 
@@ -797,5 +1066,8 @@ public class HomepageController implements Initializable {
 
         // Initially update the state of the proceed button
         updateProceedButtonState();
+
+        // Initialize country combo-boxes
+        initializeCountryComboBoxes();
     }
 }
