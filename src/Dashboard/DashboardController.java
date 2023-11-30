@@ -236,6 +236,12 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<String[], String> s_ticketNo, s_flightNo, s_seat, s_name, s_paymentDate, s_status, s_agent, s_ticketBranch, s_price;
 
+    @FXML
+    private Label cs_rebookingBtn, cs_updateInfoBtn;
+
+    @FXML
+    private AnchorPane cs_rebookingForm, cs_updateForm;
+
 
 
     private boolean isMenuVisible = false;
@@ -309,6 +315,9 @@ public class DashboardController implements Initializable {
         // Hide all forms
         fm_managerForm.setVisible(false);
         fm_recordsForm.setVisible(false);
+
+        cs_rebookingForm.setVisible(false);
+        cs_updateForm.setVisible(false);
 
         // Show the selected form
         targetForm.setVisible(true);
@@ -554,8 +563,14 @@ public class DashboardController implements Initializable {
         fm_managerBtn.setOnMouseClicked(e -> switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn));
         fm_recordsBtn.setOnMouseClicked(e -> switchForm(fm_recordsForm, fm_recordsBtn, fm_managerBtn));
 
+        cs_rebookingBtn.setOnMouseClicked(e -> switchForm(cs_rebookingForm, cs_rebookingBtn, cs_updateInfoBtn));
+        cs_updateInfoBtn.setOnMouseClicked(e -> switchForm(cs_updateForm, cs_updateInfoBtn, cs_rebookingBtn));
+
+
+
         // Set the default form to fm_managerForm
         switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
+        switchForm(cs_rebookingForm, cs_rebookingBtn, cs_updateInfoBtn);
 
         // For dashboard
         loadDashboard();
