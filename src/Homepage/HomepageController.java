@@ -694,6 +694,7 @@ public class HomepageController implements Initializable {
 
             // Set undecorated and not resizable properties
             Stage notifStage = new Stage();
+            notifStage.initStyle(StageStyle.UTILITY); // Set stage style to UTILITY
             notifStage.initStyle(StageStyle.UNDECORATED);
             notifStage.setResizable(false);
             notifStage.initModality(Modality.APPLICATION_MODAL);
@@ -719,13 +720,16 @@ public class HomepageController implements Initializable {
                 }
             });
 
+            // Set the owner stage to null to prevent the taskbar icon
+            notifStage.initOwner(null);
+
             // Get the controller of Notif.fxml
             notifController.setNotifStage(notifStage);
 
             // Show the stage
             notifStage.show();
 
-            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+            Image icon = new Image(getClass().getResourceAsStream("/Images/ICONS/EA Logo.png"));
             notifStage.getIcons().add(icon);
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately

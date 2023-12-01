@@ -780,7 +780,7 @@
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="paymentPane" prefHeight="200.0" prefWidth="200.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0" />
-                  <AnchorPane fx:id="paymentForms" prefHeight="360.0" prefWidth="512.0" style="-fx-background-color: #313338;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+                  <AnchorPane fx:id="paymentForms" prefHeight="360.0" prefWidth="512.0" style="-fx-background-color: #313338;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SELECT PAYMENT TYPE" textFill="#a4a8af" AnchorPane.leftAnchor="15.0">
                            <font>
@@ -839,7 +839,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cardForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+                  <AnchorPane fx:id="cardForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
                         <ScrollPane fx:id="c_form1" focusTraversable="false" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <content>

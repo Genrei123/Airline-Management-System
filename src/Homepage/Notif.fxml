@@ -30,7 +30,7 @@
                   </ImageView>
                   <Label layoutX="215.0" layoutY="221.0" style="-fx-font-size: 30;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Ermino Airlines" textFill="WHITE" />
                   <Label layoutX="242.0" layoutY="270.0" style="-fx-font-size: 20;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="TICKET NUMBER: " textFill="WHITE" />
-                  <Label alignment="CENTER" layoutX="143.0" layoutY="296.0" prefHeight="33.0" prefWidth="347.0" style="-fx-font-size: 20;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="------" textFill="WHITE" />
+                  <Label fx:id="ticketNum" alignment="CENTER" layoutX="143.0" layoutY="296.0" prefHeight="33.0" prefWidth="347.0" style="-fx-font-size: 20;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="------" textFill="WHITE" />
                   <Label layoutX="145.0" layoutY="345.0" style="-fx-font-size: 18;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Ticket will be sent to you shortly, Thank you!" textFill="WHITE" />
                </children>
             </AnchorPane>
