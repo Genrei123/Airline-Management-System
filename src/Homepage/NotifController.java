@@ -13,6 +13,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -25,7 +26,12 @@ public class NotifController implements Initializable {
     @FXML
     private JFXButton okBtn;
 
+    @FXML
+    private Label ticketNum;
+
     private HomepageController homepageController;
+
+    private Stage notifStage;
 
     public void setHomepageController(HomepageController homepageController) {
         this.homepageController = homepageController;
@@ -42,13 +48,40 @@ public class NotifController implements Initializable {
         }
     }
 
+    @FXML
+    private void initialize() {
+        // Add initialization code if needed
+    }
+
+    @FXML
+    private void handleOkBtnClick() {
+        // Close the notifStage when the OK button is clicked
+        notifStage.close();
+    }
+
+    // Getter and setter for notifStage
+    public Stage getNotifStage() {
+        return notifStage;
+    }
+
+    public void setNotifStage(Stage notifStage) {
+        this.notifStage = notifStage;
+    }
+
+    //FOR HOMEPAGE STAR BG ANIMATION
     private void createTwinklingStars() {
-        int numStars = 30;
+        int numStars = 60;
         ParallelTransition parallelTransition = new ParallelTransition();
 
         for (int i = 0; i < numStars; i++) {
             Pane star = createStar();
             starsPane.getChildren().add(star);
+
+            // Set a random initial position within the bounds of starsPane
+            double initialX = Math.random() * (starsPane.getWidth() + 633);  // Adjusted to consider star size
+            double initialY = Math.random() * (starsPane.getHeight() + 326); // Adjusted to consider star size
+            star.setLayoutX(initialX);
+            star.setLayoutY(initialY);
 
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), star);
             fadeTransition.setFromValue(1.0);
@@ -88,10 +121,10 @@ public class NotifController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
+        // Call the starsPane function during initialization
+        createTwinklingStars();
         // Make the starsPane visible when the application is running
         starsPane.setVisible(true);
-
-        createTwinklingStars();
     }
 
 }

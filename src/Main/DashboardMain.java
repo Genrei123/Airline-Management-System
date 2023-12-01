@@ -18,7 +18,7 @@ public class DashboardMain extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/LogIn/AdminLogin.fxml"));
-        Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+        Image icon = new Image(getClass().getResourceAsStream("/Images/ICONS/EA Logo.png"));
         stage.getIcons().add(icon);
         Scene scene = new Scene(root);
 
