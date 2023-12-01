@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
+import com.sun.javafx.stage.StageHelper;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,14 +34,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
 
 public class HomepageController implements Initializable {
@@ -663,33 +669,20 @@ public class HomepageController implements Initializable {
         Button clickedButton = (Button) event.getSource();
 
         // Check the ID or other properties of the button
-        if (clickedButton.getId().equals("c_nextBtn2")) {
-            // Code for c_nextBtn2
+        if (clickedButton.getId().equals("c_nextBtn2") || clickedButton.getId().equals("g_nextBtn") || clickedButton.getId().equals("p_nextBtn")) {
+            // Code for c_nextBtn2, g_nextBtn, and p_nextBtn
 
             // Insert data into the database
             insertDataIntoDatabase();
-
+            clearPaymentForms();
+            // Set payment_form visibility to false
+            payment_form.setVisible(false);
+            overlayPane1.setVisible(false);
             // Show notification
             showNotification();
-        } else if (clickedButton.getId().equals("g_nextBtn")) {
-            // Code for g_nextBtn
-
-            // Insert data into the database
-            insertDataIntoDatabase();
-
-            // Show notification
-            showNotification();
-        } else if (clickedButton.getId().equals("p_nextBtn")) {
-            // Code for p_nextBtn
-
-            // Insert data into the database
-            insertDataIntoDatabase();
-
-            // Show notification
-            showNotification();
+            switchForm(hf_searchDesti, returnToDesti_btn1);
         }
 
-        // Rest of your code
     }
 
     // Method to show notification
@@ -697,11 +690,43 @@ public class HomepageController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
             Parent root = loader.load();
+            NotifController notifController = loader.getController(); // Get the controller of Notif.fxml
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Notification");
-            stage.show();
+            // Set undecorated and not resizable properties
+            Stage notifStage = new Stage();
+            notifStage.initStyle(StageStyle.UNDECORATED);
+            notifStage.setResizable(false);
+            notifStage.initModality(Modality.APPLICATION_MODAL);
+            notifStage.setScene(new Scene(root));
+
+            notifStage.setOnShown(event -> {
+                // Center the stage on the screen
+                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                notifStage.setX((primScreenBounds.getWidth() - notifStage.getWidth()) / 2);
+                notifStage.setY((primScreenBounds.getHeight() - notifStage.getHeight()) / 2);
+
+                // Make overlayPane1 visible and set its style
+                if (overlayPane1 != null) {
+                    overlayPane1.setVisible(true);
+                    overlayPane1.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+                }
+            });
+
+            notifStage.setOnHidden(event -> {
+                // Hide overlayPane1 when notifStage is hidden
+                if (overlayPane1 != null) {
+                    overlayPane1.setVisible(false);
+                }
+            });
+
+            // Get the controller of Notif.fxml
+            notifController.setNotifStage(notifStage);
+
+            // Show the stage
+            notifStage.show();
+
+            Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+            notifStage.getIcons().add(icon);
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
@@ -852,7 +877,7 @@ public class HomepageController implements Initializable {
     public void handleReturnToDestiButtonClick() {
         switchForm(hf_searchDesti, returnToDesti_btn);
         switchForm(hf_searchDesti, returnToDesti_btn1);
-
+        // Add this line to hide overlayPane1
         clearSeatSelectionFields();
     }
 

@@ -26,7 +26,7 @@ public class SwitchForms {
         Login.setScene(scene);
         Login.setTitle("Login Page"); // Set a title for your window
 
-        Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+        Image icon = new Image(getClass().getResourceAsStream("/Images/ICONS/EA Logo.png"));
         Login.getIcons().add(icon);
 
         Login.setOnShown(event -> {
@@ -55,7 +55,7 @@ public class SwitchForms {
             stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
         });
 
-        Image icon = new Image(getClass().getResourceAsStream("/Images/anyapfp.jpg"));
+        Image icon = new Image(getClass().getResourceAsStream("/Images/ICONS/EA Logo.png"));
         stage.getIcons().add(icon);
         stage.setTitle(toLink); // Set a title for your window
         stage.setResizable(false); // Make it resizable

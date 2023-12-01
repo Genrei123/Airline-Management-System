@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="120.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Homepage.NotifController">
+<AnchorPane id="AnchorPane" fx:id="main_form" prefHeight="419.0" prefWidth="633.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Homepage.NotifController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="499.0" prefWidth="633.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="23.0" prefWidth="350.0" styleClass="topPane" stylesheets="@HomepageStyles.css">
-               <children>
-                  <Label layoutX="8.0" layoutY="4.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Message" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutY="23.0" prefHeight="98.0" prefWidth="350.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0">
+            <AnchorPane fx:id="starsPane" prefHeight="419.0" prefWidth="633.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane layoutY="23.0" prefHeight="499.0" prefWidth="633.0" styleClass="starsPane1BG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Pane fx:id="starsPane" prefHeight="200.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <ImageView fitHeight="50.0" fitWidth="149.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                  <JFXButton fx:id="okBtn" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="249.0" layoutY="372.0" onAction="#notification" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: black; -fx-background-radius: 10; -fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CLAIM RECEIPT" textFill="WHITE" AnchorPane.bottomAnchor="14.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <Label layoutX="49.0" layoutY="56.0" style="-fx-font-size: 25;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="You have " textFill="WHITE" AnchorPane.topAnchor="20.0" />
+                  <Label layoutX="152.0" layoutY="56.0" style="-fx-font-size: 25;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="successfully booked " textFill="WHITE" AnchorPane.topAnchor="20.0" />
+                  <Label layoutX="378.0" layoutY="56.0" style="-fx-font-size: 25;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="your ticket with us!" textFill="WHITE" AnchorPane.topAnchor="20.0" />
+                  <ImageView fitHeight="168.0" fitWidth="207.0" layoutX="228.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/Plane%20logo.png" />
+                        <Image url="@../Images/ICONS/EA%20Logo.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="33.0" layoutY="61.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Ermino Airlines" textFill="#f8f8f8" />
-                  <Label layoutX="162.0" layoutY="23.0" style="-fx-font-size: 15;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Booking Complete!! " textFill="WHITE" />
-                  <Label layoutX="161.0" layoutY="42.0" style="-fx-font-size: 15;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Please wait for your ticket." textFill="WHITE" />
-                  <JFXButton fx:id="okBtn" ellipsisString="" graphicTextGap="0.0" layoutX="289.0" layoutY="68.0" onAction="#notification" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 10;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="OK" textFill="WHITE" />
+                  <Label layoutX="215.0" layoutY="221.0" style="-fx-font-size: 30;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Ermino Airlines" textFill="WHITE" />
+                  <Label layoutX="242.0" layoutY="270.0" style="-fx-font-size: 20;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="TICKET NUMBER: " textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="143.0" layoutY="296.0" prefHeight="33.0" prefWidth="347.0" style="-fx-font-size: 20;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="------" textFill="WHITE" />
+                  <Label layoutX="145.0" layoutY="345.0" style="-fx-font-size: 18;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Ticket will be sent to you shortly, Thank you!" textFill="WHITE" />
                </children>
             </AnchorPane>
          </children>
