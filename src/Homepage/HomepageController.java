@@ -21,41 +21,28 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import org.controlsfx.control.textfield.TextFields;
 
-/**
- *
- * @author Ervhyne
- */
 public class HomepageController implements Initializable {
 
     @FXML
@@ -380,6 +367,9 @@ public class HomepageController implements Initializable {
     private JFXButton p_backBtn;
 
     @FXML
+    private AnchorPane paymentPane;
+
+    @FXML
     private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat;
 
     private boolean menuOpen = false;
@@ -451,7 +441,6 @@ public class HomepageController implements Initializable {
         for (int i = 0; i < numStars; i++) {
             Pane star = createStar();
             starsPane.getChildren().add(star);
-            starsPane1.getChildren().add(star);
 
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), star);
             fadeTransition.setFromValue(1.0);
@@ -478,8 +467,6 @@ public class HomepageController implements Initializable {
 
         star.setLayoutX(new Random().nextDouble() * starsPane.getPrefWidth());
         star.setLayoutY(new Random().nextDouble() * starsPane.getPrefHeight());
-        star.setLayoutX(new Random().nextDouble() * starsPane1.getPrefWidth());
-        star.setLayoutY(new Random().nextDouble() * starsPane1.getPrefHeight());
 
         // Set the background color and radius directly
         star.setStyle("-fx-background-color: white; -fx-background-radius: 50%;");
@@ -487,6 +474,45 @@ public class HomepageController implements Initializable {
         star.setOpacity(1.0);
 
         return star;
+    }
+
+    // Add this method to create twinkling stars for starsPane1
+    private void createTwinklingStarsForPane1() {
+        int numStars = 20;
+        ParallelTransition parallelTransition = new ParallelTransition();
+
+        // Set preferred size explicitly
+        //starsPane1.setPrefSize(510, 106);
+        for (int i = 0; i < numStars; i++) {
+            Pane star = createStar();
+            starsPane1.getChildren().add(star);
+
+            // Set a random initial position within the bounds of starsPane1
+            double initialX = Math.random() * (starsPane1.getWidth() + 510);  // Adjusted to consider star size
+            double initialY = Math.random() * (starsPane1.getHeight() + 90); // Adjusted to consider star size
+            star.setLayoutX(initialX);
+            star.setLayoutY(initialY);
+
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), star);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setCycleCount(Animation.INDEFINITE);
+            fadeTransition.setAutoReverse(true);
+
+            // Add a random initial delay to each star
+            Duration initialDelay = Duration.seconds(Math.random() * 5);
+            fadeTransition.setDelay(initialDelay);
+
+            parallelTransition.getChildren().add(fadeTransition);
+        }
+
+        parallelTransition.play();
+    }
+
+    // Call this method in your initialize method to create twinkling stars for starsPane1
+    private void initializeTwinklingStars() {
+        createTwinklingStars();  // For starsPane
+        createTwinklingStarsForPane1();  // For starsPane1
     }
 
     //CAROUSEL FUNCTIONS
@@ -630,16 +656,6 @@ public class HomepageController implements Initializable {
     }
 
     public void handleNextButtonClick(ActionEvent event) throws SQLException {
-
-        // Check if all required fields are filled
-        if (areFieldsEmpty()) {
-            return; // Exit the method since there are validation issues
-        }
-
-        // If no validation issues, switch to the payment form
-        payment_form.setVisible(true);
-        overlayPane1.setVisible(true);
-
         // Switch to paymentForms initially
         switchPaymentForm(cardBtn);
 
@@ -676,7 +692,7 @@ public class HomepageController implements Initializable {
         // Rest of your code
     }
 
-// Method to show notification
+    // Method to show notification
     private void showNotification() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Homepage/Notif.fxml"));
@@ -883,6 +899,9 @@ public class HomepageController implements Initializable {
         List<String> countries = getAllCountries();
         setComboBoxItems(c_country, countries);
         setComboBoxItems(g_country, countries);
+
+        makeComboBoxSearchable(c_country);
+        makeComboBoxSearchable(g_country);
     }
 
     private List<String> getAllCountries() {
@@ -896,6 +915,10 @@ public class HomepageController implements Initializable {
 
     private void setComboBoxItems(JFXComboBox<String> comboBox, List<String> items) {
         comboBox.getItems().addAll(items);
+    }
+
+    private void makeComboBoxSearchable(JFXComboBox<String> comboBox) {
+        TextFields.bindAutoCompletion(comboBox.getEditor(), comboBox.getItems());
     }
 
     private void switchPaymentForm(JFXButton selectedButton) {
@@ -928,6 +951,7 @@ public class HomepageController implements Initializable {
                 paypalForm.setVisible(false);
                 c_form1.setVisible(true);
                 c_form2.setVisible(false);
+                clearCardFormFields();
                 break;
             case "c_backBtn2":
                 c_form1.setVisible(true);
@@ -942,6 +966,7 @@ public class HomepageController implements Initializable {
             case "g_backBtn":
                 paymentForms.setVisible(true);
                 gcashForm.setVisible(false);
+                clearCardFormFields();
                 break;
             // Add more cases as needed
         }
@@ -952,19 +977,36 @@ public class HomepageController implements Initializable {
             case "p_backBtn":
                 paymentForms.setVisible(true);
                 paypalForm.setVisible(false);
+                clearCardFormFields();
                 break;
             // Add more cases as needed
         }
     }
 
     public void handleBookButtonClick() {
-        // Open/visible the payment_form
-        payment_form.setVisible(true);
-        // Make the overlayPane1 visible and dim
-        overlayPane1.setVisible(true);
+        // Check if all fields in hf_bookFlight are empty
+        if (areFieldsEmpty()) {
+            AlertManager alert = new AlertManager(book_alert);
+            alert.setAlertText("Please fill in at least one field in Book Flight.", "red");
+
+            // Schedule a task to hide the alert after 5 seconds
+            PauseTransition delay = new PauseTransition(Duration.seconds(5));
+            delay.setOnFinished(event -> alert.hideAlert());
+            delay.play();
+
+            return; // Exit the method since there are validation issues
+        }
 
         // Switch to paymentForms initially
-        switchPaymentForm(cardBtn);
+        switchPaymentForm(book_btn);
+
+        // Open/visible the payment_form
+        payment_form.setVisible(true);
+        paymentForms.setVisible(true);
+        // Make the overlayPane1 visible and dim
+        overlayPane1.setVisible(true);
+        overlayPane1.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+
     }
 
     public void switchPaymentForm(ActionEvent event) {
@@ -988,10 +1030,84 @@ public class HomepageController implements Initializable {
     }
 
     public void closeForm() {
+        clearPaymentForms(); // Clear fields in paymentForms
         // Hide the overlayPane1 and main_form
         overlayPane1.setVisible(false);
         payment_form.setVisible(false);
+        paymentForms.setVisible(true);
 
+    }
+
+    // Add these methods to clear the fields in each form
+    private void clearCardFormFields() {
+        cardNumber.clear();
+        expirationDate.clear();
+        securityCode.clear();
+        cardOwner.clear();
+        c_country.getSelectionModel().clearSelection();
+        c_name.clear();
+        c_address1.clear();
+        c_address2.clear();
+        c_city.clear();
+        c_state.clear();
+        c_postalCode.clear();
+    }
+
+    private void clearGcashFormFields() {
+        g_country.getSelectionModel().clearSelection();
+        g_name.clear();
+        g_address1.clear();
+        g_address2.clear();
+        g_city.clear();
+        g_state.clear();
+        g_postalCode.clear();
+    }
+
+    private void clearPaypalFormFields() {
+        p_phoneNumber.clear();
+    }
+
+    // Add these methods to clear fields when the "Close" button is clicked
+    public void clearPaymentForms() {
+        clearCardFormFields();
+        clearGcashFormFields();
+        clearPaypalFormFields();
+    }
+
+    //Paymen Forms BTN's disabler
+    private void updateCardNextButtonState() {
+        boolean isDisabled = cardNumber.getText().isEmpty()
+                || expirationDate.getText().isEmpty()
+                || securityCode.getText().isEmpty()
+                || cardOwner.getText().isEmpty();
+        c_nextBtn1.setDisable(isDisabled);
+    }
+
+    private void updateCardAddressButtonState() {
+        boolean isDisabled = c_country.getSelectionModel().isEmpty()
+                || c_name.getText().isEmpty()
+                || c_address1.getText().isEmpty()
+                || c_address2.getText().isEmpty()
+                || c_city.getText().isEmpty()
+                || c_state.getText().isEmpty()
+                || c_postalCode.getText().isEmpty();
+        c_nextBtn2.setDisable(isDisabled);
+    }
+
+    private void updateGcashButtonState() {
+        boolean isDisabled = g_country.getSelectionModel().isEmpty()
+                || g_name.getText().isEmpty()
+                || g_address1.getText().isEmpty()
+                || g_address2.getText().isEmpty()
+                || g_city.getText().isEmpty()
+                || g_state.getText().isEmpty()
+                || g_postalCode.getText().isEmpty();
+        g_nextBtn.setDisable(isDisabled);
+    }
+
+    private void updatePaypalButtonState() {
+        boolean isDisabled = p_phoneNumber.getText().isEmpty();
+        p_nextBtn.setDisable(isDisabled);
     }
 
     @Override
@@ -1004,7 +1120,12 @@ public class HomepageController implements Initializable {
         // Initialize the auto-slide timeline
         initializeAutoSlideTimeline();
 
+        // Initialize the method to create twinkling stars
+        initializeTwinklingStars();
+        createTwinklingStarsForPane1();
+
         overlayPane.setVisible(false);
+        overlayPane1.setVisible(false);
 
         // Add event handlers to the overlayPane and topPane
         overlayPane.setOnMouseClicked(event -> {
@@ -1016,8 +1137,6 @@ public class HomepageController implements Initializable {
         // Make the starsPane visible when the application is running
         starsPane.setVisible(true);
         starsPane1.setVisible(true);
-
-        createTwinklingStars();
 
         // Switch Forms for home_form
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
@@ -1069,5 +1188,37 @@ public class HomepageController implements Initializable {
 
         // Initialize country combo-boxes
         initializeCountryComboBoxes();
+
+        // Listeners for CardForm
+        cardNumber.textProperty().addListener((observable, oldValue, newValue) -> updateCardNextButtonState());
+        expirationDate.textProperty().addListener((observable, oldValue, newValue) -> updateCardNextButtonState());
+        securityCode.textProperty().addListener((observable, oldValue, newValue) -> updateCardNextButtonState());
+        cardOwner.textProperty().addListener((observable, oldValue, newValue) -> updateCardNextButtonState());
+
+        c_country.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateCardAddressButtonState());
+        c_name.textProperty().addListener((observable, oldValue, newValue) -> updateCardAddressButtonState());
+        c_address1.textProperty().addListener((observable, oldValue, newValue) -> updateCardAddressButtonState());
+        c_address2.textProperty().addListener((observable, oldValue, newValue) -> updateCardAddressButtonState());
+        c_city.textProperty().addListener((observable, oldValue, newValue) -> updateCardAddressButtonState());
+        c_state.textProperty().addListener((observable, oldValue, newValue) -> updateCardAddressButtonState());
+        c_postalCode.textProperty().addListener((observable, oldValue, newValue) -> updateCardAddressButtonState());
+
+        // Listeners for GcashForm
+        g_country.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateGcashButtonState());
+        g_name.textProperty().addListener((observable, oldValue, newValue) -> updateGcashButtonState());
+        g_address1.textProperty().addListener((observable, oldValue, newValue) -> updateGcashButtonState());
+        g_address2.textProperty().addListener((observable, oldValue, newValue) -> updateGcashButtonState());
+        g_city.textProperty().addListener((observable, oldValue, newValue) -> updateGcashButtonState());
+        g_state.textProperty().addListener((observable, oldValue, newValue) -> updateGcashButtonState());
+        g_postalCode.textProperty().addListener((observable, oldValue, newValue) -> updateGcashButtonState());
+
+        // Listeners for PaypalForm
+        p_phoneNumber.textProperty().addListener((observable, oldValue, newValue) -> updatePaypalButtonState());
+
+        updateCardNextButtonState();
+        updateCardAddressButtonState();
+        updateGcashButtonState();
+        updatePaypalButtonState();
+
     }
 }

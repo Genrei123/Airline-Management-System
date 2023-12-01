@@ -151,7 +151,7 @@
                                        <cursor>
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor></TextField>
-                                    <JFXButton fx:id="book_btn" layoutX="708.0" layoutY="322.0" onAction="#handleNextButtonClick" prefHeight="39.0" prefWidth="255.0" style="-fx-font-size: 25; -fx-background-radius: 50; -fx-background-color: #29ABE2;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BOOK" textFill="WHITE" AnchorPane.bottomAnchor="37.0">
+                                    <JFXButton fx:id="book_btn" layoutX="708.0" layoutY="322.0" onAction="#handleBookButtonClick" prefHeight="39.0" prefWidth="255.0" style="-fx-font-size: 25; -fx-background-radius: 50; -fx-background-color: #29ABE2;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BOOK" textFill="WHITE" AnchorPane.bottomAnchor="37.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -647,7 +647,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
@@ -740,27 +740,29 @@
             <AnchorPane fx:id="overlayPane1" layoutX="10.0" layoutY="10.0" prefHeight="672.0" prefWidth="1071.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <AnchorPane id="AnchorPane" fx:id="payment_form" layoutX="276.0" layoutY="183.0" prefHeight="359.0" prefWidth="510.0" visible="false">
                <children>
-                  <AnchorPane fx:id="topPane1" prefHeight="106.0" prefWidth="510.0" style="-fx-background-color: #000000;" stylesheets="@HomepageStyles.css">
+                  <AnchorPane fx:id="topPane1" prefHeight="109.0" prefWidth="510.0" styleClass="starsPane1BG" stylesheets="@PaymentStyles.css">
                      <children>
-                        <Pane fx:id="starsPane1" prefHeight="106.0" prefWidth="510.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <ImageView fitHeight="64.0" fitWidth="113.0" layoutX="152.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                        <Pane fx:id="starsPane1" prefHeight="106.0" prefWidth="510.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="64.0" fitWidth="113.0" layoutX="357.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/Cloud%201.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="64.0" fitWidth="113.0" layoutX="34.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/Cloud%202.png" />
+                                 </image>
+                              </ImageView>
+                           </children></Pane>
+                        <ImageView fitHeight="64.0" fitWidth="113.0" layoutX="152.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="166.0">
                            <image>
-                              <Image url="@../Images/Cloud%202.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="64.0" fitWidth="113.0" layoutX="59.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/Cloud%202.png" />
+                              <Image url="@../Images/Cloud%201.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="120.0" fitWidth="302.0" layoutX="104.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/Plane%20logo.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="64.0" fitWidth="113.0" layoutX="350.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/Cloud%202.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="272.0" layoutY="14.0" style="-fx-font-size: 30;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Airlines" textFill="WHITE" />
@@ -770,9 +772,15 @@
                               <MaterialDesignIconView fill="#ffffff99" glyphName="WINDOW_CLOSE" size="30" wrappingWidth="30.0" />
                            </graphic>
                         </JFXButton>
+                        <ImageView fitHeight="64.0" fitWidth="113.0" layoutX="235.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-38.0">
+                           <image>
+                              <Image url="@../Images/Cloud%202.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="paymentForms" layoutY="106.0" prefHeight="253.0" prefWidth="510.0" style="-fx-background-color: #313338;">
+                  <AnchorPane fx:id="paymentPane" prefHeight="200.0" prefWidth="200.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0" />
+                  <AnchorPane fx:id="paymentForms" prefHeight="360.0" prefWidth="512.0" style="-fx-background-color: #313338;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SELECT PAYMENT TYPE" textFill="#a4a8af" AnchorPane.leftAnchor="15.0">
                            <font>
@@ -831,11 +839,11 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cardForm" layoutY="106.0" prefHeight="253.0" prefWidth="500.0" styleClass="paymentBG" stylesheets="@HomepageStyles1.css" visible="false">
+                  <AnchorPane fx:id="cardForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
-                        <ScrollPane fx:id="c_form1" prefHeight="253.0" prefWidth="510.0" styleClass="paymentBG">
+                        <ScrollPane fx:id="c_form1" focusTraversable="false" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <content>
-                              <AnchorPane prefHeight="318.0" prefWidth="495.0" styleClass="paymentBG" stylesheets="@HomepageStyles1.css">
+                              <AnchorPane focusTraversable="true" prefHeight="318.0" prefWidth="493.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css">
                                  <children>
                                     <ImageView fitHeight="27.0" fitWidth="269.0" layoutX="227.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -893,67 +901,53 @@
                                  </children>
                               </AnchorPane>
                            </content>
-                           <stylesheets>
-                              <URL value="@HomepageStyles1.css" />
-                              <URL value="@../Dashboard/DashboardStyles.css" />
-                           </stylesheets>
                         </ScrollPane>
-                        <ScrollPane fx:id="c_form2" layoutX="10.0" prefHeight="253.0" prefWidth="510.0" styleClass="paymentBG" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fx:id="c_form2" focusTraversable="false" layoutX="10.0" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <content>
-                              <AnchorPane prefHeight="547.0" prefWidth="495.0" styleClass="paymentBG" stylesheets="@HomepageStyles1.css">
+                              <AnchorPane prefHeight="547.0" prefWidth="492.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="18.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="COUNTRY" textFill="#a4a8af" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
+                                    <Label layoutX="14.0" layoutY="18.0" stylesheets="@HomepageStyles.css" text="COUNTRY" textFill="#a4a8af" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXComboBox fx:id="c_country" focusColor="#405aa800" layoutX="16.0" layoutY="47.0" prefHeight="31.0" prefWidth="458.0" promptText="Select" style="-fx-padding: 0 0 0 8;" unFocusColor="#4d4d4d00">
-                                       <stylesheets>
-                                          <URL value="@HomepageStyles1.css" />
-                                          <URL value="@HomepageStyles.css" />
-                                          <URL value="@PaymentStyles.css" />
-                                       </stylesheets>
-                                       <styleClass>
-                                          <String fx:value="textfieldBG" />
-                                          <String fx:value="interBold-FontStyle" />
-                                       </styleClass>
-                                    </JFXComboBox>
-                                    <Label layoutX="15.0" layoutY="92.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="NAME" textFill="#a4a8af">
+                                    <JFXComboBox fx:id="c_country" editable="true" focusColor="#405aa800" layoutX="16.0" layoutY="47.0" prefHeight="31.0" prefWidth="458.0" promptText="Select" stylesheets="@PaymentStyles.css" unFocusColor="#4d4d4d00" />
+                                    <Label layoutX="15.0" layoutY="92.0" style="-fx-font-size: 15px;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="NAME" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="c_name" focusColor="#405aa800" layoutX="16.0" layoutY="121.0" prefHeight="31.0" prefWidth="460.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="15.0" layoutY="165.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS " textFill="#a4a8af">
+                                    <Label layoutX="15.0" layoutY="165.0" style="-fx-font-size: 15px;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS " textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="c_address1" focusColor="#405aa800" layoutX="16.0" layoutY="194.0" prefHeight="31.0" prefWidth="460.0" promptText="123 Homepage Drive" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="15.0" layoutY="242.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS  2 (OPTIONAL)" textFill="#a4a8af">
+                                    <Label layoutX="15.0" layoutY="242.0" style="-fx-font-size: 15px;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS  2 (OPTIONAL)" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="c_address2" focusColor="#405aa800" layoutX="16.0" layoutY="271.0" prefHeight="31.0" prefWidth="460.0" promptText="Apt, Ste, Dimension" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="16.0" layoutY="318.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CITY" textFill="#a4a8af">
+                                    <Label layoutX="16.0" layoutY="318.0" style="-fx-font-size: 15px;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CITY" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="c_city" focusColor="#405aa800" layoutX="17.0" layoutY="347.0" prefHeight="31.0" prefWidth="460.0" promptText="Coolsville" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="15.0" layoutY="392.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="STATE\PROVINCE\REGION" textFill="#a4a8af">
+                                    <Label layoutX="15.0" layoutY="392.0" style="-fx-font-size: 15px;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="STATE\PROVINCE\REGION" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="c_state" focusColor="#405aa800" layoutX="16.0" layoutY="421.0" prefHeight="31.0" prefWidth="212.0" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="262.0" layoutY="391.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="POSTAL CODE" textFill="#a4a8af">
+                                    <JFXTextField fx:id="c_state" focusColor="#405aa800" layoutX="16.0" layoutY="421.0" prefHeight="31.0" prefWidth="212.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <Label layoutX="262.0" layoutY="391.0" style="-fx-font-size: 15px;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="POSTAL CODE" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="c_postalCode" focusColor="#405aa800" layoutX="263.0" layoutY="420.0" prefHeight="31.0" prefWidth="212.0" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <JFXTextField fx:id="c_postalCode" focusColor="#405aa800" layoutX="263.0" layoutY="420.0" prefHeight="31.0" prefWidth="212.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
                                     <AnchorPane layoutX="6.0" layoutY="469.0" prefHeight="72.0" prefWidth="491.0" styleClass="bottomBG" stylesheets="@HomepageStyles1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <children>
                                           <JFXButton fx:id="c_nextBtn2" alignment="CENTER" layoutX="399.0" layoutY="18.0" onAction="#handleNextButtonClick" prefHeight="36.0" prefWidth="82.0" styleClass="paymentButton" stylesheets="@HomepageStyles1.css" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
@@ -981,68 +975,54 @@
                                  </children>
                               </AnchorPane>
                            </content>
-                           <stylesheets>
-                              <URL value="@HomepageStyles1.css" />
-                              <URL value="@../Dashboard/DashboardStyles.css" />
-                           </stylesheets>
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="gcashForm" layoutX="6.0" layoutY="108.0" prefHeight="253.0" prefWidth="497.0" styleClass="paymentBG" stylesheets="@HomepageStyles1.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <AnchorPane fx:id="gcashForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
-                        <ScrollPane fx:id="g_form1" prefHeight="253.0" prefWidth="510.0" styleClass="paymentBG">
+                        <ScrollPane fx:id="g_form1" focusTraversable="false" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <content>
-                              <AnchorPane prefHeight="547.0" prefWidth="495.0" styleClass="paymentBG" stylesheets="@HomepageStyles1.css">
+                              <AnchorPane prefHeight="547.0" prefWidth="493.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="18.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="COUNTRY" textFill="#a4a8af">
+                                    <Label layoutX="14.0" layoutY="18.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="COUNTRY" textFill="#a4a8af">
                                        <font>
-                                          <Font name="Inria Sans Bold" size="15.0" />
+                                          <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXComboBox fx:id="g_country" focusColor="#405aa800" layoutX="16.0" layoutY="47.0" prefHeight="31.0" prefWidth="458.0" promptText="Select" style="-fx-padding: 0 0 0 8;" unFocusColor="#4d4d4d00">
-                                       <stylesheets>
-                                          <URL value="@HomepageStyles1.css" />
-                                          <URL value="@HomepageStyles.css" />
-                                          <URL value="@PaymentStyles.css" />
-                                       </stylesheets>
-                                       <styleClass>
-                                          <String fx:value="textfieldBG" />
-                                          <String fx:value="interBold-FontStyle" />
-                                       </styleClass>
-                                    </JFXComboBox>
-                                    <Label layoutX="15.0" layoutY="92.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="NAME" textFill="#a4a8af">
+                                    <JFXComboBox fx:id="g_country" editable="true" focusColor="#ffffff00" layoutX="16.0" layoutY="47.0" prefHeight="31.0" prefWidth="458.0" promptText="Select" stylesheets="@PaymentStyles.css" unFocusColor="#ffffff00" />
+                                    <Label layoutX="15.0" layoutY="92.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="NAME" textFill="#a4a8af">
                                        <font>
-                                          <Font name="Inria Sans Bold" size="15.0" />
+                                          <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="g_name" focusColor="#405aa800" layoutX="16.0" layoutY="121.0" prefHeight="31.0" prefWidth="460.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="15.0" layoutY="165.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS " textFill="#a4a8af">
+                                    <Label layoutX="15.0" layoutY="165.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS " textFill="#a4a8af">
                                        <font>
-                                          <Font name="Inria Sans Bold" size="15.0" />
+                                          <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="g_address1" focusColor="#405aa800" layoutX="16.0" layoutY="194.0" prefHeight="31.0" prefWidth="460.0" promptText="123 Homepage Drive" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="15.0" layoutY="242.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS  2 (OPTIONAL)" textFill="#a4a8af">
+                                    <Label layoutX="15.0" layoutY="242.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ADDRESS  2 (OPTIONAL)" textFill="#a4a8af">
                                        <font>
-                                          <Font name="Inria Sans Bold" size="15.0" />
+                                          <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="g_address2" focusColor="#405aa800" layoutX="16.0" layoutY="271.0" prefHeight="31.0" prefWidth="460.0" promptText="Apt, Ste, Dimension" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="16.0" layoutY="318.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CITY" textFill="#a4a8af">
+                                    <Label layoutX="16.0" layoutY="318.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CITY" textFill="#a4a8af">
                                        <font>
-                                          <Font name="Inria Sans Bold" size="15.0" />
+                                          <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="g_city" focusColor="#405aa800" layoutX="17.0" layoutY="347.0" prefHeight="31.0" prefWidth="460.0" promptText="Coolsville" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="15.0" layoutY="392.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="STATE\PROVINCE\REGION" textFill="#a4a8af">
+                                    <Label layoutX="15.0" layoutY="392.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="STATE\PROVINCE\REGION" textFill="#a4a8af">
                                        <font>
-                                          <Font name="Inria Sans Bold" size="15.0" />
+                                          <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="g_state" focusColor="#405aa800" layoutX="16.0" layoutY="421.0" prefHeight="31.0" prefWidth="212.0" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
-                                    <Label layoutX="262.0" layoutY="391.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="POSTAL CODE" textFill="#a4a8af">
+                                    <Label layoutX="262.0" layoutY="391.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="POSTAL CODE" textFill="#a4a8af">
                                        <font>
-                                          <Font name="Inria Sans Bold" size="15.0" />
+                                          <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="g_postalCode" focusColor="#405aa800" layoutX="263.0" layoutY="420.0" prefHeight="31.0" prefWidth="212.0" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
@@ -1073,14 +1053,10 @@
                                  </children>
                               </AnchorPane>
                            </content>
-                           <stylesheets>
-                              <URL value="@HomepageStyles1.css" />
-                              <URL value="@../Dashboard/DashboardStyles.css" />
-                           </stylesheets>
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="paypalForm" layoutY="106.0" prefHeight="253.0" prefWidth="510.0" styleClass="paymentBG" stylesheets="@HomepageStyles1.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <AnchorPane fx:id="paypalForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
                         <Label layoutX="-85.0" layoutY="18.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="PAYPAL ACCOUNT" textFill="#a4a8af" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
                            <font>
@@ -1095,7 +1071,7 @@
                         </ImageView>
                         <AnchorPane prefHeight="72.0" prefWidth="491.0" styleClass="bottomBG" stylesheets="@HomepageStyles1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <JFXButton fx:id="p_nextBtn" alignment="CENTER" layoutX="407.0" layoutY="18.0" onAction="#handleNextBtn " prefHeight="36.0" prefWidth="82.0" stylesheets="@HomepageStyles1.css" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
+                              <JFXButton fx:id="p_nextBtn" alignment="CENTER" layoutX="407.0" layoutY="18.0" onAction="#handleNextButtonClick" prefHeight="36.0" prefWidth="82.0" stylesheets="@HomepageStyles1.css" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
                                  <font>
                                     <Font name="Inter Bold" size="15.0" />
                                  </font>

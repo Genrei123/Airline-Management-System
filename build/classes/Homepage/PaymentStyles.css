@@ -1,21 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&family=Inter:wght@400;700&display=swap');
+
+/*------------------ FONT STYLES ---------------------*/
+.inriaSans-FontStyle {
+    -fx-font-family: 'Inria Sans', sans-serif;
+    -fx-font-weight: normal;
+}
+
+.inriaSansBold-FontStyle {
+    -fx-font-family: 'Inria Sans', sans-serif;
+    -fx-font-weight: bold;
+}
+
+.interReg-FontStyle {
+    -fx-font-family: 'Inter', sans-serif;
+    -fx-font-weight: normal;
+}
+
+.interBold-FontStyle {
+    -fx-font-family: 'Inter', sans-serif;
+    -fx-font-weight: bold;
+}
+
 /* FOR COMBO BOX DESIGN */
 .combo-box {
     -fx-text-fill: white;
     -fx-prompt-text-fill: #a4a8af;
+    -fx-padding: 0 0 0 5;
+    -fx-background-color:  #1e1f22;
+}
+
+.combo-box .text-field {
+    -fx-text-fill: white;
 }
 
 .combo-box .list-cell:hover {
-    -fx-background-color:  #35373c;
+    -fx-background-color: #35373c;
 }
 
 .combo-box .list-cell:focused {
     -fx-text-fill: white;
-    -fx-background-color:  #2b2d31;
 }
 
 .combo-box .list-view .list-cell:focused {
     -fx-background-color: #3f4248;
 }
+
+.combo-box .list-view .list-cell:filled:focused:selected {
+    -fx-background-color: #3f4248;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #2b2d31;
+}
+
+
 
 /* FOR BTNS DESIGN */
 .closeBtn{
@@ -24,8 +62,7 @@
 
 .closeBtn:hover{
     -fx-opacity: 1;
-    -fx-background-color: #212121;
-
+    -fx-background-color: #001F3F;
 }
 
 /* FOR BUTTONS DESIGN */
@@ -36,4 +73,54 @@
 
 .paymentButton:hover {
     -fx-background-color: #4752c4;
+}
+
+.starsPane1BG {
+    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 50%, center 50% 100%, radius 50%, derive(#87CEEB, 30%), derive(#001F3F, -30%));
+}
+
+.textfieldBG {
+    -fx-background-color: #1e1f22;
+    -fx-text-fill: white;
+}
+
+.paymentBG {
+    -fx-background-color: #313338;
+}
+
+/*----------------------- Scroll Pane & Bar styles ----------------------- */
+.scroll-pane {
+    -fx-background-color: #313338;
+}
+
+/* ScrollBar Thumb */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #333; /* Color of the thumb */
+}
+
+/* ScrollBar Track */
+.scroll-bar:vertical .track {
+    -fx-background-color: #444; /* Color of the track */
+}
+
+/* ScrollBar Arrows */
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: #555; /* Color of the arrow buttons */
+}
+
+/* ScrollBar Thumb */
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #333; /* Color of the thumb */
+}
+
+/* ScrollBar Track */
+.scroll-bar:horizontal .track {
+    -fx-background-color: #444; /* Color of the track */
+}
+
+/* ScrollBar Arrows */
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color: #555; /* Color of the arrow buttons */
 }
