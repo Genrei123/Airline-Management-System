@@ -1129,7 +1129,7 @@ public class HomepageController implements Initializable {
         String securityCodeText = securityCode.getText();
         String cardOwnerText = cardOwner.getText().trim();
 
-        boolean isCardNumberValid = cardNumberText.length() >= 15 && cardNumberText.length() <= 19;
+        boolean isCardNumberValid = cardNumberText.length() >= 17 && cardNumberText.length() <= 19;
         boolean isExpirationDateValid = expirationDateText.matches("\\d{2} / \\d{2}");
         boolean isSecurityCodeValid = securityCodeText.length() == 3;
         boolean isCardOwnerValid = !cardOwnerText.isEmpty();
@@ -1147,7 +1147,7 @@ public class HomepageController implements Initializable {
                 || c_city.getText().isEmpty()
                 || c_state.getText().isEmpty()
                 || c_postalCode.getText().length() != 4
-                || !isValidCountry(c_country,getAllCountries()); // Add this condition
+                || !isValidCountry(c_country, getAllCountries()); // Add this condition
         c_nextBtn2.setDisable(isDisabled);
     }
 
@@ -1159,7 +1159,7 @@ public class HomepageController implements Initializable {
                 || g_city.getText().isEmpty()
                 || g_state.getText().isEmpty()
                 || g_postalCode.getText().length() != 4
-                || !isValidCountry(g_country,getAllCountries()); // Add this condition
+                || !isValidCountry(g_country, getAllCountries()); // Add this condition
         g_nextBtn.setDisable(isDisabled);
     }
 
@@ -1282,36 +1282,24 @@ public class HomepageController implements Initializable {
         updateCardAddressButtonState();
         updateGcashButtonState();
         updatePaypalButtonState();
-        
+
         topPane1.setVisible(true);
 
         /*------------------------------CONSTRAINTS FOR TEXTFIELDS ON PAYMENT FORM--------------------------*/
-        // Set up event handler to restrict input to numbers only for cardNumber
+        // Set up event handler to add auto-spacing every 4 digits for cardNumber
         cardNumber.addEventFilter(KeyEvent.KEY_TYPED, event -> {
-            if (!event.getCharacter().matches("[0-9]")) {
+            String text = cardNumber.getText();
+            if (!event.getCharacter().matches("[0-9/]")) {
+                event.consume();
+            } else if (text.length() == 4 || text.length() == 9 || text.length() == 14) {
+                cardNumber.setText(text + " ");
+                cardNumber.positionCaret(cardNumber.getLength() + 1);
+            } else if (text.length() >= 19) {
                 event.consume();
             }
         });
 
-        // Set up event handler to add auto-spacing every 4 digits for cardNumber
-        cardNumber.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Remove non-digit characters
-            String digitsOnly = newValue.replaceAll("[^0-9]", "");
-
-            // Format the value with spaces every 4 digits, up to 16 digits
-            StringBuilder formatted = new StringBuilder();
-            for (int i = 0; i < digitsOnly.length(); i++) {
-                if (i > 0 && i % 4 == 0 && i < 16) {
-                    formatted.append(" ");
-                }
-                formatted.append(digitsOnly.charAt(i));
-            }
-
-            // Update the text field
-            cardNumber.setText(formatted.toString());
-        });
-
-        // Set up event handler to limit the total length to 16 digits for cardNumber
+        // Set up event handler to limit the total length to 19 characters for cardNumber
         cardNumber.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 19) {
                 cardNumber.setText(oldValue);
