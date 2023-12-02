@@ -356,7 +356,7 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="businessC_seats" layoutX="347.0" layoutY="229.0" prefHeight="300.0" prefWidth="396.0" AnchorPane.topAnchor="229.0">
+                              <AnchorPane fx:id="businessC_seats" layoutX="231.0" layoutY="229.0" prefHeight="300.0" prefWidth="396.0" AnchorPane.topAnchor="229.0">
                                  <children>
                                     <ImageView fitHeight="349.0" fitWidth="599.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
