@@ -67,22 +67,36 @@
                   </AnchorPane>
                   <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="28.0" layoutY="29.0" prefHeight="58.0" prefWidth="210.0" text="Select CLASS:" textFill="WHITE">
+                        <AnchorPane layoutX="28.0" layoutY="113.0" prefHeight="460.0" prefWidth="664.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 15;">
+                           <children>
+                              <Label layoutY="65.0" prefHeight="47.0" prefWidth="343.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 10;" text=" Account Creation Date:" textFill="WHITE">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="53.0" prefWidth="343.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 10;" text=" Name:" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutY="132.0" prefHeight="47.0" prefWidth="343.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 10;" text=" Most Recent Flight:" textFill="WHITE">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <JFXComboBox fx:id="PrefTravelClass" focusColor="#405aa800" layoutX="531.0" layoutY="26.0" prefHeight="64.0" prefWidth="160.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 15;" unFocusColor="#0765e000" />
+                        <Label layoutX="28.0" layoutY="29.0" prefHeight="58.0" prefWidth="343.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 10;" text=" Preferred Travel Class:" textFill="WHITE">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <Label layoutX="28.0" layoutY="105.0" prefHeight="53.0" prefWidth="143.0" text="Name:" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="105.0">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="28.0" layoutY="183.0" text="Account Creation Date:" textFill="WHITE">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                        </Label>
-                        <JFXComboBox layoutX="238.0" layoutY="36.0" prefHeight="45.0" prefWidth="131.0" style="-fx-background-color: #29ABE2;" unFocusColor="#0564e1" />
+                        <AnchorPane layoutX="723.0" layoutY="34.0" prefHeight="298.0" prefWidth="303.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 15;">
+                           <children>
+                              <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="42.0" layoutY="246.0" size="280" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="whereWeFly_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -105,7 +119,7 @@
                         <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0" visible="false">
+                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
                      <children>
                         <AnchorPane fx:id="hf_bookFlight" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
