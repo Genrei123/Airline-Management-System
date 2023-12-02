@@ -738,7 +738,7 @@
                </children>
             </AnchorPane>
             <AnchorPane fx:id="overlayPane1" layoutX="10.0" layoutY="10.0" prefHeight="672.0" prefWidth="1071.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane id="AnchorPane" fx:id="payment_form" layoutX="276.0" layoutY="183.0" prefHeight="359.0" prefWidth="510.0">
+            <AnchorPane id="AnchorPane" fx:id="payment_form" layoutX="276.0" layoutY="183.0" prefHeight="359.0" prefWidth="510.0" visible="false">
                <children>
                   <AnchorPane fx:id="topPane1" prefHeight="109.0" prefWidth="510.0" styleClass="starsPane1BG" stylesheets="@PaymentStyles.css">
                      <children>
@@ -1020,7 +1020,7 @@
                                           <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="g_state" focusColor="#405aa800" layoutX="16.0" layoutY="421.0" prefHeight="31.0" prefWidth="212.0" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <JFXTextField fx:id="g_state" focusColor="#405aa800" layoutX="16.0" layoutY="421.0" prefHeight="31.0" prefWidth="212.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
                                     <Label layoutX="262.0" layoutY="391.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="POSTAL CODE" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inter Bold" size="15.0" />

@@ -1,7 +1,3 @@
-/*
-     * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-     * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Homepage;
 
 import Animations.SwitchForms;
@@ -30,9 +26,13 @@ import javafx.animation.KeyFrame;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -42,6 +42,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -931,11 +932,28 @@ public class HomepageController implements Initializable {
 
         makeComboBoxSearchable(c_country);
         makeComboBoxSearchable(g_country);
+
+        // Add listeners to update the button state when the selected items change
+        addCountryComboBoxListeners();
+
+    }
+
+    // Add this method to add listeners for country combo-boxes
+    private void addCountryComboBoxListeners() {
+        // Listener for c_country
+        c_country.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateCardAddressButtonState(); // Assuming this method checks all conditions for the proceed button
+        });
+
+        // Listener for g_country
+        g_country.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateGcashButtonState(); // Assuming this method checks all conditions for the proceed button
+        });
     }
 
     private List<String> getAllCountries() {
         String[] countriesArray = {
-            "Afghanistan", "Albania", "Algeria", /* ... (add all countries here) ... */ "Zimbabwe"
+            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor (Timor-Leste)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North (North Korea)", "Korea, South (South Korea)", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia (formerly Macedonia)", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
         };
 
         // Convert array to a List
@@ -985,6 +1003,7 @@ public class HomepageController implements Initializable {
             case "c_backBtn2":
                 c_form1.setVisible(true);
                 c_form2.setVisible(false);
+                clearCardFormFields();
                 break;
             // Add more cases as needed
         }
@@ -993,9 +1012,9 @@ public class HomepageController implements Initializable {
     private void switchGcashForm(String buttonId) {
         switch (buttonId) {
             case "g_backBtn":
+                clearGcashFormFields();
                 paymentForms.setVisible(true);
                 gcashForm.setVisible(false);
-                clearCardFormFields();
                 break;
             // Add more cases as needed
         }
@@ -1004,9 +1023,9 @@ public class HomepageController implements Initializable {
     private void switchPaypalForm(String buttonId) {
         switch (buttonId) {
             case "p_backBtn":
+                clearPaypalFormFields();
                 paymentForms.setVisible(true);
                 paypalForm.setVisible(false);
-                clearCardFormFields();
                 break;
             // Add more cases as needed
         }
@@ -1105,10 +1124,18 @@ public class HomepageController implements Initializable {
 
     //Paymen Forms BTN's disabler
     private void updateCardNextButtonState() {
-        boolean isDisabled = cardNumber.getText().isEmpty()
-                || expirationDate.getText().isEmpty()
-                || securityCode.getText().isEmpty()
-                || cardOwner.getText().isEmpty();
+        String cardNumberText = cardNumber.getText();
+        String expirationDateText = expirationDate.getText();
+        String securityCodeText = securityCode.getText();
+        String cardOwnerText = cardOwner.getText().trim();
+
+        boolean isCardNumberValid = cardNumberText.length() >= 15 && cardNumberText.length() <= 19;
+        boolean isExpirationDateValid = expirationDateText.matches("\\d{2} / \\d{2}");
+        boolean isSecurityCodeValid = securityCodeText.length() == 3;
+        boolean isCardOwnerValid = !cardOwnerText.isEmpty();
+
+        boolean isDisabled = !isCardNumberValid || !isExpirationDateValid || !isSecurityCodeValid || !isCardOwnerValid;
+
         c_nextBtn1.setDisable(isDisabled);
     }
 
@@ -1119,7 +1146,8 @@ public class HomepageController implements Initializable {
                 || c_address2.getText().isEmpty()
                 || c_city.getText().isEmpty()
                 || c_state.getText().isEmpty()
-                || c_postalCode.getText().isEmpty();
+                || c_postalCode.getText().length() != 4
+                || !isValidCountry(c_country,getAllCountries()); // Add this condition
         c_nextBtn2.setDisable(isDisabled);
     }
 
@@ -1130,13 +1158,19 @@ public class HomepageController implements Initializable {
                 || g_address2.getText().isEmpty()
                 || g_city.getText().isEmpty()
                 || g_state.getText().isEmpty()
-                || g_postalCode.getText().isEmpty();
+                || g_postalCode.getText().length() != 4
+                || !isValidCountry(g_country,getAllCountries()); // Add this condition
         g_nextBtn.setDisable(isDisabled);
     }
 
     private void updatePaypalButtonState() {
-        boolean isDisabled = p_phoneNumber.getText().isEmpty();
+        boolean isDisabled = p_phoneNumber.getText().isEmpty() || !p_phoneNumber.getText().matches("\\d{11}");
         p_nextBtn.setDisable(isDisabled);
+    }
+
+    // Add this method to check if the selected country is valid
+    private boolean isValidCountry(JFXComboBox<String> countryComboBox, List<String> validCountries) {
+        return validCountries.contains(countryComboBox.getSelectionModel().getSelectedItem());
     }
 
     @Override
@@ -1248,8 +1282,174 @@ public class HomepageController implements Initializable {
         updateCardAddressButtonState();
         updateGcashButtonState();
         updatePaypalButtonState();
-
+        
         topPane1.setVisible(true);
 
+        /*------------------------------CONSTRAINTS FOR TEXTFIELDS ON PAYMENT FORM--------------------------*/
+        // Set up event handler to restrict input to numbers only for cardNumber
+        cardNumber.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to add auto-spacing every 4 digits for cardNumber
+        cardNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Remove non-digit characters
+            String digitsOnly = newValue.replaceAll("[^0-9]", "");
+
+            // Format the value with spaces every 4 digits, up to 16 digits
+            StringBuilder formatted = new StringBuilder();
+            for (int i = 0; i < digitsOnly.length(); i++) {
+                if (i > 0 && i % 4 == 0 && i < 16) {
+                    formatted.append(" ");
+                }
+                formatted.append(digitsOnly.charAt(i));
+            }
+
+            // Update the text field
+            cardNumber.setText(formatted.toString());
+        });
+
+        // Set up event handler to limit the total length to 16 digits for cardNumber
+        cardNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 19) {
+                cardNumber.setText(oldValue);
+            }
+        });
+
+        // Set up event handler for expirationDate to allow only MM/YY format
+        expirationDate.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String text = expirationDate.getText();
+            if (!event.getCharacter().matches("[0-9/]")) {
+                event.consume();
+            } else if (text.length() == 2 && event.getCharacter().matches("[0-9]")) {
+                expirationDate.setText(text + " / ");
+                expirationDate.positionCaret(expirationDate.getLength() + 1);
+            } else if (text.length() >= 7) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler for expirationDate to limit the total length to 5 characters
+        expirationDate.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 7) {
+                expirationDate.setText(oldValue);
+            }
+        });
+
+        // Set up event handler for securityCode to allow only 3 numbers
+        securityCode.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to limit the total length to 3 digits for securityCode
+        securityCode.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 3) {
+                securityCode.setText(oldValue);
+            }
+        });
+
+        // Set up event handler to restrict input to strings only for cardOwner
+        cardOwner.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s]")) {
+                event.consume();
+            }
+        });
+
+        /*------- Set up event handler to restrict input to strings only for Card Form TextFields ------------*/
+        c_country.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s]")) {
+                event.consume();
+            }
+        });
+
+        c_name.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s\\.]")) {
+                event.consume();
+            }
+        });
+
+        c_city.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s]")) {
+                event.consume();
+            }
+        });
+
+        c_state.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to restrict input to integers only for c_postalCode
+        c_postalCode.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to limit the total length to 16 digits for g_postalCode
+        c_postalCode.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 4) {
+                c_postalCode.setText(oldValue);
+            }
+        });
+
+        /*------- Set up event handler to restrict input to strings only for Gcash Form TextFields ------------*/
+        g_country.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s]")) {
+                event.consume();
+            }
+        });
+
+        g_name.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s\\.]")) {
+                event.consume();
+            }
+        });
+
+        g_city.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s]")) {
+                event.consume();
+            }
+        });
+
+        g_state.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to restrict input to integers only for c_postalCode
+        g_postalCode.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to limit the total length to 16 digits for g_postalCode
+        g_postalCode.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 4) {
+                g_postalCode.setText(oldValue);
+            }
+        });
+
+        /*------- Set up event handler to restrict input to strings only for Paypal Form TextFields ------------*/
+        // Set up event handler to restrict input to integers only for c_postalCode
+        p_phoneNumber.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to limit the total length to 16 digits for g_postalCode
+        p_phoneNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 11) {
+                p_phoneNumber.setText(oldValue);
+            }
+        });
     }
 }

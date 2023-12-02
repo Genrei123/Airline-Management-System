@@ -15,7 +15,7 @@
             <AnchorPane fx:id="starsPane" prefHeight="419.0" prefWidth="633.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <AnchorPane layoutY="23.0" prefHeight="499.0" prefWidth="633.0" styleClass="starsPane1BG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Pane fx:id="starsPane" prefHeight="200.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="starsPane1" prefHeight="200.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <JFXButton fx:id="okBtn" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="249.0" layoutY="372.0" onAction="#notification" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: black; -fx-background-radius: 10; -fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="CLAIM RECEIPT" textFill="WHITE" AnchorPane.bottomAnchor="14.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -25,7 +25,7 @@
                   <Label layoutX="378.0" layoutY="56.0" style="-fx-font-size: 25;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="your ticket with us!" textFill="WHITE" AnchorPane.topAnchor="20.0" />
                   <ImageView fitHeight="168.0" fitWidth="207.0" layoutX="228.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/ICONS/EA%20Logo.png" />
+                        <Image url="@../Images/ICONS/EA Logo.png"  />
                      </image>
                   </ImageView>
                   <Label layoutX="215.0" layoutY="221.0" style="-fx-font-size: 30;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Ermino Airlines" textFill="WHITE" />
