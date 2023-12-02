@@ -2,7 +2,10 @@ package Homepage;
 
 import Animations.SwitchForms;
 import Database.Database;
+import LogIn.Admin;
 import LogIn.AlertManager;
+import Receipt.ReceiptMaker;
+import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -19,6 +22,7 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.*;
 
@@ -115,7 +119,10 @@ public class HomepageController implements Initializable {
     private JFXButton seat_a3;
 
     @FXML
-    private JFXButton seat_a4;
+    private JFXButton seat_a4, seat_a5, seat_a6, seat_a7, seat_a8, seat_a11, seat_a21,
+    seat_a31, seat_a41, seat_a51, seat_a61, seat_a71, seat_a81, seat_b91,
+    seat_b101, seat_b111, seat_b121, seat_b131, seat_b141, seat_b151, seat_b161, seat_b171,
+    seat_b181, seat_b191, seat_b201, seat_b211, seat_b221, seat_b231, seat_b241;
 
     @FXML
     private JFXButton proceed_btn;
@@ -664,7 +671,7 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void handleNextButtonClick(ActionEvent event) throws SQLException {
+    public void handleNextButtonClick(ActionEvent event) throws SQLException, IOException {
         // Switch to paymentForms initially
         switchPaymentForm(cardBtn);
 
@@ -739,40 +746,50 @@ public class HomepageController implements Initializable {
         }
     }
 
-    private void insertDataIntoDatabase() throws SQLException {
+    private void insertDataIntoDatabase() throws SQLException, IOException {
         // Insert Data into the database
-        List<String> columnNames = Arrays.asList(
-                "flight_id",
-                "first_name",
-                "middle_name",
-                "last_name",
-                "suffix",
-                "age",
-                "birth_date",
-                "destination",
-                "origin",
-                "class",
-                "seat",
-                "flight_no"
+
+        // Insert first into the booking table
+        Database booking_table = new Database();
+        Booking infos = Booking.getInstance();
+
+        TicketNo ticketNo = new TicketNo();
+
+        LocalDateTime now = LocalDateTime.now();
+        now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+
+
+
+        String flight_id = "ERM101";
+        String flight_no = TicketNo.generateTicketNo(infos.getFirst_name() + infos.getLast_name());
+        System.out.println(flight_no);
+
+        booking_table.insertData(
+                "booked_flights",
+                Arrays.asList("flight_id", "first_name", "middle_name", "last_name",
+                        "suffix", "age", "birth_date", "destination", "origin", "class",
+                        "seat", "flight_no", "amount"),
+
+                Arrays.asList(flight_id, infos.getFirst_name(), infos.getMiddle_name(), infos.getLast_name(),
+                        infos.getSuffix(), infos.getAge(), infos.getBirthdate(), infos.getDestination(),
+                        infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no,
+                        infos.getAmount())
+
         );
 
-        List<Object> values = Arrays.asList(
-                "test", // flight_id
-                f_name.getText(),
-                m_name.getText(),
-                l_name.getText(),
-                suffix.getText(),
-                Integer.parseInt(age.getText()),
-                (birth_date.getValue() != null) ? birth_date.getValue().toString() : null,
-                destination.getText(),
-                origin.getText(),
-                s_class.getText(),
-                seat.getText(),
-                "test" // flight_no
-        );
+        // Create receipt
+        ReceiptMaker receipt = new ReceiptMaker();
+        receipt.generateReceipt(infos.getFirst_name(), infos.getLast_name(), infos.getAge(), infos.getDestination(), infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no, infos.getAmount());
 
-        Database booked_flights = new Database();
-        booked_flights.insertData("booked_flights", columnNames, values);
+        // Insert into sales
+        Database sales_table = new Database();
+        sales_table.insertData(
+                "sales",
+                Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"),
+
+                Arrays.asList(flight_no, flight_id, infos.getSeatNo(), infos.getFirst_name(), now,  "ON" , "ONLINE", "ONLINE", infos.getAmount())
+        );
 
     }
 
@@ -1063,6 +1080,21 @@ public class HomepageController implements Initializable {
         overlayPane1.setVisible(true);
         overlayPane1.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
 
+        // Add the infos
+        Booking booking = Booking.getInstance();
+        booking.setFirst_name(f_name.getText());
+        booking.setMiddle_name(m_name.getText());
+        booking.setLast_name(l_name.getText());
+        booking.setSuffix(suffix.getText());
+        booking.setAge(Integer.parseInt(age.getText()));
+        booking.setBirth_date(birth_date.getValue());
+        booking.setDestination(destination.getText());
+        booking.setOrigin(origin.getText());
+        booking.setClass(s_class.getText());
+        booking.setSeatNo(seat.getText());
+        booking.setBooking_date(LocalDate.now());
+
+        booking.setTicketNo(TicketNo.generateTicketNo(booking.getFirst_name() + booking.getLast_name()));
     }
 
     public void switchPaymentForm(ActionEvent event) {
@@ -1220,8 +1252,191 @@ public class HomepageController implements Initializable {
         delay.play();
     }
 
+    public void handleSeatButton(JFXButton button) {
+        String buttonLabel = button.getText();
+        cs_seatNum.setText(buttonLabel);
+    }
+
+    // Add this method to initialize the seat buttons
+    private void seatButtons() throws SQLException {
+        // Check if the seat is already taken
+        Database db = new Database();
+        if (db.checkSeats(seat_a1.getText())) {
+            seat_a1.setDisable(true);
+            System.out.println("test");
+        }
+        else { seat_a1.setOnAction(event -> handleSeatButton(seat_a1)); }
+
+        if (db.checkSeats(seat_a2.getText())) {
+            seat_a2.setDisable(true);
+        }
+        else { seat_a2.setOnAction(event -> handleSeatButton(seat_a2)); }
+
+        if (db.checkSeats(seat_a3.getText())) {
+            seat_a3.setDisable(true);
+        }
+        else { seat_a3.setOnAction(event -> handleSeatButton(seat_a3)); }
+
+        if (db.checkSeats(seat_a4.getText())) {
+            seat_a4.setDisable(true);
+        }
+        else { seat_a4.setOnAction(event -> handleSeatButton(seat_a4)); }
+
+        if (db.checkSeats(seat_a5.getText())) {
+            seat_a5.setDisable(true);
+        }
+        else { seat_a5.setOnAction(event -> handleSeatButton(seat_a5)); }
+
+        if (db.checkSeats(seat_a6.getText())) {
+            seat_a6.setDisable(true);
+        }
+        else { seat_a6.setOnAction(event -> handleSeatButton(seat_a6)); }
+
+        if (db.checkSeats(seat_a7.getText())) {
+            seat_a7.setDisable(true);
+        }
+        else { seat_a7.setOnAction(event -> handleSeatButton(seat_a7)); }
+
+        if (db.checkSeats(seat_a8.getText())) {
+            seat_a8.setDisable(true);
+        }
+        else { seat_a8.setOnAction(event -> handleSeatButton(seat_a8)); }
+
+        if (db.checkSeats(seat_a11.getText())) {
+            seat_a11.setDisable(true);
+        }
+        else { seat_a11.setOnAction(event -> handleSeatButton(seat_a11)); }
+
+        if (db.checkSeats(seat_a21.getText())) {
+            seat_a21.setDisable(true);
+        }
+        else { seat_a21.setOnAction(event -> handleSeatButton(seat_a21)); }
+
+        if (db.checkSeats(seat_a31.getText())) {
+            seat_a31.setDisable(true);
+        }
+        else { seat_a31.setOnAction(event -> handleSeatButton(seat_a31)); }
+
+        if (db.checkSeats(seat_a41.getText())) {
+            seat_a41.setDisable(true);
+        }
+        else { seat_a41.setOnAction(event -> handleSeatButton(seat_a41)); }
+
+        if (db.checkSeats(seat_a51.getText())) {
+            seat_a51.setDisable(true);
+        }
+        else { seat_a51.setOnAction(event -> handleSeatButton(seat_a51)); }
+
+        if (db.checkSeats(seat_a61.getText())) {
+            seat_a61.setDisable(true);
+        }
+        else { seat_a61.setOnAction(event -> handleSeatButton(seat_a61)); }
+
+        if (db.checkSeats(seat_a71.getText())) {
+            seat_a71.setDisable(true);
+        }
+        else { seat_a71.setOnAction(event -> handleSeatButton(seat_a71)); }
+
+        if (db.checkSeats(seat_a81.getText())) {
+            seat_a81.setDisable(true);
+        }
+        else { seat_a81.setOnAction(event -> handleSeatButton(seat_a81)); }
+
+        if (db.checkSeats(seat_b91.getText())) {
+            seat_b91.setDisable(true);
+        }
+        else { seat_b91.setOnAction(event -> handleSeatButton(seat_b91)); }
+
+        if (db.checkSeats(seat_b101.getText())) {
+            seat_b101.setDisable(true);
+        }
+        else { seat_b101.setOnAction(event -> handleSeatButton(seat_b101)); }
+
+        if (db.checkSeats(seat_b111.getText())) {
+            seat_b111.setDisable(true);
+        }
+        else { seat_b111.setOnAction(event -> handleSeatButton(seat_b111)); }
+
+        if (db.checkSeats(seat_b121.getText())) {
+            seat_b121.setDisable(true);
+        }
+        else { seat_b121.setOnAction(event -> handleSeatButton(seat_b121)); }
+
+        if (db.checkSeats(seat_b131.getText())) {
+            seat_b131.setDisable(true);
+        }
+        else { seat_b131.setOnAction(event -> handleSeatButton(seat_b131)); }
+
+        if (db.checkSeats(seat_b141.getText())) {
+            seat_b141.setDisable(true);
+        }
+        else { seat_b141.setOnAction(event -> handleSeatButton(seat_b141)); }
+
+        if (db.checkSeats(seat_b151.getText())) {
+            seat_b151.setDisable(true);
+        }
+        else { seat_b151.setOnAction(event -> handleSeatButton(seat_b151)); }
+
+        if (db.checkSeats(seat_b161.getText())) {
+            seat_b161.setDisable(true);
+        }
+        else { seat_b161.setOnAction(event -> handleSeatButton(seat_b161)); }
+
+        if (db.checkSeats(seat_b171.getText())) {
+            seat_b171.setDisable(true);
+        }
+        else { seat_b171.setOnAction(event -> handleSeatButton(seat_b171)); }
+
+        if (db.checkSeats(seat_b181.getText())) {
+            seat_b181.setDisable(true);
+        }
+        else { seat_b181.setOnAction(event -> handleSeatButton(seat_b181)); }
+
+        if (db.checkSeats(seat_b191.getText())) {
+            seat_b191.setDisable(true);
+        }
+        else {seat_b191.setOnAction(event -> handleSeatButton(seat_b191)); }
+
+        if (db.checkSeats(seat_b201.getText())) {
+            seat_b201.setDisable(true);
+        }
+        else {seat_b201.setOnAction(event -> handleSeatButton(seat_b201)); }
+
+        if (db.checkSeats(seat_b211.getText())) {
+            seat_b211.setDisable(true);
+        }
+        else {seat_b211.setOnAction(event -> handleSeatButton(seat_b211)); }
+
+        if (db.checkSeats(seat_b221.getText())) {
+            seat_b221.setDisable(true);
+        }
+        else {seat_b221.setOnAction(event -> handleSeatButton(seat_b221)); }
+
+        if (db.checkSeats(seat_b231.getText())) {
+            seat_b231.setDisable(true);
+        }
+        else {seat_b231.setOnAction(event -> handleSeatButton(seat_b231)); }
+
+        if (db.checkSeats(seat_b241.getText())) {
+            seat_b241.setDisable(true);
+        }
+
+        else {
+            seat_b241.setOnAction(event -> handleSeatButton(seat_b241));
+        }
+
+        // Add more seat buttons as needed
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Initialize chooseseat buttons
+        try {
+            seatButtons();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //Combo-Box initialize
         seatClass();
         // Initialize the menu slider in the closed state

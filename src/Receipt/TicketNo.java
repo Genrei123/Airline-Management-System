@@ -1,7 +1,12 @@
 package Receipt;
 
+import java.time.LocalDate;
+
 public class TicketNo {
-    public static String getTicketNo(String name) {
-        return "T" + String.format("%06d", (int) (Math.random() * 1000000));
+    public static String generateTicketNo(String name) {
+        LocalDate date = LocalDate.now();
+        String PLANEID = "ERM101";
+        String ticketNo = date + PLANEID + name.hashCode();
+        return ticketNo;
     }
 }

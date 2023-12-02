@@ -4,7 +4,12 @@
  */
 package Homepage;
 
+import Receipt.ReceiptMaker;
+import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
+
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -41,7 +46,7 @@ public class NotifController implements Initializable {
         this.homepageController = homepageController;
     }
 
-    public void notification() {
+    public void notification() throws IOException {
         // Close the current stage (Notif.fxml)
         Stage stage = (Stage) okBtn.getScene().getWindow();
         stage.close();
@@ -50,6 +55,13 @@ public class NotifController implements Initializable {
         if (homepageController != null) {
             homepageController.handleReturnToDestiButtonClick();
         }
+
+        // Open the receipt
+        ReceiptMaker receiptMaker = new ReceiptMaker();
+        Booking booking = Booking.getInstance();
+
+        receiptMaker.openReceipt(receiptMaker.getReceiptPath(booking.getTicketNo()));
+
     }
 
     @FXML
@@ -129,6 +141,13 @@ public class NotifController implements Initializable {
         createTwinklingStars();
         // Make the starsPane visible when the application is running
         starsPane.setVisible(true);
+
+        // Set the ticket number
+        TicketNo ticketNo = new TicketNo();
+        Booking booking = Booking.getInstance();
+
+        ticketNum.setText(ticketNo.generateTicketNo(booking.getFirst_name() + booking.getLast_name()));
+
     }
 
 }

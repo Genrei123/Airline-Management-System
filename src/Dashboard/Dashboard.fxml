@@ -619,7 +619,7 @@
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="bookedFlights_form" layoutY="6.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="bookedFlights_form" layoutY="6.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane layoutX="312.0" layoutY="74.0" prefHeight="470.0" prefWidth="4.0" style="-fx-background-color: white; -fx-background-radius: 5px;" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="286.0" AnchorPane.topAnchor="25.0" />
                   <TextField fx:id="bf_search" layoutX="304.0" layoutY="28.0" prefHeight="43.0" prefWidth="491.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="28.0">
@@ -791,7 +791,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="overlayPane" prefHeight="600.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="dashboard_slider" prefHeight="600.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutY="47.0" prefHeight="276.0" prefWidth="210.0" styleClass="sidebar-bg" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                <children>

@@ -11,18 +11,23 @@ import com.itextpdf.kernel.pdf.canvas.draw.DashedLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.element.Image;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ReceiptMaker {
-    public static void main(String[] args) throws IOException {
+
+    public void generateReceipt(String first_name, String last_name, int age, String destination, String origin, String class1, String seat, String flight_no, double amount) throws IOException {
+
+
         // Directory and name of the file
         String currentDir = System.getProperty("user.dir");
         StringBuilder path = new StringBuilder();
-        String TICKET_NUMBER = "20220456";
-        path.append(currentDir + "/src/Receipt/" + TICKET_NUMBER + ".pdf");
+        path.append(currentDir + "/src/Receipt/" + flight_no + ".pdf");
 
         // Properties of the said file
         PdfWriter pdfWriter = new PdfWriter(path.toString());
@@ -40,7 +45,7 @@ public class ReceiptMaker {
         Table header = new Table(twoColumnWidth);
 
         header.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER).setFont(PdfFontFactory.createFont("Helvetica")));
-        header.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + TICKET_NUMBER + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
+        header.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + flight_no + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
         document.add(header);
 
         // Watermark
@@ -61,11 +66,11 @@ public class ReceiptMaker {
         // Passenger Info
         document.add(new Paragraph("PASSENGER INFO").setBold());
         passengerInfobody.addCell(new Cell().add(new Paragraph(
-                "PASSENGER NAME: " + "John Doe" + "\n"
+                "PASSENGER NAME: " + first_name + "\n"
                 + "SEX: M" + "\n")).setBorder(Border.NO_BORDER));
         passengerInfobody.addCell(new Cell().add(new Paragraph(
-                "PASSENGER SURNAME: " + "Doe" + "\n"
-                + "AGE: 25" + "\n")).setBorder(Border.NO_BORDER));
+                "PASSENGER SURNAME: " + last_name + "\n"
+                + "AGE: " + age + "\n")).setBorder(Border.NO_BORDER));
         document.add(passengerInfobody);
 
         // Space
@@ -75,14 +80,14 @@ public class ReceiptMaker {
         Table flightInfobody = new Table(twoColumnWidthBody);
         document.add(new Paragraph("FLIGHT INFO").setBold());
         flightInfobody.addCell(new Cell().add(new Paragraph(
-                "PASSENGER NAME: " + "John Doe" + "\n"
+                "PASSENGER NAME: " + first_name + "\n"
                 + "FLIGHT DATE: " + "12/12/2021" + "\n"
-                + "FLIGHT FROM: " + "Istanbul" + "\n")).setBorder(Border.NO_BORDER));
+                + "FLIGHT FROM: " + origin + "\n")).setBorder(Border.NO_BORDER));
 
         flightInfobody.addCell(new Cell().add(new Paragraph(
                 "FLIGHT NUMBER: " + "ER-123" + "\n"
                 + "FLIGHT TIME: " + "12:00" + "\n"
-                + "FLIGHT TO: " + "Ankara" + "\n")).setBorder(Border.NO_BORDER));
+                + "FLIGHT TO: " + destination + "\n")).setBorder(Border.NO_BORDER));
         document.add(flightInfobody);
 
         // Space
@@ -100,7 +105,7 @@ public class ReceiptMaker {
         Table header2 = new Table(twoColumnWidth2);
 
         header2.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER));
-        header2.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + TICKET_NUMBER + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
+        header2.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + flight_no + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
         document.add(header2);
 
         // Space
@@ -110,14 +115,33 @@ public class ReceiptMaker {
         float twoColumnWidthBody2[] = {285+150};
         Table passengerInfobody2 = new Table(twoColumnWidthBody2);
 
-        passengerInfobody2.addCell(new Cell().add(new Paragraph("FLIGHT NUMBER: " + "ER-123" +"\n"
-                + "CLASS SEAT: " + "Economy" + "\n"
-                + "SEAT NO. : " + "12A" + "\n")).setBorder(Border.NO_BORDER));
+        passengerInfobody2.addCell(new Cell().add(new Paragraph("FLIGHT NUMBER: " + flight_no +"\n"
+                + "CLASS SEAT: " + class1 + "\n"
+                + "SEAT NO. : " + seat + "\n")).setBorder(Border.NO_BORDER));
 
         document.add(passengerInfobody2);
 
         // Space
         document.add(new Paragraph("\n"));
         document.close();
+
+        // Body3
+        float twoColumnWidthBody3[] = {285+150};
+        Table passengerInfobody3 = new Table(twoColumnWidthBody3);
+
+        passengerInfobody3.addCell(new Cell().add(new Paragraph("TOTAL AMOUNT: " + amount + "\n")).setBorder(Border.NO_BORDER));
+    }
+
+    public String getReceiptPath(String flight_no) {
+        String currentDir = System.getProperty("user.dir");
+        StringBuilder path = new StringBuilder();
+        path.append(currentDir + "/src/Receipt/" + flight_no + ".pdf");
+        return path.toString();
+    }
+
+    // Open receipt
+    public void openReceipt(String path) throws IOException {
+        File file = new File(path);
+        Desktop.getDesktop().open(file);
     }
 }

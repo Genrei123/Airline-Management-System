@@ -433,4 +433,36 @@ public class Database {
 
         return 0;
     }
+
+    public boolean checkSeats(String seatNo) throws SQLException {
+        String query = "SELECT seat  FROM `booked_flights` WHERE seat = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, seatNo);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    System.out.println("Seat is booked at: " + seatNo);
+                    return true;
+                }
+
+                else {
+                    System.out.println("No Seat is booked at: " + seatNo);
+                    return false;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
 }

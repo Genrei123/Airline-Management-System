@@ -680,12 +680,12 @@
                            </font>
                         </Label>
                         <TextField fx:id="bf_amount" layoutX="23.0" layoutY="356.0" prefHeight="23.0" prefWidth="233.0" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="356.0" />
-                        <JFXButton fx:id="bf_createBtn" layoutX="36.0" layoutY="510.0" onAction="#bf_createBtn" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Create Ticket" textFill="#f8f8f8" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="510.0">
+                        <JFXButton fx:id="bf_createBtn" layoutX="13.0" layoutY="510.0" onAction="#bf_createBtn" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Create Ticket" textFill="#f8f8f8" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="510.0">
                            <font>
                               <Font name="Segoe UI" size="12.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="bf_deleteBtn" layoutX="138.0" layoutY="510.0" onAction="#bf_deleteBtn" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Delete" textFill="#f8f8f8" AnchorPane.leftAnchor="138.0">
+                        <JFXButton fx:id="bf_deleteBtn" layoutX="103.0" layoutY="510.0" onAction="#bf_deleteBtn" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Delete" textFill="#f8f8f8" AnchorPane.leftAnchor="103.0">
                            <font>
                               <Font name="Segoe UI" size="12.0" />
                            </font>
@@ -705,6 +705,11 @@
                               <Font name="Segoe UI" size="16.0" />
                            </font>
                         </Label>
+                        <JFXButton fx:id="bf_clear" layoutX="194.0" layoutY="510.0" onAction="#bf_clear" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Clear" textFill="#f8f8f8" AnchorPane.leftAnchor="194.0">
+                           <font>
+                              <Font name="Segoe UI" size="12.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
                   <TableView fx:id="bookedFlights_table" layoutX="304.0" layoutY="83.0" prefHeight="449.0" prefWidth="885.0">
@@ -720,11 +725,6 @@
                     </columns>
                   </TableView>
                   <JFXComboBox fx:id="bf_searchBy" focusColor="TRANSPARENT" layoutX="812.0" layoutY="28.0" prefHeight="43.0" prefWidth="203.0" styleClass="search" stylesheets="@DashboardStyles.css" unFocusColor="#f7f7f700" />
-                  <JFXButton fx:id="bf_clear" layoutX="1023.0" layoutY="34.0" onAction="#bf_clear" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #5b5b5b; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@DashboardStyles.css" text="Clear" textFill="#f8f8f8" AnchorPane.leftAnchor="1023.0">
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font>
-                  </JFXButton>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="dashboard_form" layoutX="10.0" layoutY="10.0" prefHeight="594.0" prefWidth="1064.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
