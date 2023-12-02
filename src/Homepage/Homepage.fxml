@@ -67,12 +67,22 @@
                   </AnchorPane>
                   <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
+                        <Label layoutX="28.0" layoutY="29.0" prefHeight="58.0" prefWidth="210.0" text="Select CLASS:" textFill="WHITE">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="32.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
+                        <Label layoutX="28.0" layoutY="105.0" prefHeight="53.0" prefWidth="143.0" text="Name:" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="105.0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="183.0" text="Account Creation Date:" textFill="WHITE">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <JFXComboBox layoutX="238.0" layoutY="36.0" prefHeight="45.0" prefWidth="131.0" style="-fx-background-color: #29ABE2;" unFocusColor="#0564e1" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="whereWeFly_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -95,7 +105,7 @@
                         <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
+                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0" visible="false">
                      <children>
                         <AnchorPane fx:id="hf_bookFlight" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
