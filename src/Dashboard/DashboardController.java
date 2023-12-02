@@ -190,7 +190,7 @@ public class DashboardController implements Initializable {
     private JFXTimePicker bf_time;
 
     @FXML
-    private JFXButton bf_addBtn;
+    private JFXButton bf_createBtn;
 
     @FXML
     private JFXButton bf_updateBtn;
@@ -263,6 +263,24 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXButton fm_managerADD, fm_managerUPDATE, fm_managerDELETE;
+
+    @FXML
+    private JFXButton airplaneManager_btn;
+
+    @FXML
+    private JFXComboBox<String> bf_searchBy;
+
+    @FXML
+    private JFXDatePicker bf_bookingDate, bf_departDate, bf_arrivalDate;
+
+    @FXML
+    private TableColumn<String[], String> bf_flightNO, bf_depart, bf_dest, bf_arrival, bf_tableName, bf_cseat, bf_bookDate, bf_amountTable;
+
+    @FXML
+    private TextField bf_flightID, bf_classSeat, bf_destination, bf_amount, bf_name;
+
+    @FXML
+    private JFXComboBox<String> bf_class;
 
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
@@ -653,6 +671,83 @@ public class DashboardController implements Initializable {
 
     }
 
+    private void loadBookedFlights() {
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("booked_flights",
+                Arrays.asList("flight_id", "departure", "destination", "arrival", "last_name", "class", "book_date", "amount"));
+
+        if (data != null) {
+            bookedFlights_table.setItems(data);
+            bf_flightNO.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            bf_depart.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            bf_dest.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            bf_arrival.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            bf_tableName.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            bf_cseat.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            bf_bookDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
+            bf_amountTable.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+    }
+
+    public void bf_createBtn() throws SQLException {
+        String flightID = bf_flightID.getText();
+        String classSeat = bf_classSeat.getText();
+        String destination = bf_destination.getText();
+        String amount = bf_amount.getText();
+        String name = bf_name.getText();
+
+        LocalDateTime bookingDateTime = LocalDateTime.of(bf_bookingDate.getValue(), bf_time.getValue());
+        LocalDateTime departureDateTime = LocalDateTime.of(bf_departDate.getValue(), bf_time.getValue());
+        LocalDateTime arrivalDateTime = LocalDateTime.of(bf_arrivalDate.getValue(), bf_time.getValue());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String bookingDate = bookingDateTime.format(formatter);
+        String departureDate = departureDateTime.format(formatter);
+        String arrivalDate = arrivalDateTime.format(formatter);
+
+        Database database = new Database();
+        database.insertData("booked_flights",
+                Arrays.asList("flight_no", "class", "destination", "amount", "name", "booking_date", "departure_date", "arrival_date"),
+                Arrays.asList(flightID, classSeat, destination, amount, name, bookingDate, departureDate, arrivalDate));
+    }
+
+    public void bf_deleteBtn() throws SQLException {
+        String flightID = bf_flightID.getText();
+        String classSeat = bf_classSeat.getText();
+        String destination = bf_destination.getText();
+        String amount = bf_amount.getText();
+        String name = bf_name.getText();
+
+        LocalDateTime bookingDateTime = LocalDateTime.of(bf_bookingDate.getValue(), bf_time.getValue());
+        LocalDateTime departureDateTime = LocalDateTime.of(bf_departDate.getValue(), bf_time.getValue());
+        LocalDateTime arrivalDateTime = LocalDateTime.of(bf_arrivalDate.getValue(), bf_time.getValue());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String bookingDate = bookingDateTime.format(formatter);
+        String departureDate = departureDateTime.format(formatter);
+        String arrivalDate = arrivalDateTime.format(formatter);
+
+        Database database = new Database();
+        database.deleteData("booked_flights",
+                Arrays.asList("flight_no", "class", "destination", "amount", "name", "booking_date", "departure_date", "arrival_date"),
+                Arrays.asList(flightID, classSeat, destination, amount, name, bookingDate, departureDate, arrivalDate));
+    }
+
+    public void bf_clear() {
+        bf_flightID.setText("");
+        bf_classSeat.setText("");
+        bf_destination.setText("");
+        bf_amount.setText("");
+        bf_name.setText("");
+        bf_bookingDate.setValue(null);
+        bf_departDate.setValue(null);
+        bf_arrivalDate.setValue(null);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -789,6 +884,62 @@ public class DashboardController implements Initializable {
 
 
         // Flight manager ends here
+
+        // Book flights starts here
+        loadBookedFlights();
+
+        bookedFlights_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                String[] selected = bookedFlights_table.getSelectionModel().getSelectedItem();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(selected[6], formatter);
+                bf_bookingDate.setValue(dateTime.toLocalDate());
+
+                LocalDateTime dateTime2 = LocalDateTime.parse(selected[1], formatter);
+                bf_departDate.setValue(dateTime2.toLocalDate());
+
+                LocalDateTime dateTime3 = LocalDateTime.parse(selected[3], formatter);
+                bf_arrivalDate.setValue(dateTime3.toLocalDate());
+
+                bf_flightID.setText(selected[0]);
+                bf_classSeat.setText(selected[5]);
+                bf_destination.setText(selected[2]);
+                bf_amount.setText(selected[7]);
+                bf_name.setText(selected[4]);
+
+            }
+        });
+
+        String[] search_choices4 = {"ECONOMY", "BUSINESS", "PREMIUM", "VIP"};
+        List<String> listQ4 = new ArrayList<>();
+
+        for (String data1 : search_choices4) {
+            listQ4.add(data1);
+        }
+        ObservableList listData4 = FXCollections.observableArrayList(listQ4);
+        bf_class.setItems(listData4);
+        bf_class.setValue("ECONOMY");
+
+        bf_class.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == "ECONOMY") {
+                bf_amount.setText("1000");
+            }
+
+            else if (newValue == "BUSINESS") {
+                bf_amount.setText("2000");
+            }
+
+            else if (newValue == "PREMIUM") {
+                bf_amount.setText("3000");
+            }
+
+            else if (newValue == "VIP") {
+                bf_amount.setText("4000");
+            }
+        });
+
+        // Book flights ends here
 
 
 

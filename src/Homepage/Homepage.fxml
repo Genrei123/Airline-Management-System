@@ -363,7 +363,7 @@
                                           <Image url="@../Images/Plane%20Images/Business%20Class.png" />
                                        </image>
                                     </ImageView>
-                                    <JFXButton fx:id="seat_a11" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="265.0" layoutY="14.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="1A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="15.0">
+                                    <JFXButton fx:id="seat_a11" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="253.0" layoutY="15.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="1A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.leftAnchor="253.0" AnchorPane.topAnchor="15.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -374,7 +374,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a21" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="265.0" layoutY="66.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="2A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="65.0">
+                                    <JFXButton fx:id="seat_a21" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="253.0" layoutY="65.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="2A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.leftAnchor="253.0" AnchorPane.topAnchor="65.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -385,7 +385,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a31" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="265.0" layoutY="190.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="3A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="265.0">
+                                    <JFXButton fx:id="seat_a31" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="253.0" layoutY="191.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="3A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="253.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -396,7 +396,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a41" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="265.0" layoutY="241.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="4A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="265.0">
+                                    <JFXButton fx:id="seat_a41" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="253.0" layoutY="242.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="4A" textFill="#514e4e" textOverrun="CLIP" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="253.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -407,7 +407,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a51" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="308.0" layoutY="14.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="5A" textFill="#514e4e" textOverrun="CLIP">
+                                    <JFXButton fx:id="seat_a51" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="296.0" layoutY="14.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="5A" textFill="#514e4e" textOverrun="CLIP">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -418,7 +418,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a61" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="308.0" layoutY="66.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="6A" textFill="#514e4e" textOverrun="CLIP">
+                                    <JFXButton fx:id="seat_a61" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="296.0" layoutY="66.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="6A" textFill="#514e4e" textOverrun="CLIP">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -429,7 +429,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a71" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="308.0" layoutY="190.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="7A" textFill="#514e4e" textOverrun="CLIP">
+                                    <JFXButton fx:id="seat_a71" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="296.0" layoutY="190.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="7A" textFill="#514e4e" textOverrun="CLIP">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -440,7 +440,183 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                    <JFXButton fx:id="seat_a81" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="308.0" layoutY="241.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="8A" textFill="#514e4e" textOverrun="CLIP">
+                                    <JFXButton fx:id="seat_a81" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="296.0" layoutY="241.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="8A" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a91" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="355.0" layoutY="14.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="9B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a101" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="355.0" layoutY="66.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="10B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a111" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="355.0" layoutY="190.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="11B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a121" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="355.0" layoutY="241.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="12B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a131" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="398.0" layoutY="14.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="13B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a141" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="398.0" layoutY="66.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="14B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a151" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="398.0" layoutY="190.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="15B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a161" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="398.0" layoutY="241.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="16B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_171" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="447.0" layoutY="15.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="17B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a181" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="447.0" layoutY="67.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="18B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a191" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="447.0" layoutY="191.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="19B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a201" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="447.0" layoutY="242.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="20B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a211" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="490.0" layoutY="15.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="21B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a221" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="490.0" layoutY="67.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="22B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a231" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="490.0" layoutY="191.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="23B" textFill="#514e4e" textOverrun="CLIP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <JFXButton fx:id="seat_a241" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="490.0" layoutY="242.0" prefHeight="45.0" prefWidth="35.0" style="-fx-background-color: #b2d58a; -fx-padding: 0 0 0 0;" text="24B" textFill="#514e4e" textOverrun="CLIP">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
