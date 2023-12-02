@@ -76,7 +76,14 @@
 }
 
 .starsPane1BG {
-    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 50%, center 50% 100%, radius 50%, derive(#87CEEB, 30%), derive(#001F3F, -30%));
+    -fx-background-color: linear-gradient(
+            to right,
+            #87CEEB 0%,
+            #A4D2F5 30%,
+            #C1DBEB 50%,
+            #DEF2F7 70%,
+            #001F3F 100%
+    );
 }
 
 .textfieldBG {

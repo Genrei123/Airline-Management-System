@@ -13,18 +13,9 @@ import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.util.Duration;
-
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.Month;
-import java.util.*;
-
-import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,9 +23,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
+
 
 public class DashboardController implements Initializable {
 
@@ -241,6 +241,26 @@ public class DashboardController implements Initializable {
 
     @FXML
     private AnchorPane cs_rebookingForm, cs_updateForm;
+
+    @FXML
+    private TableView<String[]> fm_managerTable;
+
+    @FXML
+    private TableColumn<String[], String> fm_managerAirplaneID, fm_managerFlightNO, fm_managerDEST, fm_managerORIGIN, fm_managerSTATUS, fm_managerORIGINDATE, fm_managerDESTDATE;
+
+    @FXML
+    private JFXComboBox<String> fm_managerAirplaneIDbox, fm_managerFlightNObox, fm_managerDESTbox, fm_managerORIGINbox, fm_managerSTATUSbox, fm_managerDESTDATEbox;
+
+    @FXML
+    private TextField fm_managerFLIGHTNOtxt;
+
+    @FXML
+    private JFXTimePicker fm_timeDeparture, ETOA;
+
+    @FXML
+    private JFXDatePicker fm_dateDeparture, fm_dateArrival;
+
+
 
 
 
@@ -524,6 +544,26 @@ public class DashboardController implements Initializable {
         getSales();
     }
 
+    public void load_fm_managerTable() {
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("flight_manager", Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"));
+
+        if (data != null) {
+            fm_managerTable.setItems(data);
+            fm_managerAirplaneID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            fm_managerFlightNO.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            fm_managerDEST.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            fm_managerORIGIN.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            fm_managerSTATUS.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            fm_managerORIGINDATE.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            fm_managerDESTDATE.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -586,6 +626,9 @@ public class DashboardController implements Initializable {
         // For sales
         getSales();
 
+        // For flight manager
+        load_fm_managerTable();
+
         // For searching in ticket records
         String[] search_choices = {"flight_no", "airplane_no", "initial_departure", "departure", "destination", "origin", "seat_no", "class"};
         List<String> listQ = new ArrayList<>();
@@ -612,6 +655,27 @@ public class DashboardController implements Initializable {
 
         // Sales ends here
 
+        // For flight manager
+        fm_managerTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                String[] selected = fm_managerTable.getSelectionModel().getSelectedItem();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(selected[5], formatter);
+
+                fm_dateDeparture.setValue(dateTime.toLocalDate());
+                fm_timeDeparture.setValue(dateTime.toLocalTime());
+
+                LocalDateTime dateTime2 = LocalDateTime.parse(selected[6], formatter);
+                fm_dateArrival.setValue(dateTime2.toLocalDate());
+                ETOA.setValue(dateTime2.toLocalTime());
+            }
+        });
+
+        // Flight manager ends here
+
+
+
         // Auto requery when something is changed within the database
         // Create a timeline for periodic polling (adjust the Duration as needed)
         Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(1), event -> {
@@ -619,6 +683,7 @@ public class DashboardController implements Initializable {
             System.out.println("Re-querying");
             getSales();
             getTicketRecords();
+            load_fm_managerTable();
 
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

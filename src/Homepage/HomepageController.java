@@ -1249,5 +1249,7 @@ public class HomepageController implements Initializable {
         updateGcashButtonState();
         updatePaypalButtonState();
 
+        topPane1.setVisible(true);
+
     }
 }
