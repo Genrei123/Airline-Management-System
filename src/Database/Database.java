@@ -57,7 +57,7 @@ public class Database {
         }
 
         if (!condition.isEmpty()) {
-            query.append("WHERE ");
+            query.append(" WHERE ");
             for (int i = 0; i < condition.size(); i++) {
                 query.append(condition.get(i) + " = ?");
                 if (i < condition.size() - 1) {
@@ -187,6 +187,38 @@ public class Database {
             System.out.println("Cannot connect to the database");
         }
         return null;
+    }
+
+    public void deleteData(String tableName, List<String> condition, List<Object> conditionValue) throws SQLException {
+        StringBuilder query = new StringBuilder("DELETE FROM " + tableName);
+
+        if (!condition.isEmpty()) {
+            query.append(" WHERE ");
+            for (int i = 0; i < condition.size(); i++) {
+                query.append(condition.get(i) + " = ?");
+                if (i < condition.size() - 1) {
+                    query.append(" AND ");
+                }
+            }
+        }
+        System.out.println("Generated SQL Query for delete: " + query);
+
+        for (int i = 0; i < conditionValue.size(); i++) {
+            System.out.println("Condition values: " + conditionValue.get(i));
+        }
+
+        connector = connectDB.connectDB();
+        prepare = connector.prepareStatement(query.toString());
+
+        // Set the condition values
+        for (int i = 0; i < conditionValue.size(); i++) {
+            prepare.setObject(i + 1, conditionValue.get(i));
+        }
+
+        prepare.executeUpdate();
+        prepare.close();
+        connector.close();
+
     }
 
     public boolean checkAccount(String username, String password) throws SQLException {

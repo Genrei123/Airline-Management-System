@@ -737,7 +737,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="overlayPane1" layoutX="10.0" layoutY="10.0" prefHeight="672.0" prefWidth="1071.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="overlayPane1" layoutX="10.0" layoutY="10.0" prefHeight="672.0" prefWidth="1071.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <AnchorPane id="AnchorPane" fx:id="payment_form" layoutX="276.0" layoutY="183.0" prefHeight="359.0" prefWidth="510.0" visible="false">
                <children>
                   <AnchorPane fx:id="topPane1" prefHeight="109.0" prefWidth="510.0" styleClass="starsPane1BG" stylesheets="@PaymentStyles.css">
@@ -839,7 +839,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cardForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+                  <AnchorPane fx:id="cardForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
                         <ScrollPane fx:id="c_form1" focusTraversable="false" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <content>
@@ -855,25 +855,26 @@
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="cardNumber" focusColor="#405aa800" layoutX="15.0" layoutY="47.0" prefHeight="31.0" prefWidth="460.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="47.0" />
+                                    <JFXTextField fx:id="cardNumber" focusColor="#405aa800" layoutX="15.0" layoutY="47.0" prefHeight="31.0" prefWidth="460.0" promptText="Card Number" style="-fx-padding: 0 8 0 45;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="47.0" />
+                                    <FontAwesomeIconView fill="#ffb44f" glyphName="CREDIT_CARD_ALT" layoutX="22.0" layoutY="71.0" size="25" />
                                     <Label layoutX="15.0" layoutY="90.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="EXPIRATION DATE" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="expirationDate" focusColor="#405aa800" layoutX="16.0" layoutY="119.0" prefHeight="31.0" prefWidth="212.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <JFXTextField fx:id="expirationDate" focusColor="#405aa800" layoutX="16.0" layoutY="119.0" prefHeight="31.0" prefWidth="212.0" promptText="MM/YY" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
                                     <Label layoutX="262.0" layoutY="89.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SECURITY CODE" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="securityCode" focusColor="#405aa800" layoutX="263.0" layoutY="118.0" prefHeight="31.0" prefWidth="212.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <JFXTextField fx:id="securityCode" focusColor="#405aa800" layoutX="263.0" layoutY="118.0" prefHeight="31.0" prefWidth="212.0" promptText="Security Code" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
                                     <Label layoutX="15.0" layoutY="165.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="NAME OF THE CARD OWNER" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inria Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="cardOwner" focusColor="#405aa800" layoutX="16.0" layoutY="194.0" prefHeight="31.0" prefWidth="460.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <JFXTextField fx:id="cardOwner" focusColor="#405aa800" layoutX="16.0" layoutY="194.0" prefHeight="31.0" prefWidth="460.0" promptText="Name" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
                                     <AnchorPane layoutX="6.0" layoutY="246.0" prefHeight="72.0" prefWidth="491.0" styleClass="bottomBG" stylesheets="@HomepageStyles1.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <children>
                                           <JFXButton fx:id="c_nextBtn1" alignment="CENTER" layoutX="399.0" layoutY="18.0" onAction="#switchCardForm" prefHeight="36.0" prefWidth="82.0" styleClass="paymentButton" stylesheets="@PaymentStyles.css" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
@@ -902,7 +903,7 @@
                               </AnchorPane>
                            </content>
                         </ScrollPane>
-                        <ScrollPane fx:id="c_form2" focusTraversable="false" layoutX="10.0" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                        <ScrollPane fx:id="c_form2" focusTraversable="false" layoutX="10.0" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <content>
                               <AnchorPane prefHeight="547.0" prefWidth="493.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css">
                                  <children>
@@ -978,7 +979,7 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="gcashForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+                  <AnchorPane fx:id="gcashForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
                         <ScrollPane fx:id="g_form1" focusTraversable="false" prefHeight="253.0" prefWidth="510.0" style="-fx-padding: 0 0 0 0;" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <content>
@@ -1019,7 +1020,7 @@
                                           <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="g_state" focusColor="#405aa800" layoutX="16.0" layoutY="421.0" prefHeight="31.0" prefWidth="212.0" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <JFXTextField fx:id="g_state" focusColor="#405aa800" layoutX="16.0" layoutY="421.0" prefHeight="31.0" prefWidth="212.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
                                     <Label layoutX="262.0" layoutY="391.0" style="-fx-font-size: 15;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="POSTAL CODE" textFill="#a4a8af">
                                        <font>
                                           <Font name="Inter Bold" size="15.0" />
@@ -1056,7 +1057,7 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="paypalForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+                  <AnchorPane fx:id="paypalForm" prefHeight="360.0" prefWidth="512.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
                         <Label layoutX="-85.0" layoutY="18.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="PAYPAL ACCOUNT" textFill="#a4a8af" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
                            <font>

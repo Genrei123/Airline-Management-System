@@ -338,7 +338,7 @@
                   <JFXComboBox fx:id="trt_searchBy" focusColor="TRANSPARENT" layoutX="614.0" layoutY="26.0" prefHeight="25.0" prefWidth="167.0" styleClass="search" stylesheets="@DashboardStyles.css" unFocusColor="#f7f7f700" />
                   <JFXButton layoutX="792.0" layoutY="25.0" onAction="#tr_clear" style="-fx-background-color: #5b5b5b;" styleClass="jfx-button-dashboard" stylesheets="@DashboardStyles.css" text="Clear Searches" textFill="WHITE" />
                </children></AnchorPane>
-            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="fm_managerBtn" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MANAGER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
                      <font>
@@ -433,9 +433,9 @@
                                        </font>
                                     </Label>
                                     <JFXDatePicker fx:id="fm_dateDeparture" layoutX="213.0" layoutY="210.0" prefHeight="25.0" prefWidth="164.0" AnchorPane.rightAnchor="6.0" />
-                                    <JFXButton layoutX="25.0" layoutY="607.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="ADD" textFill="WHITE" />
-                                    <JFXButton layoutX="147.0" layoutY="607.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="UPDATE" textFill="WHITE" />
-                                    <JFXButton layoutX="267.0" layoutY="607.0" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="DELETE" textFill="WHITE" />
+                                    <JFXButton fx:id="fm_managerADD" layoutX="25.0" layoutY="607.0" onAction="#fm_managerADD" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="ADD" textFill="WHITE" />
+                                    <JFXButton fx:id="fm_managerUPDATE" layoutX="147.0" layoutY="607.0" onAction="#fm_managerUPDATE" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="UPDATE" textFill="WHITE" />
+                                    <JFXButton fx:id="fm_managerDELETE" layoutX="267.0" layoutY="607.0" onAction="#fm_managerDELETE" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="DELETE" textFill="WHITE" />
                                     <TextField layoutX="221.0" layoutY="290.0" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #7B7B7B;" styleClass="textField" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="42.0" />
                                     <JFXDatePicker fx:id="fm_dateArrival" layoutX="229.0" layoutY="296.0" prefHeight="25.0" prefWidth="164.0" AnchorPane.rightAnchor="6.0" />
                                     <Label layoutX="222.0" layoutY="268.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DATE OF ARRIVAL" textFill="#ffffffe5" AnchorPane.leftAnchor="208.0">

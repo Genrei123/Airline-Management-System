@@ -25,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -260,9 +261,8 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXDatePicker fm_dateDeparture, fm_dateArrival;
 
-
-
-
+    @FXML
+    private JFXButton fm_managerADD, fm_managerUPDATE, fm_managerDELETE;
 
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
@@ -564,6 +564,95 @@ public class DashboardController implements Initializable {
         }
     }
 
+    public void fm_managerADD() throws SQLException {
+        String airplane_id = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String flightNo = fm_managerFLIGHTNOtxt.getText();
+
+        LocalDateTime departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
+        LocalDateTime arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String departure = departureDateTime.format(formatter);
+        String arrival = arrivalDateTime.format(formatter);
+
+        String destination = fm_managerDESTbox.getSelectionModel().getSelectedItem();
+        String origin = fm_managerORIGINbox.getSelectionModel().getSelectedItem();
+        String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
+
+        Database database = new Database();
+        database.insertData("flight_manager", Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"), Arrays.asList(airplane_id, flightNo, destination, origin, status, departure, arrival));
+
+        load_fm_managerTable();
+    }
+
+    public void fm_managerDELETE() throws SQLException {
+        String airplane_id = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String flightNo = fm_managerFLIGHTNOtxt.getText();
+
+        LocalDateTime departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
+        LocalDateTime arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String departure = departureDateTime.format(formatter);
+        String arrival = arrivalDateTime.format(formatter);
+
+        String destination = fm_managerDESTbox.getSelectionModel().getSelectedItem();
+        String origin = fm_managerORIGINbox.getSelectionModel().getSelectedItem();
+        String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
+
+        Database database = new Database();
+        database.deleteData("flight_manager", Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"), Arrays.asList(airplane_id, flightNo, destination, origin, status, departure, arrival));
+
+        load_fm_managerTable();
+    }
+
+    public void fm_managerUPDATE() throws SQLException {
+        String airplane_id = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String flightNo = fm_managerFLIGHTNOtxt.getText();
+
+        LocalDateTime departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
+        LocalDateTime arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String departure = departureDateTime.format(formatter);
+        String arrival = arrivalDateTime.format(formatter);
+
+        String destination = fm_managerDESTbox.getSelectionModel().getSelectedItem();
+        String origin = fm_managerORIGINbox.getSelectionModel().getSelectedItem();
+
+        String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
+
+        // Update with this values
+
+        String updated_airplane_id = fm_managerAirplaneIDbox.getValue();
+        String updated_flightNo = fm_managerFLIGHTNOtxt.getText();
+
+        LocalDateTime updated_departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
+        LocalDateTime updated_arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
+
+        DateTimeFormatter updated_formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String updated_departure = departureDateTime.format(formatter);
+        String updated_arrival = arrivalDateTime.format(formatter);
+
+        String updated_destination = fm_managerDESTbox.getValue();
+        String updated_origin = fm_managerORIGINbox.getValue();
+
+        String updated_status = fm_managerSTATUSbox.getValue();
+
+        Database database = new Database();
+        database.updateData(
+                "flight_manager",
+                Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"),
+                Arrays.asList(updated_airplane_id, updated_flightNo, updated_destination, updated_origin, updated_status, updated_departure, updated_arrival),
+                Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"),
+                Arrays.asList(airplane_id, flightNo, destination, origin, status, departure, arrival)
+
+                );
+
+        load_fm_managerTable();
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -669,8 +758,35 @@ public class DashboardController implements Initializable {
                 LocalDateTime dateTime2 = LocalDateTime.parse(selected[6], formatter);
                 fm_dateArrival.setValue(dateTime2.toLocalDate());
                 ETOA.setValue(dateTime2.toLocalTime());
+
+                fm_managerAirplaneIDbox.setValue(selected[0]);
+                fm_managerFLIGHTNOtxt.setText(selected[1]);
+                fm_managerDESTbox.setValue(selected[2]);
+                fm_managerORIGINbox.setValue(selected[3]);
+                fm_managerSTATUSbox.setValue(selected[4]);
+
             }
         });
+
+        String[] search_choices3 = {"airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"};
+        List<String> listQ3 = new ArrayList<>();
+
+        for (String data1 : search_choices3) {
+            listQ3.add(data1);
+        }
+        ObservableList listData3 = FXCollections.observableArrayList(listQ3);
+        fm_managerAirplaneIDbox.setItems(listData3);
+        fm_managerAirplaneIDbox.setValue("airplane_id");
+
+        fm_managerSTATUSbox.setItems(listData3);
+        fm_managerSTATUSbox.setValue("status");
+
+        fm_managerDESTbox.setItems(listData3);
+        fm_managerDESTbox.setValue("destination");
+
+        fm_managerORIGINbox.setItems(listData3);
+        fm_managerORIGINbox.setValue("origin");
+
 
         // Flight manager ends here
 
