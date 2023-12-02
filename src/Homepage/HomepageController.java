@@ -18,6 +18,8 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 import javafx.animation.Animation;
@@ -495,7 +497,7 @@ public class HomepageController implements Initializable {
             starsPane1.getChildren().add(star);
 
             // Set a random initial position within the bounds of starsPane1
-            double initialX = Math.random() * (starsPane1.getWidth() + 510);  // Adjusted to consider star size
+            double initialX = Math.random() * (starsPane1.getWidth() + 508);  // Adjusted to consider star size
             double initialY = Math.random() * (starsPane1.getHeight() + 90); // Adjusted to consider star size
             star.setLayoutX(initialX);
             star.setLayoutY(initialY);
@@ -1045,6 +1047,12 @@ public class HomepageController implements Initializable {
             return; // Exit the method since there are validation issues
         }
 
+        // Check if age matches the age calculated from birth_date
+        if (!isAgeMatchingBirthDate()) {
+            showAlert("Age does not match the given birth date.", "red");
+            return;
+        }
+
         // Switch to paymentForms initially
         switchPaymentForm(book_btn);
 
@@ -1171,6 +1179,45 @@ public class HomepageController implements Initializable {
     // Add this method to check if the selected country is valid
     private boolean isValidCountry(JFXComboBox<String> countryComboBox, List<String> validCountries) {
         return validCountries.contains(countryComboBox.getSelectionModel().getSelectedItem());
+    }
+
+    //CHECKER IF BIRTHDAY DOES NOT MATCH ON GIVEN AGE 
+    private boolean isAgeMatchingBirthDate() {
+        // Get the entered age from the age text field
+        String enteredAgeText = age.getText();
+
+        // Validate that enteredAgeText is a number
+        if (!enteredAgeText.matches("\\d+")) {
+            return false;
+        }
+
+        int enteredAge = Integer.parseInt(enteredAgeText);
+
+        // Get the birth date from the date picker
+        LocalDate birthDate = birth_date.getValue();
+
+        // Calculate the age based on the birth date
+        int calculatedAge = calculateAge(birthDate);
+
+        // Compare the entered age with the calculated age
+        return enteredAge == calculatedAge;
+    }
+
+    private int calculateAge(LocalDate birthDate) {
+        // Calculate age based on the birth date
+        // You may need to adjust this calculation based on your requirements
+        LocalDate currentDate = LocalDate.now();
+        return Period.between(birthDate, currentDate).getYears();
+    }
+
+    private void showAlert(String message, String color) {
+        AlertManager alert = new AlertManager(book_alert);
+        alert.setAlertText(message, color);
+
+        // Schedule a task to hide the alert after 5 seconds
+        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        delay.setOnFinished(event -> alert.hideAlert());
+        delay.play();
     }
 
     @Override
@@ -1379,7 +1426,7 @@ public class HomepageController implements Initializable {
             }
         });
 
-        // Set up event handler to limit the total length to 16 digits for g_postalCode
+        // Set up event handler to limit the total length to 16 digits for c_postalCode
         c_postalCode.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 4) {
                 c_postalCode.setText(oldValue);
@@ -1411,14 +1458,14 @@ public class HomepageController implements Initializable {
             }
         });
 
-        // Set up event handler to restrict input to integers only for c_postalCode
+        // Set up event handler to restrict input to integers only for g_postalCode
         g_postalCode.addEventFilter(KeyEvent.KEY_TYPED, event -> {
             if (!event.getCharacter().matches("[0-9]")) {
                 event.consume();
             }
         });
 
-        // Set up event handler to limit the total length to 16 digits for g_postalCode
+        // Set up event handler to limit the total length to 4 digits for g_postalCode
         g_postalCode.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 4) {
                 g_postalCode.setText(oldValue);
@@ -1426,18 +1473,58 @@ public class HomepageController implements Initializable {
         });
 
         /*------- Set up event handler to restrict input to strings only for Paypal Form TextFields ------------*/
-        // Set up event handler to restrict input to integers only for c_postalCode
+        // Set up event handler to restrict input to integers only for p_phoneNumber
         p_phoneNumber.addEventFilter(KeyEvent.KEY_TYPED, event -> {
             if (!event.getCharacter().matches("[0-9]")) {
                 event.consume();
             }
         });
 
-        // Set up event handler to limit the total length to 16 digits for g_postalCode
+        // Set up event handler to limit the total length to 11 digits for p_phoneNumber
         p_phoneNumber.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 11) {
                 p_phoneNumber.setText(oldValue);
             }
         });
+
+        /*------- Set up event handler to restrict input to strings only for hf_bookFlight Form TextFields ------------*/
+        f_name.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s\\.]")) {
+                event.consume();
+            }
+        });
+
+        m_name.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s\\.]")) {
+                event.consume();
+            }
+        });
+
+        l_name.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s\\.]")) {
+                event.consume();
+            }
+        });
+
+        suffix.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[a-zA-Z\\s\\.]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to restrict input to integers only for age
+        age.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!event.getCharacter().matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        // Set up event handler to limit the total length to 3 digits for age
+        age.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 3) {
+                age.setText(oldValue);
+            }
+        });
+
     }
 }

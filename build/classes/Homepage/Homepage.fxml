@@ -120,7 +120,7 @@
                                     <TextField fx:id="l_name" layoutX="186.0" layoutY="150.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
                                     <Label focusTraversable="false" layoutX="96.0" layoutY="214.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SUFFIX:" textFill="WHITE" AnchorPane.leftAnchor="96.0" AnchorPane.topAnchor="214.0" />
                                     <TextField fx:id="suffix" layoutX="186.0" layoutY="213.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
-                                    <Label focusTraversable="false" layoutX="124.0" layoutY="297.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="AGE:" textFill="WHITE" AnchorPane.leftAnchor="124.0" AnchorPane.topAnchor="297.0" />
+                                    <Label focusTraversable="false" layoutX="124.0" layoutY="273.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="AGE:" textFill="WHITE" AnchorPane.leftAnchor="124.0" AnchorPane.topAnchor="273.0" />
                                     <TextField fx:id="age" layoutX="186.0" layoutY="272.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
                                     <Label focusTraversable="false" layoutX="48.0" layoutY="334.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BIRTH DATE:" textFill="WHITE" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="334.0" />
                                     <AnchorPane layoutX="186.0" layoutY="333.0" prefHeight="27.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 28;">
@@ -740,7 +740,7 @@
                </children>
             </AnchorPane>
             <AnchorPane fx:id="overlayPane1" layoutX="10.0" layoutY="10.0" prefHeight="672.0" prefWidth="1071.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane id="AnchorPane" fx:id="payment_form" layoutX="276.0" layoutY="183.0" prefHeight="359.0" prefWidth="510.0">
+            <AnchorPane id="AnchorPane" fx:id="payment_form" layoutX="276.0" layoutY="183.0" prefHeight="359.0" prefWidth="510.0" visible="false">
                <children>
                   <AnchorPane fx:id="topPane1" prefHeight="109.0" prefWidth="510.0" styleClass="starsPane1BG" stylesheets="@PaymentStyles.css">
                      <children>
