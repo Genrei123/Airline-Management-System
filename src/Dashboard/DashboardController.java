@@ -248,8 +248,12 @@ public class DashboardController implements Initializable {
     private JFXButton currentSelectedButton;
 
     public void loadDashboard() {
-        d_flightsToday.setText("0");
-        d_username.setText("Welcome, " + Admin.getInstance().getUsername());
+        // Load the dashboard
+        d_username.setText(Admin.getInstance().getUsername());
+
+        Database database = new Database();
+        int monthtlyflightsBooked = database.monthlyFlightCount();
+        d_flightsBooked.setText(String.valueOf(monthtlyflightsBooked));
     }
 
     public void toggleAdminMenu() {
@@ -472,6 +476,7 @@ public class DashboardController implements Initializable {
 
             // For the number of tickets sold today.
             sl_ticketSoldNo.setText(String.valueOf(data.size()));
+            d_flightsToday.setText(String.valueOf(data.size()));
 
             return earnings;
         }

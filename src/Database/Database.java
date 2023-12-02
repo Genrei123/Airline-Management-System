@@ -374,4 +374,31 @@ public class Database {
 
         return 0;
     }
+
+    public int monthlyFlightCount() {
+        String query = "SELECT COUNT(price) FROM `sales` WHERE MONTH(payment_date) = MONTH(CURRENT_DATE()) AND YEAR(payment_date) = YEAR(CURRENT_DATE())";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return 0;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    return result.getInt(1);
+                } else {
+                    return 0;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 0;
+    }
 }
