@@ -1,10 +1,9 @@
 package Receipt;
 
 
-import com.itextpdf.barcodes.BarcodeQRCode;
 import com.itextpdf.io.image.ImageData;
-import com.itextpdf.kernel.colors.Color;
-import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -13,14 +12,12 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import java.util.Date;
-
 public class ReceiptMaker {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         // Directory and name of the file
         String currentDir = System.getProperty("user.dir");
         StringBuilder path = new StringBuilder();
@@ -42,14 +39,17 @@ public class ReceiptMaker {
         float twoColumnWidth[] = {285+150, 285};
         Table header = new Table(twoColumnWidth);
 
-        Color headerColor = new DeviceRgb(0, 0, 255);
-        Color headerFontColor = new DeviceRgb(255, 255, 255);
-        //header.setBackgroundColor(headerColor);
-        //header.setFontColor(headerFontColor);
-
-        header.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER));
+        header.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER).setFont(PdfFontFactory.createFont("Helvetica")));
         header.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + TICKET_NUMBER + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
         document.add(header);
+
+        // Watermark
+        ImageData watermark = ImageDataFactory.create(currentDir + "/src/Images/ICONS/EA Logo.png");
+        Image watermarkImage = new Image(watermark);
+
+        watermarkImage.setFixedPosition(pdfDocument.getDefaultPageSize().getWidth()/2-200, pdfDocument.getDefaultPageSize().getHeight()/2-175); // Set the position of the watermark in the page in the middle
+        watermarkImage.setOpacity(0.1f);
+        document.add(watermarkImage);
 
         // Space
         document.add(new Paragraph("\n"));
@@ -118,16 +118,6 @@ public class ReceiptMaker {
 
         // Space
         document.add(new Paragraph("\n"));
-
-        // Breakdown of expenses
-        float threeColumnWidthBody2[] = {200, 200, 200};
-        Table items = new Table(threeColumnWidthBody2);
-        items.addCell(new Cell().add(new Paragraph("Feature/Item").setBold()));
-        items.addCell(new Cell().add(new Paragraph("Quantity").setBold()));
-        items.addCell(new Cell().add(new Paragraph("Price").setBold()));
-
-        document.add(items);
-
         document.close();
     }
 }
