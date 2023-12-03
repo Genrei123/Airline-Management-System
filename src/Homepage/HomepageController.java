@@ -534,7 +534,7 @@ public class HomepageController implements Initializable {
     //CAROUSEL FUNCTIONS
     private void initializeAutoSlideTimeline() {
         // Set the duration and create a KeyFrame
-        Duration duration = Duration.seconds(5); // adjust the duration as needed
+        Duration duration = Duration.seconds(8); // adjust the duration as needed
         KeyFrame keyFrame = new KeyFrame(duration, this::autoSlide);
 
         // Create a timeline with the keyframe, set it to indefinite to repeat
@@ -874,6 +874,17 @@ public class HomepageController implements Initializable {
         setBookingButtonAction(booking_btn2, "Coron", "Manila");
         setBookingButtonAction(booking_btn3, "Samar", "Manila");
         setBookingButtonAction(booking_btn4, "Bohol", "Manila");
+        setBookingButtonAction(c_bookingBtn1, "Boracay", "Manila");
+        setBookingButtonAction(c_bookingBtn2, "Coron", "Manila");
+        setBookingButtonAction(c_bookingBtn3, "Puerto Prinsesa", "Manila");
+        setBookingButtonAction(c_bookingBtn4, "Samar", "Manila");
+        setBookingButtonAction(c_bookingBtn5, "Bohol", "Manila");
+        setBookingButtonAction(c_bookingBtn6, "Cebu City", "Manila");
+        setBookingButtonAction(c_bookingBtn7, "El Nido", "Manila");
+        setBookingButtonAction(c_bookingBtn8, "Tagaytay", "Manila");
+        setBookingButtonAction(c_bookingBtn9, "Siargao", "Manila");
+
+
         // Add more booking buttons as needed
     }
 
@@ -895,6 +906,12 @@ public class HomepageController implements Initializable {
     private void clearSeatSelectionFields() {
         cs_seatNum.clear();
         cs_seatClass.getSelectionModel().clearSelection(); // Clear the selection
+        f_name.clear();
+        m_name.clear();
+        l_name.clear();
+        suffix.clear();
+        age.clear();
+        birth_date.getEditor().clear();
     }
 
     // Method to handle return to destination button click
