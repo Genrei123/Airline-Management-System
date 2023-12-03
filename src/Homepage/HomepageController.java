@@ -25,6 +25,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -398,10 +400,9 @@ public class HomepageController implements Initializable {
     @FXML
     private JFXButton seat_d37, seat_d38, seat_d39, seat_d40, seat_d41, seat_d42, seat_d43, seat_d44, seat_d45, seat_d46, seat_d47, seat_d48, seat_d49, seat_d50, seat_d51, seat_d52, seat_d53, seat_d54, seat_d55, seat_d56, seat_d57, seat_d58, seat_d59, seat_d60, seat_d61, seat_d62, seat_d63, seat_d64, seat_d65, seat_d66, seat_d67, seat_d68, seat_d69, seat_d70, seat_d71, seat_d72, seat_d73, seat_d74, seat_d75, seat_d76, seat_d77, seat_d78, seat_d79, seat_d80;
 
-    
     @FXML
     private ImageView seat_icon;
-    
+
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
@@ -892,7 +893,6 @@ public class HomepageController implements Initializable {
         setBookingButtonAction(c_bookingBtn8, "Tagaytay", "Manila");
         setBookingButtonAction(c_bookingBtn9, "Siargao", "Manila");
 
-
         // Add more booking buttons as needed
     }
 
@@ -928,15 +928,6 @@ public class HomepageController implements Initializable {
         switchForm(hf_searchDesti, returnToDesti_btn1);
         // Add this line to hide overlayPane1
         clearSeatSelectionFields();
-    }
-
-    // Add this method to initialize the seat buttons
-    private void initializeSeatButtons() {
-        setSeatButtonAction(seat_a1, "A1");
-        setSeatButtonAction(seat_a2, "A2");
-        setSeatButtonAction(seat_a3, "A3");
-        setSeatButtonAction(seat_a4, "A4");
-        // Add more seat buttons as needed
     }
 
     // Generic method to set the action for seat buttons
@@ -1379,9 +1370,6 @@ public class HomepageController implements Initializable {
             }
         });
 
-        // Initialize seat buttons
-        initializeSeatButtons();
-
         // Initialize booking buttons
         initializeBookingButtons();
 
@@ -1622,6 +1610,13 @@ public class HomepageController implements Initializable {
             }
         });
 
+        seat_icon.setVisible(true);
+        // Disable all anchor panes by default
+        firstC_seats.setVisible(false);
+        businessC_seats.setVisible(false);
+        premEconomyC_seats.setVisible(false);
+        economyC_seats.setVisible(false);
+
         cs_seatClass.valueProperty().addListener((observable, oldValue, newValue) -> {
             // Disable all anchor panes by default
             firstC_seats.setVisible(false);
@@ -1644,6 +1639,21 @@ public class HomepageController implements Initializable {
                 seat_icon.setVisible(false);
             }
         });
+        
+        // Auto requery when something is changed within the database
+        // Create a timeline for periodic polling (adjust the Duration as needed)
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
+            // Code to re-query the database goes here
+            System.out.println("Re-querying");
+         
+            try {
+                seatButtons();
+            } catch (SQLException ex) {
+                Logger.getLogger(HomepageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
 
     }
 }

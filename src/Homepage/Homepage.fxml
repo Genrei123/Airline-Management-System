@@ -153,7 +153,7 @@
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></JFXDatePicker>
-                                          <AnchorPane layoutX="17.0" layoutY="27.0" prefHeight="4.0" prefWidth="244.0" style="-fx-background-color: white;" />
+                                          <AnchorPane layoutX="17.0" layoutY="27.0" prefHeight="4.0" prefWidth="244.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="1.0" />
                                        </children>
                                     </AnchorPane>
                                     <Label focusTraversable="false" layoutX="586.0" layoutY="53.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION:" textFill="WHITE" AnchorPane.leftAnchor="586.0" AnchorPane.topAnchor="53.0" />
