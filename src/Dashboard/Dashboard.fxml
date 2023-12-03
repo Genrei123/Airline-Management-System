@@ -736,7 +736,7 @@
                         <Font size="18.0" />
                      </font></Label>
                   <Label layoutX="393.0" layoutY="240.0" prefHeight="17.0" prefWidth="233.0" text="Search Records" textFill="#f8f8f8" />
-                  <TableView layoutX="393.0" layoutY="298.0" prefHeight="233.0" prefWidth="732.0">
+                  <TableView fx:id="d_table" layoutX="393.0" layoutY="298.0" prefHeight="233.0" prefWidth="732.0">
                      <columns>
                         <TableColumn fx:id="d_ticketNo" prefWidth="103.0" text="Ticket No." />
                         <TableColumn fx:id="d_flightDate" prefWidth="82.0" text="Flight Date" />

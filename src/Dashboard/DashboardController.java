@@ -58,6 +58,9 @@ public class DashboardController implements Initializable {
     private Label d_username;
 
     @FXML
+    private TableView<String[]> d_table;
+
+    @FXML
     private TableColumn<String[], String> d_ticketNo, d_flightDate, d_flight, d_departure, d_arrival, d_fullname;
 
     @FXML
@@ -292,6 +295,10 @@ public class DashboardController implements Initializable {
         Database database = new Database();
         int monthtlyflightsBooked = database.monthlyFlightCount();
         d_flightsBooked.setText(String.valueOf(monthtlyflightsBooked));
+
+        // Load the table
+
+
     }
 
     public void toggleAdminMenu() {

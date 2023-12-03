@@ -465,4 +465,34 @@ public class Database {
 
         return false;
     }
+
+
+
+    public ObservableList<String[]> dashboardData() {
+        String query = "SELECT flight_no, departure FROM `booked_flights`";
+        connector = connectDB.connectDB();
+
+        if (connector != null) {
+            try {
+                Statement statement = connector.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+
+                List<String[]> rows = new ArrayList<>();
+                while (resultSet.next()) {
+                    String[] row = new String[resultSet.getMetaData().getColumnCount()];
+                    for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
+                        row[i] = resultSet.getString(i + 1);
+                    }
+                    rows.add(row);
+                }
+                return FXCollections.observableArrayList(rows);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Cannot connect to the database");
+        }
+        return null;
+    }
 }
