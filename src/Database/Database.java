@@ -450,11 +450,13 @@ public class Database {
 
                 if (result.next()) {
                     //System.out.println("Seat is booked at: " + seatNo);
+                    connector.close();
                     return true;
                 }
 
                 else {
                     //System.out.println("No Seat is booked at: " + seatNo);
+                    connector.close();
                     return false;
                 }
 

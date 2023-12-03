@@ -42,8 +42,7 @@ public class DashboardController implements Initializable {
     @FXML
     private AnchorPane topPane;
 
-    @FXML
-    private JFXButton dashboard_menu;
+
 
     @FXML
     private Label d_flightsToday;
@@ -204,8 +203,7 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXButton bf_deleteBtn;
 
-    @FXML
-    private AnchorPane dashboard_form;
+
 
     @FXML
     private AnchorPane overlayPane;
@@ -288,18 +286,7 @@ public class DashboardController implements Initializable {
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
 
-    public void loadDashboard() {
-        // Load the dashboard
-        d_username.setText(Admin.getInstance().getUsername());
 
-        Database database = new Database();
-        int monthtlyflightsBooked = database.monthlyFlightCount();
-        d_flightsBooked.setText(String.valueOf(monthtlyflightsBooked));
-
-        // Load the table
-
-
-    }
 
     public void toggleAdminMenu() {
         if (isMenuVisible) {
@@ -341,7 +328,7 @@ public class DashboardController implements Initializable {
 
     private void switchForm(AnchorPane targetForm, JFXButton selectedButton) {
         // Hide all forms
-        dashboard_form.setVisible(false);
+
         bookedFlights_form.setVisible(false);
         flightManager_form.setVisible(false);
         ticketRecords_form.setVisible(false);
@@ -384,7 +371,7 @@ public class DashboardController implements Initializable {
         });
     }
 
-    public void tr_search() {
+    public void tr_search() throws SQLException {
         List<String> text = Arrays.asList(tr_search.getText());
         List<String> searchBy = Arrays.asList(trt_searchBy.getSelectionModel().getSelectedItem());
 
@@ -410,12 +397,12 @@ public class DashboardController implements Initializable {
 
     }
 
-    public void tr_clear() {
+    public void tr_clear() throws SQLException {
         tr_search.setText("");
         getTicketRecords();
     }
 
-    public void getTicketRecords() {
+    public void getTicketRecords() throws SQLException {
         System.out.println("Getting ticket records");
         // For Ticket Records
         Database database = new Database();
@@ -439,7 +426,7 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void getSales()  {
+    public void getSales() throws SQLException {
         System.out.println("Getting sales");
         Database database = new Database();
 
@@ -477,7 +464,7 @@ public class DashboardController implements Initializable {
 
     }
 
-    private double yesterdayEarnings() {
+    private double yesterdayEarnings() throws SQLException {
         Database database = new Database();
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
@@ -503,7 +490,7 @@ public class DashboardController implements Initializable {
         return 0;
     }
 
-    private double todayEarnings() {
+    private double todayEarnings() throws SQLException {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = currentDate.format(formatter) ;
@@ -521,7 +508,6 @@ public class DashboardController implements Initializable {
 
             // For the number of tickets sold today.
             sl_ticketSoldNo.setText(String.valueOf(data.size()));
-            d_flightsToday.setText(String.valueOf(data.size()));
 
             return earnings;
         }
@@ -538,7 +524,7 @@ public class DashboardController implements Initializable {
         return database.monthlyEarnings();
     }
 
-    public void sl_search() {
+    public void sl_search() throws SQLException {
         List<String> text = Arrays.asList(sl_search.getText());
         List<String> searchBy = Arrays.asList(sl_searchBy.getSelectionModel().getSelectedItem());
 
@@ -569,7 +555,7 @@ public class DashboardController implements Initializable {
         getSales();
     }
 
-    public void load_fm_managerTable() {
+    public void load_fm_managerTable() throws SQLException {
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("flight_manager", Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"));
 
@@ -678,7 +664,7 @@ public class DashboardController implements Initializable {
 
     }
 
-    private void loadBookedFlights() {
+    private void loadBookedFlights() throws SQLException {
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("booked_flights",
                 Arrays.asList("flight_id", "departure", "destination", "arrival", "last_name", "class", "book_date", "amount"));
@@ -758,6 +744,9 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        // Set sales to be visible
+        sales_form.setVisible(true);
+
         Admin admin = Admin.getInstance();
         System.out.println(admin.getUsername());
 
@@ -778,17 +767,11 @@ public class DashboardController implements Initializable {
             }
         });
 
-        // Set the dashboard_form as the default visible form
-        dashboard_form.setVisible(true);
-
-        // Apply the selected-button style to the dashboardForm_btn
-        dashboardForm_btn.getStyleClass().add("selected-button");
 
         // Create a reference to the currently selected button
         currentSelectedButton = dashboardForm_btn;
 
         // Add button click event handlers
-        dashboardForm_btn.setOnAction(e -> switchForm(dashboard_form, dashboardForm_btn));
         bookedForm_btn.setOnAction(e -> switchForm(bookedFlights_form, bookedForm_btn));
         ticketForm_btn.setOnAction(e -> switchForm(ticketRecords_form, ticketForm_btn));
         salesForm_btn.setOnAction(e -> switchForm(sales_form, salesForm_btn));
@@ -808,17 +791,28 @@ public class DashboardController implements Initializable {
         switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
         switchForm(cs_rebookingForm, cs_rebookingBtn, cs_updateInfoBtn);
 
-        // For dashboard
-        loadDashboard();
+
 
         // For Ticket Records
-        getTicketRecords();
+        try {
+            getTicketRecords();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // For sales
-        getSales();
+        try {
+            getSales();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // For flight manager
-        load_fm_managerTable();
+        try {
+            load_fm_managerTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // For searching in ticket records
         String[] search_choices = {"flight_no", "airplane_no", "initial_departure", "departure", "destination", "origin", "seat_no", "class"};
@@ -893,7 +887,11 @@ public class DashboardController implements Initializable {
         // Flight manager ends here
 
         // Book flights starts here
-        loadBookedFlights();
+        try {
+            loadBookedFlights();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         bookedFlights_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -955,9 +953,21 @@ public class DashboardController implements Initializable {
         Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(1), event -> {
             // Code to re-query the database goes here
             System.out.println("Re-querying");
-            getSales();
-            getTicketRecords();
-            load_fm_managerTable();
+            try {
+                getSales();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                getTicketRecords();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                load_fm_managerTable();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
