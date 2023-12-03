@@ -48,6 +48,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -108,21 +109,6 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXComboBox<?> cs_seatClass;
-
-    @FXML
-    private JFXButton seat_a1;
-
-    @FXML
-    private JFXButton seat_a2;
-
-    @FXML
-    private JFXButton seat_a3;
-
-    @FXML
-    private JFXButton seat_a4, seat_a5, seat_a6, seat_a7, seat_a8, seat_a11, seat_a21,
-    seat_a31, seat_a41, seat_a51, seat_a61, seat_a71, seat_a81, seat_b91,
-    seat_b101, seat_b111, seat_b121, seat_b131, seat_b141, seat_b151, seat_b161, seat_b171,
-    seat_b181, seat_b191, seat_b201, seat_b211, seat_b221, seat_b231, seat_b241;
 
     @FXML
     private JFXButton proceed_btn;
@@ -388,6 +374,34 @@ public class HomepageController implements Initializable {
     @FXML
     private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat;
 
+    @FXML
+    private AnchorPane firstC_seats;
+
+    @FXML
+    private JFXButton seat_a1, seat_a2, seat_a3, seat_a4, seat_a5, seat_a6, seat_a7, seat_a8;
+
+    @FXML
+    private AnchorPane businessC_seats;
+
+    @FXML
+    private JFXButton seat_b9, seat_b10, seat_b11, seat_b12, seat_b13, seat_b14, seat_b15, seat_b16, seat_b17, seat_b18, seat_b19, seat_b20, seat_b21, seat_b22, seat_b23, seat_b24;
+
+    @FXML
+    private AnchorPane premEconomyC_seats;
+
+    @FXML
+    private JFXButton seat_c25, seat_c26, seat_c27, seat_c28, seat_c29, seat_c30, seat_c31, seat_c32, seat_c33, seat_c34, seat_c35, seat_c36;
+
+    @FXML
+    private AnchorPane economyC_seats;
+
+    @FXML
+    private JFXButton seat_d37, seat_d38, seat_d39, seat_d40, seat_d41, seat_d42, seat_d43, seat_d44, seat_d45, seat_d46, seat_d47, seat_d48, seat_d49, seat_d50, seat_d51, seat_d52, seat_d53, seat_d54, seat_d55, seat_d56, seat_d57, seat_d58, seat_d59, seat_d60, seat_d61, seat_d62, seat_d63, seat_d64, seat_d65, seat_d66, seat_d67, seat_d68, seat_d69, seat_d70, seat_d71, seat_d72, seat_d73, seat_d74, seat_d75, seat_d76, seat_d77, seat_d78, seat_d79, seat_d80;
+
+    
+    @FXML
+    private ImageView seat_icon;
+    
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
@@ -758,9 +772,6 @@ public class HomepageController implements Initializable {
         LocalDateTime now = LocalDateTime.now();
         now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-
-
-
         String flight_id = "ERM101";
         String flight_no = TicketNo.generateTicketNo(infos.getFirst_name() + infos.getLast_name());
         System.out.println(flight_no);
@@ -770,12 +781,10 @@ public class HomepageController implements Initializable {
                 Arrays.asList("flight_id", "first_name", "middle_name", "last_name",
                         "suffix", "age", "birth_date", "destination", "origin", "class",
                         "seat", "flight_no", "amount"),
-
                 Arrays.asList(flight_id, infos.getFirst_name(), infos.getMiddle_name(), infos.getLast_name(),
                         infos.getSuffix(), infos.getAge(), infos.getBirthdate(), infos.getDestination(),
                         infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no,
                         infos.getAmount())
-
         );
 
         // Create receipt
@@ -787,8 +796,7 @@ public class HomepageController implements Initializable {
         sales_table.insertData(
                 "sales",
                 Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"),
-
-                Arrays.asList(flight_no, flight_id, infos.getSeatNo(), infos.getFirst_name(), now,  "ON" , "ONLINE", "ONLINE", infos.getAmount())
+                Arrays.asList(flight_no, flight_id, infos.getSeatNo(), infos.getFirst_name(), now, "ON", "ONLINE", "ONLINE", infos.getAmount())
         );
 
     }
@@ -1273,176 +1281,32 @@ public class HomepageController implements Initializable {
         String buttonLabel = button.getText();
         cs_seatNum.setText(buttonLabel);
     }
+    //"Economy", "Premium Economy", "Business", "First Class"
 
-    // Add this method to initialize the seat buttons
     private void seatButtons() throws SQLException {
-        // Check if the seat is already taken
         Database db = new Database();
-        if (db.checkSeats(seat_a1.getText())) {
-            seat_a1.setDisable(true);
-            System.out.println("test");
-        }
-        else { seat_a1.setOnAction(event -> handleSeatButton(seat_a1)); }
 
-        if (db.checkSeats(seat_a2.getText())) {
-            seat_a2.setDisable(true);
-        }
-        else { seat_a2.setOnAction(event -> handleSeatButton(seat_a2)); }
+        // Define a list of all seat buttons
+        List<JFXButton> seatButtons = Arrays.asList(
+                seat_a1, seat_a2, seat_a3, seat_a4, seat_a5, seat_a6, seat_a7, seat_a8,
+                seat_b9, seat_b10, seat_b11, seat_b12, seat_b13, seat_b14, seat_b15, seat_b16, seat_b17, seat_b18, seat_b19, seat_b20, seat_b21, seat_b22, seat_b23, seat_b24,
+                seat_c25, seat_c26, seat_c27, seat_c28, seat_c29, seat_c30, seat_c31, seat_c32, seat_c33, seat_c34, seat_c35, seat_c36,
+                seat_d37, seat_d38, seat_d39, seat_d40, seat_d41, seat_d42, seat_d43, seat_d44, seat_d45, seat_d46, seat_d47, seat_d48, seat_d49, seat_d50,
+                seat_d51, seat_d52, seat_d53, seat_d54, seat_d55, seat_d56, seat_d57, seat_d58, seat_d59, seat_d60, seat_d61, seat_d62, seat_d63, seat_d64,
+                seat_d65, seat_d66, seat_d67, seat_d68, seat_d69, seat_d70, seat_d71, seat_d72, seat_d73, seat_d74, seat_d75, seat_d76, seat_d77, seat_d78,
+                seat_d79, seat_d80
+        );
 
-        if (db.checkSeats(seat_a3.getText())) {
-            seat_a3.setDisable(true);
-        }
-        else { seat_a3.setOnAction(event -> handleSeatButton(seat_a3)); }
+        // Iterate over each seat button
+        for (JFXButton seatButton : seatButtons) {
+            String seatLabel = seatButton.getText();
 
-        if (db.checkSeats(seat_a4.getText())) {
-            seat_a4.setDisable(true);
+            if (db.checkSeats(seatLabel)) {
+                seatButton.setDisable(true);
+            } else {
+                seatButton.setOnAction(event -> handleSeatButton(seatButton));
+            }
         }
-        else { seat_a4.setOnAction(event -> handleSeatButton(seat_a4)); }
-
-        if (db.checkSeats(seat_a5.getText())) {
-            seat_a5.setDisable(true);
-        }
-        else { seat_a5.setOnAction(event -> handleSeatButton(seat_a5)); }
-
-        if (db.checkSeats(seat_a6.getText())) {
-            seat_a6.setDisable(true);
-        }
-        else { seat_a6.setOnAction(event -> handleSeatButton(seat_a6)); }
-
-        if (db.checkSeats(seat_a7.getText())) {
-            seat_a7.setDisable(true);
-        }
-        else { seat_a7.setOnAction(event -> handleSeatButton(seat_a7)); }
-
-        if (db.checkSeats(seat_a8.getText())) {
-            seat_a8.setDisable(true);
-        }
-        else { seat_a8.setOnAction(event -> handleSeatButton(seat_a8)); }
-
-        if (db.checkSeats(seat_a11.getText())) {
-            seat_a11.setDisable(true);
-        }
-        else { seat_a11.setOnAction(event -> handleSeatButton(seat_a11)); }
-
-        if (db.checkSeats(seat_a21.getText())) {
-            seat_a21.setDisable(true);
-        }
-        else { seat_a21.setOnAction(event -> handleSeatButton(seat_a21)); }
-
-        if (db.checkSeats(seat_a31.getText())) {
-            seat_a31.setDisable(true);
-        }
-        else { seat_a31.setOnAction(event -> handleSeatButton(seat_a31)); }
-
-        if (db.checkSeats(seat_a41.getText())) {
-            seat_a41.setDisable(true);
-        }
-        else { seat_a41.setOnAction(event -> handleSeatButton(seat_a41)); }
-
-        if (db.checkSeats(seat_a51.getText())) {
-            seat_a51.setDisable(true);
-        }
-        else { seat_a51.setOnAction(event -> handleSeatButton(seat_a51)); }
-
-        if (db.checkSeats(seat_a61.getText())) {
-            seat_a61.setDisable(true);
-        }
-        else { seat_a61.setOnAction(event -> handleSeatButton(seat_a61)); }
-
-        if (db.checkSeats(seat_a71.getText())) {
-            seat_a71.setDisable(true);
-        }
-        else { seat_a71.setOnAction(event -> handleSeatButton(seat_a71)); }
-
-        if (db.checkSeats(seat_a81.getText())) {
-            seat_a81.setDisable(true);
-        }
-        else { seat_a81.setOnAction(event -> handleSeatButton(seat_a81)); }
-
-        if (db.checkSeats(seat_b91.getText())) {
-            seat_b91.setDisable(true);
-        }
-        else { seat_b91.setOnAction(event -> handleSeatButton(seat_b91)); }
-
-        if (db.checkSeats(seat_b101.getText())) {
-            seat_b101.setDisable(true);
-        }
-        else { seat_b101.setOnAction(event -> handleSeatButton(seat_b101)); }
-
-        if (db.checkSeats(seat_b111.getText())) {
-            seat_b111.setDisable(true);
-        }
-        else { seat_b111.setOnAction(event -> handleSeatButton(seat_b111)); }
-
-        if (db.checkSeats(seat_b121.getText())) {
-            seat_b121.setDisable(true);
-        }
-        else { seat_b121.setOnAction(event -> handleSeatButton(seat_b121)); }
-
-        if (db.checkSeats(seat_b131.getText())) {
-            seat_b131.setDisable(true);
-        }
-        else { seat_b131.setOnAction(event -> handleSeatButton(seat_b131)); }
-
-        if (db.checkSeats(seat_b141.getText())) {
-            seat_b141.setDisable(true);
-        }
-        else { seat_b141.setOnAction(event -> handleSeatButton(seat_b141)); }
-
-        if (db.checkSeats(seat_b151.getText())) {
-            seat_b151.setDisable(true);
-        }
-        else { seat_b151.setOnAction(event -> handleSeatButton(seat_b151)); }
-
-        if (db.checkSeats(seat_b161.getText())) {
-            seat_b161.setDisable(true);
-        }
-        else { seat_b161.setOnAction(event -> handleSeatButton(seat_b161)); }
-
-        if (db.checkSeats(seat_b171.getText())) {
-            seat_b171.setDisable(true);
-        }
-        else { seat_b171.setOnAction(event -> handleSeatButton(seat_b171)); }
-
-        if (db.checkSeats(seat_b181.getText())) {
-            seat_b181.setDisable(true);
-        }
-        else { seat_b181.setOnAction(event -> handleSeatButton(seat_b181)); }
-
-        if (db.checkSeats(seat_b191.getText())) {
-            seat_b191.setDisable(true);
-        }
-        else {seat_b191.setOnAction(event -> handleSeatButton(seat_b191)); }
-
-        if (db.checkSeats(seat_b201.getText())) {
-            seat_b201.setDisable(true);
-        }
-        else {seat_b201.setOnAction(event -> handleSeatButton(seat_b201)); }
-
-        if (db.checkSeats(seat_b211.getText())) {
-            seat_b211.setDisable(true);
-        }
-        else {seat_b211.setOnAction(event -> handleSeatButton(seat_b211)); }
-
-        if (db.checkSeats(seat_b221.getText())) {
-            seat_b221.setDisable(true);
-        }
-        else {seat_b221.setOnAction(event -> handleSeatButton(seat_b221)); }
-
-        if (db.checkSeats(seat_b231.getText())) {
-            seat_b231.setDisable(true);
-        }
-        else {seat_b231.setOnAction(event -> handleSeatButton(seat_b231)); }
-
-        if (db.checkSeats(seat_b241.getText())) {
-            seat_b241.setDisable(true);
-        }
-
-        else {
-            seat_b241.setOnAction(event -> handleSeatButton(seat_b241));
-        }
-
-        // Add more seat buttons as needed
     }
 
     @Override
@@ -1755,6 +1619,29 @@ public class HomepageController implements Initializable {
         age.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 3) {
                 age.setText(oldValue);
+            }
+        });
+
+        cs_seatClass.valueProperty().addListener((observable, oldValue, newValue) -> {
+            // Disable all anchor panes by default
+            firstC_seats.setVisible(false);
+            businessC_seats.setVisible(false);
+            premEconomyC_seats.setVisible(false);
+            economyC_seats.setVisible(false);
+
+            // Enable the selected anchor pane based on the combo box value
+            if ("Economy".equals(newValue)) {
+                economyC_seats.setVisible(true);
+                seat_icon.setVisible(false);
+            } else if ("Business".equals(newValue)) {
+                businessC_seats.setVisible(true);
+                seat_icon.setVisible(false);
+            } else if ("Premium Economy".equals(newValue)) {
+                premEconomyC_seats.setVisible(true);
+                seat_icon.setVisible(false);
+            } else if ("First Class".equals(newValue)) {
+                firstC_seats.setVisible(true);
+                seat_icon.setVisible(false);
             }
         });
 

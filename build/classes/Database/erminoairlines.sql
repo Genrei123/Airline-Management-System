@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 03:43 PM
+-- Generation Time: Dec 03, 2023 at 03:05 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,17 +39,73 @@ CREATE TABLE `booked_flights` (
   `origin` varchar(255) NOT NULL,
   `class` varchar(255) NOT NULL,
   `seat` varchar(255) NOT NULL,
-  `flight_no` varchar(255) NOT NULL
+  `flight_no` varchar(255) NOT NULL,
+  `amount` double NOT NULL,
+  `departure` datetime DEFAULT NULL,
+  `arrival` datetime DEFAULT NULL,
+  `book_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booked_flights`
 --
 
-INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `age`, `birth_date`, `destination`, `origin`, `class`, `seat`, `flight_no`) VALUES
-('test', '123', '123', '123', '123', 123, '2003-01-01', '', '', '', '', 'test'),
-('test', 'wdadw', 'wdad', 'wdawd', '', 12, '2023-11-16', 'Boracay', 'Manila', 'Premium Economy', 'A4', 'test'),
-('test', 'Ervhyne', 'R', 'Daludog', '', 19, '2023-11-21', 'Boracay', 'Manila', 'Economy', 'A1', 'test');
+INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `age`, `birth_date`, `destination`, `origin`, `class`, `seat`, `flight_no`, `amount`, `departure`, `arrival`, `book_date`) VALUES
+('test', '123', '123', '123', '123', 123, '2003-01-01', '', '', '', '', 'test', 0, NULL, NULL, NULL),
+('test', 'wdadw', 'wdad', 'wdawd', '', 12, '2023-11-16', 'Boracay', 'Manila', 'Premium Economy', 'A4', 'test', 0, NULL, NULL, NULL),
+('test', 'Ervhyne', 'R', 'Daludog', '', 19, '2023-11-21', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'Genrey', 'Omsiol', 'Cristobal', 'NA', 12, '2023-12-13', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'Genrey', 'Omisol', 'Cristobal', 'sadsa', 12, '2023-12-28', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'Genrey', 'Omisol', 'Cristobal', 'NA', 123, '2023-12-15', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'genrey', 'genrey', 'gernye', '123', 123, '2023-12-05', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asdsad', 'asdsad', 'sadsad', 'sadsad', 123, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asdsad', 'asdsad', 'sadsad', 'sadsad', 123, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asdsadsa', 'sadasdsad', 'asdasdsad', 'sadsadsad', 19, '2023-12-06', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'genrey', 'genrey', 'genrey', 'NA', 19, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'gennrey', 'gerer', 'gegeg', 'ge', 19, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asad', 'asd', 'asd', 'asd', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asd', 'asd', 'asd', 'asd', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'sadsa', 'asdasd', 'asdasd', 'asdsad', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'genrey', 'genrey', 'gerneyt', 'genrey', 19, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asad', 'asda', 'asd', 'asd', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asdsa', 'sadasd', 'sadsad', 'asdsa', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'gege', 'gege', 'gege', 'gege', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asdsa', 'sadasd', 'asdsad', 'asd', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'sag', 'sagasg', 'asg', 'asg', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('test', 'asdasdsa', 'asdsadsa', 'asdsad', 'asdsa', 12, '2023-12-01', 'Boracay', 'Manila', 'Economy', 'A1', 'test', 0, NULL, NULL, NULL),
+('123123', '123213', '123213', '213213', '12312321', 12, '2023-12-02', '123213', '123213', '12321', '213213', '213213', 123, '2023-12-01 23:37:10', '2023-12-01 23:37:10', '2023-12-02 23:37:10'),
+('asdsad', 'sadsad', 'sad', 'asd', 'asd', 1, '2023-12-01', 'asdsad', 'asdas', 'asd', '1A', 'asdsad', 123, '2023-12-01 02:16:39', '2023-12-01 02:16:39', '2023-12-01 02:16:39'),
+('ERM101', 'Genrey', 'Omisol', 'Cristobal', 'NA', 20, '2003-09-19', 'Boracay', 'Manila', 'Economy', '5A', 'ERM101', 1000, NULL, NULL, NULL),
+('ERM101', 'Genrey', 'Omisol', 'Cristobal', 'NA', 20, '2003-09-19', 'Boracay', 'Manila', 'Economy', '2A', '2023-12-03ERM101-1272598877', 1000, NULL, NULL, NULL),
+('ERM101', 'Genrey', 'Omisol', 'Cristobal', 'NA', 20, '2003-09-19', 'Boracay', 'Manila', 'Economy', '6A', '2023-12-03ERM101-1272598877', 1000, NULL, NULL, NULL),
+('ERM101', 'Genrey', 'Omisol', 'Cristobal', 'NA', 20, '2003-09-19', 'Boracay', 'Manila', 'Economy', '21B', '2023-12-03ERM101-1272598877', 1000, NULL, NULL, NULL),
+('ERM101', 'Genrey', 'Omisol', 'Cristobal', 'NA', 20, '2003-09-19', 'Boracay', 'Manila', 'Economy', '9B', '2023-12-03ERM101-1272598877', 1000, NULL, NULL, NULL),
+('ERM101', 'Jhon', 'Bahay', 'Namias', '', 20, '2003-09-19', 'Boracay', 'Manila', 'Economy', '24B', '2023-12-03ERM101691781918', 1000, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flight_manager`
+--
+
+CREATE TABLE `flight_manager` (
+  `airplane_id` varchar(255) NOT NULL,
+  `flight_no` varchar(255) NOT NULL,
+  `destination` varchar(255) NOT NULL,
+  `origin` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `origin_date` datetime NOT NULL,
+  `destination_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `flight_manager`
+--
+
+INSERT INTO `flight_manager` (`airplane_id`, `flight_no`, `destination`, `origin`, `status`, `origin_date`, `destination_date`) VALUES
+('tststs', 'tststs', 'tstst', 'ststs', 'tststs', '2023-12-01 00:00:00', '2023-12-02 00:00:00'),
+('tststs', 'tststs', 'tstst', 'ststs', 'tststs', '2023-12-01 00:00:00', '2023-12-02 00:00:00'),
+('gerer', 'rewre', 'airplane_id', 'rere', 'ere', '2023-12-22 00:00:00', '2023-12-08 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -88,7 +144,8 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`ticket_no`, `flight_no`, `seat`, `name`, `payment_date`, `status`, `ticket_agent`, `ticket_branch`, `price`) VALUES
-('test', 'test', 'test', 'test', '2023-11-01', 'test', 'test', 'test', 21);
+('test', 'test', 'test', 'test', '2023-11-01', 'test', 'test', 'test', 21),
+('2023-12-03ERM101691781918', 'ERM101', '24B', 'Jhon', '2023-12-03', 'ON', 'ONLINE', 'ONLINE', 1000);
 
 -- --------------------------------------------------------
 
