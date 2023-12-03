@@ -449,12 +449,12 @@ public class Database {
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    System.out.println("Seat is booked at: " + seatNo);
+                    //System.out.println("Seat is booked at: " + seatNo);
                     return true;
                 }
 
                 else {
-                    System.out.println("No Seat is booked at: " + seatNo);
+                    //System.out.println("No Seat is booked at: " + seatNo);
                     return false;
                 }
 

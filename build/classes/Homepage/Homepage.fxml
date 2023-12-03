@@ -153,7 +153,7 @@
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></JFXDatePicker>
-                                          <AnchorPane layoutX="17.0" layoutY="27.0" prefHeight="4.0" prefWidth="244.0" style="-fx-background-color: white;" />
+                                          <AnchorPane layoutX="17.0" layoutY="27.0" prefHeight="4.0" prefWidth="244.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="1.0" />
                                        </children>
                                     </AnchorPane>
                                     <Label focusTraversable="false" layoutX="586.0" layoutY="53.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION:" textFill="WHITE" AnchorPane.leftAnchor="586.0" AnchorPane.topAnchor="53.0" />
@@ -194,7 +194,21 @@
                         </AnchorPane>
                         <AnchorPane fx:id="hf_chooseSeat" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="86.0" layoutY="28.0" prefHeight="145.0" prefWidth="892.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 20;" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="28.0" />
+                              <AnchorPane layoutX="86.0" layoutY="28.0" prefHeight="160.0" prefWidth="889.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 20;" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="28.0">
+                                 <children>
+                                    <Label layoutX="315.0" layoutY="137.0" text="Occupied - " textFill="WHITE" AnchorPane.bottomAnchor="6.0">
+                                       <font>
+                                          <Font name="Inter Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane layoutX="400.0" layoutY="136.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #8c8ce2; -fx-background-radius: 5;" AnchorPane.bottomAnchor="6.0" />
+                                    <Label layoutX="451.0" layoutY="137.0" text="Unoccupied - " textFill="WHITE" AnchorPane.bottomAnchor="6.0">
+                                       <font>
+                                          <Font name="Inter Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane layoutX="554.0" layoutY="136.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #b2d58a; -fx-background-radius: 5;" AnchorPane.bottomAnchor="6.0" />
+                                 </children></AnchorPane>
                               <JFXButton fx:id="proceed_btn" layoutX="903.0" layoutY="538.0" onAction="#proceedBooking" prefHeight="47.0" prefWidth="103.0" style="-fx-background-radius: 20; -fx-background-color: #29ABE2;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="PROCEED" textFill="#fcfcfc">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
@@ -242,15 +256,7 @@
                                     </JFXTextField>
                                     <AnchorPane layoutX="695.0" layoutY="9.0" prefHeight="80.0" prefWidth="3.0" style="-fx-background-color: white; -fx-background-radius: 50;" AnchorPane.bottomAnchor="12.0" AnchorPane.topAnchor="12.0" />
                                     <Label layoutX="334.0" layoutY="48.0" style="-fx-font-size: 23;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Origin: " textFill="WHITE" AnchorPane.leftAnchor="334.0" AnchorPane.topAnchor="48.0" />
-                                    <JFXTextField fx:id="cs_origin" editable="false" focusColor="#8c8c8c00" layoutX="404.0" layoutY="48.0" prefHeight="30.0" prefWidth="280.0" style="-fx-font-size: 23; -fx-padding: 0 0 -5 0;" stylesheets="@HomepageStyles.css" unFocusColor="#fafafa" AnchorPane.leftAnchor="404.0" AnchorPane.topAnchor="48.0">
-                                       <styleClass>
-                                          <String fx:value="inriaSans-FontStyle" />
-                                          <String fx:value="textFill" />
-                                       </styleClass>
-                                       <cursor>
-                                          <Cursor fx:constant="DEFAULT" />
-                                       </cursor>
-                                    </JFXTextField>
+                                    <JFXComboBox fx:id="cs_origin" focusColor="#ffffff00" layoutX="404.0" layoutY="53.0" prefHeight="25.0" prefWidth="280.0" unFocusColor="WHITE" />
                                     <Label layoutX="743.0" layoutY="18.0" style="-fx-font-size: 23;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Select Class" textFill="WHITE" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="18.0" />
                                     <JFXComboBox fx:id="cs_seatClass" focusColor="#0a78a100" layoutX="711.0" layoutY="53.0" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #D9D9D9; -fx-padding: 0 0 0 5;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#f7f7f700" AnchorPane.leftAnchor="711.0" AnchorPane.topAnchor="53.0">
                                        <cursor>

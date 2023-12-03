@@ -104,7 +104,7 @@ public class HomepageController implements Initializable {
     private JFXTextField cs_destination;
 
     @FXML
-    private JFXTextField cs_origin;
+    private JFXComboBox<?> cs_origin;
 
     @FXML
     private JFXTextField cs_seatNum;
@@ -700,6 +700,7 @@ public class HomepageController implements Initializable {
             // Insert data into the database
             insertDataIntoDatabase();
             clearPaymentForms();
+            clearBookSelectionFields();
             // Set payment_form visibility to false
             payment_form.setVisible(false);
             overlayPane1.setVisible(false);
@@ -877,49 +878,66 @@ public class HomepageController implements Initializable {
         cs_seatClass.setItems(listData);
     }
 
+    //COMBO-BOX for Origin
+    private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "CEBU CITY", "SIARGAO", "BAGUIO", "ILO-ILO CITY"};
+
+    public void origin() {
+        List<String> listO = new ArrayList<>();
+
+        listO.addAll(Arrays.asList(originList));
+
+        ObservableList listData = FXCollections.observableArrayList(listO);
+        cs_origin.setItems(listData);
+    }
+
     // Add this method to initialize the booking buttons
     private void initializeBookingButtons() {
-        setBookingButtonAction(booking_btn1, "Boracay", "Manila");
-        setBookingButtonAction(booking_btn2, "Coron", "Manila");
-        setBookingButtonAction(booking_btn3, "Samar", "Manila");
-        setBookingButtonAction(booking_btn4, "Bohol", "Manila");
-        setBookingButtonAction(c_bookingBtn1, "Boracay", "Manila");
-        setBookingButtonAction(c_bookingBtn2, "Coron", "Manila");
-        setBookingButtonAction(c_bookingBtn3, "Puerto Prinsesa", "Manila");
-        setBookingButtonAction(c_bookingBtn4, "Samar", "Manila");
-        setBookingButtonAction(c_bookingBtn5, "Bohol", "Manila");
-        setBookingButtonAction(c_bookingBtn6, "Cebu City", "Manila");
-        setBookingButtonAction(c_bookingBtn7, "El Nido", "Manila");
-        setBookingButtonAction(c_bookingBtn8, "Tagaytay", "Manila");
-        setBookingButtonAction(c_bookingBtn9, "Siargao", "Manila");
+        setBookingButtonAction(booking_btn1, "Boracay");
+        setBookingButtonAction(booking_btn2, "Coron");
+        setBookingButtonAction(booking_btn3, "Samar");
+        setBookingButtonAction(booking_btn4, "Bohol");
+        setBookingButtonAction(c_bookingBtn1, "Boracay");
+        setBookingButtonAction(c_bookingBtn2, "Coron");
+        setBookingButtonAction(c_bookingBtn3, "Puerto Prinsesa");
+        setBookingButtonAction(c_bookingBtn4, "Samar");
+        setBookingButtonAction(c_bookingBtn5, "Bohol");
+        setBookingButtonAction(c_bookingBtn6, "Cebu City");
+        setBookingButtonAction(c_bookingBtn7, "El Nido");
+        setBookingButtonAction(c_bookingBtn8, "Tagaytay");
+        setBookingButtonAction(c_bookingBtn9, "Siargao");
 
         // Add more booking buttons as needed
     }
 
-// Generic method to set the action for booking buttons
-    private void setBookingButtonAction(JFXButton bookingButton, String destination, String origin) {
+    // Generic method to set the action for booking buttons
+    private void setBookingButtonAction(JFXButton bookingButton, String destination) {
         bookingButton.setOnAction(event -> {
             switchForm(hf_chooseSeat, bookingButton);
-            setDestinationAndOrigin(destination, origin);
+            setDestinationAndOrigin(destination);
         });
     }
 
     // Method to set destination and origin in cs_destination and cs_origin text fields
-    private void setDestinationAndOrigin(String destination, String origin) {
+    private void setDestinationAndOrigin(String destination) {
         cs_destination.setText(destination);
-        cs_origin.setText(origin);
     }
 
     // Method to clear seat selection fields
     private void clearSeatSelectionFields() {
         cs_seatNum.clear();
         cs_seatClass.getSelectionModel().clearSelection(); // Clear the selection
+        cs_origin.getSelectionModel().clearSelection();
+    }
+
+    // Method to clear seat selection fields
+    private void clearBookSelectionFields() {
         f_name.clear();
         m_name.clear();
         l_name.clear();
         suffix.clear();
         age.clear();
         birth_date.getEditor().clear();
+
     }
 
     // Method to handle return to destination button click
@@ -945,11 +963,11 @@ public class HomepageController implements Initializable {
         // Set values in text fields
         seat.setText(cs_seatNum.getText());
         destination.setText(cs_destination.getText());
-        origin.setText(cs_origin.getText());
 
         // Check if cs_seatClass has a selected item before accessing it
-        if (cs_seatClass.getSelectionModel().getSelectedItem() != null) {
+        if (cs_seatClass.getSelectionModel().getSelectedItem() != null || cs_origin.getSelectionModel().getSelectedItem() != null) {
             s_class.setText(cs_seatClass.getSelectionModel().getSelectedItem().toString());
+            origin.setText(cs_origin.getSelectionModel().getSelectedItem().toString());
         }
     }
 
@@ -1294,8 +1312,10 @@ public class HomepageController implements Initializable {
 
             if (db.checkSeats(seatLabel)) {
                 seatButton.setDisable(true);
+                seatButton.setStyle("-fx-background-color: #8c8ce2;");
             } else {
                 seatButton.setOnAction(event -> handleSeatButton(seatButton));
+                seatButton.setStyle("-fx-background-color: #b2d58a;");
             }
         }
     }
@@ -1311,6 +1331,8 @@ public class HomepageController implements Initializable {
 
         //Combo-Box initialize
         seatClass();
+        origin();
+
         // Initialize the menu slider in the closed state
         closeMenuSlider();
 
@@ -1639,13 +1661,13 @@ public class HomepageController implements Initializable {
                 seat_icon.setVisible(false);
             }
         });
-        
+
         // Auto requery when something is changed within the database
         // Create a timeline for periodic polling (adjust the Duration as needed)
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
             // Code to re-query the database goes here
             System.out.println("Re-querying");
-         
+
             try {
                 seatButtons();
             } catch (SQLException ex) {
