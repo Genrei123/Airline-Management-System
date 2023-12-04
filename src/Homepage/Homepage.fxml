@@ -125,7 +125,7 @@
                         <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0" visible="false">
+                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
                      <children>
                         <AnchorPane fx:id="hf_bookFlight" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -1468,7 +1468,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
