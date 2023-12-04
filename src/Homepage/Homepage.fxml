@@ -245,7 +245,7 @@
                                        </cursor>
                                     </JFXTextField>
                                     <Label layoutX="334.0" layoutY="21.0" prefHeight="30.0" style="-fx-font-size: 23;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Destination: " textFill="WHITE" AnchorPane.topAnchor="12.0" />
-                                    <JFXTextField fx:id="cs_destination" editable="false" focusColor="#8c8c8c00" layoutX="460.0" layoutY="12.0" prefHeight="30.0" prefWidth="220.0" style="-fx-font-size: 23; -fx-padding: 0 0 -5 0;" stylesheets="@HomepageStyles.css" unFocusColor="#fafafa" AnchorPane.topAnchor="12.0">
+                                    <JFXTextField fx:id="cs_destination" editable="false" focusColor="#8c8c8c00" layoutX="460.0" layoutY="12.0" prefHeight="30.0" prefWidth="224.0" style="-fx-font-size: 23; -fx-padding: 0 0 -5 0;" stylesheets="@HomepageStyles.css" unFocusColor="#fafafa" AnchorPane.topAnchor="12.0">
                                        <styleClass>
                                           <String fx:value="inriaSans-FontStyle" />
                                           <String fx:value="textFill" />
@@ -256,12 +256,15 @@
                                     </JFXTextField>
                                     <AnchorPane layoutX="695.0" layoutY="9.0" prefHeight="80.0" prefWidth="3.0" style="-fx-background-color: white; -fx-background-radius: 50;" AnchorPane.bottomAnchor="12.0" AnchorPane.topAnchor="12.0" />
                                     <Label layoutX="334.0" layoutY="48.0" style="-fx-font-size: 23;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Origin: " textFill="WHITE" AnchorPane.leftAnchor="334.0" AnchorPane.topAnchor="48.0" />
-                                    <JFXComboBox fx:id="cs_origin" focusColor="#ffffff00" layoutX="404.0" layoutY="53.0" prefHeight="25.0" prefWidth="280.0" style="-fx-padding: 0 0 0 5;" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="cs_origin" editable="false" focusColor="#8c8c8c00" layoutX="404.0" layoutY="48.0" prefHeight="30.0" prefWidth="280.0" style="-fx-font-size: 23; -fx-padding: 0 0 -5 0;" stylesheets="@HomepageStyles.css" unFocusColor="#fafafa">
                                        <styleClass>
                                           <String fx:value="inriaSans-FontStyle" />
-                                          <String fx:value="fontSize" />
+                                          <String fx:value="textFill" />
                                        </styleClass>
-                                    </JFXComboBox>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                    </JFXTextField>
                                     <Label layoutX="743.0" layoutY="18.0" style="-fx-font-size: 23;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Select Class" textFill="WHITE" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="18.0" />
                                     <JFXComboBox fx:id="cs_seatClass" focusColor="#0a78a100" layoutX="711.0" layoutY="53.0" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #D9D9D9; -fx-padding: 0 0 0 5;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#f7f7f700" AnchorPane.leftAnchor="711.0" AnchorPane.topAnchor="53.0">
                                        <cursor>
@@ -1195,135 +1198,46 @@
                         </AnchorPane>
                         <AnchorPane fx:id="hf_searchDesti" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="172.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="605.0" fitWidth="1061.0" opacity="0.71" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <image>
-                                    <Image url="@../Images/Cloud%201.png" />
+                                    <Image url="@../Images/Search%20Destination%20Designs/Beach%20Background%20with%20Airplane.png" />
                                  </image>
-                              </ImageView>
-                              <AnchorPane layoutX="241.0" layoutY="43.0" prefHeight="64.0" prefWidth="518.0" style="-fx-background-radius: 50;" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.topAnchor="77.0">
-                                 <children>
-                                    <AnchorPane layoutX="98.0" layoutY="9.0" prefHeight="47.0" prefWidth="322.0">
-                                       <children>
-                                          <Label fx:id="promptLabel1" layoutY="6.0" stylesheets="@HomepageStyles.css" text="Search" textFill="WHITE">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="30.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="promptLabel2" layoutX="97.0" layoutY="1.0" stylesheets="@HomepageStyles.css" text=" your destination" textFill="WHITE">
-                                             <font>
-                                                <Font size="30.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <TextField fx:id="searchTextField" focusTraversable="false" layoutX="94.0" layoutY="6.0" prefHeight="51.0" prefWidth="330.0" styleClass="searchText" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="6.0">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="TEXT" />
-                                       </cursor>
-                                    </TextField>
-                                    <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" layoutX="420.0" layoutY="51.0" size="50" AnchorPane.rightAnchor="15.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutY="204.0" prefHeight="375.0" prefWidth="1061.0" style="-fx-background-color: #7CD0EC;" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="204.0">
-                                 <children>
-                                    <AnchorPane layoutX="45.0" layoutY="33.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
-                                       <children>
-                                          <JFXButton fx:id="booking_btn4" layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </JFXButton>
-                                          <Label layoutX="35.0" layoutY="1.0" text="BOHOL" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="38.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to BOHOL" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="15.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="27.0" layoutY="210.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
-                                       <children>
-                                          <JFXButton fx:id="booking_btn3" layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </JFXButton>
-                                          <Label layoutX="35.0" layoutY="1.0" text="SAMAR" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="38.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to SAMAR" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="15.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="65.0" layoutY="53.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="119.0">
-                                       <children>
-                                          <JFXButton fx:id="booking_btn2" layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </JFXButton>
-                                          <Label layoutX="35.0" layoutY="1.0" text="CORON" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="38.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to CORON" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="15.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="23.0" prefHeight="64.0" prefWidth="942.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
-                                       <children>
-                                          <JFXButton fx:id="booking_btn1" layoutX="851.0" layoutY="20.0" prefHeight="53.0" prefWidth="158.0" style="-fx-background-radius: 20; -fx-background-color: #7CD0EC;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="BOOK" textFill="#fcfcfc" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="6.0">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </JFXButton>
-                                          <Label layoutX="35.0" layoutY="1.0" text="BORACAY" textFill="#29abe2" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="1.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="38.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="22.0" layoutY="31.0" text="299 for MNL to BRCY" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="15.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                              <JFXButton fx:id="returnToHome_btn" focusTraversable="false" layoutX="987.0" layoutY="13.0" ripplerFill="#fcfcfc" style="-fx-font-size: 15; -fx-background-color: #004AAD;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Home" textFill="WHITE">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
+                              </ImageView>
+                              <JFXButton fx:id="returnToHome_btn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="0.0" layoutX="20.0" layoutY="14.0" prefHeight="38.0" prefWidth="20.0" ripplerFill="#fcf9f9" style="-fx-padding: 4 4 4 4; -fx-background-radius: 50%;" styleClass="returnBtn" stylesheets="@HomepageStyles.css" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <graphic>
+                                    <MaterialDesignIconView fill="WHITE" glyphName="REPLAY" size="40" />
+                                 </graphic>
                               </JFXButton>
+                              <AnchorPane layoutX="446.0" layoutY="23.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #a9f1d9; -fx-background-radius: 5 5 0 0;">
+                                 <children>
+                                    <Label layoutX="34.0" layoutY="2.0" style="-fx-font-size: 20; -fx-padding: -5 0 -5 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="You are from" textFill="#48ad91">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <JFXComboBox fx:id="sd_origin" focusColor="#405aa800" layoutX="421.0" layoutY="50.0" prefHeight="25.0" prefWidth="220.0" promptText="ORIGIN" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="inriaSansBold-FontStyle" />
+                                    <String fx:value="fontSize" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <ScrollPane layoutX="16.0" layoutY="252.0" prefHeight="350.0" prefWidth="1021.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="996.0" styleClass="scrollpaneTransBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <Label layoutX="96.0" layoutY="64.0" text="Label" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1581,7 +1495,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="48.0" prefWidth="280.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>

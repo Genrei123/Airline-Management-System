@@ -1,12 +1,4 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 10 25, 23, 8:28:17 PM
-    Author     : Ervhyne
-*/
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&family=Inter:wght@400;700&family=Koulen&display=swap');
 
 /*------------------ FONT STYLES ---------------------*/
 .inriaSans-FontStyle {
@@ -26,6 +18,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .interBold-FontStyle {
     -fx-font-family: 'Inter', sans-serif;
+    -fx-font-weight: bold;
+}
+
+.koulenReg-FontStyle {
+    -fx-font-family: 'Koulen', sans-serif;
+    -fx-font-weight: normal;
+}
+
+.koulenBold-FontStyle {
+    -fx-font-family: 'Koulen', sans-serif;
     -fx-font-weight: bold;
 }
 
@@ -96,12 +98,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: transparent;
 }
 
-#promptLabel1, #promptLabel2 {
-    -fx-text-fill: white;
-}
-
 .fontSize {
     -fx-font-size: 23px;
 }
+
+.returnBtn{
+    -fx-background-color: transparent;
+}
+
 
 

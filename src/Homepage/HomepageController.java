@@ -104,7 +104,7 @@ public class HomepageController implements Initializable {
     private JFXTextField cs_destination;
 
     @FXML
-    private JFXComboBox<?> cs_origin;
+    private JFXTextField cs_origin;
 
     @FXML
     private JFXTextField cs_seatNum;
@@ -126,6 +126,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private AnchorPane hf_searchDesti;
+    
+    @FXML
+    private JFXComboBox<?> sd_origin;
 
     @FXML
     private Label promptLabel1;
@@ -881,52 +884,52 @@ public class HomepageController implements Initializable {
     //COMBO-BOX for Origin
     private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "CEBU CITY", "SIARGAO", "BAGUIO", "ILO-ILO CITY"};
 
-    public void origin() {
+    public void originDesti() {
         List<String> listO = new ArrayList<>();
 
         listO.addAll(Arrays.asList(originList));
 
         ObservableList listData = FXCollections.observableArrayList(listO);
-        cs_origin.setItems(listData);
+        sd_origin.setItems(listData);
     }
 
     // Add this method to initialize the booking buttons
     private void initializeBookingButtons() {
-        setBookingButtonAction(booking_btn1, "Boracay");
-        setBookingButtonAction(booking_btn2, "Coron");
-        setBookingButtonAction(booking_btn3, "Samar");
-        setBookingButtonAction(booking_btn4, "Bohol");
-        setBookingButtonAction(c_bookingBtn1, "Boracay");
-        setBookingButtonAction(c_bookingBtn2, "Coron");
-        setBookingButtonAction(c_bookingBtn3, "Puerto Prinsesa");
-        setBookingButtonAction(c_bookingBtn4, "Samar");
-        setBookingButtonAction(c_bookingBtn5, "Bohol");
-        setBookingButtonAction(c_bookingBtn6, "Cebu City");
-        setBookingButtonAction(c_bookingBtn7, "El Nido");
-        setBookingButtonAction(c_bookingBtn8, "Tagaytay");
-        setBookingButtonAction(c_bookingBtn9, "Siargao");
+        //setBookingButtonAction(booking_btn1, "Boracay","" );
+        //setBookingButtonAction(booking_btn2, "Coron", "");
+        //setBookingButtonAction(booking_btn3, "Samar", "");
+       // setBookingButtonAction(booking_btn4, "Bohol", "");
+        setBookingButtonAction(c_bookingBtn1, "Boracay", "");
+        setBookingButtonAction(c_bookingBtn2, "Coron", "");
+        setBookingButtonAction(c_bookingBtn3, "Puerto Prinsesa", "");
+        setBookingButtonAction(c_bookingBtn4, "Samar", "");
+        setBookingButtonAction(c_bookingBtn5, "Bohol", "");
+        setBookingButtonAction(c_bookingBtn6, "Cebu City", "");
+        setBookingButtonAction(c_bookingBtn7, "El Nido", "");
+        setBookingButtonAction(c_bookingBtn8, "Tagaytay", "");
+        setBookingButtonAction(c_bookingBtn9, "Siargao", "");
 
         // Add more booking buttons as needed
     }
 
     // Generic method to set the action for booking buttons
-    private void setBookingButtonAction(JFXButton bookingButton, String destination) {
+    private void setBookingButtonAction(JFXButton bookingButton, String destination, String origin) {
         bookingButton.setOnAction(event -> {
             switchForm(hf_chooseSeat, bookingButton);
-            setDestinationAndOrigin(destination);
+            setDestinationAndOrigin(destination, origin);
         });
     }
 
     // Method to set destination and origin in cs_destination and cs_origin text fields
-    private void setDestinationAndOrigin(String destination) {
+    private void setDestinationAndOrigin(String destination, String origin) {
         cs_destination.setText(destination);
+        cs_origin.setText(origin);
     }
 
     // Method to clear seat selection fields
     private void clearSeatSelectionFields() {
         cs_seatNum.clear();
         cs_seatClass.getSelectionModel().clearSelection(); // Clear the selection
-        cs_origin.getSelectionModel().clearSelection();
     }
 
     // Method to clear seat selection fields
@@ -963,11 +966,11 @@ public class HomepageController implements Initializable {
         // Set values in text fields
         seat.setText(cs_seatNum.getText());
         destination.setText(cs_destination.getText());
+        origin.setText(cs_origin.getText());
 
         // Check if cs_seatClass has a selected item before accessing it
-        if (cs_seatClass.getSelectionModel().getSelectedItem() != null || cs_origin.getSelectionModel().getSelectedItem() != null) {
+        if (cs_seatClass.getSelectionModel().getSelectedItem() != null) {
             s_class.setText(cs_seatClass.getSelectionModel().getSelectedItem().toString());
-            origin.setText(cs_origin.getSelectionModel().getSelectedItem().toString());
         }
     }
 
@@ -1293,7 +1296,7 @@ public class HomepageController implements Initializable {
     //"Economy", "Premium Economy", "Business", "First Class"
 
     private boolean areFieldsFilled() {
-        return !cs_origin.getSelectionModel().isEmpty() && !cs_destination.getText().isEmpty() && !cs_seatClass.getSelectionModel().isEmpty();
+        return !cs_origin.getText().isEmpty() && !cs_destination.getText().isEmpty() && !cs_seatClass.getSelectionModel().isEmpty();
     }
 
     private void seatButtons() throws SQLException {
@@ -1315,7 +1318,7 @@ public class HomepageController implements Initializable {
             for (JFXButton seatButton : seatButtons) {
                 String seatLabel = seatButton.getText();
 
-                if (db.checkSeats(seatLabel, cs_origin.getSelectionModel().getSelectedItem().toString(), cs_destination.getText())) {
+                if (db.checkSeats(seatLabel, cs_origin.getText(), cs_destination.getText())) {
                     seatButton.setDisable(true);
                     seatButton.setStyle("-fx-background-color: #8c8ce2;");
                 } else {
@@ -1332,7 +1335,7 @@ public class HomepageController implements Initializable {
 
         //Combo-Box initialize
         seatClass();
-        origin();
+        originDesti();
 
         // Initialize the menu slider in the closed state
         closeMenuSlider();
@@ -1366,32 +1369,6 @@ public class HomepageController implements Initializable {
 
         // Return actions for home_form
         returnToHome_btn.setOnAction(e -> switchForm(hf_home, returnToHome_btn));
-
-        // Initially, set the labels to be visible
-        promptLabel1.setVisible(true);
-        promptLabel2.setVisible(true);
-
-        // Add focus event handler to hide labels when TextField is focused
-        searchTextField.setOnMouseClicked(e -> {
-            promptLabel1.setVisible(false);
-            promptLabel2.setVisible(false);
-        });
-
-        // Add focus event handler to show labels when TextField loses focus and is empty
-        searchTextField.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal && searchTextField.getText().isEmpty()) {
-                promptLabel1.setVisible(true);
-                promptLabel2.setVisible(true);
-            }
-        });
-
-        // Add text change event handler to hide labels when text is entered
-        searchTextField.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal.isEmpty()) {
-                promptLabel1.setVisible(false);
-                promptLabel2.setVisible(false);
-            }
-        });
 
         // Initialize booking buttons
         initializeBookingButtons();
@@ -1699,7 +1676,7 @@ public class HomepageController implements Initializable {
             }
         });
 
-        cs_origin.valueProperty().addListener((observable, oldValue, newValue) -> {
+        cs_origin.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 seatButtons();
             } catch (SQLException e) {
