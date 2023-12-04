@@ -99,14 +99,20 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="Where We Fly" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
+                        <AnchorPane fx:id="cs_reBookingform" prefHeight="599.0" prefWidth="1061.0" />
+                        <AnchorPane fx:id="cs_changeInfoform" prefHeight="599.0" prefWidth="1061.0" visible="false" />
+                        <AnchorPane fx:id="cs_options" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <Pane prefHeight="599.0" prefWidth="1061.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css">
+                                 <children>
+                                    <JFXButton fx:id="cs_changeInfo" buttonType="RAISED" layoutX="203.0" layoutY="248.0" prefHeight="104.0" prefWidth="210.0" text="Change Your Information" textFill="#f2f2f2" />
+                                    <JFXButton fx:id="cs_reBooking" buttonType="RAISED" layoutX="632.0" layoutY="248.0" prefHeight="104.0" prefWidth="210.0" text="RE-BOOKING" textFill="#f2f2f2" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -119,7 +125,7 @@
                         <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
+                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0" visible="false">
                      <children>
                         <AnchorPane fx:id="hf_bookFlight" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -1462,7 +1468,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>

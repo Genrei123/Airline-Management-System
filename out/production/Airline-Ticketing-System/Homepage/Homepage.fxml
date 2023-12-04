@@ -99,7 +99,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="whereWeFly_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label prefHeight="53.0" prefWidth="198.0" text="Where We Fly" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
                            <font>
@@ -1568,12 +1568,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_whereWeFly" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="90.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="47.0" prefWidth="280.0" text="Where we fly" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <font>
-                        <Font name="Arial Black" size="20.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="menu_account" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="48.0" prefWidth="280.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="menu_account" alignment="BASELINE_LEFT" layoutY="90.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="48.0" prefWidth="280.0" text="Account" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -1586,7 +1581,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutX="2.0" layoutY="185.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="menu_TOP" alignment="BASELINE_LEFT" layoutY="137.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" text="Terms and Policies" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -1599,7 +1594,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_aboutUs" alignment="BASELINE_LEFT" layoutY="230.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" text="About us" textFill="WHITE">
+                  <JFXButton fx:id="menu_aboutUs" alignment="BASELINE_LEFT" layoutY="186.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" text="About us" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -1611,6 +1606,11 @@
                            </stops>
                         </LinearGradient>
                      </ripplerFill>
+                  </JFXButton>
+                  <JFXButton fx:id="menu_customerSupp" alignment="BASELINE_LEFT" layoutY="229.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="47.0" prefWidth="280.0" text="Customer Support" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="Arial Black" size="20.0" />
+                     </font>
                   </JFXButton>
                   <JFXButton fx:id="menu_logout" alignment="BASELINE_LEFT" layoutY="274.0" maxHeight="-Infinity" onAction="#logout" prefHeight="43.0" prefWidth="280.0" style="-fx-background-radius: 0 0 20 0;" text="Log out" textFill="WHITE">
                      <font>

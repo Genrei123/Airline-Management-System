@@ -283,6 +283,14 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXComboBox<String> bf_class;
 
+    @FXML
+    private AnchorPane cs_options, cs_reBookingform, cs_changeInfoform;
+
+    @FXML
+    private JFXButton cs_changeInfo, cs_reBooking;
+
+
+
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
 
