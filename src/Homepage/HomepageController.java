@@ -80,7 +80,7 @@ public class HomepageController implements Initializable {
     private AnchorPane account_form;
 
     @FXML
-    private AnchorPane whereWeFly_form;
+    private AnchorPane customerSupp_form;
 
     @FXML
     private AnchorPane flightStats_form;
@@ -218,7 +218,7 @@ public class HomepageController implements Initializable {
     private JFXButton menu_flightStats;
 
     @FXML
-    private JFXButton menu_whereWeFly;
+    private JFXButton menu_customerSupp;
 
     @FXML
     private JFXButton menu_account;
@@ -637,7 +637,7 @@ public class HomepageController implements Initializable {
             //For PARENT FORMS
             home_form.setVisible(true);
             flightStats_form.setVisible(false);
-            whereWeFly_form.setVisible(false);
+            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
@@ -650,36 +650,36 @@ public class HomepageController implements Initializable {
         } else if (event.getSource() == menu_flightStats) {
             home_form.setVisible(false);
             flightStats_form.setVisible(true);
-            whereWeFly_form.setVisible(false);
+            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
 
-        } else if (event.getSource() == menu_whereWeFly) {
+        } else if (event.getSource() == menu_customerSupp) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
-            whereWeFly_form.setVisible(true);
+            customerSupp_form.setVisible(true);
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
         } else if (event.getSource() == menu_account) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
-            whereWeFly_form.setVisible(false);
+            customerSupp_form.setVisible(false);
             account_form.setVisible(true);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
         } else if (event.getSource() == menu_TOP) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
-            whereWeFly_form.setVisible(false);
+            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(true);
             aboutUs_form.setVisible(false);
         } else if (event.getSource() == menu_aboutUs) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
-            whereWeFly_form.setVisible(false);
+            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(true);
