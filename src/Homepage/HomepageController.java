@@ -1292,42 +1292,43 @@ public class HomepageController implements Initializable {
     }
     //"Economy", "Premium Economy", "Business", "First Class"
 
+    private boolean areFieldsFilled() {
+        return !cs_origin.getSelectionModel().isEmpty() && !cs_destination.getText().isEmpty() && !cs_seatClass.getSelectionModel().isEmpty();
+    }
+
     private void seatButtons() throws SQLException {
-        Database db = new Database();
+        if (areFieldsFilled()) {
+            Database db = new Database();
 
-        // Define a list of all seat buttons
-        List<JFXButton> seatButtons = Arrays.asList(
-                seat_a1, seat_a2, seat_a3, seat_a4, seat_a5, seat_a6, seat_a7, seat_a8,
-                seat_b9, seat_b10, seat_b11, seat_b12, seat_b13, seat_b14, seat_b15, seat_b16, seat_b17, seat_b18, seat_b19, seat_b20, seat_b21, seat_b22, seat_b23, seat_b24,
-                seat_c25, seat_c26, seat_c27, seat_c28, seat_c29, seat_c30, seat_c31, seat_c32, seat_c33, seat_c34, seat_c35, seat_c36,
-                seat_d37, seat_d38, seat_d39, seat_d40, seat_d41, seat_d42, seat_d43, seat_d44, seat_d45, seat_d46, seat_d47, seat_d48, seat_d49, seat_d50,
-                seat_d51, seat_d52, seat_d53, seat_d54, seat_d55, seat_d56, seat_d57, seat_d58, seat_d59, seat_d60, seat_d61, seat_d62, seat_d63, seat_d64,
-                seat_d65, seat_d66, seat_d67, seat_d68, seat_d69, seat_d70, seat_d71, seat_d72, seat_d73, seat_d74, seat_d75, seat_d76, seat_d77, seat_d78,
-                seat_d79, seat_d80
-        );
+            // Define a list of all seat buttons
+            List<JFXButton> seatButtons = Arrays.asList(
+                    seat_a1, seat_a2, seat_a3, seat_a4, seat_a5, seat_a6, seat_a7, seat_a8,
+                    seat_b9, seat_b10, seat_b11, seat_b12, seat_b13, seat_b14, seat_b15, seat_b16, seat_b17, seat_b18, seat_b19, seat_b20, seat_b21, seat_b22, seat_b23, seat_b24,
+                    seat_c25, seat_c26, seat_c27, seat_c28, seat_c29, seat_c30, seat_c31, seat_c32, seat_c33, seat_c34, seat_c35, seat_c36,
+                    seat_d37, seat_d38, seat_d39, seat_d40, seat_d41, seat_d42, seat_d43, seat_d44, seat_d45, seat_d46, seat_d47, seat_d48, seat_d49, seat_d50,
+                    seat_d51, seat_d52, seat_d53, seat_d54, seat_d55, seat_d56, seat_d57, seat_d58, seat_d59, seat_d60, seat_d61, seat_d62, seat_d63, seat_d64,
+                    seat_d65, seat_d66, seat_d67, seat_d68, seat_d69, seat_d70, seat_d71, seat_d72, seat_d73, seat_d74, seat_d75, seat_d76, seat_d77, seat_d78,
+                    seat_d79, seat_d80
+            );
 
-        // Iterate over each seat button
-        for (JFXButton seatButton : seatButtons) {
-            String seatLabel = seatButton.getText();
+            // Iterate over each seat button
+            for (JFXButton seatButton : seatButtons) {
+                String seatLabel = seatButton.getText();
 
-            if (db.checkSeats(seatLabel)) {
-                seatButton.setDisable(true);
-                seatButton.setStyle("-fx-background-color: #8c8ce2;");
-            } else {
-                seatButton.setOnAction(event -> handleSeatButton(seatButton));
-                seatButton.setStyle("-fx-background-color: #b2d58a;");
+                if (db.checkSeats(seatLabel, cs_origin.getSelectionModel().getSelectedItem().toString(), cs_destination.getText())) {
+                    seatButton.setDisable(true);
+                    seatButton.setStyle("-fx-background-color: #8c8ce2;");
+                } else {
+                    seatButton.setOnAction(event -> handleSeatButton(seatButton));
+                    seatButton.setStyle("-fx-background-color: #b2d58a;");
+                    seatButton.setDisable(false);
+                }
             }
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Initialize chooseseat buttons
-        try {
-            seatButtons();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
         //Combo-Box initialize
         seatClass();
@@ -1650,15 +1651,59 @@ public class HomepageController implements Initializable {
             if ("Economy".equals(newValue)) {
                 economyC_seats.setVisible(true);
                 seat_icon.setVisible(false);
+
+                // Initialize chooseseat buttons
+                try {
+                    seatButtons();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+
             } else if ("Business".equals(newValue)) {
                 businessC_seats.setVisible(true);
                 seat_icon.setVisible(false);
+
+                // Initialize chooseseat buttons
+                try {
+                    seatButtons();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+
             } else if ("Premium Economy".equals(newValue)) {
                 premEconomyC_seats.setVisible(true);
                 seat_icon.setVisible(false);
+
+                // Initialize chooseseat buttons
+                try {
+                    seatButtons();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+
             } else if ("First Class".equals(newValue)) {
                 firstC_seats.setVisible(true);
                 seat_icon.setVisible(false);
+
+                // Initialize chooseseat buttons
+                try {
+                    seatButtons();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+        });
+
+        cs_origin.valueProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                seatButtons();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         });
 

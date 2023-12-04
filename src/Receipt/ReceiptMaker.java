@@ -105,7 +105,7 @@ public class ReceiptMaker {
         Table header2 = new Table(twoColumnWidth2);
 
         header2.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER));
-        header2.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + flight_no + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
+        header2.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + flight_no + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER).setFontSize(1));
         document.add(header2);
 
         // Space
@@ -123,13 +123,17 @@ public class ReceiptMaker {
 
         // Space
         document.add(new Paragraph("\n"));
-        document.close();
 
         // Body3
         float twoColumnWidthBody3[] = {285+150};
         Table passengerInfobody3 = new Table(twoColumnWidthBody3);
 
         passengerInfobody3.addCell(new Cell().add(new Paragraph("TOTAL AMOUNT: " + amount + "\n")).setBorder(Border.NO_BORDER));
+
+
+        document.close();
+
+
     }
 
     public String getReceiptPath(String flight_no) {

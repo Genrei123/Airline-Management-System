@@ -434,8 +434,8 @@ public class Database {
         return 0;
     }
 
-    public boolean checkSeats(String seatNo) throws SQLException {
-        String query = "SELECT seat  FROM `booked_flights` WHERE seat = ?";
+    public boolean checkSeats(String seatNo, String origin, String destination) throws SQLException {
+        String query = "SELECT seat  FROM `booked_flights` WHERE seat = ? AND origin = ? AND destination = ?";
         connector = connectDB.connectDB();
 
         if (connector == null) {
@@ -445,6 +445,8 @@ public class Database {
             try {
                 prepare = connector.prepareStatement(query);
                 prepare.setString(1, seatNo);
+                prepare.setString(2, origin);
+                prepare.setString(3, destination);
 
                 result = prepare.executeQuery();
 
