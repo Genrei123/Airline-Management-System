@@ -26,11 +26,6 @@
     -fx-font-weight: normal;
 }
 
-.koulenBold-FontStyle {
-    -fx-font-family: 'Koulen', sans-serif;
-    -fx-font-weight: bold;
-}
-
 .label-shadow {
     -fx-effect: dropshadow(three-pass-box, #5a5a5a, 1, 0, 3, 2);
 }
@@ -106,5 +101,32 @@
     -fx-background-color: transparent;
 }
 
+
+/* ScrollBar Track */
+.scroll-bar:vertical .track {
+    -fx-background-color: #444; /* Color of the track */
+}
+
+/* ScrollBar Arrows */
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: #555; /* Color of the arrow buttons */
+}
+
+/* ScrollBar Thumb */
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #333; /* Color of the thumb */
+}
+
+/* ScrollBar Track */
+.scroll-bar:horizontal .track {
+    -fx-background-color: #444; /* Color of the track */
+}
+
+/* ScrollBar Arrows */
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color: #555; /* Color of the arrow buttons */
+}
 
 

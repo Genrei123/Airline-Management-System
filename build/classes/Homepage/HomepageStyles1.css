@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&family=Inter:wght@400;700&display=swap');
+
 /* FOR COMBO BOX DESIGN */
 .combo-box {
     -fx-text-fill: black;
-    -fx-prompt-text-fill: black;
+    -fx-prompt-text-fill: #bababa;
 }
 
 .combo-box .list-cell:hover {
@@ -52,7 +54,7 @@
 .textarea {
     -fx-text-fill: white;
 
-    }
+}
 
 /* ScrollBar Thumb */
 .scroll-bar:vertical .thumb {
@@ -84,4 +86,12 @@
 .scroll-bar:horizontal .increment-button,
 .scroll-bar:horizontal .decrement-button {
     -fx-background-color: #555; /* Color of the arrow buttons */
+}
+
+.fontSize {
+    -fx-font-size: 20px;
+}
+
+.scrollpaneTransBG {
+    -fx-background-color: transparent;
 }

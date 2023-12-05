@@ -101,12 +101,90 @@
                   </AnchorPane>
                   <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="Where We Fly" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="150.0">
+                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
+                           <children>
+                              <AnchorPane fx:id="cs_reBookingform" layoutX="540.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
+                                 <children>
+                                    <JFXButton fx:id="cs_reBookingBTN" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="14.0" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 20;">
+                                       <graphic>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label layoutX="39.0" layoutY="191.0" text="Re-booking">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="28.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="17.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Images/Rebooking%20Logo%20copy.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </graphic>
+                                    </JFXButton>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="cs_changeInfoForm" layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;">
+                                 <children>
+                                    <JFXButton fx:id="cs_changeInfoBTN" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="14.0" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 21; -fx-border-radius: 21;" textOverrun="CENTER_ELLIPSIS">
+                                       <graphic>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label layoutX="50.0" layoutY="178.0" text="Change your">
+                                                   <font>
+                                                      <Font name="Arial" size="23.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="42.0" layoutY="204.0" text="Information">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="27.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="121.0" fitWidth="128.0" layoutX="53.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Images/Change%20Information%20Logo.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </graphic>
+                                    </JFXButton>
+                                 </children>
+                              </AnchorPane>
+                              <JFXButton fx:id="cs_contactUsBTN" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="345.0" layoutY="431.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+                                 <graphic>
+                                    <AnchorPane>
+                                       <children>
+                                          <Label layoutX="149.0" layoutY="4.0" text="us">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <FontAwesomeIconView glyphName="PHONE" layoutX="8.0" layoutY="32.0" size="26" wrappingWidth="20.00000080652535" />
+                                          <Label layoutX="49.0" layoutY="7.0" text="Contact">
+                                             <font>
+                                                <Font name="Arial Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="386.0" layoutY="-45.0" text="SUPPORT" textFill="WHITE">
+                           <graphic>
+                              <Label text="CUSTOMER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Arial" size="27.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1202,6 +1280,9 @@
                                  <image>
                                     <Image url="@../Images/Search%20Destination%20Designs/Beach%20Background%20with%20Airplane.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                               <JFXButton fx:id="returnToHome_btn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="0.0" layoutX="20.0" layoutY="14.0" prefHeight="38.0" prefWidth="20.0" ripplerFill="#fcf9f9" style="-fx-padding: 4 4 4 4; -fx-background-radius: 50%;" styleClass="returnBtn" stylesheets="@HomepageStyles.css" textFill="WHITE">
                                  <cursor>
@@ -1220,7 +1301,35 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <JFXComboBox fx:id="sd_origin" focusColor="#405aa800" layoutX="421.0" layoutY="50.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: #D9D9D9; -fx-padding: 0 0 0 5;" unFocusColor="#4d4d4d00" />
+                              <JFXComboBox fx:id="sd_origin" focusColor="#405aa800" layoutX="421.0" layoutY="50.0" prefHeight="25.0" prefWidth="220.0" promptText="ORIGIN" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="inriaSansBold-FontStyle" />
+                                    <String fx:value="fontSize" />
+                                 </styleClass>
+                              </JFXComboBox>
+                              <ScrollPane layoutX="20.0" layoutY="215.0" prefHeight="386.0" prefWidth="1011.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="995.0" style="-fx-background-color: #626355;" stylesheets="@HomepageStyles.css">
+                                       <children>
+                                          <ImageView fitHeight="160.0" fitWidth="723.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="160.0" fitWidth="181.0" layoutX="737.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ScrollPane layoutX="360.0" layoutY="162.0" prefHeight="200.0" prefWidth="200.0">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                            </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
