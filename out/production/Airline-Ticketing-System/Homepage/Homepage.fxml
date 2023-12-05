@@ -46,14 +46,30 @@
             <AnchorPane fx:id="centrePane" layoutY="63.0" prefHeight="599.0" prefWidth="1000.0" style="-fx-background-color: #201414;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0">
                <children>
                   <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" />
-                  <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" styleClass="textarea" stylesheets="@HomepageStyles1.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="About Us" textFill="WHITE" AnchorPane.leftAnchor="500.0">
+                        <Pane prefHeight="602.0" prefWidth="1061.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane layoutX="82.0" layoutY="15.0" prefHeight="579.0" prefWidth="963.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea editable="false" layoutX="-48.0" prefHeight="579.0" prefWidth="1011.0" styleClass="textAreaAU" stylesheets="@HomepageStyles1.css" text="&#9;&#9;&#9;&#9;&#9;&#9;     About Ermino Airlines&#10;&#10;&#9;Ermino Airlines is a leading domestic airline in the Philippines, known for its affordable and convenient flight options. We offer a wide range of destinations across the country, connecting people to their loved ones, business opportunities, and leisure destinations.&#10;&#10;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;     Our Mission:&#10;&#10;&#9;Our mission is to make air travel accessible and affordable for everyone in the Philippines. We believe that everyone deserves to experience the joy of flight and explore the beauty of our country.&#10;&#10;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;      Our Values:&#10;&#10;⚫ Affordability: We strive to offer the lowest fares possible, without compromising on safety or quality.&#10;&#10;⚫ Convenience: We offer a seamless booking experience and flexible travel options to meet your needs.&#10;&#10;⚫ Safety: We are committed to the highest safety standards and operate our flights with the utmost care and attention to detail.&#10;&#10;⚫ Customer Service: We are dedicated to providing excellent customer service and ensuring that you have a positive travel experience.&#10;&#10;&#10;&#10;&#9;&#9;&#9;&#9;&#9;&#9;Why Choose Ermino Airlines?&#10;&#10;There are many reasons to choose Ermino Airlines for your next domestic flight. Here are just a few:&#10;&#10;⚫ Low Prices: We offer some of the lowest fares in the Philippines, making air travel more affordable for everyone.&#10;&#10;⚫ Extensive Network: We fly to a wide range of destinations across the country, making it easy to find the perfect flight for your needs.&#10;&#10;⚫ Convenient Booking: You can book your flights online or through our call center 24/7.&#10;&#10;⚫ Flexible Travel Options: We offer a variety of fare classes and add-ons to customize your travel experience.&#10;&#10;⚫ Excellent Customer Service: Our friendly and helpful customer service team is always here to assist you.&#10;&#10;&#10;      Ready to experience the Ermino Airlines difference? Book your flight today &#10;&#9;&#9;&#9;&#9;       and start exploring the Philippines!&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-48.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="25.0" />
+                                 </font>
+                              </JFXTextArea>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="459.0" layoutY="-47.0" text=" US" textFill="WHITE">
+                           <graphic>
+                              <Label text="ABOUT" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Arial" size="27.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="top_form" layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1531,7 +1547,7 @@
                </children>
             </AnchorPane>
             <AnchorPane fx:id="overlayPane" prefHeight="662.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane prefHeight="43.0" prefWidth="47.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane layoutY="10.0" prefHeight="43.0" prefWidth="47.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="10.0">
                <children>
                   <JFXButton fx:id="menuBtn1" ellipsisString="" onAction="#toggleMenuSlider" prefHeight="43.0" prefWidth="47.0" style="-fx-background-radius: 0 20 20 0;">
                      <graphic>
