@@ -3,6 +3,7 @@ package Dashboard;
 import Animations.SwitchForms;
 import Database.Database;
 import LogIn.Admin;
+import LogIn.AlertManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -298,7 +299,10 @@ public class DashboardController implements Initializable {
     private TableColumn<String[], String> cs_ticketNo, cs_reason, cs_date;
 
     @FXML
-    private TextField cs_ticketText, cs_nameText, cs_contactText, cs_feedbackText;
+    private TextField cs_ticketText, cs_nameText, cs_contactText, cs_feedbackText, cs_rebookreason;
+
+    @FXML
+    private Label cs_alert;
 
 
 
@@ -788,6 +792,59 @@ public class DashboardController implements Initializable {
 
     }
 
+    public void confirmRebook() throws SQLException {
+        // Check if fields are empty in customer support rebooking page
+        if (cs_ticketText.getText().isEmpty() || cs_nameText.getText().isEmpty() || cs_contactText.getText().isEmpty() || cs_statusCombo.getSelectionModel().isEmpty() || cs_statusSeatCombo.getSelectionModel().isEmpty() || cs_rebookDate.getValue() == null || cs_rebookreason.getText().isEmpty()) {
+            AlertManager alertManager = new AlertManager(cs_alert);
+            alertManager.setAlertText("Please fill in all the fields.", "Red");
+        }
+
+        else {
+            // Get informations
+            String ticketNo = cs_ticketText.getText();
+            String name = cs_nameText.getText();
+            String contact = cs_contactText.getText();
+            String status = cs_statusCombo.getSelectionModel().getSelectedItem();
+            String seat = cs_statusSeatCombo.getSelectionModel().getSelectedItem();
+            LocalDate rebookDate = cs_rebookDate.getValue();
+            String reason = cs_rebookreason.getText();
+            String reasonOption = null;
+
+            if ("Move Departure Date".equals(reason)) {
+                reasonOption = "departure";
+            }
+
+            else if ("Move Arrival Date".equals(reason)) {
+                reasonOption = "arrival";
+            }
+
+            // Perform queries
+            Database database = new Database();
+            database.updateData(
+                    "customer_support",
+                    Arrays.asList("status"),
+                    Arrays.asList(status),
+                    Arrays.asList("ticket_no"),
+                    Arrays.asList(ticketNo)
+            );
+
+            database.updateData(
+                    "booked_flights",
+                    Arrays.asList(reasonOption, "seat"),
+                    Arrays.asList(rebookDate, seat),
+                    Arrays.asList("ticket_no"),
+                    Arrays.asList(ticketNo)
+            );
+            
+
+
+            AlertManager success = new AlertManager(cs_alert);
+            success.setAlertText("Successfully rebooked flight.", "Green");
+        }
+
+
+    }
+
     private void loadseats(String seatClass) {
         Database db = new Database();
         // Check for the class and initialize seats available
@@ -800,16 +857,8 @@ public class DashboardController implements Initializable {
         String[] economy_seats = {"37D", "38D", "39D", "40D", "41D", "42D", "43D", "44D", "45D", "46D", "47D", "48D", "49D", "50D", "51D", "52D", "53D", "54D", "55D", "56D", "57D", "58D", "59D", "60D", "61D", "62D", "63D", "64D", "65D", "66D", "67D", "68D", "69D", "70D", "71D", "72D", "73D", "74D", "75D", "76D", "77D", "78D", "79D", "80D"};
 
         if (Objects.equals(seatClass, "First Class")) {
-            // Loop through the array and remove the seats that are already booked
-            ObservableList<String[]> data = db.pullData("booked_flights", Collections.singletonList("seat"), Collections.singletonList("ticket_no"), Collections.singletonList(cs_ticketNo.getText()));
-
-            
-
             ObservableList<String> seats = FXCollections.observableArrayList(firstC_seats);
             cs_statusSeatCombo.setItems(seats);
-
-
-
         }
 
         else if (Objects.equals(seatClass, "Business Class")) {
@@ -1040,9 +1089,6 @@ public class DashboardController implements Initializable {
             if (newSelection != null) {
                 String[] selected = cs_ticketReq.getSelectionModel().getSelectedItem();
 
-                cs_ticketNo.setText(selected[0]);
-                cs_reason.setText(selected[1]);
-                cs_date.setText(selected[2]);
 
                 // Query the database for the ticket information
                 Database database = new Database();
@@ -1057,15 +1103,18 @@ public class DashboardController implements Initializable {
 
                 String ticket_no = change.get(0)[1];
                 String name = change.get(0)[0];
+                String reason = change.get(0)[2];
                 String contact = change.get(0)[3];
                 String feedback = change.get(0)[4];
                 LocalDate date = LocalDate.parse(change.get(0)[6]);
+
 
                 cs_ticketText.setText(ticket_no);
                 cs_nameText.setText(name);
                 cs_contactText.setText(contact);
                 cs_feedbackText.setText(feedback);
                 cs_rebookDate.setValue(date);
+                cs_rebookreason.setText(reason);
 
 
 

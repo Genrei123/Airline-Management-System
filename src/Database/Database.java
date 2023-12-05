@@ -468,6 +468,39 @@ public class Database {
         return false;
     }
 
+    public boolean checkSeats(String seatNo, String seatClass ) throws SQLException {
+        String query = "SELECT seat  FROM `booked_flights` WHERE seat = ? AND class = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, seatNo);
+                prepare.setString(2, seatClass);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    //System.out.println("Seat is booked at: " + seatNo);
+                    connector.close();
+                    return true;
+                } else {
+                    //System.out.println("No Seat is booked at: " + seatNo);
+                    connector.close();
+                    return false;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
     // Check if flight exists
     public boolean checkFlight(String ticket_no, String last_name) throws SQLException {
         String query = "SELECT ticket_no FROM `booked_flights` WHERE ticket_no = ? AND last_name = ? AND status = ?";
