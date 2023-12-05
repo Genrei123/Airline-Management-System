@@ -256,7 +256,7 @@ public class DashboardController implements Initializable {
     private JFXComboBox<String> fm_managerAirplaneIDbox, fm_managerFlightNObox, fm_managerDESTbox, fm_managerORIGINbox, fm_managerSTATUSbox, fm_managerDESTDATEbox;
 
     @FXML
-    private TextField fm_managerFLIGHTNOtxt;
+    private TextField fm_managerFLIGHTNOtxt, cs_class;
 
     @FXML
     private JFXTimePicker fm_timeDeparture, ETOA;
@@ -274,7 +274,7 @@ public class DashboardController implements Initializable {
     private JFXComboBox<String> bf_searchBy;
 
     @FXML
-    private JFXDatePicker bf_bookingDate, bf_departDate, bf_arrivalDate;
+    private JFXDatePicker bf_bookingDate, bf_departDate, bf_arrivalDate, cs_rebookDate;
 
     @FXML
     private TableColumn<String[], String> bf_flightNO, bf_depart, bf_dest, bf_arrival, bf_tableName, bf_cseat, bf_bookDate, bf_amountTable;
@@ -283,13 +283,22 @@ public class DashboardController implements Initializable {
     private TextField bf_flightID, bf_classSeat, bf_destination, bf_amount, bf_name;
 
     @FXML
-    private JFXComboBox<String> bf_class;
+    private JFXComboBox<String> bf_class, cs_statusCombo, cs_statusSeatCombo, cs_classSeatCombo;
 
     @FXML
     private AnchorPane cs_options, cs_reBookingform, cs_changeInfoform;
 
     @FXML
     private JFXButton cs_changeInfo, cs_reBooking;
+
+    @FXML
+    private TableView<String[]> cs_ticketReq;
+
+    @FXML
+    private TableColumn<String[], String> cs_ticketNo, cs_reason, cs_date;
+
+    @FXML
+    private TextField cs_ticketText, cs_nameText, cs_contactText, cs_feedbackText;
 
 
 
@@ -364,6 +373,8 @@ public class DashboardController implements Initializable {
 
         cs_rebookingForm.setVisible(false);
         cs_updateForm.setVisible(false);
+
+
 
         // Show the selected form
         targetForm.setVisible(true);
@@ -751,8 +762,78 @@ public class DashboardController implements Initializable {
         bf_arrivalDate.setValue(null);
     }
 
+    private void loadCustomerSupport() {
+        // Load the table
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData(
+                "customer_support",
+                Arrays.asList("ticket_no", "reason", "preferred_date"));
+
+
+        if (data != null) {
+            cs_ticketReq.setItems(data);
+            cs_ticketNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            cs_reason.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            cs_date.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+
+        // Load the status combo box
+        List<String> status = Arrays.asList("Pending", "Approved", "Denied");
+        ObservableList<String> statusData = FXCollections.observableArrayList(status);
+        cs_statusCombo.setItems(statusData);
+
+    }
+
+    private void loadseats(String seatClass) {
+        Database db = new Database();
+        // Check for the class and initialize seats available
+        String[] firstC_seats = {"1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A"};
+        // Do it until 24
+        String[] businessC_seats = {"9B", "10B", "11B", "12B", "13B", "14B", "15B", "16B", "17B", "18B", "19B", "20B", "21B", "22B", "23B", "24B"};
+        // Do it until 36
+        String[] premiumE_seats = {"25C", "26C", "27C", "28C", "29C", "30C", "31C", "32C", "33C", "34C", "35C", "36C"};
+        // Do it until 80
+        String[] economy_seats = {"37D", "38D", "39D", "40D", "41D", "42D", "43D", "44D", "45D", "46D", "47D", "48D", "49D", "50D", "51D", "52D", "53D", "54D", "55D", "56D", "57D", "58D", "59D", "60D", "61D", "62D", "63D", "64D", "65D", "66D", "67D", "68D", "69D", "70D", "71D", "72D", "73D", "74D", "75D", "76D", "77D", "78D", "79D", "80D"};
+
+        if (Objects.equals(seatClass, "First Class")) {
+            // Loop through the array and remove the seats that are already booked
+            ObservableList<String[]> data = db.pullData("booked_flights", Collections.singletonList("seat"), Collections.singletonList("ticket_no"), Collections.singletonList(cs_ticketNo.getText()));
+
+            
+
+            ObservableList<String> seats = FXCollections.observableArrayList(firstC_seats);
+            cs_statusSeatCombo.setItems(seats);
+
+
+
+        }
+
+        else if (Objects.equals(seatClass, "Business Class")) {
+            ObservableList<String> seats = FXCollections.observableArrayList(businessC_seats);
+            cs_statusSeatCombo.setItems(seats);
+
+
+        }
+
+        else if (Objects.equals(seatClass, "Premium Economy")) {
+            ObservableList<String> seats = FXCollections.observableArrayList(premiumE_seats);
+            cs_statusSeatCombo.setItems(seats);
+        }
+
+        else if (Objects.equals(seatClass, "Economy")) {
+            ObservableList<String> seats = FXCollections.observableArrayList(economy_seats);
+            cs_statusSeatCombo.setItems(seats);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        loadCustomerSupport();
 
         // Set sales to be visible
         sales_form.setVisible(true);
@@ -791,10 +872,6 @@ public class DashboardController implements Initializable {
         // Add button click event handlers
         fm_managerBtn.setOnMouseClicked(e -> switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn));
         fm_recordsBtn.setOnMouseClicked(e -> switchForm(fm_recordsForm, fm_recordsBtn, fm_managerBtn));
-
-        cs_rebookingBtn.setOnMouseClicked(e -> switchForm(cs_rebookingForm, cs_rebookingBtn, cs_updateInfoBtn));
-        cs_updateInfoBtn.setOnMouseClicked(e -> switchForm(cs_updateForm, cs_updateInfoBtn, cs_rebookingBtn));
-
 
 
 
@@ -957,6 +1034,56 @@ public class DashboardController implements Initializable {
         });
 
         // Book flights ends here
+
+        // For customer support
+        cs_ticketReq.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                String[] selected = cs_ticketReq.getSelectionModel().getSelectedItem();
+
+                cs_ticketNo.setText(selected[0]);
+                cs_reason.setText(selected[1]);
+                cs_date.setText(selected[2]);
+
+                // Query the database for the ticket information
+                Database database = new Database();
+
+                ObservableList<String[]> change = database.pullData(
+                        "customer_support",
+                        Arrays.asList("name", "ticket_no", "reason", "contact", "feedback", "status", "preferred_date"),
+                        Arrays.asList("ticket_no", "reason", "preferred_date"),
+                        Arrays.asList(selected[0], selected[1], selected[2])
+                );
+
+
+                String ticket_no = change.get(0)[1];
+                String name = change.get(0)[0];
+                String contact = change.get(0)[3];
+                String feedback = change.get(0)[4];
+                LocalDate date = LocalDate.parse(change.get(0)[6]);
+
+                cs_ticketText.setText(ticket_no);
+                cs_nameText.setText(name);
+                cs_contactText.setText(contact);
+                cs_feedbackText.setText(feedback);
+                cs_rebookDate.setValue(date);
+
+
+
+
+                ObservableList<String[]> data1 = database.pullData(
+                        "booked_flights",
+                        Arrays.asList("class"),
+                        Arrays.asList("ticket_no", "status"),
+                        Arrays.asList(ticket_no, "Booked")
+                );
+
+                cs_class.setText(data1.get(0)[0]);
+
+                loadseats(data1.get(0)[0]);
+            }
+        });
+
+
 
 
 

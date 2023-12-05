@@ -17,7 +17,7 @@
    <children>
       <AnchorPane fx:id="main_form" styleClass="backgroundRight" stylesheets="@SigninStyles.css">
          <children>
-            <AnchorPane fx:id="login_form" layoutX="216.0" layoutY="8.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="login_form" layoutX="216.0" layoutY="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="login_username" focusColor="#bfbaba" labelFloat="true" layoutX="219.0" layoutY="63.0" prefHeight="25.0" prefWidth="341.0" promptText="Username" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.leftAnchor="219.0" />
                   <JFXTextField fx:id="login_showPassword" focusColor="WHITE" labelFloat="true" layoutX="219.0" layoutY="107.0" prefHeight="25.0" prefWidth="341.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" visible="false" />
@@ -42,7 +42,7 @@
                   <Label fx:id="signin_alert" alignment="CENTER" contentDisplay="CENTER" layoutX="290.0" layoutY="165.0" prefHeight="17.0" prefWidth="200.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="signup_form" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="signup_form" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="signup_userID" focusColor="#bfbaba" labelFloat="true" layoutX="220.0" layoutY="17.0" prefHeight="25.0" prefWidth="341.0" promptText="Username" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="#d7d6d6" AnchorPane.topAnchor="20.0" />
                   <Button fx:id="signup_btn" layoutX="483.0" layoutY="213.0" mnemonicParsing="false" onAction="#createAcc" prefHeight="25.0" prefWidth="78.0" styleClass="createAccBtn" stylesheets="@SigninStyles.css" text="Create" />

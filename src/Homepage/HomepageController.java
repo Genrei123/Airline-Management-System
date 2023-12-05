@@ -16,6 +16,7 @@ import com.sun.javafx.stage.StageHelper;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -45,10 +46,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -406,6 +403,24 @@ public class HomepageController implements Initializable {
     @FXML
     private ImageView seat_icon;
 
+    @FXML
+    private JFXButton cs_rebookingBtn, cs_changeInfoBtn, cs_contactUsBTN, cs_return;
+
+    @FXML
+    private AnchorPane cs_changeInfoForm, cs_reBookingform, background, cs_chat;
+
+    @FXML
+    private ComboBox<String> cs_rebookingCombo;
+
+    @FXML
+    private DatePicker cs_rebookingDate;
+
+    @FXML
+    private TextField cs_rebookingTicketNo, cs_rebookingLastName, cs_rebookingFeedback, cs_rebookingActive;
+
+    @FXML
+    private Label cs_alert;
+
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
@@ -630,6 +645,15 @@ public class HomepageController implements Initializable {
         hf_searchDesti.setVisible(false);
         hf_chooseSeat.setVisible(false);
         hf_bookFlight.setVisible(false);
+        // Show the selected form
+        targetForm.setVisible(true);
+    }
+
+    private void CSswitchForm(AnchorPane targetForm, JFXButton selectedButton) {
+        background.setVisible(false);
+        cs_changeInfoForm.setVisible(false);
+        cs_reBookingform.setVisible(false);
+        cs_chat.setVisible(false);
         // Show the selected form
         targetForm.setVisible(true);
     }
@@ -1330,6 +1354,72 @@ public class HomepageController implements Initializable {
         }
     }
 
+    public void handleChangeInfoButtonClick() {
+        CSswitchForm(cs_changeInfoForm, cs_rebookingBtn);
+    }
+
+    public void handleRebookingButtonClick() {
+        CSswitchForm(cs_reBookingform, cs_changeInfoBtn);
+
+        // Initialize combo box
+        cs_rebookingCombo.getItems().addAll(
+                "Move Departure Date",
+                "Move Arrival Date");
+    }
+
+    public void handleReturnButton() {
+        CSswitchForm(background, cs_return);
+    }
+    public void handleChatButtonClick() {
+        CSswitchForm(cs_chat, cs_contactUsBTN);
+    }
+
+    public void handleRebooking() throws SQLException {
+        // Check for empty fields
+        if (cs_rebookingTicketNo.getText().isEmpty() || cs_rebookingLastName.getText().isEmpty() || cs_rebookingFeedback.getText().isEmpty() || cs_rebookingActive.getText().isEmpty() || cs_rebookingDate.getValue() == null) {
+            AlertManager alert = new AlertManager(cs_alert);
+            alert.setAlertText("Please fill in all required fields.", "red");
+
+            // Schedule a task to hide the alert after 5 seconds
+            PauseTransition delay = new PauseTransition(Duration.seconds(5));
+            delay.setOnFinished(event -> alert.hideAlert());
+            delay.play();
+            return;
+        }
+
+        String issue = cs_rebookingCombo.getValue();
+        String ticketNo = cs_rebookingTicketNo.getText();
+        String last_name = cs_rebookingLastName.getText();
+        String feedback = cs_rebookingFeedback.getText();
+        String active = cs_rebookingActive.getText();
+        LocalDate date = cs_rebookingDate.getValue();
+
+        // Check if flight exists
+        Database db = new Database();
+
+        if (db.checkFlight(ticketNo, last_name)) {
+            // Insert into database.
+            db.insertData(
+                    "customer_support",
+                    Arrays.asList("name", "ticket_no", "reason", "contact", "feedback", "status", "preferred_date"),
+                    Arrays.asList(last_name, ticketNo, issue, active, feedback, "Pending", date)
+            );
+
+
+
+            AlertManager alert = new AlertManager(cs_alert);
+            alert.setAlertText("Rebooking request sent.", "green");
+
+        } else {
+            System.out.println("Flight does not exist!");
+
+            AlertManager alert = new AlertManager(cs_alert);
+            alert.setAlertText("Flight does not exist!", "red");
+
+            System.out.println(last_name + " " + ticketNo);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -1357,12 +1447,19 @@ public class HomepageController implements Initializable {
             }
         });
 
+
+
+
+
+
         // Make the starsPane visible when the application is running
         starsPane.setVisible(true);
         starsPane1.setVisible(true);
 
         // Switch Forms for home_form
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
+
+
         //Clear textFields of hf_chooseSeat textFields
         returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
         returnToDesti_btn1.setOnAction(e -> handleReturnToDestiButtonClick());
@@ -1698,6 +1795,8 @@ public class HomepageController implements Initializable {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+
+
 
     }
 }

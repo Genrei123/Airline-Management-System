@@ -454,9 +454,7 @@ public class Database {
                     //System.out.println("Seat is booked at: " + seatNo);
                     connector.close();
                     return true;
-                }
-
-                else {
+                } else {
                     //System.out.println("No Seat is booked at: " + seatNo);
                     connector.close();
                     return false;
@@ -470,33 +468,39 @@ public class Database {
         return false;
     }
 
-
-
-    public ObservableList<String[]> dashboardData() {
-        String query = "SELECT flight_no, departure FROM `booked_flights`";
+    // Check if flight exists
+    public boolean checkFlight(String ticket_no, String last_name) throws SQLException {
+        String query = "SELECT ticket_no FROM `booked_flights` WHERE ticket_no = ? AND last_name = ? AND status = ?";
         connector = connectDB.connectDB();
 
-        if (connector != null) {
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        } else {
             try {
-                Statement statement = connector.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, ticket_no);
+                prepare.setString(2, last_name);
+                prepare.setString(3, "Booked");
 
-                List<String[]> rows = new ArrayList<>();
-                while (resultSet.next()) {
-                    String[] row = new String[resultSet.getMetaData().getColumnCount()];
-                    for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
-                        row[i] = resultSet.getString(i + 1);
-                    }
-                    rows.add(row);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    //System.out.println("Flight exists: " + flight_no);
+                    connector.close();
+                    return true;
+                } else {
+                    //System.out.println("Flight does not exist: " + flight_no);
+                    connector.close();
+                    return false;
                 }
-                return FXCollections.observableArrayList(rows);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("Cannot connect to the database");
         }
-        return null;
+
+        return false;
     }
 }
