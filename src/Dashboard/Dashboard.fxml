@@ -364,7 +364,7 @@
                   </TextField>
                   <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="395.0" layoutY="38.0" size="20" AnchorPane.leftAnchor="395.0" />
                   <Separator layoutX="221.0" layoutY="15.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="5.0" />
-                  <AnchorPane fx:id="fm_managerForm" layoutY="55.0" prefHeight="497.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
+                  <AnchorPane fx:id="fm_managerForm" layoutY="55.0" prefHeight="497.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                      <children>
                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="446.0" prefWidth="748.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="438.0" AnchorPane.topAnchor="34.0">
                            <children>

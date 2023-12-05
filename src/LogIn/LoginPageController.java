@@ -58,7 +58,10 @@ public class LoginPageController implements Initializable {
     private JFXTextField login_username;
 
     @FXML
-    private JFXTextField login_showPassword;
+    private JFXTextField login_showPassword, signup_showPassword, signup_showConfirmPassword;
+
+    @FXML
+    private JFXCheckBox signup_selectShowPassword;
 
     @FXML
     private JFXPasswordField login_password;
@@ -151,6 +154,7 @@ public class LoginPageController implements Initializable {
     private Statement statement;
     private Connector connectDB = new Connector();
     private boolean showPasswordChecked = false;
+    private boolean signupShowPasswordChecked = false;
     private String storedUsername;
 
     private Database checkAcc = new Database();
@@ -223,6 +227,29 @@ public class LoginPageController implements Initializable {
             login_password.setText(login_showPassword.getText());
             login_showPassword.setVisible(false);
             login_password.setVisible(true);
+        }
+    }
+
+    public void showSignUpPassword() {
+        signupShowPasswordChecked = signup_selectShowPassword.isSelected();
+        if (signupShowPasswordChecked) {
+            signup_showPassword.setText(signup_password.getText());
+            signup_showPassword.setVisible(true);
+            signup_password.setVisible(false);
+
+            signup_showConfirmPassword.setText(signup_confirmPassword.getText());
+            signup_showConfirmPassword.setVisible(true);
+            signup_confirmPassword.setVisible(false);
+        } else {
+            signup_password.setText(signup_showPassword.getText());
+            signup_showPassword.setVisible(false);
+            signup_password.setVisible(true);
+
+            signup_confirmPassword.setText(signup_showConfirmPassword.getText());
+            signup_showConfirmPassword.setVisible(false);
+            signup_confirmPassword.setVisible(true);
+
+
         }
     }
 
@@ -359,6 +386,9 @@ public class LoginPageController implements Initializable {
     public void createAcc() {
         AlertManager alert = new AlertManager(signup_alert);
 
+        String enteredPassword = signupShowPasswordChecked ? signup_showPassword.getText() : signup_password.getText();
+        String enteredConfirmPassword = signupShowPasswordChecked ? signup_showConfirmPassword.getText() : signup_confirmPassword.getText();
+
         // CHECK IF WE HAVE EMPTY FIELD
         if (signup_userID.getText().isEmpty()
                 || signup_password.getText().isEmpty()
@@ -366,9 +396,9 @@ public class LoginPageController implements Initializable {
                 || signup_selectQuestion.getSelectionModel().getSelectedItem() == null
                 || signup_answer.getText().isEmpty()) {
             alert.setAlertText("Please fill in all required fields.", "red");
-        } else if (!signup_password.getText().equals(signup_confirmPassword.getText())) {
+        } else if (!enteredPassword.equals(enteredConfirmPassword)) {
             alert.setAlertText("Password does not match.", "red");
-        } else if (signup_password.getText().length() < 8) {
+        } else if (enteredPassword.length() < 8) {
             alert.setAlertText("Invalid Password, at least 8 characters needed.", "red");
         } else {
             // CHECK IF THE USERNAME IS ALREADY TAKEN
