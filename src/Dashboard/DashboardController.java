@@ -44,6 +44,8 @@ public class DashboardController implements Initializable {
 
 
 
+
+
     @FXML
     private Label d_flightsToday;
 
@@ -792,6 +794,8 @@ public class DashboardController implements Initializable {
 
         cs_rebookingBtn.setOnMouseClicked(e -> switchForm(cs_rebookingForm, cs_rebookingBtn, cs_updateInfoBtn));
         cs_updateInfoBtn.setOnMouseClicked(e -> switchForm(cs_updateForm, cs_updateInfoBtn, cs_rebookingBtn));
+
+
 
 
 

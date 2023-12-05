@@ -115,11 +115,21 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
+                        <AnchorPane fx:id="cs_changeInfoForm" prefHeight="602.0" prefWidth="1061.0" visible="false">
                            <children>
-                              <AnchorPane fx:id="cs_reBookingform" layoutX="540.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
+                              <Label layoutX="315.0" layoutY="183.0" text="Change Info Form" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="cs_reBookingform" prefHeight="602.0" prefWidth="1061.0">
+                           <children>
+                              <Label layoutX="278.0" layoutY="269.0" text="rebooking" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" visible="false" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
+                           <children>
+                              <AnchorPane layoutX="540.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
                                  <children>
                                     <JFXButton fx:id="cs_reBookingBTN" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="14.0" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 20;">
                                        <graphic>
@@ -141,7 +151,7 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="cs_changeInfoForm" layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;">
+                              <AnchorPane layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;">
                                  <children>
                                     <JFXButton fx:id="cs_changeInfoBTN" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="14.0" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 21; -fx-border-radius: 21;" textOverrun="CENTER_ELLIPSIS">
                                        <graphic>
@@ -213,7 +223,7 @@
                         <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
+                  <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0" visible="false">
                      <children>
                         <AnchorPane fx:id="hf_bookFlight" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -1556,7 +1566,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
