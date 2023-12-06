@@ -479,7 +479,7 @@ public class HomepageController implements Initializable {
     //LOG OUT FUNCTION
     public void logout() throws IOException {
         SwitchForms switchForms = new SwitchForms();
-        switchForms.Logout((Stage) menu_logout.getScene().getWindow());
+        switchForms.Logout((Stage) menu_logout.getScene().getWindow(), "LoginPage");
     }
 
     //FOR HOMEPAGE STAR BG ANIMATION

@@ -346,7 +346,7 @@ public class DashboardController implements Initializable {
 
     public void logout() throws IOException {
         SwitchForms switchForms = new SwitchForms();
-        switchForms.Logout((Stage) logout_btn.getScene().getWindow());
+        switchForms.Logout((Stage) logout_btn.getScene().getWindow(), "AdminLogin");
     }
 
     private void switchForm(AnchorPane targetForm, JFXButton selectedButton) {
