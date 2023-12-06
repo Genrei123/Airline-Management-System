@@ -119,6 +119,7 @@
                   </AnchorPane>
                   <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
+<<<<<<< Updated upstream
                         <AnchorPane fx:id="cs_changeInfoForm" prefHeight="602.0" prefWidth="1061.0" visible="false">
                            <children>
                               <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" />
@@ -178,6 +179,10 @@
                               <JFXButton fx:id="cs_return11" buttonType="RAISED" layoutX="983.0" layoutY="20.0" onAction="#handleReturnButton" prefHeight="30.0" prefWidth="70.0" text="RETURN" textFill="WHITE" />
                            </children>
                         </AnchorPane>
+=======
+                        <AnchorPane fx:id="cs_changeInfoForm" prefHeight="602.0" prefWidth="1061.0" />
+                        <AnchorPane fx:id="cs_reBookingform" prefHeight="602.0" prefWidth="1061.0" />
+>>>>>>> Stashed changes
                         <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
                            <children>
                               <AnchorPane layoutX="540.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
