@@ -414,7 +414,9 @@ public class HomepageController implements Initializable {
             booking_btn6, booking_btn7, booking_btn8, booking_btn9;
 
     @FXML
-    private Label sdCl_origin, sdCl_destination, sdCl_destination1, sdCl_destination2,
+    private Label sdCl_origin, sdCl_origin1, sdCl_origin2, sdCl_origin3, sdCl_origin4,
+            sdCl_origin5, sdCl_origin6, sdCl_origin7, sdCl_origin8,
+            sdCl_destination, sdCl_destination1, sdCl_destination2,
             sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6,
             sdCl_destination7, sdCl_destination8;
 
@@ -1405,7 +1407,7 @@ public class HomepageController implements Initializable {
     }
 
     // COMBO-BOX for Origin
-    private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "CEBU CITY", "SIARGAO", "BAGUIO", "ILO-ILO CITY"};
+    private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "BOHOL", "CEBU CITY", "SIARGAO", "BAGUIO", "ILO-ILO"};
 
     public void originDesti() {
         // Populate ComboBox with origin locations
@@ -1415,6 +1417,14 @@ public class HomepageController implements Initializable {
         sd_origin.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             // Update sdCl_origin with the selected location
             sdCl_origin.setText(newValue);
+            sdCl_origin1.setText(newValue);
+            sdCl_origin2.setText(newValue);
+            sdCl_origin3.setText(newValue);
+            sdCl_origin4.setText(newValue);
+            sdCl_origin5.setText(newValue);
+            sdCl_origin6.setText(newValue);
+            sdCl_origin7.setText(newValue);
+            sdCl_origin8.setText(newValue);
 
             // Update sdCl_destination buttons excluding the selected location
             updateSdClDestinations(newValue);
@@ -1422,8 +1432,8 @@ public class HomepageController implements Initializable {
     }
 
     private void updateSdClDestinations(String selectedLocation) {
-        // Assuming sdCl_destination1 to sdCl_destination8 are your buttons
-        List<Label> sdClDestinations = Arrays.asList(sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
+        // Assuming sdCl_destination to sdCl_destination8 are your buttons
+        List<Label> sdClDestinations = Arrays.asList(sdCl_destination, sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
 
         // Hide the 9th button
         sdClDestinations.get(8).setVisible(false);
@@ -1435,8 +1445,20 @@ public class HomepageController implements Initializable {
                 sdClDestinations.get(index).setText(location);
                 sdClDestinations.get(index).setVisible(true);
                 index++;
+
+                // Break the loop if all buttons are updated
+                if (index >= sdClDestinations.size()) {
+                    break;
+                }
             }
         }
+        // Hide any remaining buttons if there are more buttons than locations
+        for (int i = index; i < sdClDestinations.size(); i++) {
+            sdClDestinations.get(i).setVisible(false);
+        }
+
+        // Assuming booking_btn9 is a button, hide it
+        booking_btn9.setVisible(false);
     }
 
     @Override
