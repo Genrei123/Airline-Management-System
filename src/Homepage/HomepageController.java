@@ -719,9 +719,6 @@ public class HomepageController implements Initializable {
     }
 
     public void handleNextButtonClick(ActionEvent event) throws SQLException, IOException {
-        // Switch to paymentForms initially
-        switchPaymentForm(cardBtn);
-
         // Determine which button was clicked
         Button clickedButton = (Button) event.getSource();
 
@@ -816,7 +813,7 @@ public class HomepageController implements Initializable {
                         "suffix", "age", "booking_date", "destination", "origin", "class",
                         "seat", "flight_no", "amount"),
                 Arrays.asList(flight_id, infos.getFirst_name(), infos.getMiddle_name(), infos.getLast_name(),
-                        infos.getSuffix(), infos.getAge(), infos.getBirthdate(), infos.getDestination(),
+                        infos.getSuffix(), infos.getAge(), infos.getBirthdate()/*Pa change sa booking_date*/, infos.getDestination(),
                         infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no,
                         infos.getAmount())
         );
