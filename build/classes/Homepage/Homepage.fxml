@@ -9,9 +9,10 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -19,6 +20,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
@@ -46,14 +48,30 @@
             <AnchorPane fx:id="centrePane" layoutY="63.0" prefHeight="599.0" prefWidth="1000.0" style="-fx-background-color: #201414;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0">
                <children>
                   <Pane fx:id="starsPane" pickOnBounds="false" prefHeight="599.0" prefWidth="1000.0" stylesheets="@HomepageStyles.css" />
-                  <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="aboutUs_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" styleClass="textarea" stylesheets="@HomepageStyles1.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="53.0" prefWidth="198.0" text="About Us" textFill="WHITE" AnchorPane.leftAnchor="500.0">
+                        <Pane prefHeight="602.0" prefWidth="1061.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane layoutX="82.0" layoutY="15.0" prefHeight="579.0" prefWidth="963.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea editable="false" layoutX="-48.0" prefHeight="579.0" prefWidth="1011.0" styleClass="textAreaAU" stylesheets="@HomepageStyles1.css" text="&#9;&#9;&#9;&#9;&#9;&#9;     About Ermino Airlines&#10;&#10;&#9;Ermino Airlines is a leading domestic airline in the Philippines, known for its affordable and convenient flight options. We offer a wide range of destinations across the country, connecting people to their loved ones, business opportunities, and leisure destinations.&#10;&#10;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;     Our Mission:&#10;&#10;&#9;Our mission is to make air travel accessible and affordable for everyone in the Philippines. We believe that everyone deserves to experience the joy of flight and explore the beauty of our country.&#10;&#10;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;      Our Values:&#10;&#10;⚫ Affordability: We strive to offer the lowest fares possible, without compromising on safety or quality.&#10;&#10;⚫ Convenience: We offer a seamless booking experience and flexible travel options to meet your needs.&#10;&#10;⚫ Safety: We are committed to the highest safety standards and operate our flights with the utmost care and attention to detail.&#10;&#10;⚫ Customer Service: We are dedicated to providing excellent customer service and ensuring that you have a positive travel experience.&#10;&#10;&#10;&#10;&#9;&#9;&#9;&#9;&#9;&#9;Why Choose Ermino Airlines?&#10;&#10;There are many reasons to choose Ermino Airlines for your next domestic flight. Here are just a few:&#10;&#10;⚫ Low Prices: We offer some of the lowest fares in the Philippines, making air travel more affordable for everyone.&#10;&#10;⚫ Extensive Network: We fly to a wide range of destinations across the country, making it easy to find the perfect flight for your needs.&#10;&#10;⚫ Convenient Booking: You can book your flights online or through our call center 24/7.&#10;&#10;⚫ Flexible Travel Options: We offer a variety of fare classes and add-ons to customize your travel experience.&#10;&#10;⚫ Excellent Customer Service: Our friendly and helpful customer service team is always here to assist you.&#10;&#10;&#10;      Ready to experience the Ermino Airlines difference? Book your flight today &#10;&#9;&#9;&#9;&#9;       and start exploring the Philippines!&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-48.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="25.0" />
+                                 </font>
+                              </JFXTextArea>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="459.0" layoutY="-47.0" text=" US" textFill="WHITE">
+                           <graphic>
+                              <Label text="ABOUT" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Arial" size="27.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="top_form" layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -101,11 +119,70 @@
                   </AnchorPane>
                   <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
+                        <AnchorPane fx:id="cs_changeInfoForm" prefHeight="602.0" prefWidth="1061.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" />
+                              <JFXButton fx:id="cs_return1" buttonType="RAISED" layoutX="983.0" layoutY="14.0" onAction="#handleReturnButton" prefHeight="30.0" prefWidth="70.0" text="RETURN" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="cs_reBookingform" prefHeight="602.0" prefWidth="1061.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;">
+                                 <children>
+                                    <Label layoutX="68.0" layoutY="81.0" text="Get in Touch" textFill="WHITE" underline="true">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="cs_rebookingTicketNo" layoutX="68.0" layoutY="215.0" prefHeight="30.0" prefWidth="269.0" promptText="Input 12 Digit Ticket # (e,g ERM101123456) " />
+                                    <TextField fx:id="cs_rebookingLastName" layoutX="68.0" layoutY="250.0" prefHeight="30.0" prefWidth="269.0" promptText="Input Last Name on Ticket" />
+                                    <ImageView fx:id="seat_icon1" fitHeight="236.0" fitWidth="160.0" layoutX="716.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/ICONS/EA%20Logo.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TextField fx:id="cs_rebookingFeedback" layoutX="68.0" layoutY="288.0" prefHeight="32.0" prefWidth="269.0" promptText="Feedback" />
+                                    <JFXButton fx:id="cs_proceed" layoutX="151.0" layoutY="345.0" onAction="#handleRebooking" prefHeight="47.0" prefWidth="103.0" style="-fx-background-radius: 20; -fx-background-color: #29ABE2;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="PROCEED" textFill="#fcfcfc">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                    <TextField fx:id="cs_rebookingActive" layoutX="348.0" layoutY="215.0" prefHeight="30.0" prefWidth="269.0" promptText="Active Phone / Email" />
+                                    <ComboBox fx:id="cs_rebookingCombo" layoutX="68.0" layoutY="180.0" prefWidth="150.0" promptText="Select Issue" />
+                                    <Label layoutX="71.0" layoutY="153.0" prefHeight="27.0" prefWidth="160.0" text="Please select below" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="cs_rebookingDate" layoutX="348.0" layoutY="253.0" promptText="Preferred Date" />
+                                    <Label fx:id="cs_alert" layoutX="276.0" layoutY="358.0" prefHeight="21.0" prefWidth="343.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children></AnchorPane>
+                              <JFXButton buttonType="RAISED" layoutX="982.0" layoutY="9.0" onAction="#handleReturnButton" prefHeight="30.0" prefWidth="70.0" text="RETURN" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="cs_chat" prefHeight="602.0" prefWidth="1061.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;">
+                                 <children>
+                                    <VBox layoutX="9.0" layoutY="13.0" prefHeight="407.0" prefWidth="889.0" />
+                                    <TextField layoutX="14.0" layoutY="434.0" prefHeight="25.0" prefWidth="871.0" promptText="What do you have in mind?" />
+                                 </children>
+                              </AnchorPane>
+                              <JFXButton fx:id="cs_return11" buttonType="RAISED" layoutX="983.0" layoutY="20.0" onAction="#handleReturnButton" prefHeight="30.0" prefWidth="70.0" text="RETURN" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
                         <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
                            <children>
-                              <AnchorPane fx:id="cs_reBookingform" layoutX="540.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
+                              <AnchorPane layoutX="540.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
                                  <children>
-                                    <JFXButton fx:id="cs_reBookingBTN" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="14.0" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 20;">
+                                    <JFXButton fx:id="cs_rebookingBtn" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="14.0" onAction="#handleRebookingButtonClick" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 20;">
                                        <graphic>
                                           <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                              <children>
@@ -125,9 +202,9 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="cs_changeInfoForm" layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;">
+                              <AnchorPane layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;">
                                  <children>
-                                    <JFXButton fx:id="cs_changeInfoBTN" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="14.0" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 21; -fx-border-radius: 21;" textOverrun="CENTER_ELLIPSIS">
+                                    <JFXButton fx:id="cs_changeInfoBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="14.0" onAction="#handleChangeInfoButtonClick" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 21; -fx-border-radius: 21;" textOverrun="CENTER_ELLIPSIS">
                                        <graphic>
                                           <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                              <children>
@@ -152,7 +229,7 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
-                              <JFXButton fx:id="cs_contactUsBTN" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="345.0" layoutY="431.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+                              <JFXButton fx:id="cs_contactUsBTN" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="345.0" layoutY="431.0" onAction="#handleChatButtonClick" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 50;">
                                  <graphic>
                                     <AnchorPane>
                                        <children>
@@ -1274,7 +1351,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_searchDesti" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="605.0" fitWidth="1061.0" opacity="0.71" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <image>
@@ -1307,39 +1384,309 @@
                                     <String fx:value="fontSize" />
                                  </styleClass>
                               </JFXComboBox>
-                              <ScrollPane layoutX="20.0" layoutY="215.0" prefHeight="386.0" prefWidth="1011.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                              <ScrollPane layoutX="51.0" layoutY="199.0" prefHeight="391.0" prefWidth="958.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="52.0">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="995.0" style="-fx-background-color: #626355;" stylesheets="@HomepageStyles.css">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1327.0" prefWidth="943.0" style="-fx-background-color: #626355;" stylesheets="@HomepageStyles.css">
                                        <children>
-                                          <ImageView fitHeight="160.0" fitWidth="723.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="160.0" fitWidth="181.0" layoutX="737.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ScrollPane layoutX="360.0" layoutY="162.0" prefHeight="200.0" prefWidth="200.0">
-                                            <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                            </content>
-                                          </ScrollPane>
+                                          <JFXButton fx:id="booking_btn1" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn2" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutY="147.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin1" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination1" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price1" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn3" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutY="293.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin2" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination2" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price2" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn4" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutX="-1.0" layoutY="440.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin3" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination3" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price3" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn5" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutY="587.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin4" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination4" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price4" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn6" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutY="735.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin5" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination5" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price5" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn7" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutY="886.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin6" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination6" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price6" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn8" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutY="1040.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin7" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination7" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price7" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="booking_btn9" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutY="1190.0" textOverrun="CLIP">
+                                             <graphic>
+                                                <AnchorPane prefHeight="134.0" prefWidth="944.0">
+                                                   <children>
+                                                      <ImageView fitHeight="160.0" fitWidth="769.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketDetailsV2.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="134.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+                                                         <image>
+                                                            <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="sdCl_origin8" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                         <styleClass>
+                                                            <String fx:value="koulenReg-FontStyle" />
+                                                            <String fx:value="underline-text" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
+                                                      <Label fx:id="sdCl_destination8" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
+                                                      <Label fx:id="sdCl_price8" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </graphic>
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </JFXButton>
                                        </children>
                                     </AnchorPane>
                                 </content>
                               </ScrollPane>
+                              <JFXComboBox fx:id="sd_origin1" focusColor="#405aa800" layoutX="820.0" layoutY="161.0" prefHeight="30.0" prefWidth="189.0" promptText="CHECK PRICES" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00">
+                                 <styleClass>
+                                    <String fx:value="inriaSansBold-FontStyle" />
+                                    <String fx:value="fontSize" />
+                                 </styleClass>
+                              </JFXComboBox>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="191.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="228.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/Cloud%201.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="107.0" fitWidth="278.0" layoutX="382.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="107.0" fitWidth="278.0" layoutX="426.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/Cloud%202.png" />
                                  </image>
@@ -1364,7 +1711,7 @@
                                     <Image url="@../Images/plane_head.png" />
                                  </image>
                               </ImageView>
-                              <AnchorPane layoutX="235.0" layoutY="180.0" prefHeight="68.0" prefWidth="530.0" style="-fx-background-radius: 50;" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="222.0" AnchorPane.topAnchor="112.0">
+                              <AnchorPane layoutX="266.0" layoutY="112.0" prefHeight="68.0" prefWidth="530.0" style="-fx-background-radius: 50;" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="266.0" AnchorPane.topAnchor="112.0">
                                  <children>
                                     <Label ellipsisString="" graphicTextGap="5.0" layoutX="67.0" layoutY="11.0" prefHeight="47.0" prefWidth="396.0" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="cheapest flights" textFill="WHITE" textOverrun="CLIP">
                                        <graphic>
@@ -1545,7 +1892,7 @@
                </children>
             </AnchorPane>
             <AnchorPane fx:id="overlayPane" prefHeight="662.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane prefHeight="43.0" prefWidth="47.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane layoutY="10.0" prefHeight="43.0" prefWidth="47.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="10.0">
                <children>
                   <JFXButton fx:id="menuBtn1" ellipsisString="" onAction="#toggleMenuSlider" prefHeight="43.0" prefWidth="47.0" style="-fx-background-radius: 0 20 20 0;">
                      <graphic>
@@ -1733,14 +2080,10 @@
                         <AnchorPane layoutX="-24.0" layoutY="195.0" prefHeight="72.0" prefWidth="491.0" styleClass="bottomBG" stylesheets="@HomepageStyles1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <FontAwesomeIconView fill="#c0c5ca" glyphName="LOCK" layoutX="402.0" layoutY="44.0" size="25" />
-                              <Label layoutX="424.0" layoutY="24.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" text="Secure" textFill="#c0c5ca">
+                              <Label layoutX="424.0" layoutY="24.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Secure" textFill="#c0c5ca">
                                  <font>
                                     <Font name="Inter Regular" size="15.0" />
                                  </font>
-                                 <stylesheets>
-                                    <URL value="@HomepageStyles.css" />
-                                    <URL value="@HomepageStyles1.css" />
-                                 </stylesheets>
                               </Label>
                            </children>
                         </AnchorPane>
@@ -1795,14 +2138,10 @@
                                              </font>
                                           </JFXButton>
                                           <FontAwesomeIconView fill="#c0c5ca" glyphName="LOCK" layoutX="312.0" layoutY="46.0" size="25" />
-                                          <Label layoutX="334.0" layoutY="26.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" text="Secure" textFill="#c0c5ca">
+                                          <Label layoutX="334.0" layoutY="26.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Secure" textFill="#c0c5ca">
                                              <font>
                                                 <Font name="Inter Regular" size="15.0" />
                                              </font>
-                                             <stylesheets>
-                                                <URL value="@HomepageStyles.css" />
-                                                <URL value="@HomepageStyles1.css" />
-                                             </stylesheets>
                                           </Label>
                                        </children>
                                     </AnchorPane>
@@ -1869,14 +2208,10 @@
                                              </font>
                                           </JFXButton>
                                           <FontAwesomeIconView fill="#c0c5ca" glyphName="LOCK" layoutX="312.0" layoutY="46.0" size="25" />
-                                          <Label layoutX="334.0" layoutY="26.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" text="Secure" textFill="#c0c5ca">
+                                          <Label layoutX="334.0" layoutY="26.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Secure" textFill="#c0c5ca">
                                              <font>
                                                 <Font name="Inter Regular" size="15.0" />
                                              </font>
-                                             <stylesheets>
-                                                <URL value="@HomepageStyles.css" />
-                                                <URL value="@HomepageStyles1.css" />
-                                             </stylesheets>
                                           </Label>
                                        </children>
                                     </AnchorPane>
@@ -1947,14 +2282,10 @@
                                              </font>
                                           </JFXButton>
                                           <FontAwesomeIconView fill="#c0c5ca" glyphName="LOCK" layoutX="312.0" layoutY="46.0" size="25" />
-                                          <Label layoutX="334.0" layoutY="26.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" text="Secure" textFill="#c0c5ca">
+                                          <Label layoutX="334.0" layoutY="26.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Secure" textFill="#c0c5ca">
                                              <font>
                                                 <Font name="Inter Regular" size="15.0" />
                                              </font>
-                                             <stylesheets>
-                                                <URL value="@HomepageStyles.css" />
-                                                <URL value="@HomepageStyles1.css" />
-                                             </stylesheets>
                                           </Label>
                                        </children>
                                     </AnchorPane>

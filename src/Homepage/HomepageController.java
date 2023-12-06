@@ -123,9 +123,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private AnchorPane hf_searchDesti;
-    
+
     @FXML
-    private JFXComboBox<?> sd_origin;
+    private JFXComboBox<String> sd_origin;
 
     @FXML
     private Label promptLabel1;
@@ -135,18 +135,6 @@ public class HomepageController implements Initializable {
 
     @FXML
     private TextField searchTextField;
-
-    @FXML
-    private JFXButton booking_btn4;
-
-    @FXML
-    private JFXButton booking_btn3;
-
-    @FXML
-    private JFXButton booking_btn2;
-
-    @FXML
-    private JFXButton booking_btn1;
 
     @FXML
     private JFXButton returnToHome_btn;
@@ -420,6 +408,15 @@ public class HomepageController implements Initializable {
 
     @FXML
     private Label cs_alert;
+
+    @FXML
+    private JFXButton booking_btn1, booking_btn2, booking_btn3, booking_btn4, booking_btn5,
+            booking_btn6, booking_btn7, booking_btn8, booking_btn9;
+
+    @FXML
+    private Label sdCl_origin, sdCl_destination, sdCl_destination1, sdCl_destination2,
+            sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6,
+            sdCl_destination7, sdCl_destination8;
 
     private boolean menuOpen = false;
 
@@ -905,24 +902,12 @@ public class HomepageController implements Initializable {
         cs_seatClass.setItems(listData);
     }
 
-    //COMBO-BOX for Origin
-    private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "CEBU CITY", "SIARGAO", "BAGUIO", "ILO-ILO CITY"};
-
-    public void originDesti() {
-        List<String> listO = new ArrayList<>();
-
-        listO.addAll(Arrays.asList(originList));
-
-        ObservableList listData = FXCollections.observableArrayList(listO);
-        sd_origin.setItems(listData);
-    }
-
     // Add this method to initialize the booking buttons
     private void initializeBookingButtons() {
         //setBookingButtonAction(booking_btn1, "Boracay","" );
         //setBookingButtonAction(booking_btn2, "Coron", "");
         //setBookingButtonAction(booking_btn3, "Samar", "");
-       // setBookingButtonAction(booking_btn4, "Bohol", "");
+        // setBookingButtonAction(booking_btn4, "Bohol", "");
         setBookingButtonAction(c_bookingBtn1, "Boracay", "");
         setBookingButtonAction(c_bookingBtn2, "Coron", "");
         setBookingButtonAction(c_bookingBtn3, "Puerto Prinsesa", "");
@@ -1370,6 +1355,7 @@ public class HomepageController implements Initializable {
     public void handleReturnButton() {
         CSswitchForm(background, cs_return);
     }
+
     public void handleChatButtonClick() {
         CSswitchForm(cs_chat, cs_contactUsBTN);
     }
@@ -1405,8 +1391,6 @@ public class HomepageController implements Initializable {
                     Arrays.asList(last_name, ticketNo, issue, active, feedback, "Pending", date)
             );
 
-
-
             AlertManager alert = new AlertManager(cs_alert);
             alert.setAlertText("Rebooking request sent.", "green");
 
@@ -1417,6 +1401,41 @@ public class HomepageController implements Initializable {
             alert.setAlertText("Flight does not exist!", "red");
 
             System.out.println(last_name + " " + ticketNo);
+        }
+    }
+
+    // COMBO-BOX for Origin
+    private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "CEBU CITY", "SIARGAO", "BAGUIO", "ILO-ILO CITY"};
+
+    public void originDesti() {
+        // Populate ComboBox with origin locations
+        sd_origin.getItems().addAll(originList);
+
+        // Set listener for changes in the selected item
+        sd_origin.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            // Update sdCl_origin with the selected location
+            sdCl_origin.setText(newValue);
+
+            // Update sdCl_destination buttons excluding the selected location
+            updateSdClDestinations(newValue);
+        });
+    }
+
+    private void updateSdClDestinations(String selectedLocation) {
+        // Assuming sdCl_destination1 to sdCl_destination8 are your buttons
+        List<Label> sdClDestinations = Arrays.asList(sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
+
+        // Hide the 9th button
+        sdClDestinations.get(8).setVisible(false);
+
+        // Update sdCl_destination labels with locations excluding the selected location
+        int index = 0;
+        for (String location : originList) {
+            if (!location.equals(selectedLocation)) {
+                sdClDestinations.get(index).setText(location);
+                sdClDestinations.get(index).setVisible(true);
+                index++;
+            }
         }
     }
 
@@ -1447,18 +1466,12 @@ public class HomepageController implements Initializable {
             }
         });
 
-
-
-
-
-
         // Make the starsPane visible when the application is running
         starsPane.setVisible(true);
         starsPane1.setVisible(true);
 
         // Switch Forms for home_form
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
-
 
         //Clear textFields of hf_chooseSeat textFields
         returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
@@ -1733,7 +1746,6 @@ public class HomepageController implements Initializable {
                     throw new RuntimeException(e);
                 }
 
-
             } else if ("Business".equals(newValue)) {
                 businessC_seats.setVisible(true);
                 seat_icon.setVisible(false);
@@ -1744,7 +1756,6 @@ public class HomepageController implements Initializable {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-
 
             } else if ("Premium Economy".equals(newValue)) {
                 premEconomyC_seats.setVisible(true);
@@ -1757,7 +1768,6 @@ public class HomepageController implements Initializable {
                     throw new RuntimeException(e);
                 }
 
-
             } else if ("First Class".equals(newValue)) {
                 firstC_seats.setVisible(true);
                 seat_icon.setVisible(false);
@@ -1768,7 +1778,6 @@ public class HomepageController implements Initializable {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-
 
             }
         });
@@ -1795,8 +1804,6 @@ public class HomepageController implements Initializable {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-
-
 
     }
 }

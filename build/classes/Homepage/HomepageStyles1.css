@@ -56,6 +56,10 @@
 
 }
 
+.textAreaAU{
+    -fx-text-fill: white;
+}
+
 /* ScrollBar Thumb */
 .scroll-bar:vertical .thumb {
     -fx-background-color: #333; /* Color of the thumb */
