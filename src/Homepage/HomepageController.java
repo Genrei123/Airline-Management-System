@@ -420,6 +420,12 @@ public class HomepageController implements Initializable {
             sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6,
             sdCl_destination7, sdCl_destination8;
 
+    @FXML
+    private JFXComboBox<String> sd_checkPrice;
+
+    @FXML
+    private Label sdCl_price, sdCl_price1, sdCl_price2, sdCl_price3, sdCl_price4, sdCl_price5, sdCl_price6, sdCl_price7, sdCl_price8;
+
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
@@ -906,24 +912,69 @@ public class HomepageController implements Initializable {
 
     // Add this method to initialize the booking buttons
     private void initializeBookingButtons() {
-        //setBookingButtonAction(booking_btn1, "Boracay","" );
-        //setBookingButtonAction(booking_btn2, "Coron", "");
-        //setBookingButtonAction(booking_btn3, "Samar", "");
-        // setBookingButtonAction(booking_btn4, "Bohol", "");
-        setBookingButtonAction(c_bookingBtn1, "Boracay", "");
-        setBookingButtonAction(c_bookingBtn2, "Coron", "");
-        setBookingButtonAction(c_bookingBtn3, "Puerto Prinsesa", "");
-        setBookingButtonAction(c_bookingBtn4, "Samar", "");
-        setBookingButtonAction(c_bookingBtn5, "Bohol", "");
-        setBookingButtonAction(c_bookingBtn6, "Cebu City", "");
-        setBookingButtonAction(c_bookingBtn7, "El Nido", "");
-        setBookingButtonAction(c_bookingBtn8, "Tagaytay", "");
-        setBookingButtonAction(c_bookingBtn9, "Siargao", "");
+        // Initialize booking buttons
+        List<JFXButton> bookingButtons = Arrays.asList(
+                booking_btn1, booking_btn2, booking_btn3, booking_btn4, booking_btn5,
+                booking_btn6, booking_btn7, booking_btn8, booking_btn9
+        );
+
+        // Set initial button states
+        setBookingButtonsEnabled(false);
 
         // Add more booking buttons as needed
+        // Set action for each booking button
+        for (int i = 0; i < bookingButtons.size(); i++) {
+            JFXButton bookingButton = bookingButtons.get(i);
+            String destination = getDestinationLabel(i).getText(); // Modify this based on your actual label names
+            String origin = sdCl_origin.getText(); // Modify this based on your actual sd_origin
+
+            // Set the action for the booking button
+            setBookingButtonAction(bookingButton, destination, origin);
+        }
     }
 
-    // Generic method to set the action for booking buttons
+    // Add this method to set the state of booking buttons (enable/disable)
+    private void setBookingButtonsEnabled(boolean enabled) {
+        List<JFXButton> bookingButtons = Arrays.asList(
+                booking_btn1, booking_btn2, booking_btn3, booking_btn4, booking_btn5,
+                booking_btn6, booking_btn7, booking_btn8, booking_btn9
+        );
+
+        for (JFXButton bookingButton : bookingButtons) {
+            bookingButton.setDisable(!enabled);
+        }
+    }
+
+// Get the destination label associated with the booking button index
+    private Label getDestinationLabel(int index) {
+        // Modify this based on your actual label names
+        switch (index) {
+            case 0:
+                return sdCl_destination;
+            case 1:
+                return sdCl_destination1;
+            case 2:
+                return sdCl_destination2;
+            case 3:
+                return sdCl_destination3;
+            case 4:
+                return sdCl_destination4;
+            case 5:
+                return sdCl_destination5;
+            case 6:
+                return sdCl_destination6;
+            case 7:
+                return sdCl_destination7;
+            case 8:
+                return sdCl_destination8;
+
+            // Add more cases as needed
+            default:
+                return null;
+        }
+    }
+
+// Generic method to set the action for booking buttons
     private void setBookingButtonAction(JFXButton bookingButton, String destination, String origin) {
         bookingButton.setOnAction(event -> {
             switchForm(hf_chooseSeat, bookingButton);
@@ -931,7 +982,7 @@ public class HomepageController implements Initializable {
         });
     }
 
-    // Method to set destination and origin in cs_destination and cs_origin text fields
+// Method to set destination and origin in cs_destination and cs_origin text fields
     private void setDestinationAndOrigin(String destination, String origin) {
         cs_destination.setText(destination);
         cs_origin.setText(origin);
@@ -1407,7 +1458,7 @@ public class HomepageController implements Initializable {
     }
 
     // COMBO-BOX for Origin
-    private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "BOHOL", "CEBU CITY", "SIARGAO", "BAGUIO", "ILO-ILO"};
+    private String[] originList = {"BORACAY", "PALAWAN", "DAVAO", "MANILA", "BOHOL", "CEBU", "SIARGAO", "BAGUIO", "ILO-ILO"};
 
     public void originDesti() {
         // Populate ComboBox with origin locations
@@ -1461,12 +1512,164 @@ public class HomepageController implements Initializable {
         booking_btn9.setVisible(false);
     }
 
+    public void priceClass() {
+        List<String> listP = new ArrayList<>(Arrays.asList("ECONOMY", "PREMIUM ECONOMY", "BUSINESS", "FIRST CLASS"));
+
+        ObservableList<String> listData = FXCollections.observableArrayList(listP);
+        sd_checkPrice.setItems(listData);
+    }
+
+    // Prices based on seat class and location
+    private Map<String, Map<String, Integer>> priceMap = new HashMap<>();
+
+    private void initPriceMap() {
+        // Initialize the price map with prices based on seat class and location
+        // Prices are stored as (origin, destination) -> price
+        // Note: Adjust the prices based on your actual requirements
+        priceMap.put("FIRST CLASS", new HashMap<String, Integer>() {
+            {
+                put("MANILA", 4999);
+                put("BORACAY", 5499);
+                put("PALAWAN", 5999);
+                put("CEBU", 3499);
+                put("DAVAO", 4499);
+                put("BOHOL", 3499);
+                put("SIARGAO", 4999);
+                put("BAGUIO", 3499);
+                put("ILO-ILO", 4499);
+            }
+        });
+
+        priceMap.put("BUSINESS", new HashMap<String, Integer>() {
+            {
+                put("MANILA", 4299);
+                put("PALAWAN", 5499);
+                put("CEBU", 3000);
+                put("DAVAO", 4000);
+                put("BOHOL", 3000);
+                put("BORACAY", 5499);
+                put("SIARGAO", 4499);
+                put("BAGUIO", 3000);
+                put("ILO-ILO", 4000);
+            }
+        });
+
+        priceMap.put("PREMIUM ECONOMY", new HashMap<String, Integer>() {
+            {
+                put("MANILA", 4000);
+                put("PALAWAN", 5000);
+                put("CEBU", 2500);
+                put("DAVAO", 3500);
+                put("BOHOL", 2500);
+                put("BORACAY", 5499);
+                put("SIARGAO", 4499);
+                put("BAGUIO", 3000);
+                put("ILO-ILO", 4000);
+            }
+        });
+
+        priceMap.put("ECONOMY", new HashMap<String, Integer>() {
+            {
+                put("MANILA", 1000);
+                put("PALAWAN", 1000);
+                put("CEBU", 1000);
+                put("DAVAO", 1000);
+                put("BOHOL", 1000);
+                put("BORACAY", 1000);
+                put("SIARGAO", 1000);
+                put("BAGUIO", 1000);
+                put("ILO-ILO", 1000);
+            }
+        });
+        // ... Add more seat classes as needed
+    }
+
+    private void updateSdClPrices(String selectedSeatClass, List<Label> destinationLabels) {
+        // Get the prices based on the selected seat class
+        Map<String, Integer> prices = priceMap.getOrDefault(selectedSeatClass, Collections.emptyMap());
+
+        for (int i = 0; i < destinationLabels.size(); i++) {
+            Label destinationLabel = destinationLabels.get(i);
+            String selectedDestination = destinationLabel.getText();
+
+            // Get the price for the selected destination
+            Integer selectedDestinationPrice = prices.get(selectedDestination);
+
+            if (selectedDestinationPrice != null) {
+                // Update the corresponding sdCl_price label for the matching destination
+                switch (i) {
+                    case 0:
+                        sdCl_price.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 1:
+                        sdCl_price1.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 2:
+                        sdCl_price2.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 3:
+                        sdCl_price3.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 4:
+                        sdCl_price4.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 5:
+                        sdCl_price5.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 6:
+                        sdCl_price6.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 7:
+                        sdCl_price7.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    case 8:
+                        sdCl_price8.setText(String.valueOf(selectedDestinationPrice));
+                        break;
+                    // Add more cases for the remaining labels if needed
+                }
+            } else {
+                // Hide the label if no price is found for the destination
+                switch (i) {
+                    case 0:
+                        sdCl_price.setText("");
+                        break;
+                    case 1:
+                        sdCl_price1.setText("");
+                        break;
+                    case 2:
+                        sdCl_price2.setText("");
+                        break;
+                    case 3:
+                        sdCl_price3.setText("");
+                        break;
+                    case 4:
+                        sdCl_price4.setText("");
+                        break;
+                    case 5:
+                        sdCl_price5.setText("");
+                        break;
+                    case 6:
+                        sdCl_price6.setText("");
+                        break;
+                    case 7:
+                        sdCl_price7.setText("");
+                        break;
+                    case 8:
+                        sdCl_price8.setText("");
+                        break;
+                    // Add more cases for the remaining labels if needed
+                }
+            }
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         //Combo-Box initialize
         seatClass();
         originDesti();
+        priceClass();
 
         // Initialize the menu slider in the closed state
         closeMenuSlider();
@@ -1827,5 +2030,33 @@ public class HomepageController implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
+        // Initialize price map
+        initPriceMap();
+
+        List<Label> destinationLabels = Arrays.asList(sdCl_destination, sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
+
+        // Set listener for changes in the selected item
+        sd_checkPrice.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            // Update sdCl_price labels with the selected seat class and destination
+            updateSdClPrices(newValue, destinationLabels);
+        });
+
+        // Set listener for changes in the selected item in sdCl_origin
+        sdCl_origin.textProperty().addListener((observable, oldOrigin, newOrigin) -> {
+            // Get the selected seat class
+            String selectedSeatClass = sd_checkPrice.getValue(); // Assuming sd_checkPrice is a ComboBox
+
+            // Update sdCl_price labels with the selected seat class and destination
+            updateSdClPrices(selectedSeatClass, destinationLabels);
+        });
+
+        // Modify the sd_origin combo-box change listener
+        sd_origin.valueProperty().addListener((observable, oldValue, newValue) -> {
+            // Check if sd_origin has text inside
+            boolean isSdOriginEmpty = newValue == null || newValue.trim().isEmpty();
+
+            // Set the state of booking buttons based on sd_origin
+            setBookingButtonsEnabled(!isSdOriginEmpty);
+        });
     }
 }
