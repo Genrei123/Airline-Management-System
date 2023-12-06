@@ -15,11 +15,10 @@ public class SwitchForms {
     Stage currentStage;
     Stage nextStage;
 
-    public void Logout(Stage currentStage, String path) throws IOException {
+    public void Logout(Stage currentStage) throws IOException {
         currentStage.close();
         // Setup Login Stage
-        String pathloader = "/LogIn/" + path + ".fxml";
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(pathloader));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogIn/LoginPage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
@@ -35,8 +34,6 @@ public class SwitchForms {
             Login.setX((primScreenBounds.getWidth() - Login.getWidth()) / 2);
             Login.setY((primScreenBounds.getHeight() - Login.getHeight()) / 2);
         });
-
-        Login.setResizable(false);
 
         Login.show();
     }
