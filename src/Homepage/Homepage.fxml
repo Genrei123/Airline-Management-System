@@ -296,17 +296,17 @@
                                           <Font size="1.0" />
                                        </font>
                                     </JFXButton>
-                                    <TextField fx:id="m_name" layoutX="186.0" layoutY="89.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <TextField fx:id="m_name" layoutX="186.0" layoutY="89.0" prefHeight="10.0" prefWidth="310.0" promptText="(Optional)" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
                                     <Label focusTraversable="false" layoutX="49.0" layoutY="151.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="LAST NAME:" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="151.0" />
                                     <TextField fx:id="l_name" layoutX="186.0" layoutY="150.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
                                     <Label focusTraversable="false" layoutX="96.0" layoutY="214.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="SUFFIX:" textFill="WHITE" AnchorPane.leftAnchor="96.0" AnchorPane.topAnchor="214.0" />
-                                    <TextField fx:id="suffix" layoutX="186.0" layoutY="213.0" prefHeight="10.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
+                                    <TextField fx:id="suffix" layoutX="186.0" layoutY="213.0" prefHeight="10.0" prefWidth="310.0" promptText="(Optional)" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
                                     <Label focusTraversable="false" layoutX="124.0" layoutY="273.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="AGE:" textFill="WHITE" AnchorPane.leftAnchor="124.0" AnchorPane.topAnchor="273.0" />
                                     <TextField fx:id="age" layoutX="186.0" layoutY="272.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
-                                    <Label focusTraversable="false" layoutX="48.0" layoutY="334.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BIRTH DATE:" textFill="WHITE" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="334.0" />
+                                    <Label focusTraversable="false" layoutX="13.0" layoutY="334.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="BOOKING DATE:" textFill="WHITE" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="334.0" />
                                     <AnchorPane layoutX="186.0" layoutY="333.0" prefHeight="27.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 28;">
                                        <children>
-                                          <JFXDatePicker fx:id="birth_date" defaultColor="#405aeb" editable="false" layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="287.0" style="-fx-padding: 3 8 3 6;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
+                                          <JFXDatePicker fx:id="booking_date" defaultColor="#405aeb" editable="false" layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="287.0" style="-fx-padding: 3 8 3 6;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></JFXDatePicker>
@@ -1903,7 +1903,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>

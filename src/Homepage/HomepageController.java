@@ -230,9 +230,6 @@ public class HomepageController implements Initializable {
     private Label book_alert;
 
     @FXML
-    private JFXDatePicker birth_date;
-
-    @FXML
     private AnchorPane overlayPane1;
 
     @FXML
@@ -363,6 +360,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat;
+
+    @FXML
+    private JFXDatePicker booking_date;
 
     @FXML
     private AnchorPane firstC_seats;
@@ -813,7 +813,7 @@ public class HomepageController implements Initializable {
         booking_table.insertData(
                 "booked_flights",
                 Arrays.asList("flight_id", "first_name", "middle_name", "last_name",
-                        "suffix", "age", "birth_date", "destination", "origin", "class",
+                        "suffix", "age", "booking_date", "destination", "origin", "class",
                         "seat", "flight_no", "amount"),
                 Arrays.asList(flight_id, infos.getFirst_name(), infos.getMiddle_name(), infos.getLast_name(),
                         infos.getSuffix(), infos.getAge(), infos.getBirthdate(), infos.getDestination(),
@@ -835,12 +835,12 @@ public class HomepageController implements Initializable {
 
     }
 
+    //and Except middle name
     private boolean areAllFieldsExceptSuffixEmpty() {
         return f_name.getText().isEmpty()
-                && m_name.getText().isEmpty()
                 && l_name.getText().isEmpty()
                 && age.getText().isEmpty()
-                && (birth_date.getValue() == null) // Check if JFXDatePicker value is null
+                && (booking_date.getValue() == null) // Check if JFXDatePicker value is null
                 && destination.getText().isEmpty()
                 && origin.getText().isEmpty()
                 && s_class.getText().isEmpty()
@@ -849,9 +849,9 @@ public class HomepageController implements Initializable {
 
     private boolean areFieldsEmpty() {
         // Check if all fields (except suffix) are empty
-        if (areAllFieldsExceptSuffixEmpty() && suffix.getText().isEmpty()) {
+        if (areAllFieldsExceptSuffixEmpty() && suffix.getText().isEmpty() && m_name.getText().isEmpty()) {
             AlertManager alert = new AlertManager(book_alert);
-            alert.setAlertText("Please fill in at least one field (excluding suffix).", "red");
+            alert.setAlertText("Please fill in all the fields", "red");
 
             // Schedule a task to hide the alert after 5 seconds
             PauseTransition delay = new PauseTransition(Duration.seconds(5));
@@ -861,12 +861,11 @@ public class HomepageController implements Initializable {
             return true; // Exit the method since all fields (except suffix) are empty
         }
 
-        // Check if any of the required fields (excluding suffix) is empty
+        // Check if any of the required fields (excluding suffix and m_name) is empty
         boolean anyFieldEmpty = isNullOrEmpty(f_name)
-                || isNullOrEmpty(m_name)
                 || isNullOrEmpty(l_name)
                 || isNullOrEmpty(age)
-                || isNullOrEmpty(birth_date)
+                || isNullOrEmpty(booking_date)
                 || isNullOrEmpty(destination)
                 || isNullOrEmpty(origin)
                 || isNullOrEmpty(s_class)
@@ -925,11 +924,11 @@ public class HomepageController implements Initializable {
         // Set action for each booking button
         for (int i = 0; i < bookingButtons.size(); i++) {
             JFXButton bookingButton = bookingButtons.get(i);
-            String destination = getDestinationLabel(i).getText(); // Modify this based on your actual label names
-            String origin = sdCl_origin.getText(); // Modify this based on your actual sd_origin
+            String sdLbldestination = getDestinationLabel(i).getText(); // Modify this based on your actual label names
+            String sdLblorigin = sdCl_origin.getText(); // Modify this based on your actual sd_origin
 
             // Set the action for the booking button
-            setBookingButtonAction(bookingButton, destination, origin);
+            setBookingButtonAction(bookingButton, sdLbldestination, sdLblorigin);
         }
     }
 
@@ -982,10 +981,15 @@ public class HomepageController implements Initializable {
         });
     }
 
-// Method to set destination and origin in cs_destination and cs_origin text fields
+    // Method to set destination and origin in cs_destination and cs_origin text fields
     private void setDestinationAndOrigin(String destination, String origin) {
         cs_destination.setText(destination);
-        cs_origin.setText(origin);
+
+        // Set origin based on sd_origin combo-box
+        String selectedOrigin = sd_origin.getValue(); // Retrieve the selected value from the combo-box
+        cs_origin.setText(selectedOrigin);
+
+        // Additional logic if needed for handling origin based on destinationLabel, use origin variable as needed
     }
 
     // Method to clear seat selection fields
@@ -1001,7 +1005,6 @@ public class HomepageController implements Initializable {
         l_name.clear();
         suffix.clear();
         age.clear();
-        birth_date.getEditor().clear();
 
     }
 
@@ -1163,12 +1166,6 @@ public class HomepageController implements Initializable {
             return; // Exit the method since there are validation issues
         }
 
-        // Check if age matches the age calculated from birth_date
-        if (!isAgeMatchingBirthDate()) {
-            showAlert("Age does not match the given birth date.", "red");
-            return;
-        }
-
         // Switch to paymentForms initially
         switchPaymentForm(book_btn);
 
@@ -1186,7 +1183,6 @@ public class HomepageController implements Initializable {
         booking.setLast_name(l_name.getText());
         booking.setSuffix(suffix.getText());
         booking.setAge(Integer.parseInt(age.getText()));
-        booking.setBirth_date(birth_date.getValue());
         booking.setDestination(destination.getText());
         booking.setOrigin(origin.getText());
         booking.setClass(s_class.getText());
@@ -1310,45 +1306,6 @@ public class HomepageController implements Initializable {
     // Add this method to check if the selected country is valid
     private boolean isValidCountry(JFXComboBox<String> countryComboBox, List<String> validCountries) {
         return validCountries.contains(countryComboBox.getSelectionModel().getSelectedItem());
-    }
-
-    //CHECKER IF BIRTHDAY DOES NOT MATCH ON GIVEN AGE 
-    private boolean isAgeMatchingBirthDate() {
-        // Get the entered age from the age text field
-        String enteredAgeText = age.getText();
-
-        // Validate that enteredAgeText is a number
-        if (!enteredAgeText.matches("\\d+")) {
-            return false;
-        }
-
-        int enteredAge = Integer.parseInt(enteredAgeText);
-
-        // Get the birth date from the date picker
-        LocalDate birthDate = birth_date.getValue();
-
-        // Calculate the age based on the birth date
-        int calculatedAge = calculateAge(birthDate);
-
-        // Compare the entered age with the calculated age
-        return enteredAge == calculatedAge;
-    }
-
-    private int calculateAge(LocalDate birthDate) {
-        // Calculate age based on the birth date
-        // You may need to adjust this calculation based on your requirements
-        LocalDate currentDate = LocalDate.now();
-        return Period.between(birthDate, currentDate).getYears();
-    }
-
-    private void showAlert(String message, String color) {
-        AlertManager alert = new AlertManager(book_alert);
-        alert.setAlertText(message, color);
-
-        // Schedule a task to hide the alert after 5 seconds
-        PauseTransition delay = new PauseTransition(Duration.seconds(5));
-        delay.setOnFinished(event -> alert.hideAlert());
-        delay.play();
     }
 
     public void handleSeatButton(JFXButton button) {
