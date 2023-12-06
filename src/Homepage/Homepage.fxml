@@ -1495,16 +1495,16 @@
                                                             <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <Label fx:id="sdCl_origin21" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                      <Label fx:id="sdCl_origin3" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
                                                          <styleClass>
                                                             <String fx:value="koulenReg-FontStyle" />
                                                             <String fx:value="underline-text" />
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <Label fx:id="sdCl_destination21" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label fx:id="sdCl_destination3" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
-                                                      <Label fx:id="sdCl_price21" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                      <Label fx:id="sdCl_price3" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
                                                    </children>
                                                 </AnchorPane>
                                              </graphic>
@@ -1526,16 +1526,16 @@
                                                             <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <Label fx:id="sdCl_origin211" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                      <Label fx:id="sdCl_origin4" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
                                                          <styleClass>
                                                             <String fx:value="koulenReg-FontStyle" />
                                                             <String fx:value="underline-text" />
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <Label fx:id="sdCl_destination211" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label fx:id="sdCl_destination4" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
-                                                      <Label fx:id="sdCl_price211" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                      <Label fx:id="sdCl_price4" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
                                                    </children>
                                                 </AnchorPane>
                                              </graphic>
@@ -1557,16 +1557,16 @@
                                                             <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <Label fx:id="sdCl_origin212" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                      <Label fx:id="sdCl_origin5" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
                                                          <styleClass>
                                                             <String fx:value="koulenReg-FontStyle" />
                                                             <String fx:value="underline-text" />
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <Label fx:id="sdCl_destination212" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label fx:id="sdCl_destination5" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
-                                                      <Label fx:id="sdCl_price212" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                      <Label fx:id="sdCl_price5" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
                                                    </children>
                                                 </AnchorPane>
                                              </graphic>
@@ -1588,16 +1588,16 @@
                                                             <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <Label fx:id="sdCl_origin2121" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                      <Label fx:id="sdCl_origin6" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
                                                          <styleClass>
                                                             <String fx:value="koulenReg-FontStyle" />
                                                             <String fx:value="underline-text" />
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <Label fx:id="sdCl_destination2121" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label fx:id="sdCl_destination6" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
-                                                      <Label fx:id="sdCl_price2121" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                      <Label fx:id="sdCl_price6" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
                                                    </children>
                                                 </AnchorPane>
                                              </graphic>
@@ -1619,16 +1619,16 @@
                                                             <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <Label fx:id="sdCl_origin21211" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                      <Label fx:id="sdCl_origin7" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
                                                          <styleClass>
                                                             <String fx:value="koulenReg-FontStyle" />
                                                             <String fx:value="underline-text" />
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <Label fx:id="sdCl_destination21211" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label fx:id="sdCl_destination7" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
-                                                      <Label fx:id="sdCl_price21211" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                      <Label fx:id="sdCl_price7" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
                                                    </children>
                                                 </AnchorPane>
                                              </graphic>
@@ -1650,16 +1650,16 @@
                                                             <Image url="@../Images/Search%20Destination%20Designs/TicketButton.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <Label fx:id="sdCl_origin212111" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
+                                                      <Label fx:id="sdCl_origin8" alignment="CENTER" layoutX="144.0" layoutY="28.0" prefHeight="70.0" prefWidth="231.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" underline="true" AnchorPane.topAnchor="28.0">
                                                          <styleClass>
                                                             <String fx:value="koulenReg-FontStyle" />
                                                             <String fx:value="underline-text" />
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <Label fx:id="sdCl_destination212111" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
+                                                      <Label fx:id="sdCl_destination8" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
-                                                      <Label fx:id="sdCl_price212111" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
+                                                      <Label fx:id="sdCl_price8" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="134.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="1000" />
                                                    </children>
                                                 </AnchorPane>
                                              </graphic>
