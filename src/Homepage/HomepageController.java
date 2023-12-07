@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -425,6 +426,12 @@ public class HomepageController implements Initializable {
 
     @FXML
     private Label sdCl_price, sdCl_price1, sdCl_price2, sdCl_price3, sdCl_price4, sdCl_price5, sdCl_price6, sdCl_price7, sdCl_price8;
+
+    @FXML
+    private TableView<String[]> flightStatTable;
+
+    @FXML
+    private TableColumn<String[], String> fs_airplaneID, fs_flightNo, fs_destination, fs_origin, fs_status, fs_departDate, fs_arrivalDate;
 
     private boolean menuOpen = false;
 
@@ -1645,8 +1652,35 @@ public class HomepageController implements Initializable {
         }
     }
 
+    private void loadFlightStat() {
+        // Load the tables
+        Database db = new Database();
+        ObservableList<String[]> data = db.pullData(
+                "flight_manager",
+                Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date")
+        );
+
+        // Set the table data
+        if (data != null) {
+            flightStatTable.setItems(data);
+            fs_airplaneID.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[0]));
+            fs_flightNo.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[1]));
+            fs_destination.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[2]));
+            fs_origin.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[3]));
+            fs_status.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[4]));
+            fs_departDate.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[5]));
+            fs_arrivalDate.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[6]));
+        }
+
+
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Initialize flight stat
+        loadFlightStat();
 
         //Combo-Box initialize
         seatClass();

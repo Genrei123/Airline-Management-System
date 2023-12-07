@@ -267,18 +267,18 @@
                   </AnchorPane>
                   <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TableView layoutX="51.0" layoutY="99.0" prefHeight="460.0" prefWidth="976.0">
+                        <TableView fx:id="flightStatTable" layoutX="51.0" layoutY="99.0" prefHeight="460.0" prefWidth="976.0">
                           <columns>
-                            <TableColumn text="AIRPLANE ID" />
-                            <TableColumn prefWidth="94.0" text="FLIGHT NO." />
-                              <TableColumn prefWidth="98.0" text="DESTINATION" />
-                              <TableColumn minWidth="6.0" prefWidth="111.0" text="ORIGIN" />
-                              <TableColumn prefWidth="120.0" text="STATUS" />
-                              <TableColumn prefWidth="192.0" text="DATE &amp; TIME OF DEPARTURE " />
-                              <TableColumn prefWidth="280.0" text="DATE &amp; TIME OF ARRIVAL " />
+                            <TableColumn fx:id="fs_airplaneID" text="AIRPLANE ID" />
+                            <TableColumn fx:id="fs_flightNo" prefWidth="94.0" text="FLIGHT NO." />
+                              <TableColumn fx:id="fs_destination" prefWidth="98.0" text="DESTINATION" />
+                              <TableColumn fx:id="fs_origin" minWidth="6.0" prefWidth="111.0" text="ORIGIN" />
+                              <TableColumn fx:id="fs_status" prefWidth="120.0" text="STATUS" />
+                              <TableColumn fx:id="fs_departDate" prefWidth="192.0" text="DATE &amp; TIME OF DEPARTURE " />
+                              <TableColumn fx:id="fs_arrivalDate" prefWidth="280.0" text="DATE &amp; TIME OF ARRIVAL " />
                           </columns>
                         </TableView>
-                        <TextField layoutX="751.0" layoutY="58.0" prefHeight="25.0" prefWidth="276.0" promptText="Search by Flight ID" />
+                        <TextField layoutX="751.0" layoutY="58.0" prefHeight="25.0" prefWidth="276.0" promptText="Search by Flight #" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
