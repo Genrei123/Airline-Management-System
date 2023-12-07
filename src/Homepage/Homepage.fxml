@@ -1386,7 +1386,7 @@
                                     <String fx:value="fontSize" />
                                  </styleClass>
                               </JFXComboBox>
-                              <ScrollPane layoutX="51.0" layoutY="-453.0" prefHeight="1038.0" prefWidth="958.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="194.0">
+                              <ScrollPane layoutX="51.0" layoutY="199.0" prefHeight="391.0" prefWidth="958.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="52.0">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1327.0" prefWidth="943.0" style="-fx-background-color: #626355;" stylesheets="@HomepageStyles.css">
                                        <children>
@@ -1411,12 +1411,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="478.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="BORACAY" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="197.0">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="BORACAY" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
@@ -1447,12 +1442,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination1" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="485.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="PALAWAN" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="197.0">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination1" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="PALAWAN" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price1" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
@@ -1483,12 +1473,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination2" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="485.0" layoutY="31.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="DAVAO" unFocusColor="#4d4d4d00">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination2" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="DAVAO" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price2" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
@@ -1519,12 +1504,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination3" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="485.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="MANILA" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="190.0">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination3" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="MANILA" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price3" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
@@ -1555,12 +1535,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination4" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="488.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="BOHOL" unFocusColor="#4d4d4d00" AnchorPane.rightAnchor="190.0">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination4" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="BOHOL" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price4" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
@@ -1591,12 +1566,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination5" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="485.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="CEBU" unFocusColor="#4d4d4d00">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination5" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="CEBU" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price5" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
@@ -1627,12 +1597,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination6" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="485.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="SIARGAO" unFocusColor="#4d4d4d00">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination6" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="SIARGAO" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price6" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" />
                                                    </children>
@@ -1663,12 +1628,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination7" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="485.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="BAGUIO" unFocusColor="#4d4d4d00">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination7" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="BAGUIO" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price7" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
@@ -1699,12 +1659,7 @@
                                                          </styleClass>
                                                       </Label>
                                                       <Label alignment="CENTER" layoutX="402.0" layoutY="28.0" prefHeight="70.0" prefWidth="70.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="TO" textFill="#4eb19d" AnchorPane.topAnchor="28.0" />
-                                                      <JFXTextField fx:id="sdCl_destination8" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="485.0" layoutY="28.0" prefHeight="70.0" prefWidth="269.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" stylesheets="@HomepageStyles.css" text="ILO-ILO" unFocusColor="#4d4d4d00">
-                                                         <styleClass>
-                                                            <String fx:value="koulenReg-FontStyle" />
-                                                            <String fx:value="textColor" />
-                                                         </styleClass>
-                                                      </JFXTextField>
+                                                      <Label fx:id="sdCl_destination8" alignment="CENTER" layoutX="492.0" layoutY="28.0" prefHeight="70.0" prefWidth="255.0" style="-fx-font-size: 60; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="ILO-ILO" textFill="#4eb19d" />
                                                       <Label layoutX="790.0" layoutY="20.0" prefHeight="28.0" prefWidth="42.0" style="-fx-font-size: 30; -fx-padding: -20 0 -20 0;" styleClass="koulenReg-FontStyle" text="PHP" textFill="#868a23" />
                                                       <Label fx:id="sdCl_price8" layoutX="793.0" layoutY="55.0" prefHeight="43.0" prefWidth="138.0" style="-fx-font-size: 50; -fx-padding: -40 0 -40 0;" styleClass="koulenReg-FontStyle" stylesheets="@HomepageStyles.css" text="---------" AnchorPane.rightAnchor="15.0" />
                                                    </children>
