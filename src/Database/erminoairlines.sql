@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 10:57 PM
+-- Generation Time: Dec 07, 2023 at 11:44 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -53,7 +53,7 @@ CREATE TABLE `booked_flights` (
 --
 
 INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `age`, `birth_date`, `destination`, `origin`, `class`, `seat`, `flight_no`, `amount`, `departure`, `arrival`, `book_date`, `ticket_no`, `status`) VALUES
-('111', 'Genrey', 'Omisol', 'Cristobal', '', 20, '2003-09-19', 'Boracay', 'Manila', 'First Class', '1A', 'ERM101', 5000, '2023-12-09 03:10:49', '2023-12-09 03:10:49', '2023-12-06 03:10:49', '2020456-N', 'Booked');
+('111', 'Genrey', 'Omisol', 'Cristobal', '', 20, '2003-09-19', 'Boracay', 'Manila', 'First Class', '8A', 'ERM101', 5000, '2023-12-07 00:00:00', '2023-12-09 03:10:49', '2023-12-06 03:10:49', '2020456-N', 'Booked');
 
 -- --------------------------------------------------------
 
@@ -76,8 +76,8 @@ CREATE TABLE `customer_support` (
 --
 
 INSERT INTO `customer_support` (`name`, `ticket_no`, `reason`, `contact`, `feedback`, `status`, `preferred_date`) VALUES
-('Cristobal', '2020456-N', 'Move Departure Date', 'tsts', 'TEsts', 'Pending', '2023-12-07'),
-('Cristobal', '2020456-N', 'Move Departure Date', 'tsts', 'test', 'Pending', '2023-12-07'),
+('Cristobal', '2020456-N', 'Move Departure Date', 'tsts', 'TEsts', 'Approved', '2023-12-07'),
+('Cristobal', '2020456-N', 'Move Departure Date', 'tsts', 'test', 'Approved', '2023-12-07'),
 ('Cristobal', '2312321321', 'Move Departure Date', 'tsts', 'test', 'Pending', '2023-12-07'),
 ('Cristobal', '2312321321', 'Move Departure Date', 'tsts', 'test', 'Pending', '2023-12-07'),
 ('sadsad', 'asdsadsads', 'Move Departure Date', 'asdsad', 'asdsad', 'Pending', '2023-12-07'),
@@ -86,7 +86,7 @@ INSERT INTO `customer_support` (`name`, `ticket_no`, `reason`, `contact`, `feedb
 ('213213', '123213', 'Move Departure Date', '21321', '213', 'Pending', '2023-12-06'),
 ('213213', '20220456-N', 'Move Departure Date', '21321', '213', 'Pending', '2023-12-06'),
 ('Cristobal', '20220456-N', 'Move Departure Date', 'asdsad', '213', 'Pending', '2023-12-06'),
-('Cristobal', '2020456-N', 'Move Departure Date', '09682345489', 'Tests', 'Pending', '2023-12-07');
+('Cristobal', '2020456-N', 'Move Departure Date', '09682345489', 'Tests', 'Approved', '2023-12-07');
 
 -- --------------------------------------------------------
 
@@ -103,6 +103,15 @@ CREATE TABLE `flight_manager` (
   `origin_date` datetime NOT NULL,
   `destination_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `flight_manager`
+--
+
+INSERT INTO `flight_manager` (`airplane_id`, `flight_no`, `destination`, `origin`, `status`, `origin_date`, `destination_date`) VALUES
+('test', 'test', 'tsts', 'tsts', 'sts', '2023-12-07 03:52:36', '2023-12-07 03:52:36'),
+('ststs', 'sts', 'st', 'st', 'st', '2023-12-07 03:52:36', '2023-12-07 03:52:36'),
+('ERM101', 'test', 'Manila', 'Cebu', 'On Time', '2023-12-07 03:52:36', '2023-12-07 03:52:36');
 
 -- --------------------------------------------------------
 

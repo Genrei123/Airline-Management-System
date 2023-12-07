@@ -62,7 +62,7 @@
                   <JFXPasswordField fx:id="signup_password" focusColor="WHITE" labelFloat="true" layoutX="222.0" layoutY="65.0" prefHeight="25.0" prefWidth="156.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" />
                   <JFXTextField fx:id="signup_showPassword" focusColor="WHITE" labelFloat="true" layoutX="221.0" layoutY="65.0" prefHeight="25.0" prefWidth="156.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" visible="false" />
                   <JFXPasswordField fx:id="signup_confirmPassword" focusColor="WHITE" labelFloat="true" layoutX="391.0" layoutY="65.0" prefHeight="25.0" prefWidth="156.0" promptText="Confirm Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" />
-                  <JFXTextField fx:id="signup_showConfirmPassword" focusColor="WHITE" labelFloat="true" layoutX="391.0" layoutY="65.0" prefHeight="25.0" prefWidth="156.0" promptText="Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" visible="false" />
+                  <JFXTextField fx:id="signup_showConfirmPassword" focusColor="WHITE" labelFloat="true" layoutX="391.0" layoutY="65.0" prefHeight="25.0" prefWidth="156.0" promptText="Confirm Password" styleClass="textField" stylesheets="@SigninStyles.css" unFocusColor="WHITE" visible="false" />
                   <JFXCheckBox fx:id="signup_selectShowPassword" checkedColor="#007acc" layoutX="220.0" layoutY="107.0" onAction="#showSignUpPassword" text="Show Password" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />

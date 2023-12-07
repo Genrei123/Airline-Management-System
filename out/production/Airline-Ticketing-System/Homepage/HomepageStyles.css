@@ -133,6 +133,10 @@
     -fx-background-color: #c6ead6; /* Color of the arrow buttons */
 }
 
+.textColor {
+    -fx-text-fill: #4eb19d;
+}
+
 
 
 
