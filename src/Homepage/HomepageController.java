@@ -415,8 +415,10 @@ public class HomepageController implements Initializable {
 
     @FXML
     private Label sdCl_origin, sdCl_origin1, sdCl_origin2, sdCl_origin3, sdCl_origin4,
-            sdCl_origin5, sdCl_origin6, sdCl_origin7, sdCl_origin8,
-            sdCl_destination, sdCl_destination1, sdCl_destination2,
+            sdCl_origin5, sdCl_origin6, sdCl_origin7, sdCl_origin8;
+
+    @FXML
+    private JFXTextField sdCl_destination, sdCl_destination1, sdCl_destination2,
             sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6,
             sdCl_destination7, sdCl_destination8;
 
@@ -906,89 +908,6 @@ public class HomepageController implements Initializable {
         cs_seatClass.setItems(listData);
     }
 
-    // Add this method to initialize the booking buttons
-    private void initializeBookingButtons() {
-        // Initialize booking buttons
-        List<JFXButton> bookingButtons = Arrays.asList(
-                booking_btn1, booking_btn2, booking_btn3, booking_btn4, booking_btn5,
-                booking_btn6, booking_btn7, booking_btn8, booking_btn9
-        );
-
-        // Set initial button states
-        setBookingButtonsEnabled(false);
-
-        // Add more booking buttons as needed
-        // Set action for each booking button
-        for (int i = 0; i < bookingButtons.size(); i++) {
-            JFXButton bookingButton = bookingButtons.get(i);
-            String sdLbldestination = getDestinationLabel(i).getText(); // Modify this based on your actual label names
-            String sdLblorigin = sdCl_origin.getText(); // Modify this based on your actual sd_origin
-
-            // Set the action for the booking button
-            setBookingButtonAction(bookingButton, sdLbldestination, sdLblorigin);
-        }
-    }
-
-    // Add this method to set the state of booking buttons (enable/disable)
-    private void setBookingButtonsEnabled(boolean enabled) {
-        List<JFXButton> bookingButtons = Arrays.asList(
-                booking_btn1, booking_btn2, booking_btn3, booking_btn4, booking_btn5,
-                booking_btn6, booking_btn7, booking_btn8, booking_btn9
-        );
-
-        for (JFXButton bookingButton : bookingButtons) {
-            bookingButton.setDisable(!enabled);
-        }
-    }
-
-// Get the destination label associated with the booking button index
-    private Label getDestinationLabel(int index) {
-        // Modify this based on your actual label names
-        switch (index) {
-            case 0:
-                return sdCl_destination;
-            case 1:
-                return sdCl_destination1;
-            case 2:
-                return sdCl_destination2;
-            case 3:
-                return sdCl_destination3;
-            case 4:
-                return sdCl_destination4;
-            case 5:
-                return sdCl_destination5;
-            case 6:
-                return sdCl_destination6;
-            case 7:
-                return sdCl_destination7;
-            case 8:
-                return sdCl_destination8;
-
-            // Add more cases as needed
-            default:
-                return null;
-        }
-    }
-
-// Generic method to set the action for booking buttons
-    private void setBookingButtonAction(JFXButton bookingButton, String destination, String origin) {
-        bookingButton.setOnAction(event -> {
-            switchForm(hf_chooseSeat, bookingButton);
-            setDestinationAndOrigin(destination, origin);
-        });
-    }
-
-    // Method to set destination and origin in cs_destination and cs_origin text fields
-    private void setDestinationAndOrigin(String destination, String origin) {
-        cs_destination.setText(destination);
-
-        // Set origin based on sd_origin combo-box
-        String selectedOrigin = sd_origin.getValue(); // Retrieve the selected value from the combo-box
-        cs_origin.setText(selectedOrigin);
-
-        // Additional logic if needed for handling origin based on destinationLabel, use origin variable as needed
-    }
-
     // Method to clear seat selection fields
     private void clearSeatSelectionFields() {
         cs_seatNum.clear();
@@ -1437,13 +1356,13 @@ public class HomepageController implements Initializable {
     }
 
     private void updateSdClDestinations(String selectedLocation) {
-        // Assuming sdCl_destination to sdCl_destination8 are your buttons
-        List<Label> sdClDestinations = Arrays.asList(sdCl_destination, sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
+        // Assuming sdCl_destination to sdCl_destination8 are your text fields
+        List<JFXTextField> sdClDestinations = Arrays.asList(sdCl_destination, sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
 
-        // Hide the 9th button
+        // Hide the 9th text field
         sdClDestinations.get(8).setVisible(false);
 
-        // Update sdCl_destination labels with locations excluding the selected location
+        // Update sdCl_destination text fields with locations excluding the selected location
         int index = 0;
         for (String location : originList) {
             if (!location.equals(selectedLocation)) {
@@ -1451,13 +1370,13 @@ public class HomepageController implements Initializable {
                 sdClDestinations.get(index).setVisible(true);
                 index++;
 
-                // Break the loop if all buttons are updated
+                // Break the loop if all text fields are updated
                 if (index >= sdClDestinations.size()) {
                     break;
                 }
             }
         }
-        // Hide any remaining buttons if there are more buttons than locations
+        // Hide any remaining text fields if there are more text fields than locations
         for (int i = index; i < sdClDestinations.size(); i++) {
             sdClDestinations.get(i).setVisible(false);
         }
@@ -1538,12 +1457,12 @@ public class HomepageController implements Initializable {
         // ... Add more seat classes as needed
     }
 
-    private void updateSdClPrices(String selectedSeatClass, List<Label> destinationLabels) {
+    private void updateSdClPrices(String selectedSeatClass, List<JFXTextField> destinationLabels) {
         // Get the prices based on the selected seat class
         Map<String, Integer> prices = priceMap.getOrDefault(selectedSeatClass, Collections.emptyMap());
 
         for (int i = 0; i < destinationLabels.size(); i++) {
-            Label destinationLabel = destinationLabels.get(i);
+            JFXTextField destinationLabel = destinationLabels.get(i);
             String selectedDestination = destinationLabel.getText();
 
             // Get the price for the selected destination
@@ -1658,9 +1577,6 @@ public class HomepageController implements Initializable {
 
         // Return actions for home_form
         returnToHome_btn.setOnAction(e -> switchForm(hf_home, returnToHome_btn));
-
-        // Initialize booking buttons
-        initializeBookingButtons();
 
         // Add listeners to cs_seatNum and cs_seatClass
         cs_seatNum.textProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
@@ -1987,7 +1903,7 @@ public class HomepageController implements Initializable {
         // Initialize price map
         initPriceMap();
 
-        List<Label> destinationLabels = Arrays.asList(sdCl_destination, sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
+        List<JFXTextField> destinationLabels = Arrays.asList(sdCl_destination, sdCl_destination1, sdCl_destination2, sdCl_destination3, sdCl_destination4, sdCl_destination5, sdCl_destination6, sdCl_destination7, sdCl_destination8);
 
         // Set listener for changes in the selected item
         sd_checkPrice.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
@@ -1998,19 +1914,11 @@ public class HomepageController implements Initializable {
         // Set listener for changes in the selected item in sdCl_origin
         sdCl_origin.textProperty().addListener((observable, oldOrigin, newOrigin) -> {
             // Get the selected seat class
-            String selectedSeatClass = sd_checkPrice.getValue(); // Assuming sd_checkPrice is a ComboBox
+            String selectedSeatClass = sd_checkPrice.getValue(); // Assuming sd_checkPrice is a ComboBox<String>
 
             // Update sdCl_price labels with the selected seat class and destination
             updateSdClPrices(selectedSeatClass, destinationLabels);
         });
-
-        // Modify the sd_origin combo-box change listener
-        sd_origin.valueProperty().addListener((observable, oldValue, newValue) -> {
-            // Check if sd_origin has text inside
-            boolean isSdOriginEmpty = newValue == null || newValue.trim().isEmpty();
-
-            // Set the state of booking buttons based on sd_origin
-            setBookingButtonsEnabled(!isSdOriginEmpty);
-        });
     }
 }
+    
