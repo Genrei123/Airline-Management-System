@@ -103,7 +103,10 @@ public class HomepageController implements Initializable {
     private JFXTextField cs_seatNum;
 
     @FXML
-    private JFXComboBox<?> cs_seatClass;
+    private JFXTextField cs_price;
+
+    @FXML
+    private JFXComboBox<String> cs_seatClass;
 
     @FXML
     private JFXButton proceed_btn;
@@ -814,9 +817,11 @@ public class HomepageController implements Initializable {
                 "booked_flights",
                 Arrays.asList("flight_id", "first_name", "middle_name", "last_name",
                         "suffix", "age", "book_date", "destination", "origin", "class",
-                        "seat", "flight_no", "amount", "ticket_no", "status"),
+                        "seat", "flight_no", "amount", "ticket_no", "status",
+                        "suffix", "age", "birth_date", "destination", "origin", "class",
+                        "seat", "flight_no", "amount"),
                 Arrays.asList(flight_id, infos.getFirst_name(), infos.getMiddle_name(), infos.getLast_name(),
-                        infos.getSuffix(), infos.getAge(), date/*Pa change sa booking_date*/, infos.getDestination(),
+                        infos.getSuffix(), infos.getAge(), date, infos.getDestination(),
                         infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no,
                         infos.getAmount(), ticket, "ON")
         );
@@ -898,7 +903,7 @@ public class HomepageController implements Initializable {
     }
 
     //COMBO-BOX for Seat Class
-    private String[] classList = {"Economy", "Premium Economy", "Business", "First Class"};
+    private String[] classList = {"ECONOMY", "PREMIUM ECONOMY", "BUSINESS", "FIRST CLASS"};
 
     public void seatClass() {
         List<String> listC = new ArrayList<>();
@@ -1549,6 +1554,100 @@ public class HomepageController implements Initializable {
         }
     }
 
+    // Function to update cs_destination based on the clicked button
+    private void updateCsDestination(JFXButton bookingButton) {
+        String destinationText = "";
+
+        // Switch based on the clicked button and update cs_destination accordingly
+        switch (bookingButton.getId()) {
+            case "booking_btn1":
+                destinationText = sdCl_destination.getText();
+                break;
+            case "booking_btn2":
+                destinationText = sdCl_destination1.getText();
+                break;
+            case "booking_btn3":
+                destinationText = sdCl_destination2.getText();
+                break;
+            case "booking_btn4":
+                destinationText = sdCl_destination3.getText();
+                break;
+            case "booking_btn5":
+                destinationText = sdCl_destination4.getText();
+                break;
+            case "booking_btn6":
+                destinationText = sdCl_destination5.getText();
+                break;
+            case "booking_btn7":
+                destinationText = sdCl_destination6.getText();
+                break;
+            case "booking_btn8":
+                destinationText = sdCl_destination7.getText();
+                break;
+        }
+
+        // Update cs_destination text field
+        cs_destination.setText(destinationText);
+
+        // Update sd_price based on the clicked button
+        updateSdPrice(bookingButton);
+    }
+
+    // Function to update sd_price based on the clicked button
+    private void updateSdPrice(JFXButton bookingButton) {
+        String priceText = "";
+
+        // Switch based on the clicked button and update sd_price accordingly
+        switch (bookingButton.getId()) {
+            case "booking_btn1":
+                priceText = sdCl_price.getText();
+                break;
+            case "booking_btn2":
+                priceText = sdCl_price1.getText();
+                break;
+            case "booking_btn3":
+                priceText = sdCl_price2.getText();
+                break;
+            case "booking_btn4":
+                priceText = sdCl_price3.getText();
+                break;
+            case "booking_btn5":
+                priceText = sdCl_price4.getText();
+                break;
+            case "booking_btn6":
+                priceText = sdCl_price5.getText();
+                break;
+            case "booking_btn7":
+                priceText = sdCl_price6.getText();
+                break;
+            case "booking_btn8":
+                priceText = sdCl_price7.getText();
+                break;
+        }
+
+        // Update cs_price text field
+        cs_price.setText(priceText);
+    }
+
+    private void updateCsPrice(String selectedSeatClass) {
+        // Get the prices based on the selected seat class
+        Map<String, Integer> prices = priceMap.getOrDefault(selectedSeatClass, Collections.emptyMap());
+
+        // Assuming cs_price is the TextField where you want to display the price
+        cs_price.clear();  // Clear any previous value
+
+        // Get the price for the selected destination
+        Integer selectedDestinationPrice = prices.get(cs_destination.getText());  // Assuming cs_destination is the selected destination
+
+        if (selectedDestinationPrice != null) {
+            // Update the cs_price TextField with the selected destination's price
+            cs_price.setText(String.valueOf(selectedDestinationPrice));
+        } else {
+            // Handle the case where no price is found for the selected destination
+            cs_price.setText("N/A");  // Replace "N/A" with your desired default value or an empty string
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -1843,7 +1942,7 @@ public class HomepageController implements Initializable {
             economyC_seats.setVisible(false);
 
             // Enable the selected anchor pane based on the combo box value
-            if ("Economy".equals(newValue)) {
+            if ("ECONOMY".equals(newValue)) {
                 economyC_seats.setVisible(true);
                 seat_icon.setVisible(false);
 
@@ -1854,7 +1953,7 @@ public class HomepageController implements Initializable {
                     throw new RuntimeException(e);
                 }
 
-            } else if ("Business".equals(newValue)) {
+            } else if ("BUSINESS".equals(newValue)) {
                 businessC_seats.setVisible(true);
                 seat_icon.setVisible(false);
 
@@ -1865,7 +1964,7 @@ public class HomepageController implements Initializable {
                     throw new RuntimeException(e);
                 }
 
-            } else if ("Premium Economy".equals(newValue)) {
+            } else if ("PREMIUM ECONOMY".equals(newValue)) {
                 premEconomyC_seats.setVisible(true);
                 seat_icon.setVisible(false);
 
@@ -1876,7 +1975,7 @@ public class HomepageController implements Initializable {
                     throw new RuntimeException(e);
                 }
 
-            } else if ("First Class".equals(newValue)) {
+            } else if ("FIRST CLASS".equals(newValue)) {
                 firstC_seats.setVisible(true);
                 seat_icon.setVisible(false);
 
@@ -1947,7 +2046,14 @@ public class HomepageController implements Initializable {
                 booking_btn6, booking_btn7, booking_btn8, booking_btn9);
 
         for (JFXButton bookingButton : bookingButtons) {
-            bookingButton.setOnAction(e -> switchForm(hf_chooseSeat, bookingButton));
+            bookingButton.setOnAction(e -> {
+                // Update cs_destination based on the clicked button
+                updateCsDestination(bookingButton);
+                // Update cs_seatClass based on the selected item from sd_checkPrice
+                cs_seatClass.setValue(sd_checkPrice.getValue());
+                // Switch to hf_chooseSeat form
+                switchForm(hf_chooseSeat, bookingButton);
+            });
         }
 
         // Set the text of cs_origin with the selected item from sd_origin
@@ -1955,54 +2061,32 @@ public class HomepageController implements Initializable {
             cs_origin.setText(newOrigin);
         });
 
-        booking_btn1.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination.getText());
-            switchForm(hf_chooseSeat, booking_btn1);
-        });
-        booking_btn2.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination1.getText());
-            switchForm(hf_chooseSeat, booking_btn2);
-        });
-        booking_btn3.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination2.getText());
-            switchForm(hf_chooseSeat, booking_btn3);
-        });
-        booking_btn4.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination3.getText());
-            switchForm(hf_chooseSeat, booking_btn4);
-        });
-        booking_btn5.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination4.getText());
-            switchForm(hf_chooseSeat, booking_btn5);
-        });
-        booking_btn6.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination5.getText());
-            switchForm(hf_chooseSeat, booking_btn6);
-        });
-        booking_btn7.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination6.getText());
-            switchForm(hf_chooseSeat, booking_btn7);
-        });
-        booking_btn8.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            cs_destination.setText(sdCl_destination7.getText());
-            switchForm(hf_chooseSeat, booking_btn8);
-        });
-
-        for (JFXButton bookingButton : bookingButtons) {
-            bookingButton.setOnAction(e -> switchForm(hf_chooseSeat, bookingButton));
-        }
-
-        // Initialize the disable state of booking buttons based on sd_origin
-        setBookingButtonsEnabled(sd_origin.getValue() != null && !sd_origin.getValue().trim().isEmpty());
+        // Initialize the disable state of booking buttons based on sd_origin and sd_checkPrice
+        setBookingButtonsEnabled(sd_origin.getValue() != null && !sd_origin.getValue().trim().isEmpty() && sd_checkPrice.getValue() != null && !sd_checkPrice.getValue().trim().isEmpty());
 
         // Add a listener to sd_origin ComboBox
         sd_origin.valueProperty().addListener((observable, oldValue, newValue) -> {
             // Check if sd_origin is empty
             boolean isSdOriginEmpty = newValue == null || newValue.trim().isEmpty();
 
-            // Set the state of booking buttons based on the condition
-            setBookingButtonsEnabled(!isSdOriginEmpty);
+            // Set the state of booking buttons based on both sd_origin and sd_checkPrice
+            setBookingButtonsEnabled(!isSdOriginEmpty && sd_checkPrice.getValue() != null && !sd_checkPrice.getValue().trim().isEmpty());
+        });
+
+        // Add a listener to sd_checkPrice ComboBox
+        sd_checkPrice.valueProperty().addListener((observable, oldPrice, newPrice) -> {
+            // Clear existing items and add the new price to cs_seatClass
+            cs_seatClass.getItems().clear();
+            cs_seatClass.getItems().addAll("ECONOMY", "PREMIUM ECONOMY", "BUSINESS", "FIRST CLASS");
+            // Select the new price
+            cs_seatClass.getSelectionModel().select(newPrice);
+
+            // Enable or disable booking buttons based on both sd_origin and sd_checkPrice
+            setBookingButtonsEnabled(sd_origin.getValue() != null && !sd_origin.getValue().trim().isEmpty() && newPrice != null && !newPrice.trim().isEmpty());
+        });
+
+        cs_seatClass.valueProperty().addListener((observable, oldSeatClass, newSeatClass) -> {
+            updateCsPrice(newSeatClass);
         });
     }
 }
-
