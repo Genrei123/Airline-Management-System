@@ -15,6 +15,8 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -265,12 +267,18 @@
                   </AnchorPane>
                   <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="214.0" layoutY="150.0" prefHeight="53.0" prefWidth="198.0" text="Flight Status" textFill="WHITE" AnchorPane.leftAnchor="500.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane prefHeight="599.0" prefWidth="1000.0" styleClass="twinkling-star" stylesheets="@HomepageStyles.css" />
+                        <TableView layoutX="51.0" layoutY="99.0" prefHeight="460.0" prefWidth="976.0">
+                          <columns>
+                            <TableColumn text="AIRPLANE ID" />
+                            <TableColumn prefWidth="94.0" text="FLIGHT NO." />
+                              <TableColumn prefWidth="98.0" text="DESTINATION" />
+                              <TableColumn minWidth="6.0" prefWidth="111.0" text="ORIGIN" />
+                              <TableColumn prefWidth="120.0" text="STATUS" />
+                              <TableColumn prefWidth="192.0" text="DATE &amp; TIME OF DEPARTURE " />
+                              <TableColumn prefWidth="280.0" text="DATE &amp; TIME OF ARRIVAL " />
+                          </columns>
+                        </TableView>
+                        <TextField layoutX="751.0" layoutY="58.0" prefHeight="25.0" prefWidth="276.0" promptText="Search by Flight ID" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">

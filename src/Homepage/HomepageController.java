@@ -799,6 +799,7 @@ public class HomepageController implements Initializable {
         Booking infos = Booking.getInstance();
 
         TicketNo ticketNo = new TicketNo();
+        String ticket = ticketNo.generateTicketNo(infos.getFirst_name() + infos.getLast_name());
 
         LocalDateTime now = LocalDateTime.now();
         now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -807,15 +808,17 @@ public class HomepageController implements Initializable {
         String flight_no = TicketNo.generateTicketNo(infos.getFirst_name() + infos.getLast_name());
         System.out.println(flight_no);
 
+        LocalDate date = booking_date.getValue();
+
         booking_table.insertData(
                 "booked_flights",
                 Arrays.asList("flight_id", "first_name", "middle_name", "last_name",
-                        "suffix", "age", "booking_date", "destination", "origin", "class",
-                        "seat", "flight_no", "amount"),
+                        "suffix", "age", "book_date", "destination", "origin", "class",
+                        "seat", "flight_no", "amount", "ticket_no", "status"),
                 Arrays.asList(flight_id, infos.getFirst_name(), infos.getMiddle_name(), infos.getLast_name(),
-                        infos.getSuffix(), infos.getAge(), infos.getBirthdate()/*Pa change sa booking_date*/, infos.getDestination(),
+                        infos.getSuffix(), infos.getAge(), date/*Pa change sa booking_date*/, infos.getDestination(),
                         infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no,
-                        infos.getAmount())
+                        infos.getAmount(), ticket, "ON")
         );
 
         // Create receipt
