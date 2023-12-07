@@ -33,7 +33,7 @@
                      <children>
                         <ImageView fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/LogInBG.png" />
+                              <Image url="@../Images/Login%20Images/Sign%20In.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -51,7 +51,7 @@
                      <children>
                         <ImageView fitHeight="263.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/CreateAccBG.png" />
+                              <Image url="@../Images/Login%20Images/Sign%20Up.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -79,7 +79,7 @@
                      <children>
                         <ImageView fitHeight="273.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/ForgotPassBG.png" />
+                              <Image url="@../Images/Login%20Images/Forgot%20Password.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -98,7 +98,7 @@
                      <children>
                         <ImageView fitHeight="250.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/ChangePassBG.png" />
+                              <Image url="@../Images/Login%20Images/Change%20Password.png" />
                            </image>
                         </ImageView>
                      </children>
