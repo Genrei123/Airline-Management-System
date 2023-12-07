@@ -100,16 +100,16 @@ public class LoginPageController implements Initializable {
     private Label signup_alert;
 
     @FXML
-    private JFXPasswordField signup_showPassword;
+    private JFXPasswordField signup_password;
 
     @FXML
-    private JFXTextField signup_password;
+    private JFXTextField signup_showPassword;
 
     @FXML
-    private JFXPasswordField signup_showConfirmPassword;
+    private JFXPasswordField signup_confirmPassword;
 
     @FXML
-    private JFXTextField signup_confirmPassword;
+    private JFXTextField signup_showConfirmPassword;
 
     @FXML
     private JFXCheckBox signup_selectShowPassword;
