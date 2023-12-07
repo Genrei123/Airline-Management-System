@@ -879,6 +879,53 @@ public class DashboardController implements Initializable {
         }
     }
 
+    private void loadFlightManager() {
+        String[] search_choices3 = {"ERM101", "ERM102", "ERM103", "ERM104", "ERM105", "ERM106", "ERM107", "ERM108", "ERM109"};
+        List<String> listQ3 = new ArrayList<>();
+
+        for (String data1 : search_choices3) {
+            listQ3.add(data1);
+        }
+        ObservableList listData3 = FXCollections.observableArrayList(listQ3);
+        fm_managerAirplaneIDbox.setItems(listData3);
+        fm_managerAirplaneIDbox.setValue("airplane_id");
+
+        String[] flightManagerStatus = {"On Time", "Delayed", "Cancelled"};
+        List<String> listQ4 = new ArrayList<>();
+
+        for (String data1 : flightManagerStatus) {
+            listQ4.add(data1);
+        }
+        ObservableList listData4 = FXCollections.observableArrayList(listQ4);
+        fm_managerSTATUSbox.setItems(listData4);
+        fm_managerSTATUSbox.setValue("status");
+
+        String[] flightManagerDestination = {"Manila", "Cebu", "Davao", "Bacolod", "Iloilo", "Cagayan de Oro", "Zamboanga", "Tacloban", "Dumaguete"};
+        List<String> listQ5 = new ArrayList<>();
+
+        for (String data1 : flightManagerDestination) {
+            listQ5.add(data1);
+        }
+
+        ObservableList listData5 = FXCollections.observableArrayList(listQ5);
+        fm_managerDESTbox.setItems(listData5);
+        fm_managerDESTbox.setValue("destination");
+
+        String[] flightManagerOrigin = {"Manila", "Cebu", "Davao", "Bacolod", "Iloilo", "Cagayan de Oro", "Zamboanga", "Tacloban", "Dumaguete"};
+        List<String> listQ6 = new ArrayList<>();
+
+        for (String data1 : flightManagerOrigin) {
+            listQ6.add(data1);
+        }
+
+        ObservableList listData6 = FXCollections.observableArrayList(listQ6);
+        fm_managerORIGINbox.setItems(listData6);
+        fm_managerORIGINbox.setValue("origin");
+
+
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -1002,26 +1049,7 @@ public class DashboardController implements Initializable {
             }
         });
 
-        String[] search_choices3 = {"airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"};
-        List<String> listQ3 = new ArrayList<>();
-
-        for (String data1 : search_choices3) {
-            listQ3.add(data1);
-        }
-        ObservableList listData3 = FXCollections.observableArrayList(listQ3);
-        fm_managerAirplaneIDbox.setItems(listData3);
-        fm_managerAirplaneIDbox.setValue("airplane_id");
-
-        fm_managerSTATUSbox.setItems(listData3);
-        fm_managerSTATUSbox.setValue("status");
-
-        fm_managerDESTbox.setItems(listData3);
-        fm_managerDESTbox.setValue("destination");
-
-        fm_managerORIGINbox.setItems(listData3);
-        fm_managerORIGINbox.setValue("origin");
-
-
+        loadFlightManager();
         // Flight manager ends here
 
         // Book flights starts here

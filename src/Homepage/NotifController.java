@@ -4,11 +4,10 @@
  */
 package Homepage;
 
-import Receipt.ReceiptMaker;
+import Receipt.TicketMaker;
 import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
@@ -57,10 +56,10 @@ public class NotifController implements Initializable {
         }
 
         // Open the receipt
-        ReceiptMaker receiptMaker = new ReceiptMaker();
+        TicketMaker ticketMaker = new TicketMaker();
         Booking booking = Booking.getInstance();
 
-        receiptMaker.openReceipt(receiptMaker.getReceiptPath(booking.getTicketNo()));
+        ticketMaker.openReceipt(ticketMaker.getReceiptPath(booking.getTicketNo()));
 
     }
 

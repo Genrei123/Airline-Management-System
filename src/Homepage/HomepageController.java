@@ -2,9 +2,8 @@ package Homepage;
 
 import Animations.SwitchForms;
 import Database.Database;
-import LogIn.Admin;
 import LogIn.AlertManager;
-import Receipt.ReceiptMaker;
+import Receipt.TicketMaker;
 import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -12,7 +11,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
-import com.sun.javafx.stage.StageHelper;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,13 +33,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -663,6 +658,9 @@ public class HomepageController implements Initializable {
         cs_chat.setVisible(false);
         // Show the selected form
         targetForm.setVisible(true);
+
+        String targetName = targetForm.getId();
+        System.out.println(targetName);
     }
 
     //SWITCH FORM FUNCTIONS FOR home_form
@@ -821,8 +819,8 @@ public class HomepageController implements Initializable {
         );
 
         // Create receipt
-        ReceiptMaker receipt = new ReceiptMaker();
-        receipt.generateReceipt(infos.getFirst_name(), infos.getLast_name(), infos.getAge(), infos.getDestination(), infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no, infos.getAmount());
+        TicketMaker receipt = new TicketMaker();
+        receipt.generateTicket(infos.getFirst_name(), infos.getLast_name(), infos.getAge(), infos.getDestination(), infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no, infos.getAmount());
 
         // Insert into sales
         Database sales_table = new Database();
