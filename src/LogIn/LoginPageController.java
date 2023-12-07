@@ -58,10 +58,7 @@ public class LoginPageController implements Initializable {
     private JFXTextField login_username;
 
     @FXML
-    private JFXTextField login_showPassword, signup_showPassword, signup_showConfirmPassword;
-
-    @FXML
-    private JFXCheckBox signup_selectShowPassword;
+    private JFXTextField login_showPassword;
 
     @FXML
     private JFXPasswordField login_password;
@@ -88,16 +85,10 @@ public class LoginPageController implements Initializable {
     private JFXTextField signup_userID;
 
     @FXML
-    private JFXTextField signup_password;
-
-    @FXML
     private Button signup_btn;
 
     @FXML
     private Button signup_loginAcc;
-
-    @FXML
-    private JFXTextField signup_confirmPassword;
 
     @FXML
     private JFXComboBox<?> signup_selectQuestion;
@@ -107,6 +98,21 @@ public class LoginPageController implements Initializable {
 
     @FXML
     private Label signup_alert;
+
+    @FXML
+    private JFXPasswordField signup_showPassword;
+
+    @FXML
+    private JFXTextField signup_password;
+
+    @FXML
+    private JFXPasswordField signup_showConfirmPassword;
+
+    @FXML
+    private JFXTextField signup_confirmPassword;
+
+    @FXML
+    private JFXCheckBox signup_selectShowPassword;
 
     @FXML
     private AnchorPane forgot_form;
@@ -173,7 +179,6 @@ public class LoginPageController implements Initializable {
             String enteredPassword = showPasswordChecked ? login_showPassword.getText() : login_password.getText();
 
             // TEMPORARY STATEMENTS
-
             if (enteredAccountName.equals("Homepage") && enteredPassword.equals("12345678")) {
                 // Direct the specific user "Admin" to the dashboard
                 alert.setAlertText("Successful Login!", "green");
@@ -186,9 +191,7 @@ public class LoginPageController implements Initializable {
                     e.printStackTrace();
                 }
 
-            }
-
-            else {
+            } else {
                 try {
                     boolean usernameExists = checkAcc.checkAccount(enteredAccountName);
                     boolean passwordCorrect = checkAcc.checkAccount(enteredAccountName, enteredPassword);
@@ -248,7 +251,6 @@ public class LoginPageController implements Initializable {
             signup_confirmPassword.setText(signup_showConfirmPassword.getText());
             signup_showConfirmPassword.setVisible(false);
             signup_confirmPassword.setVisible(true);
-
 
         }
     }
