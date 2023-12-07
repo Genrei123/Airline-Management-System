@@ -603,9 +603,6 @@ public class HomepageController implements Initializable {
             switchForm(c_slide2);
             show++;
         } else if (show == 1) {
-            switchForm(c_slide3);
-            show++;
-        } else if (show == 2) {
             switchForm(c_slide1);
             show = 0;
         }
@@ -625,7 +622,7 @@ public class HomepageController implements Initializable {
             show--;
         } else if (show == 2) {
             switchForm(c_slide2);
-            show--;
+            show = 1;
         }
 
         // Record the time of the manual slide change
