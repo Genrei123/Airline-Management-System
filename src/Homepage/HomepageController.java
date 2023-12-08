@@ -798,51 +798,80 @@ public class HomepageController implements Initializable {
         }
     }
 
-    private void insertDataIntoDatabase() throws SQLException, IOException {
-        // Insert Data into the database
+    public String generateFlightID(String prefix) {
+        Random random = new Random();
+        int randomNum = random.nextInt(900) + 100;
 
-        // Insert first into the booking table
-        Database booking_table = new Database();
-        Booking infos = Booking.getInstance();
-
-        TicketNo ticketNo = new TicketNo();
-        String ticket = ticketNo.generateTicketNo(infos.getFirst_name() + infos.getLast_name());
-
-        LocalDateTime now = LocalDateTime.now();
-        now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
-        String flight_id = "ERM101";
-        String flight_no = TicketNo.generateTicketNo(infos.getFirst_name() + infos.getLast_name());
-        System.out.println(flight_no);
-
-        LocalDate date = booking_date.getValue();
-
-        booking_table.insertData(
-                "booked_flights",
-                Arrays.asList("flight_id", "first_name", "middle_name", "last_name",
-                        "suffix", "age", "book_date", "destination", "origin", "class",
-                        "seat", "flight_no", "amount", "ticket_no", "status",
-                        "suffix", "age", "birth_date", "destination", "origin", "class",
-                        "seat", "flight_no", "amount"),
-                Arrays.asList(flight_id, infos.getFirst_name(), infos.getMiddle_name(), infos.getLast_name(),
-                        infos.getSuffix(), infos.getAge(), date, infos.getDestination(),
-                        infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no,
-                        infos.getAmount(), ticket, "ON")
-        );
-
-        // Create receipt
-        TicketMaker receipt = new TicketMaker();
-        receipt.generateTicket(infos.getFirst_name(), infos.getLast_name(), infos.getAge(), infos.getDestination(), infos.getOrigin(), infos.getClass1(), infos.getSeatNo(), flight_no, infos.getAmount());
-
-        // Insert into sales
-        Database sales_table = new Database();
-        sales_table.insertData(
-                "sales",
-                Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"),
-                Arrays.asList(flight_no, flight_id, infos.getSeatNo(), infos.getFirst_name(), now, "ON", "ONLINE", "ONLINE", infos.getAmount())
-        );
-
+        return prefix + randomNum;
     }
+
+    private void insertDataIntoDatabase() throws SQLException, IOException {
+        // First check if flight_id is UNIQUE
+        String flight_id;
+        Database check_flight_id = new Database();
+        Boolean isflight_id = check_flight_id.isFlightUnique(destination.getText(), origin.getText());
+
+        if (!isflight_id) {
+            // Means that the flight is unique
+            // Create new flight_id
+            flight_id = generateFlightID("ERM");
+
+            // Insert into database
+            Database insertFlight = new Database();
+            insertFlight.insertData(
+                    "flight_records",
+                    Arrays.asList("flight_id", "destination", "origin", "passenger_number"),
+                    Arrays.asList(flight_id, destination.getText(), origin.getText(), 1)
+            );
+        }
+
+
+
+        else {
+
+            // Means that the flight is not unique
+            // Get the flight_id of the flight
+            Database getflight_id = new Database();
+            flight_id = getflight_id.getFlightID(destination.getText(), origin.getText());
+
+            // Check if the flight reaches 80 seats
+            Database booked_passengers = new Database();
+            int counter = booked_passengers.flightCount(destination.getText(), origin.getText());
+            if (counter < 80 && counter > 0) {
+                System.out.println("Flight is full");
+
+                // Update passenger number
+                Database updatePassengerNumber = new Database();
+                updatePassengerNumber.updateData(
+                        "flight_records",
+                        Collections.singletonList("passenger_number"),
+                        Collections.singletonList("passenger_number + 1"),
+                        Collections.singletonList("flight_id"),
+                        Collections.singletonList(flight_id)
+                );
+
+                // Insert Data into booked_flights
+                Database insertBookedFlights = new Database();
+                insertBookedFlights.insertData(
+                        "booked_flights",
+                        Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "booking_date", "seat_class", "seat_number", "fare_price"),
+                        Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(), age.getText(), booking_date.getValue().toString(), s_class.getText(), seat.getText(), fare_price.getText())
+                );
+
+
+            } else if (counter == 80) {
+                System.out.println("Flight is full");
+                // Update flight_manager
+                Database updateFlightManager = new Database();
+                updateFlightManager.insertData(
+                        "flight_manager",
+                        Arrays.asList("flight_no", "destination", "origin", "status", "destination_date"),
+                        Arrays.asList(flight_id, destination.getText(), origin.getText(), "FULLY BOOKED", booking_date.getValue().toString())
+                );
+            }
+        }
+    }
+
 
     //and Except middle name
     private boolean areAllFieldsExceptSuffixEmpty() {
@@ -1668,8 +1697,8 @@ public class HomepageController implements Initializable {
             fs_departDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
             fs_arrivalDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
         }
-
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -242,10 +242,10 @@ public class DashboardController implements Initializable {
     private TableColumn<String[], String> s_ticketNo, s_flightNo, s_seat, s_name, s_paymentDate, s_status, s_agent, s_ticketBranch, s_price;
 
     @FXML
-    private Label cs_rebookingBtn, cs_updateInfoBtn;
+    private Label cs_rebookingBtn;
 
     @FXML
-    private AnchorPane cs_rebookingForm, cs_updateForm;
+    private AnchorPane cs_rebookingForm;
 
     @FXML
     private TableView<String[]> fm_managerTable;
@@ -372,13 +372,10 @@ public class DashboardController implements Initializable {
 
     private void switchForm(AnchorPane targetForm, Label selectedLabel, Label unselectedLabel) {
         // Hide all forms
-        fm_managerForm.setVisible(false);
+        fm_managerForm.setVisible(true);
         fm_recordsForm.setVisible(false);
 
         cs_rebookingForm.setVisible(false);
-        cs_updateForm.setVisible(false);
-
-
 
         // Show the selected form
         targetForm.setVisible(true);
@@ -890,7 +887,7 @@ public class DashboardController implements Initializable {
         fm_managerAirplaneIDbox.setItems(listData3);
         fm_managerAirplaneIDbox.setValue("airplane_id");
 
-        String[] flightManagerStatus = {"On Time", "Delayed", "Cancelled"};
+        String[] flightManagerStatus = {"Boarding", "En Route", "Arrived", "Delayed", "Cancelled"};
         List<String> listQ4 = new ArrayList<>();
 
         for (String data1 : flightManagerStatus) {
@@ -974,7 +971,6 @@ public class DashboardController implements Initializable {
 
         // Set the default form to fm_managerForm
         switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
-        switchForm(cs_rebookingForm, cs_rebookingBtn, cs_updateInfoBtn);
 
 
 

@@ -536,4 +536,99 @@ public class Database {
 
         return false;
     }
+
+    // This check if the flight was booked
+    public int flightCount(String origin, String destination) {
+        String query = "SELECT COUNT(flight_id) FROM `booked_flights` WHERE origin = ? AND destination = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return 0;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, origin);
+                prepare.setString(2, destination);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    return result.getInt(1);
+                } else {
+                    return 0;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 0;
+    }
+
+    public boolean isFlightUnique(String destination, String origin) throws SQLException {
+        String query = "SELECT flight_id FROM `booked_flights` WHERE destination = ? AND origin = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return false;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, destination);
+                prepare.setString(2, origin);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    //System.out.println("Flight exists: " + flight_no);
+                    connector.close();
+                    return true;
+                } else {
+                    //System.out.println("Flight does not exist: " + flight_no);
+                    connector.close();
+                    return false;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return false;
+    }
+
+    public String getFlightID(String destination, String origin) {
+        String query = "SELECT flight_id FROM `booked_flights` WHERE destination = ? AND origin = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return null;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, destination);
+                prepare.setString(2, origin);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    return result.getString(1);
+                } else {
+                    return null;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
+    }
+
+
 }
