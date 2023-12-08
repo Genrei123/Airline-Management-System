@@ -741,6 +741,7 @@ public class HomepageController implements Initializable {
             //For home_form
             hf_home.setVisible(true);
             hf_searchDesti.setVisible(false);
+            cs_seatClass.setDisable(false);
             hf_chooseSeat.setVisible(false);
             hf_bookFlight.setVisible(false);
         } else if (event.getSource() == menu_flightStats) {
@@ -1466,16 +1467,56 @@ public class HomepageController implements Initializable {
         switchForm(hf_chooseSeat, booking_btn1);
         cs_origin.setText("Manila");
         cs_destination.setText("Boracay");
+        cs_price.setText("100");
+        cs_seatClass.setValue("ECONOMY");
+        cs_seatClass.setDisable(true);
+
     }
 
     public void bookingbtn2() {
         switchForm(hf_chooseSeat, booking_btn2);
         cs_origin.setText("Manila");
         cs_destination.setText("Coron");
+        cs_price.setText("100");
+        cs_seatClass.setValue("ECONOMY");
+        cs_seatClass.setDisable(true);
     }
 
+    public void bookingbtn3() {
+        switchForm(hf_chooseSeat, booking_btn2);
+        cs_origin.setText("Manila");
+        cs_destination.setText("Puerto Prinsesa");
+        cs_price.setText("100");
+        cs_seatClass.setValue("ECONOMY");
+        cs_seatClass.setDisable(true);
+    }
 
+    public void bookingbtn4() {
+        switchForm(hf_chooseSeat, booking_btn2);
+        cs_origin.setText("Manila");
+        cs_destination.setText("Samar");
+        cs_price.setText("100");
+        cs_seatClass.setValue("ECONOMY");
+        cs_seatClass.setDisable(true);
+    }
 
+    public void bookingbtn5() {
+        switchForm(hf_chooseSeat, booking_btn2);
+        cs_origin.setText("Manila");
+        cs_destination.setText("Bohol");
+        cs_price.setText("100");
+        cs_seatClass.setValue("ECONOMY");
+        cs_seatClass.setDisable(true);
+    }
+
+    public void bookingbtn6() {
+        switchForm(hf_chooseSeat, booking_btn2);
+        cs_origin.setText("Manila");
+        cs_destination.setText("Cebu City");
+        cs_price.setText("100");
+        cs_seatClass.setValue("ECONOMY");
+        cs_seatClass.setDisable(true);
+    }
 
 
     public void handleRebooking() throws SQLException {

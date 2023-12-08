@@ -1959,7 +1959,7 @@
                                                 <Font size="1.0" />
                                              </font>
                                           </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn2" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="346.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <JFXButton fx:id="c_bookingBtn2" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="346.0" onAction="#bookingbtn2" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <graphic>
                                                 <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1971,7 +1971,7 @@
                                                 <Font size="1.0" />
                                              </font>
                                           </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn3" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="692.0" layoutY="5.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <JFXButton fx:id="c_bookingBtn3" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="692.0" layoutY="5.0" onAction="#bookingbtn3" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <graphic>
                                                 <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1987,7 +1987,7 @@
                                     </AnchorPane>
                                     <AnchorPane fx:id="c_slide2" prefHeight="375.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <JFXButton fx:id="c_bookingBtn4" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" prefHeight="200.0" prefWidth="303.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <JFXButton fx:id="c_bookingBtn4" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" onAction="#bookingbtn4" prefHeight="200.0" prefWidth="303.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <graphic>
                                                 <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1999,7 +1999,7 @@
                                                 <Font size="1.0" />
                                              </font>
                                           </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn5" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="346.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <JFXButton fx:id="c_bookingBtn5" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="346.0" onAction="#bookingbtn5" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font size="1.0" />
                                              </font>
@@ -2011,7 +2011,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn6" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="692.0" layoutY="5.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <JFXButton fx:id="c_bookingBtn6" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="692.0" layoutY="5.0" onAction="#bookingbtn6" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <graphic>
                                                 <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
