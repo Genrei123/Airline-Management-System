@@ -84,6 +84,15 @@
 .topPane {
     -fx-background-color: linear-gradient(to bottom left, #004AAD, #5DE0E6);
 }
+/*--------------------- MIKE DESIGN STUFF ----------------------------*/
+
+.lineGrad1 {
+    -fx-background-color: linear-gradient(to bottom left, #004AAD, #5DE0E6);
+}
+
+.lineGrad2 {
+    -fx-background-color: linear-gradient(to bottom left, #004AAD, #3c94c4);
+}
 
 /*------------------ FOR SEARCH TEXT FIELD ---------------------*/
 
@@ -136,6 +145,7 @@
 .textColor {
     -fx-text-fill: #4eb19d;
 }
+
 
 
 

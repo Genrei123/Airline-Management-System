@@ -359,7 +359,7 @@ public class HomepageController implements Initializable {
     private AnchorPane paymentPane;
 
     @FXML
-    private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat;
+    private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat, fare_price;
 
     @FXML
     private JFXDatePicker booking_date;
@@ -937,16 +937,12 @@ public class HomepageController implements Initializable {
     // Method to handle return to destination button click
     public void handleReturnToDestiButtonClick() {
         switchForm(hf_searchDesti, returnToDesti_btn);
-        switchForm(hf_searchDesti, returnToDesti_btn1);
-        // Add this line to hide overlayPane1
         clearSeatSelectionFields();
     }
-
-    // Generic method to set the action for seat buttons
-    private void setSeatButtonAction(JFXButton seatButton, String seatNumber) {
-        seatButton.setOnAction(event -> {
-            cs_seatNum.setText(seatNumber);
-        });
+    
+    // Method to handle return to destination button click
+    public void handleReturnToChooseSeatButtonClick() {
+        switchForm(hf_chooseSeat, returnToDesti_btn1);
     }
 
     // Method to handle proceed button click
@@ -954,14 +950,15 @@ public class HomepageController implements Initializable {
         // Switch form to hf_bookFlight
         switchForm(hf_bookFlight, proceed_btn);
 
-        // Set values in text fields
+        // Set values in texHomepaget fields
         seat.setText(cs_seatNum.getText());
         destination.setText(cs_destination.getText());
         origin.setText(cs_origin.getText());
+        fare_price.setText(cs_price.getText());
 
         // Check if cs_seatClass has a selected item before accessing it
         if (cs_seatClass.getSelectionModel().getSelectedItem() != null) {
-            s_class.setText(cs_seatClass.getSelectionModel().getSelectedItem().toString());
+            s_class.setText(cs_seatClass.getSelectionModel().getSelectedItem());
         }
     }
 
@@ -1663,16 +1660,14 @@ public class HomepageController implements Initializable {
         // Set the table data
         if (data != null) {
             flightStatTable.setItems(data);
-            fs_airplaneID.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[0]));
-            fs_flightNo.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[1]));
-            fs_destination.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[2]));
-            fs_origin.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[3]));
-            fs_status.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[4]));
-            fs_departDate.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[5]));
-            fs_arrivalDate.setCellValueFactory(param -> new SimpleStringProperty (param.getValue()[6]));
+            fs_airplaneID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            fs_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            fs_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            fs_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            fs_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            fs_departDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            fs_arrivalDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
         }
-
-
 
     }
 
@@ -1715,8 +1710,8 @@ public class HomepageController implements Initializable {
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
 
         //Clear textFields of hf_chooseSeat textFields
-        returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
-        returnToDesti_btn1.setOnAction(e -> handleReturnToDestiButtonClick());
+        //returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
+        //returnToDesti_btn1.setOnAction(e -> handleReturnToChooseSeatButtonClick());
 
         // Return actions for home_form
         returnToHome_btn.setOnAction(e -> switchForm(hf_home, returnToHome_btn));
@@ -2084,6 +2079,13 @@ public class HomepageController implements Initializable {
                 cs_seatClass.setValue(sd_checkPrice.getValue());
                 // Switch to hf_chooseSeat form
                 switchForm(hf_chooseSeat, bookingButton);
+
+                try {
+                    // Call seatButtons after switching the form
+                    seatButtons();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             });
         }
 
