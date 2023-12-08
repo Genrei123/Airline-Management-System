@@ -17,6 +17,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -78,11 +79,108 @@
                   </AnchorPane>
                   <AnchorPane fx:id="top_form" layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <JFXTextArea editable="false" layoutX="15.0" prefHeight="599.0" prefWidth="1044.0" styleClass="textarea" stylesheets="@HomepageStyles1.css" text="                             Terms and Policies: Airline Booking and Rebooking&#10;&#10;&#10;1. Booking and Reservation:&#10;&#10;All bookings are subject to availability and confirmation.&#10;&#10;Passengers are responsible for providing accurate and up-to-date information during the booking process.&#10;&#10;Bookings can be made through our official website, authorized agents, or at our ticketing offices.&#10;&#10;&#10;2. Ticket Purchase:&#10;&#10;Full payment is required at the time of booking to secure the reservation.&#10;&#10;Payment can be made using approved credit/debit cards or other accepted methods.&#10;&#10;&#10;3. No Refund Policy:&#10;&#10;All ticket sales are final, and we operate on a strict no-refund policy.&#10;&#10;No refunds will be issued for cancellations, no-shows, or missed flights.&#10;&#10;&#10;4. Rebooking Policy:&#10;&#10;Passengers may rebook their flights, subject to availability, within a specified time frame.&#10;&#10;Rebooking fees apply, and the passenger is responsible for any fare difference.&#10;&#10;Rebooking requests must be made at least [X] hours/days before the original departure time.&#10;&#10;&#10;5. Flight Changes:&#10;&#10;Changes to flight details, such as date, time, or destination, are permitted within the rebooking policy guidelines.&#10;&#10;Flight changes are subject to availability and applicable fees.&#10;&#10;&#10;6. No-Show Policy:&#10;&#10;Failure to board the original flight without prior notice will result in the forfeiture of the ticket and is not eligible for rebooking.&#10;&#10;7. Force Majeure:&#10;&#10;The airline reserves the right to cancel, delay, or reschedule flights due to unforeseen circumstances, including but not limited to weather conditions, natural disasters, or governmental regulations.&#10;&#10;8. Passenger Responsibility:&#10;&#10;Passengers are responsible for checking and complying with travel restrictions, visa requirements, and health regulations of the destination country.&#10;&#10;It is the passenger's responsibility to arrive at the airport on time for check-in and boarding.&#10;&#10;9. Refusal of Service:&#10;&#10;The airline reserves the right to refuse service to any passenger who violates the terms and policies or engages in disruptive behavior.&#10;&#10;10. Communication:&#10;&#10;All communications regarding bookings, rebooking, and other inquiries should be directed to our customer service channels.&#10;&#10;By proceeding with the booking, passengers acknowledge and agree to abide by these terms and policies. The airline reserves the right to modify these terms at its discretion. Passengers are encouraged to review these policies regularly for any updates or changes.&#10;&#10;&#10;                                                          Privacy Policy&#10;&#10;This Privacy Policy outlines how Ermino Airlines collects, uses, discloses, and protects the personal information of our passengers and users. We are committed to maintaining the privacy and security of your information in compliance with applicable data protection laws.&#10;&#10;&#10;1. Information Collection:&#10;&#10;   - We collect personal information such as names, contact details, and payment information during the booking process.&#10;&#10;   - Information may also be collected through customer support interactions, website usage, and participation in promotions or surveys.&#10;&#10;&#10;2. Use of Information:&#10;&#10;   - Personal information is used for flight reservations, ticket issuance, and communication related to your travel.&#10;&#10;   - We may use your information for marketing purposes, with the option to opt-out.&#10;&#10;   - Data is utilized for customer service, including responding to inquiries and addressing issues.&#10;&#10;&#10;3. Data Security;&#10;&#10;   - We employ industry-standard security measures to protect your information from unauthorized access, disclosure, alteration, and destruction.&#10;&#10;   - Payment information is encrypted and handled securely.&#10;&#10;&#10;4. Information Sharing:&#10;&#10;   - Personal information is shared with third-party service providers, such as payment processors, to facilitate transactions.&#10;&#10;   - We may share information with government authorities as required by law or for security reasons.&#10;&#10;&#10;5. Data Retention:&#10;&#10;   - We retain personal information for as long as necessary for the purposes outlined in this policy or as required by law.&#10;&#10;&#10;6. Updates to Privacy Policy:&#10;&#10;   - We reserve the right to update this Privacy Policy. Users will be notified of any material changes.&#10;&#10;&#10;By using our services, you agree to the terms outlined in this Privacy Policy. It is recommended to review this policy periodically for updates.">
+                        <ScrollPane layoutX="1.0" layoutY="102.0" prefHeight="499.0" prefWidth="1061.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1603.0" prefWidth="1045.0" style="-fx-background-color: #201414; -fx-border-color: #201414;">
+                                 <children>
+                                    <AnchorPane layoutX="33.0" layoutY="23.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="16.0" layoutY="-3.0" prefHeight="141.0" prefWidth="950.0" stylesheets="@HomepageStyles.css" text="1. Booking and Reservation:&#10;&#10;All bookings are subject to availability and confirmation.&#10;Passengers are responsible for providing accurate and up-to-date information during the booking process.&#10;Bookings can be made through our official website, authorized agents, or at our ticketing offices.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children></AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="183.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" prefHeight="141.0" prefWidth="950.0" text="2. Ticket Purchase:&#10;&#10;Full payment is required at the time of booking to secure the reservation.&#10;Payment can be made using approved credit/debit cards or other accepted methods.&#10;">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children></AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="343.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="3. No Refund Policy:&#10;&#10;All ticket sales are final, and we operate on a strict no-refund policy.&#10;No refunds will be issued for cancellations, no-shows, or missed flights.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children></AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="499.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="4. Rebooking Policy:&#10;&#10;Passengers may rebook their flights, subject to availability, within a specified time frame.&#10;Rebooking fees apply, and the passenger is responsible for any fare difference.&#10;Rebooking requests must be made at least [X] hours/days before the original departure time.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="655.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="5. Flight Changes:&#10;&#10;Changes to flight details, such as date, time, or destination, are permitted within the rebooking policy&#10;guidelines.&#10;Flight changes are subject to availability and applicable fees.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="810.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="6. No-Show Policy:&#10;&#10;Failure to board the original flight without prior notice will result in the forfeiture of the ticket and is not&#10;eligible for rebooking.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="966.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="7. Force Majeure:&#10;&#10;The airline reserves the right to cancel, delay, or reschedule flights due to unforeseen circumstances,&#10;including but not limited to weather conditions, natural disasters, or governmental regulations.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="1124.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="8. Passenger Responsibility:&#10;&#10;Passengers are responsible for checking and complying with travel restrictions, visa requirements, and&#10;health regulations of the destination country.&#10;It is the passenger's responsibility to arrive at the airport on time for check-in and boarding.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="1281.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="9. Refusal of Service:&#10;&#10;The airline reserves the right to refuse service to any passenger who violates the terms and policies or &#10;engages in disruptive behavior.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="1442.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="10. Communication:&#10;&#10;All communications regarding bookings, rebooking, and other inquiries should be directed to our &#10;customer service channels.&#10;&#10;By proceeding with the booking, passengers acknowledge and agree to abide by these terms&#10;and  policies. The airline reserves the right to modify these terms at its discretion. Passengers are&#10;encouraged to review these policies regularly for any updates or changes.">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                        <Label layoutX="47.0" layoutY="40.0" text="AIRLINE POLICIES" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="25.0" />
+                              <Font name="Inter Bold" size="29.0" />
                            </font>
-                        </JFXTextArea>
+                        </Label>
+                        <AnchorPane layoutY="83.0" prefHeight="10.0" prefWidth="630.0" styleClass="lineGrad2" stylesheets="@HomepageStyles.css" />
+                        <AnchorPane layoutX="166.0" layoutY="22.0" prefHeight="10.0" prefWidth="896.0" styleClass="lineGrad1" stylesheets="@HomepageStyles.css" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -278,7 +376,7 @@
                               <TableColumn fx:id="fs_arrivalDate" prefWidth="280.0" text="DATE &amp; TIME OF ARRIVAL " />
                           </columns>
                         </TableView>
-                        <TextField layoutX="751.0" layoutY="58.0" prefHeight="25.0" prefWidth="276.0" promptText="Search by Flight ID" />
+                        <TextField layoutX="751.0" layoutY="58.0" prefHeight="25.0" prefWidth="276.0" promptText="Search by Flight #" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
