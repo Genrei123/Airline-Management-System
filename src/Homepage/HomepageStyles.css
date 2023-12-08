@@ -146,7 +146,42 @@
     -fx-text-fill: #4eb19d;
 }
 
+.accountBackground {
+    -fx-background-color: linear-gradient(to bottom left, #163f6f, #3e8087 );
+}
 
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #537e90;
+    -fx-padding: 0px;
+    -fx-border-radius: 8px;
+}
 
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom right, #2f3f89, #537e90);
+    -fx-background-insets: 0 0 0 0;
+}
+
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size: 50px;
+}
+
+.table-view .column-header, .label{
+    -fx-text-fill: #fff;
+    -fx-size: 50px;
+}
+
+.accountTableWindowBackground {
+    -fx-background-color: linear-gradient(to bottom left, #163f6f, #3e8087 );
+    -fx-background-radius: 23;
+    -fx-border-radius: 23;
+}
+
+.receiptBTN{
+    -fx-background-color: linear-gradient(to bottom left, #163f6f, #5DE0E6 );
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
 
 
