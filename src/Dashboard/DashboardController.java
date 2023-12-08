@@ -239,7 +239,7 @@ public class DashboardController implements Initializable {
     private JFXButton slider_menu;
 
     @FXML
-    private TableColumn<String[], String> s_ticketNo, s_flightNo, s_seat, s_name, s_paymentDate, s_status, s_agent, s_ticketBranch, s_price;
+    private TableColumn<String[], String> s_ticketNo, s_flightNo, s_seat, s_name, s_paymentDate, s_status, s_agent, s_price;
 
     @FXML
     private Label cs_rebookingBtn;
@@ -375,7 +375,7 @@ public class DashboardController implements Initializable {
         fm_managerForm.setVisible(true);
         fm_recordsForm.setVisible(false);
 
-        cs_rebookingForm.setVisible(false);
+        cs_rebookingForm.setVisible(true);
 
         // Show the selected form
         targetForm.setVisible(true);
@@ -391,6 +391,32 @@ public class DashboardController implements Initializable {
             bf_date.setValue(null);
             bf_time.setValue(null);
         });
+    }
+
+    public void bf_search() throws SQLException {
+        List<String> text = Arrays.asList(bf_search.getText());
+        List<String> searchBy = Arrays.asList(bf_searchBy.getSelectionModel().getSelectedItem());
+
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("booked_flights",
+                Arrays.asList("flight_no", "departure", "destination", "arrival", "first_name", "class", "book_date", "amount"), searchBy, text);
+        if (data != null) {
+            System.out.println("Data is not null");
+            bookedFlights_table.setItems(data);
+
+            bf_flightNO.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            bf_depart.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            bf_dest.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            bf_arrival.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            bf_tableName.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            bf_cseat.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            bf_bookDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
+            bf_amountTable.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
     }
 
     public void tr_search() throws SQLException {
@@ -452,7 +478,7 @@ public class DashboardController implements Initializable {
         System.out.println("Getting sales");
         Database database = new Database();
 
-        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"));
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"));
 
         if (data != null) {
             sl_table.setItems(data);
@@ -463,8 +489,7 @@ public class DashboardController implements Initializable {
             s_paymentDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
             s_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
             s_agent.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
-            s_ticketBranch.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
-            s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[8]));
+            s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
 
             // Today's earnings
             double earnings = todayEarnings();
@@ -496,7 +521,7 @@ public class DashboardController implements Initializable {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = formatter.format(date);
 
-        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"), Arrays.asList("payment_date"), Arrays.asList(formattedDate));
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"), Arrays.asList("payment_date"), Arrays.asList(formattedDate));
 
         if (data != null) {
             double earnings = 0;
@@ -518,14 +543,14 @@ public class DashboardController implements Initializable {
         String formattedDate = currentDate.format(formatter) ;
 
         Database database = new Database();
-        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"), Arrays.asList("payment_date"), Collections.singletonList(formattedDate));
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"), Arrays.asList("payment_date"), Collections.singletonList(formattedDate));
 
 
         if (data != null) {
             // For earnings
             double earnings = 0;
             for (String[] data1 : data) {
-                earnings += Double.parseDouble(data1[8]);
+                earnings += Double.parseDouble(data1[7]);
             }
 
             // For the number of tickets sold today.
@@ -551,7 +576,7 @@ public class DashboardController implements Initializable {
         List<String> searchBy = Arrays.asList(sl_searchBy.getSelectionModel().getSelectedItem());
 
         Database database = new Database();
-        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"), searchBy, text);
+        ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"), searchBy, text);
         if (data != null) {
             System.out.println("Data is not null");
             sl_table.setItems(data);
@@ -563,8 +588,7 @@ public class DashboardController implements Initializable {
             s_paymentDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
             s_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
             s_agent.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
-            s_ticketBranch.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
-            s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[8]));
+            s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
         }
 
         else {
@@ -689,7 +713,7 @@ public class DashboardController implements Initializable {
     private void loadBookedFlights() throws SQLException {
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("booked_flights",
-                Arrays.asList("flight_id", "departure", "destination", "arrival", "last_name", "class", "book_date", "amount"));
+                Arrays.asList("flight_no", "departure", "destination", "arrival", "first_name", "class", "book_date", "amount"));
 
         if (data != null) {
             bookedFlights_table.setItems(data);
@@ -715,19 +739,26 @@ public class DashboardController implements Initializable {
         String amount = bf_amount.getText();
         String name = bf_name.getText();
 
-        LocalDateTime bookingDateTime = LocalDateTime.of(bf_bookingDate.getValue(), bf_time.getValue());
-        LocalDateTime departureDateTime = LocalDateTime.of(bf_departDate.getValue(), bf_time.getValue());
-        LocalDateTime arrivalDateTime = LocalDateTime.of(bf_arrivalDate.getValue(), bf_time.getValue());
+        LocalDate departureDate = bf_departDate.getValue();
+        LocalDate arrivalDate = bf_arrivalDate.getValue();
+        LocalDate bookingDate = bf_bookingDate.getValue();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String bookingDate = bookingDateTime.format(formatter);
-        String departureDate = departureDateTime.format(formatter);
-        String arrivalDate = arrivalDateTime.format(formatter);
 
         Database database = new Database();
         database.insertData("booked_flights",
-                Arrays.asList("flight_no", "class", "destination", "amount", "name", "booking_date", "departure_date", "arrival_date"),
+                Arrays.asList("flight_no", "class", "destination", "amount", "first_name", "book_date", "departure", "arrival"),
                 Arrays.asList(flightID, classSeat, destination, amount, name, bookingDate, departureDate, arrivalDate));
+
+        // Add the data into sales
+        LocalDateTime now = LocalDateTime.now();
+        Database insertSales = new Database();
+        insertSales.insertData(
+                "sales",
+                Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
+                Arrays.asList(flightID, "AVAILABILITY", name, now, "PAID", "CASHIER", amount)
+        );
+
+        loadBookedFlights();
     }
 
     public void bf_deleteBtn() throws SQLException {
@@ -737,19 +768,17 @@ public class DashboardController implements Initializable {
         String amount = bf_amount.getText();
         String name = bf_name.getText();
 
-        LocalDateTime bookingDateTime = LocalDateTime.of(bf_bookingDate.getValue(), bf_time.getValue());
-        LocalDateTime departureDateTime = LocalDateTime.of(bf_departDate.getValue(), bf_time.getValue());
-        LocalDateTime arrivalDateTime = LocalDateTime.of(bf_arrivalDate.getValue(), bf_time.getValue());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String bookingDate = bookingDateTime.format(formatter);
-        String departureDate = departureDateTime.format(formatter);
-        String arrivalDate = arrivalDateTime.format(formatter);
+        LocalDate departureDate = bf_departDate.getValue();
+        LocalDate arrivalDate = bf_arrivalDate.getValue();
+        LocalDate bookingDate = bf_bookingDate.getValue();
 
         Database database = new Database();
         database.deleteData("booked_flights",
-                Arrays.asList("flight_no", "class", "destination", "amount", "name", "booking_date", "departure_date", "arrival_date"),
-                Arrays.asList(flightID, classSeat, destination, amount, name, bookingDate, departureDate, arrivalDate));
+                Arrays.asList("first_name", "destination", "class", "flight_no", "amount", "departure", "arrival", "book_date"),
+                Arrays.asList(name, destination, classSeat, flightID, amount, departureDate, arrivalDate, bookingDate));
+
+
+        loadBookedFlights();
     }
 
     public void bf_clear() {
@@ -1009,7 +1038,7 @@ public class DashboardController implements Initializable {
         // Ticket Records Ends here
 
         // For searching in sales
-        String[] search_choices2 = {"ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "ticket_branch", "price"};
+        String[] search_choices2 = {"ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"};
         List<String> listQ2 = new ArrayList<>();
 
         for (String data1 : search_choices2) {
@@ -1059,15 +1088,10 @@ public class DashboardController implements Initializable {
             if (newSelection != null) {
                 String[] selected = bookedFlights_table.getSelectionModel().getSelectedItem();
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDateTime dateTime = LocalDateTime.parse(selected[6], formatter);
-                bf_bookingDate.setValue(dateTime.toLocalDate());
 
-                LocalDateTime dateTime2 = LocalDateTime.parse(selected[1], formatter);
-                bf_departDate.setValue(dateTime2.toLocalDate());
-
-                LocalDateTime dateTime3 = LocalDateTime.parse(selected[3], formatter);
-                bf_arrivalDate.setValue(dateTime3.toLocalDate());
+                bf_bookingDate.setValue(LocalDate.parse(selected[6]));
+                bf_departDate.setValue(LocalDate.parse(selected[1]));
+                bf_arrivalDate.setValue(LocalDate.parse(selected[3]));
 
                 bf_flightID.setText(selected[0]);
                 bf_classSeat.setText(selected[5]);
@@ -1105,6 +1129,20 @@ public class DashboardController implements Initializable {
                 bf_amount.setText("4000");
             }
         });
+
+        // For searching in sales
+        String[] search_choices5 = {"flight_no", "class", "destination", "amount", "name", "booking_date", "departure_date", "arrival_date"};
+        List<String> listQ5 = new ArrayList<>();
+
+        for (String data1 : search_choices5) {
+            listQ5.add(data1);
+        }
+        ObservableList listData5 = FXCollections.observableArrayList(listQ5);
+        bf_searchBy.setItems(listData5);
+        bf_searchBy.setValue("flight_no");
+
+
+
 
         // Book flights ends here
 

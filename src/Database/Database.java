@@ -121,6 +121,12 @@ public class Database {
 
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    connector.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             System.out.println("Cannot connect to the database");
@@ -434,8 +440,8 @@ public class Database {
         return 0;
     }
 
-    public boolean checkSeats(String seatNo, String origin, String destination) throws SQLException {
-        String query = "SELECT seat  FROM `booked_flights` WHERE seat = ? AND origin = ? AND destination = ?";
+    public boolean checkSeats(String seatNo, String flight_id) throws SQLException {
+        String query = "SELECT seat  FROM `booked_flights` WHERE flight_id = ? AND seat = ?";
         connector = connectDB.connectDB();
 
         if (connector == null) {
@@ -444,62 +450,32 @@ public class Database {
         } else {
             try {
                 prepare = connector.prepareStatement(query);
-                prepare.setString(1, seatNo);
-                prepare.setString(2, origin);
-                prepare.setString(3, destination);
+                prepare.setString(1, flight_id);
+                prepare.setString(2, seatNo);
 
                 result = prepare.executeQuery();
 
                 if (result.next()) {
                     //System.out.println("Seat is booked at: " + seatNo);
-                    connector.close();
+
                     return true;
                 } else {
                     //System.out.println("No Seat is booked at: " + seatNo);
-                    connector.close();
+
                     return false;
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                connector.close();
             }
         }
 
+        connector.close();
         return false;
     }
 
-    public boolean checkSeats(String seatNo, String seatClass ) throws SQLException {
-        String query = "SELECT seat  FROM `booked_flights` WHERE seat = ? AND class = ?";
-        connector = connectDB.connectDB();
-
-        if (connector == null) {
-            System.out.println("Cannot connect to the database.");
-            return false;
-        } else {
-            try {
-                prepare = connector.prepareStatement(query);
-                prepare.setString(1, seatNo);
-                prepare.setString(2, seatClass);
-
-                result = prepare.executeQuery();
-
-                if (result.next()) {
-                    //System.out.println("Seat is booked at: " + seatNo);
-                    connector.close();
-                    return true;
-                } else {
-                    //System.out.println("No Seat is booked at: " + seatNo);
-                    connector.close();
-                    return false;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return false;
-    }
 
     // Check if flight exists
     public boolean checkFlight(String ticket_no, String last_name) throws SQLException {
@@ -567,8 +543,8 @@ public class Database {
         return 0;
     }
 
-    public boolean isFlightUnique(String destination, String origin) throws SQLException {
-        String query = "SELECT flight_id FROM `booked_flights` WHERE destination = ? AND origin = ?";
+    public boolean isFlightUnique(String flight_id) throws SQLException {
+        String query = "SELECT flight_id FROM `flight_records` WHERE flight_id = ?";
         connector = connectDB.connectDB();
 
         if (connector == null) {
@@ -577,8 +553,7 @@ public class Database {
         } else {
             try {
                 prepare = connector.prepareStatement(query);
-                prepare.setString(1, destination);
-                prepare.setString(2, origin);
+                prepare.setString(1, flight_id);
 
                 result = prepare.executeQuery();
 
@@ -628,6 +603,56 @@ public class Database {
 
         }
         return null;
+    }
+
+    public int getPassengerNumber(String destination, String origin) {
+        String query = "SELECT passenger_number FROM `flight_records` WHERE destination = ? AND origin = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return 0;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, destination);
+                prepare.setString(2, origin);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    return result.getInt(1);
+                } else {
+                    return 0;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return 0;
+    }
+
+    public void updatePassengerNumber(String flight_no) {
+        String query = "UPDATE `flight_records` SET passenger_number = passenger_number + 1 WHERE flight_id = ?";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+                prepare.setString(1, flight_no);
+
+                prepare.executeUpdate();
+                prepare.close();
+                connector.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
 

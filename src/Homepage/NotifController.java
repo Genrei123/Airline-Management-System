@@ -146,7 +146,6 @@ public class NotifController implements Initializable {
         Booking booking = Booking.getInstance();
 
         ticketNum.setText(ticketNo.generateTicketNo(booking.getFirst_name() + booking.getLast_name()));
-
     }
 
 }

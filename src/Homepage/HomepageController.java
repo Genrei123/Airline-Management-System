@@ -8,6 +8,8 @@ import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+
+import java.awt.*;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
@@ -16,15 +18,22 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,6 +61,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
+
+import javax.xml.crypto.Data;
 
 public class HomepageController implements Initializable {
 
@@ -668,10 +679,10 @@ public class HomepageController implements Initializable {
     @FXML
     private void slideToLeft(ActionEvent event) {
         if (show == 0) {
-            switchForm(c_slide3);
+            switchForm(c_slide1);
             show = 2;
         } else if (show == 1) {
-            switchForm(c_slide1);
+            switchForm(c_slide2);
             show--;
         } else if (show == 2) {
             switchForm(c_slide2);
@@ -844,96 +855,148 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public String generateFlightID(String prefix) {
-        Random random = new Random();
-        int randomNum = random.nextInt(900) + 100;
+    public String generateFlightID(String prefix, String origin, String destination) {
+        String combinedString = origin + destination;
+        int hashcode = Objects.hash(combinedString);
 
+        int randomNum = Math.abs(hashcode) % 1000;
+
+        Database flight_count = new Database();
+        int counter = flight_count.flightCount(destination, origin);
+
+        counter = counter - 80;
+
+        if (counter < 0) {
+            counter = 0;
+        }
+
+        randomNum = randomNum + counter;
         return prefix + randomNum;
+
+
     }
 
     private void insertDataIntoDatabase() throws SQLException, IOException {
+        LocalDateTime now = LocalDateTime.now();
+
         // First check if flight_id is UNIQUE
-        String flight_id;
+        String flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
         Database check_flight_id = new Database();
-        Boolean isflight_id = check_flight_id.isFlightUnique(destination.getText(), origin.getText());
+        Boolean isflight_id = check_flight_id.isFlightUnique(flight_id);
 
         if (!isflight_id) {
             // Means that the flight is unique
             // Create new flight_id
-            flight_id = generateFlightID("ERM");
+            flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
+            System.out.println(flight_id);
 
             // Insert into database
             Database insertFlight = new Database();
             insertFlight.insertData(
                     "flight_records",
                     Arrays.asList("flight_id", "destination", "origin", "passenger_number"),
-                    Arrays.asList(flight_id, destination.getText(), origin.getText(), 1)
+                    Arrays.asList(flight_id, destination.getText(), origin.getText(), 0)
             );
 
-            // Check if the flight reaches 80 seats
-            Database booked_passengers = new Database();
-            int counter = booked_passengers.flightCount(destination.getText(), origin.getText());
-
-            if (counter < 80 && counter > 0) {
-                System.out.println("Flight is full");
-
-                // Get the flight_id of the flight
-                Database getflight_id = new Database();
-                flight_id = getflight_id.getFlightID(
-                        destination.getText(),
-                        origin.getText()
-                );
-
-                // Update passenger number
-                Database updatePassengerNumber = new Database();
-                updatePassengerNumber.updateData(
-                        "flight_records",
-                        Collections.singletonList("passenger_number"),
-                        Collections.singletonList("passenger_number + 1"),
-                        Collections.singletonList("flight_id"),
-                        Collections.singletonList(flight_id)
-                );
-
-                // Insert Data into booked_flights
-                Database insertBookedFlights = new Database();
-                insertBookedFlights.insertData(
-                        "booked_flights",
-                        Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "booking_date", "seat_class", "seat_number", "fare_price"),
-                        Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(), age.getText(), booking_date.getValue().toString(), s_class.getText(), seat.getText(), fare_price.getText())
-                );
-
-
-            } else if (counter == 80) {
-                System.out.println("Flight is full");
-                // Update flight_manager
-                Database updateFlightManager = new Database();
-                updateFlightManager.updateData(
-                        "flight_manager",
-                        Collections.singletonList("status"),
-                        Collections.singletonList("CLOSED"),
-                        Collections.singletonList("flight_id"),
-                        Collections.singletonList(flight_id)
-                );
-
-                
-            }
+            // Add the data into sales
+            Database insertSales = new Database();
+            insertSales.insertData(
+                    "sales",
+                    Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
+                    Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
+            );
         }
 
         else {
                 // Means that the flight is not unique
                 // Get the flight_id of the flight
                 Database getflight_id = new Database();
-                flight_id = getflight_id.getFlightID(destination.getText(), origin.getText());
+                flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
+                System.out.println(flight_id + "else statement");
 
                 // Update the passenger_number of the flight
                 Database updatePassengerNumber = new Database();
-                updatePassengerNumber.updateData(
-                        "flight_records",
-                        Collections.singletonList("passenger_number"),
-                        Collections.singletonList("passenger_number + 1"),
-                        Collections.singletonList("flight_id"),
-                        Collections.singletonList(flight_id)
+                updatePassengerNumber.updatePassengerNumber(flight_id);
+
+                // Insert data into booked_flights
+                Database insertBooked_flights = new Database();
+                insertBooked_flights.insertData(
+                    "booked_flights",
+                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "book_date"),
+                    Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(), age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id, fare_price.getText(), now)
                 );
+
+                // Add the data into sales
+                Database insertSales = new Database();
+                insertSales.insertData(
+                        "sales",
+                        Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
+                        Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
+                );
+
+        }
+
+        // Check if the flight reaches 80 seats
+        Database booked_passengers = new Database();
+        int counter = booked_passengers.flightCount(destination.getText(), origin.getText());
+        if (counter < 80 && counter >= 0) {
+
+            // Get the flight_id of the flight
+                /*Database getflight_id = new Database();
+                flight_id = getflight_id.getFlightID(
+                        destination.getText(),
+                        origin.getText()
+                );*/
+
+            flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
+            System.out.println(flight_id);
+
+            // Update passenger number
+            Database updatePassengerNumber = new Database();
+            updatePassengerNumber.updatePassengerNumber(flight_id);
+
+            // Insert data into booked_flights
+            Database insertBooked_flights = new Database();
+            insertBooked_flights.insertData(
+                    "booked_flights",
+                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "book_date"),
+                    Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(), age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id, fare_price.getText(), now)
+            );
+
+            // Add the data into sales
+            Database insertSales = new Database();
+            insertSales.insertData(
+                    "sales",
+                    Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
+                    Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
+            );
+
+
+        } else if (counter >= 80) {
+            // Update flight_manager
+            System.out.println("Flight is full");
+            Database updateFlightManager = new Database();
+            updateFlightManager.insertData(
+                    "flight_manager",
+                    Arrays.asList("flight_id", "destination", "origin", "status"),
+                    Arrays.asList(flight_id, destination.getText(), origin.getText(), "FULL")
+            );
+        }
+    }
+
+    private void checkSeats () throws SQLException {
+        String flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
+        Database checkSeats = new Database();
+        int counter = checkSeats.flightCount(destination.getText(), origin.getText());
+        if (counter >= 80) {
+            // Update flight_manager
+            System.out.println(flight_id + " is full");
+            Database updateFlightManager = new Database();
+            updateFlightManager.insertData(
+                    "flight_manager",
+                    Arrays.asList("flight_id", "destination", "origin", "status"),
+                    Arrays.asList(flight_id, destination.getText(), origin.getText(), "FULL")
+            );
         }
     }
 
@@ -1037,6 +1100,7 @@ public class HomepageController implements Initializable {
     // Method to handle return to destination button click
     public void handleReturnToChooseSeatButtonClick() {
         switchForm(hf_chooseSeat, returnToDesti_btn1);
+        clearBookSelectionFields();
     }
 
     // Method to handle proceed button click
@@ -1351,11 +1415,12 @@ public class HomepageController implements Initializable {
                     seat_d79, seat_d80
             );
 
+            String flight_id = generateFlightID("ERM", cs_origin.getText(), cs_destination.getText());
             // Iterate over each seat button
             for (JFXButton seatButton : seatButtons) {
                 String seatLabel = seatButton.getText();
 
-                if (db.checkSeats(seatLabel, cs_origin.getText(), cs_destination.getText())) {
+                if (db.checkSeats(seatLabel, flight_id)) {
                     seatButton.setDisable(true);
                     seatButton.setStyle("-fx-background-color: #8c8ce2;");
                 } else {
@@ -1366,6 +1431,19 @@ public class HomepageController implements Initializable {
             }
         }
     }
+
+    public void openPhoneDialer() {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI("https://www.facebook.com/genrey.cristobal.3/")); // You can replace this with the desired phone number
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Desktop not supported. Cannot open phone dialer.");
+        }
+    }
+
 
     public void handleChangeInfoButtonClick() {
         CSswitchForm(cs_changeInfoForm, cs_rebookingBtn);
@@ -1384,9 +1462,21 @@ public class HomepageController implements Initializable {
         CSswitchForm(background, cs_return);
     }
 
-    public void handleChatButtonClick() {
-        CSswitchForm(cs_chat, cs_contactUsBTN);
+    public void bookingbtn1() {
+        switchForm(hf_chooseSeat, booking_btn1);
+        cs_origin.setText("Manila");
+        cs_destination.setText("Boracay");
     }
+
+    public void bookingbtn2() {
+        switchForm(hf_chooseSeat, booking_btn2);
+        cs_origin.setText("Manila");
+        cs_destination.setText("Coron");
+    }
+
+
+
+
 
     public void handleRebooking() throws SQLException {
         // Check for empty fields
@@ -1769,6 +1859,13 @@ public class HomepageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // Check seats
+        try {
+            checkSeats();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         // Initialize flight stat
         loadFlightStat();
 
@@ -2128,6 +2225,12 @@ public class HomepageController implements Initializable {
                 seatButtons();
             } catch (SQLException ex) {
                 Logger.getLogger(HomepageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                checkSeats();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

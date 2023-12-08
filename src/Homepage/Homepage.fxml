@@ -346,12 +346,11 @@
                                     <TextField layoutX="14.0" layoutY="434.0" prefHeight="25.0" prefWidth="871.0" promptText="What do you have in mind?" />
                                  </children>
                               </AnchorPane>
-                              <JFXButton fx:id="cs_return11" buttonType="RAISED" layoutX="983.0" layoutY="20.0" onAction="#handleReturnButton" prefHeight="30.0" prefWidth="70.0" text="RETURN" textFill="WHITE" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
                            <children>
-                              <AnchorPane layoutX="540.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
+                              <AnchorPane layoutX="323.0" layoutY="103.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
                                  <children>
                                     <JFXButton fx:id="cs_rebookingBtn" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="14.0" onAction="#handleRebookingButtonClick" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 20;">
                                        <graphic>
@@ -373,7 +372,7 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;">
+                              <AnchorPane layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;" visible="false">
                                  <children>
                                     <JFXButton fx:id="cs_changeInfoBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="14.0" onAction="#handleChangeInfoButtonClick" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 21; -fx-border-radius: 21;" textOverrun="CENTER_ELLIPSIS">
                                        <graphic>
@@ -400,7 +399,7 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
-                              <JFXButton fx:id="cs_contactUsBTN" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="345.0" layoutY="431.0" onAction="#handleChatButtonClick" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+                              <JFXButton fx:id="cs_contactUsBTN" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="345.0" layoutY="431.0" onAction="#openPhoneDialer" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 50;">
                                  <graphic>
                                     <AnchorPane>
                                        <children>
@@ -1948,7 +1947,7 @@
                                  <children>
                                     <AnchorPane fx:id="c_slide1" prefHeight="375.0" prefWidth="994.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <JFXButton fx:id="c_bookingBtn1" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" prefHeight="200.0" prefWidth="303.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <JFXButton fx:id="c_bookingBtn1" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" onAction="#bookingbtn1" prefHeight="200.0" prefWidth="303.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <graphic>
                                                 <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

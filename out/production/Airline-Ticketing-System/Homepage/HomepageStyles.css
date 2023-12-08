@@ -146,9 +146,7 @@
     -fx-text-fill: #4eb19d;
 }
 
-.accountBackground {
-    -fx-background-color: linear-gradient(to bottom left, #163f6f, #3e8087 );
-}
+
 
 
 .accountTableWindowBackground {
@@ -163,14 +161,4 @@
     -fx-border-radius: 50;
 }
 
-.accountTableWindowBackground {
-    -fx-background-color: linear-gradient(to bottom left, #163f6f, #3e8087 );
-    -fx-background-radius: 23;
-    -fx-border-radius: 23;
-}
-
-.receiptBTN{
-    -fx-background-color: linear-gradient(to bottom left, #163f6f, #5DE0E6 );
-    -fx-background-radius: 50;
-    -fx-border-radius: 50;
-}
+/*comment to
