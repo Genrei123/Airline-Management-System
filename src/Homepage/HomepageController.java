@@ -941,7 +941,7 @@ public class HomepageController implements Initializable {
             // Ticket
             String test = "test";
             LocalDate date = booking_date.getValue();
-            receiptMaker.generateTicket(f_name.getText(), l_name.getText(), infos.getAge(),
+            receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
                     infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
                     flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
         }
@@ -991,7 +991,7 @@ public class HomepageController implements Initializable {
                 // Ticket
                 String test = "test";
                 LocalDate date = booking_date.getValue();
-                receiptMaker.generateTicket(f_name.getText(), l_name.getText(), infos.getAge(),
+                receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
                         infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
                     flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
         }
@@ -1047,7 +1047,7 @@ public class HomepageController implements Initializable {
             // Ticket
             String test = "test";
             LocalDate date = booking_date.getValue();
-            receiptMaker.generateTicket(f_name.getText(), l_name.getText(), infos.getAge(),
+            receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
                     infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
                     flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
 

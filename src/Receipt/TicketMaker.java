@@ -33,7 +33,7 @@ import com.itextpdf.layout.element.Table;
 
 public class TicketMaker {
 
-    public void generateTicket(String first_name, String last_name, int age, String destination, String origin, String class1,
+    public void generateTicket(String first_name, String middle_name, String last_name, int age, String destination, String origin, String class1,
                                String seat, String flight_no,
                                double amount, LocalDate departure,
                                String ticket_no, String fare) throws IOException {
@@ -75,6 +75,9 @@ public class TicketMaker {
 
         // Space
         document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
 
         // Body
         float twoColumnWidthBody[] = {285+150, 285};
@@ -83,16 +86,12 @@ public class TicketMaker {
         // Passenger Info
         document.add(new Paragraph("PASSENGER DETAILS").setBold());
         passengerInfobody.addCell(new Cell().add(new Paragraph(
-                "PASSENGER NAME: " + first_name)).setBorder(Border.NO_BORDER));
+                "PASSENGER NAME: " + " " + first_name + " " + middle_name + " " + last_name)).setBorder(Border.NO_BORDER));
         passengerInfobody.addCell(new Cell().add(new Paragraph(
-                "PASSENGER SURNAME: " + last_name + "\n"
-                + "AGE: " + age + "\n")).setBorder(Border.NO_BORDER));
+                "AGE: " + age + "\n")).setBorder(Border.NO_BORDER));
         document.add(passengerInfobody);
 
-        // Space
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("\n"));
+
 
 
         // Flight Info
