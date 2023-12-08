@@ -13,6 +13,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -2459,7 +2460,7 @@
                                           <Font name="Inter Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="g_postalCode" focusColor="#405aa800" layoutX="263.0" layoutY="420.0" prefHeight="31.0" prefWidth="212.0" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
+                                    <JFXTextField fx:id="g_postalCode" focusColor="#405aa800" layoutX="263.0" layoutY="420.0" prefHeight="31.0" prefWidth="212.0" style="-fx-padding: 0 8 0 8;" styleClass="textfieldBG" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" />
                                     <AnchorPane layoutX="6.0" layoutY="469.0" prefHeight="72.0" prefWidth="491.0" styleClass="bottomBG" stylesheets="@HomepageStyles1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <children>
                                           <JFXButton fx:id="g_nextBtn" alignment="CENTER" layoutX="399.0" layoutY="18.0" onAction="#handleNextButtonClick" prefHeight="36.0" prefWidth="82.0" styleClass="defaultDetail" stylesheets="@HomepageStyles1.css" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
@@ -2525,7 +2526,103 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="payingForm" layoutY="109.0" prefHeight="171.0" prefWidth="388.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="payingForm" layoutX="348.0" layoutY="128.0" prefHeight="422.0" prefWidth="368.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false">
+               <children>
+                  <AnchorPane fx:id="topPane2" prefHeight="109.0" prefWidth="368.0" styleClass="starsPane1BG" stylesheets="@PaymentStyles.css">
+                     <children>
+                        <Pane fx:id="starsPane2" prefHeight="106.0" prefWidth="510.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton fx:id="closeButton1" alignment="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="470.0" layoutY="4.0" onAction="#closeForm" prefHeight="38.0" prefWidth="27.0" ripplerFill="#ffffff00" style="-fx-padding: 3 3 3 3;" styleClass="closeBtn" stylesheets="@PaymentStyles.css" textFill="#212121" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                           <graphic>
+                              <MaterialDesignIconView fill="#ffffff99" glyphName="WINDOW_CLOSE" size="30" wrappingWidth="30.0" />
+                           </graphic>
+                        </JFXButton>
+                        <ImageView fitHeight="93.0" fitWidth="95.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+                           <image>
+                              <Image url="@../Images/ICONS/EA%20Logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="111.0" layoutY="40.0" text="ERMINO AIRLINES" textFill="WHITE">
+                           <font>
+                              <Font name="Inter Bold" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="14.0" layoutY="118.0" text="Payment" textFill="WHITE" AnchorPane.leftAnchor="14.0">
+                     <font>
+                        <Font name="Inter Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="15.0" layoutY="143.0" prefHeight="2.0" prefWidth="329.0" style="-fx-background-color: #3d3f45;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                  <AnchorPane layoutX="14.0" layoutY="155.0" prefHeight="93.0" prefWidth="340.0" style="-fx-background-color: #2b2d31; -fx-background-radius: 3;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                     <children>
+                        <Label layoutY="5.0" text="Purchase Details" textFill="WHITE" AnchorPane.leftAnchor="5.0">
+                           <font>
+                              <Font name="Inter Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="5.0" layoutY="28.0" text="Label" />
+                        <Label layoutX="4.0" layoutY="28.0" text="Fare" textFill="#a1a5ab">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pf_farePrice" alignment="CENTER_RIGHT" layoutX="204.0" layoutY="28.0" prefHeight="18.0" prefWidth="122.0" text="₱1,000.00" textFill="#a1a5ab" AnchorPane.rightAnchor="5.0">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pf_totalPrice" alignment="CENTER_RIGHT" layoutX="213.0" layoutY="70.0" prefHeight="18.0" prefWidth="122.0" text="₱1200.00*" textFill="WHITE" AnchorPane.rightAnchor="5.0">
+                           <font>
+                              <Font name="Inter Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="5.0" layoutY="70.0" text="Today's Total" textFill="WHITE">
+                           <font>
+                              <Font name="Inter Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="6.0" layoutY="57.0" prefHeight="2.0" prefWidth="329.0" style="-fx-background-color: #3d3f45;" />
+                        <Label layoutX="98.0" layoutY="70.0" text=" (Tax Included)" textFill="#a1a5ab">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="14.0" layoutY="258.0" text="You will be charged " textFill="WHITE" />
+                  <Label fx:id="pf_fatePrice1" layoutX="122.0" layoutY="258.0" prefHeight="17.0" prefWidth="38.0" text="1,000" textFill="WHITE" />
+                  <Label layoutX="160.0" layoutY="258.0" prefHeight="17.0" prefWidth="198.0" text="+ for Baggage fee and 12% more for" textFill="WHITE" />
+                  <Label layoutX="14.0" layoutY="275.0" prefHeight="17.0" prefWidth="352.0" text="the Value Added Tax. Your total might vary as prescribed to our" textFill="WHITE" />
+                  <Hyperlink layoutX="15.0" layoutY="292.0" style="-fx-padding: -1 -1 -1 -1;" styleClass="hyperlink-no-border" stylesheets="@../LogIn/SigninStyles.css" text="Terms and Policies. " />
+                  <Label layoutX="14.0" layoutY="316.0" prefHeight="17.0" prefWidth="189.0" text="By clicking &quot;Pay&quot;, you agree to this" textFill="WHITE" />
+                  <Hyperlink layoutX="202.0" layoutY="316.0" style="-fx-padding: -1 -1 -1 -1;" styleClass="hyperlink-no-border" stylesheets="@../LogIn/SigninStyles.css" text="Terms and Policies. " />
+                  <AnchorPane layoutY="350.0" prefHeight="72.0" prefWidth="368.0" styleClass="bottomBG" stylesheets="@HomepageStyles1.css">
+                     <children>
+                        <JFXButton fx:id="pf_payBtn" alignment="CENTER" layoutX="274.0" layoutY="18.0" onAction="#handleNextButtonClick" prefHeight="36.0" prefWidth="82.0" stylesheets="@HomepageStyles1.css" text="Pay" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
+                           <font>
+                              <Font name="Inter Bold" size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="defaultDetail" />
+                              <String fx:value="paymentButton" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton fx:id="pf_backBtn" layoutX="7.0" layoutY="18.0" onAction="#switchPaypalForm" prefHeight="36.0" prefWidth="70.0" styleClass="backBtn" stylesheets="@HomepageStyles1.css" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
+                           <font>
+                              <Font name="Inter Bold" size="15.0" />
+                           </font>
+                        </JFXButton>
+                        <FontAwesomeIconView fill="#c0c5ca" glyphName="LOCK" layoutX="187.0" layoutY="46.0" size="25" />
+                        <Label layoutX="209.0" layoutY="26.0" style="-fx-font-size: 16;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Secure" textFill="#c0c5ca">
+                           <font>
+                              <Font name="Inter Regular" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>

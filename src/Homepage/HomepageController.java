@@ -433,6 +433,18 @@ public class HomepageController implements Initializable {
     @FXML
     private TableColumn<String[], String> fs_airplaneID, fs_flightNo, fs_destination, fs_origin, fs_status, fs_departDate, fs_arrivalDate;
 
+    @FXML
+    private AnchorPane payingForm;
+
+    @FXML
+    private AnchorPane topPane2;
+
+    @FXML
+    private Pane starsPane2;
+
+    @FXML
+    private JFXButton closeButton1;
+
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
@@ -570,10 +582,44 @@ public class HomepageController implements Initializable {
         parallelTransition.play();
     }
 
+    // Add this method to create twinkling stars for starsPane2
+    private void createTwinklingStarsForPane2() {
+        int numStars = 20;
+        ParallelTransition parallelTransition = new ParallelTransition();
+
+        // Set preferred size explicitly
+        //starsPane2.setPrefSize(510, 106);
+        for (int i = 0; i < numStars; i++) {
+            Pane star = createStar();
+            starsPane2.getChildren().add(star);
+
+            // Set a random initial position within the bounds of starsPane1
+            double initialX = Math.random() * (starsPane1.getWidth() + 508);  // Adjusted to consider star size
+            double initialY = Math.random() * (starsPane1.getHeight() + 90); // Adjusted to consider star size
+            star.setLayoutX(initialX);
+            star.setLayoutY(initialY);
+
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), star);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setCycleCount(Animation.INDEFINITE);
+            fadeTransition.setAutoReverse(true);
+
+            // Add a random initial delay to each star
+            Duration initialDelay = Duration.seconds(Math.random() * 5);
+            fadeTransition.setDelay(initialDelay);
+
+            parallelTransition.getChildren().add(fadeTransition);
+        }
+
+        parallelTransition.play();
+    }
+
     // Call this method in your initialize method to create twinkling stars for starsPane1
     private void initializeTwinklingStars() {
         createTwinklingStars();  // For starsPane
         createTwinklingStarsForPane1();  // For starsPane1
+        createTwinklingStarsForPane2();
     }
 
     //CAROUSEL FUNCTIONS
@@ -731,7 +777,7 @@ public class HomepageController implements Initializable {
 
         // Check the ID or other properties of the button
         if (clickedButton.getId().equals("c_nextBtn2") || clickedButton.getId().equals("g_nextBtn") || clickedButton.getId().equals("p_nextBtn")) {
-            // Code for c_nextBtn2, g_nextBtn, and p_nextBtn
+            // Code for c_nextBtn2, g_nextBtn, and p_nextBtn 
 
             // Insert data into the database
             insertDataIntoDatabase();
@@ -987,7 +1033,7 @@ public class HomepageController implements Initializable {
         switchForm(hf_searchDesti, returnToDesti_btn);
         clearSeatSelectionFields();
     }
-    
+
     // Method to handle return to destination button click
     public void handleReturnToChooseSeatButtonClick() {
         switchForm(hf_chooseSeat, returnToDesti_btn1);
@@ -1189,6 +1235,7 @@ public class HomepageController implements Initializable {
         overlayPane1.setVisible(false);
         payment_form.setVisible(false);
         paymentForms.setVisible(true);
+        payingForm.setVisible(false);
 
     }
 
@@ -1739,6 +1786,7 @@ public class HomepageController implements Initializable {
         // Initialize the method to create twinkling stars
         initializeTwinklingStars();
         createTwinklingStarsForPane1();
+        createTwinklingStarsForPane2();
 
         overlayPane.setVisible(false);
         overlayPane1.setVisible(false);
@@ -1760,7 +1808,6 @@ public class HomepageController implements Initializable {
         //Clear textFields of hf_chooseSeat textFields
         //returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
         //returnToDesti_btn1.setOnAction(e -> handleReturnToChooseSeatButtonClick());
-
         // Return actions for home_form
         returnToHome_btn.setOnAction(e -> switchForm(hf_home, returnToHome_btn));
 
