@@ -123,62 +123,6 @@
                         <JFXButton buttonType="RAISED" layoutX="905.0" layoutY="23.0" onAction="#confirmRebook" prefHeight="49.0" prefWidth="155.0" style="-fx-background-color: #5b5b5b;" text="REBOOK CONFIRM" textFill="WHITE" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cs_updateForm" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="1200.0" visible="false">
-                     <children>
-                        <TableView layoutX="42.0" layoutY="106.0" prefHeight="390.0" prefWidth="300.0">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="78.0" text="C2" />
-                              <TableColumn prefWidth="72.0" text="C2" />
-                           </columns>
-                        </TableView>
-                        <AnchorPane layoutX="395.0" layoutY="145.0" prefHeight="264.0" prefWidth="317.0" style="-fx-background-color: #252525; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="14.0" layoutY="21.0" prefHeight="30.0" prefWidth="113.0" text="TICKET NO." textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" />
-                              <Label layoutX="16.0" layoutY="99.0" prefHeight="30.0" prefWidth="113.0" text="NAME" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="16.0" layoutY="129.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" />
-                              <Label layoutX="16.0" layoutY="174.0" prefHeight="30.0" prefWidth="113.0" text="DATE" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="16.0" layoutY="204.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="743.0" layoutY="145.0" prefHeight="264.0" prefWidth="317.0" style="-fx-background-color: #252525; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="15.0" layoutY="28.0" prefHeight="30.0" prefWidth="113.0" text="TICKET NO." textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="15.0" layoutY="58.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" stylesheets="@DashboardStyles.css" />
-                              <Label layoutX="17.0" layoutY="106.0" prefHeight="30.0" prefWidth="113.0" text="NAME" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="17.0" layoutY="181.0" prefHeight="30.0" prefWidth="113.0" text="DATE" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="16.0" layoutY="136.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" stylesheets="@DashboardStyles.css" />
-                              <TextField layoutX="17.0" layoutY="211.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" stylesheets="@DashboardStyles.css" />
-                           </children>
-                        </AnchorPane>
-                        <JFXButton buttonType="RAISED" layoutX="901.0" layoutY="14.0" prefHeight="49.0" prefWidth="155.0" style="-fx-background-color: #5b5b5b;" text="UPDATE INFO" textFill="WHITE" />
-                     </children>
-                  </AnchorPane>
                   <Label layoutX="402.0" layoutY="21.0" prefHeight="30.0" prefWidth="113.0" text="TICKET NO." textFill="#f5f5f5">
                      <font>
                         <Font size="14.0" />
@@ -202,15 +146,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="cs_updateInfoBtn" layoutX="210.0" layoutY="76.0" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="UPDATE INFO" textFill="WHITE">
-                     <font>
-                        <Font name="Gill Sans MT" size="22.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Separator layoutX="199.0" layoutY="79.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="5.0" />
                   <Label fx:id="cs_alert" layoutX="908.0" layoutY="86.0" prefHeight="17.0" prefWidth="148.0" textFill="WHITE" />
                </children>
             </AnchorPane>
