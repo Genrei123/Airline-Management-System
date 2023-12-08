@@ -79,91 +79,91 @@
                   </AnchorPane>
                   <AnchorPane fx:id="top_form" layoutX="10.0" layoutY="10.0" prefHeight="639.0" prefWidth="1040.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ScrollPane layoutX="1.0" layoutY="102.0" prefHeight="499.0" prefWidth="1061.0">
+                        <ScrollPane layoutX="1.0" layoutY="102.0" prefHeight="499.0" prefWidth="1061.0" style="-fx-background-color: #201414;">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1603.0" prefWidth="1045.0" style="-fx-background-color: #201414; -fx-border-color: #201414;">
                                  <children>
-                                    <AnchorPane layoutX="33.0" layoutY="23.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="33.0" layoutY="23.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="16.0" layoutY="-3.0" prefHeight="141.0" prefWidth="950.0" stylesheets="@HomepageStyles.css" text="1. Booking and Reservation:&#10;&#10;All bookings are subject to availability and confirmation.&#10;Passengers are responsible for providing accurate and up-to-date information during the booking process.&#10;Bookings can be made through our official website, authorized agents, or at our ticketing offices.">
+                                          <TextArea editable="false" layoutX="16.0" layoutY="-3.0" prefHeight="138.0" prefWidth="976.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="1. Booking and Reservation:&#10;&#10;All bookings are subject to availability and confirmation.&#10;Passengers are responsible for providing accurate and up-to-date information during the &#10;booking process.&#10;Bookings can be made through our official website, authorized agents, or at our ticketing offices." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children></AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="183.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="183.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" prefHeight="141.0" prefWidth="950.0" text="2. Ticket Purchase:&#10;&#10;Full payment is required at the time of booking to secure the reservation.&#10;Payment can be made using approved credit/debit cards or other accepted methods.&#10;">
+                                          <TextArea editable="false" layoutX="13.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="2. Ticket Purchase:&#10;&#10;Full payment is required at the time of booking to secure the reservation.&#10;Payment can be made using approved credit/debit cards or other accepted methods.&#10;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children></AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="343.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="343.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="3. No Refund Policy:&#10;&#10;All ticket sales are final, and we operate on a strict no-refund policy.&#10;No refunds will be issued for cancellations, no-shows, or missed flights.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="3. No Refund Policy:&#10;&#10;All ticket sales are final, and we operate on a strict no-refund policy.&#10;No refunds will be issued for cancellations, no-shows, or missed flights." AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children></AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="499.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="499.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="4. Rebooking Policy:&#10;&#10;Passengers may rebook their flights, subject to availability, within a specified time frame.&#10;Rebooking fees apply, and the passenger is responsible for any fare difference.&#10;Rebooking requests must be made at least [X] hours/days before the original departure time.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="4. Rebooking Policy:&#10;&#10;Passengers may rebook their flights, subject to availability, within a specified time frame.&#10;Rebooking fees apply, and the passenger is responsible for any fare difference.&#10;Rebooking requests must be made at least [X] hours/days before the original departure time." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="655.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="655.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="5. Flight Changes:&#10;&#10;Changes to flight details, such as date, time, or destination, are permitted within the rebooking policy&#10;guidelines.&#10;Flight changes are subject to availability and applicable fees.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="5. Flight Changes:&#10;&#10;Changes to flight details, such as date, time, or destination, are permitted within the rebooking policy&#10;guidelines.&#10;Flight changes are subject to availability and applicable fees." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="810.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="810.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="6. No-Show Policy:&#10;&#10;Failure to board the original flight without prior notice will result in the forfeiture of the ticket and is not&#10;eligible for rebooking.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="6. No-Show Policy:&#10;&#10;Failure to board the original flight without prior notice will result in the forfeiture of the ticket and is not&#10;eligible for rebooking." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="966.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="966.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="7. Force Majeure:&#10;&#10;The airline reserves the right to cancel, delay, or reschedule flights due to unforeseen circumstances,&#10;including but not limited to weather conditions, natural disasters, or governmental regulations.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="7. Force Majeure:&#10;&#10;The airline reserves the right to cancel, delay, or reschedule flights due to unforeseen circumstances,&#10;including but not limited to weather conditions, natural disasters, or governmental regulations." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="1124.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="1124.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="8. Passenger Responsibility:&#10;&#10;Passengers are responsible for checking and complying with travel restrictions, visa requirements, and&#10;health regulations of the destination country.&#10;It is the passenger's responsibility to arrive at the airport on time for check-in and boarding.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="8. Passenger Responsibility:&#10;&#10;Passengers are responsible for checking and complying with travel restrictions, visa requirements, and&#10;health regulations of the destination country.&#10;It is the passenger's responsibility to arrive at the airport on time for check-in and boarding." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="1281.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="1281.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="9. Refusal of Service:&#10;&#10;The airline reserves the right to refuse service to any passenger who violates the terms and policies or &#10;engages in disruptive behavior.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="9. Refusal of Service:&#10;&#10;The airline reserves the right to refuse service to any passenger who violates the terms and policies or &#10;engages in disruptive behavior." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
                                           </TextArea>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="35.0" layoutY="1442.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20; -fx-background-color: green;">
+                                    <AnchorPane layoutX="35.0" layoutY="1442.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
                                        <children>
-                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" text="10. Communication:&#10;&#10;All communications regarding bookings, rebooking, and other inquiries should be directed to our &#10;customer service channels.&#10;&#10;By proceeding with the booking, passengers acknowledge and agree to abide by these terms&#10;and  policies. The airline reserves the right to modify these terms at its discretion. Passengers are&#10;encouraged to review these policies regularly for any updates or changes.">
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="10. Communication:&#10;&#10;All communications regarding bookings, rebooking, and other inquiries should be directed to our &#10;customer service channels.&#10;&#10;By proceeding with the booking, passengers acknowledge and agree to abide by these terms&#10;and  policies. The airline reserves the right to modify these terms at its discretion. Passengers are&#10;encouraged to review these policies regularly for any updates or changes." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="21.0" />
                                              </font>
