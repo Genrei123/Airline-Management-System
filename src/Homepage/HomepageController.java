@@ -3,6 +3,8 @@ package Homepage;
 import Animations.SwitchForms;
 import Database.Database;
 import LogIn.AlertManager;
+import LogIn.Customer;
+import Receipt.ReceiptMaker;
 import Receipt.TicketMaker;
 import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
@@ -65,6 +67,9 @@ import org.controlsfx.control.textfield.TextFields;
 import javax.xml.crypto.Data;
 
 public class HomepageController implements Initializable {
+
+    @FXML
+    private Label displayUserName;
 
     @FXML
     private AnchorPane topPane;
@@ -906,9 +911,44 @@ public class HomepageController implements Initializable {
                     Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
                     Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
             );
+
+            // Insert data into booked_flights
+            TicketNo ticketNo = new TicketNo();
+            String ticket_no = ticketNo.generateTicketNo(f_name.getText());
+            Database insertBooked_flights = new Database();
+            insertBooked_flights.insertData(
+                    "booked_flights",
+                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no"
+                    , "amount", "book_date", "ticket_no", "status"),
+                    Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(),
+                            age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id,
+                            fare_price.getText(), now, ticket_no, "PAID")
+            );
+
+            // Ticket_records
+            Database insertTicket_records = new Database();
+            insertTicket_records.insertData(
+                    "ticket_records",
+                    Arrays.asList("flight_no", "destination", "origin", "seat_no", "class"),
+                    Arrays.asList(flight_id, destination.getText(), origin.getText(), seat.getText(), s_class.getText())
+            );
+
+            Booking infos = Booking.getInstance();
+            TicketMaker receiptMaker = new TicketMaker();
+
+
+
+            // Ticket
+            String test = "test";
+            LocalDate date = booking_date.getValue();
+            receiptMaker.generateTicket(f_name.getText(), l_name.getText(), infos.getAge(),
+                    infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
+                    flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
         }
 
         else {
+
+
                 // Means that the flight is not unique
                 // Get the flight_id of the flight
                 Database getflight_id = new Database();
@@ -935,6 +975,25 @@ public class HomepageController implements Initializable {
                         Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
                 );
 
+                // Ticket_records
+                TicketNo ticketNo = new TicketNo();
+                String ticket_no = ticketNo.generateTicketNo(f_name.getText());
+                Database insertTicket_records = new Database();
+                insertTicket_records.insertData(
+                    "ticket_records",
+                    Arrays.asList("flight_no", "destination", "origin", "seat_no", "class"),
+                    Arrays.asList(flight_id, destination.getText(), origin.getText(), seat.getText(), s_class.getText())
+                );
+
+                Booking infos = Booking.getInstance();
+                TicketMaker receiptMaker = new TicketMaker();
+
+                // Ticket
+                String test = "test";
+                LocalDate date = booking_date.getValue();
+                receiptMaker.generateTicket(f_name.getText(), l_name.getText(), infos.getAge(),
+                        infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
+                    flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
         }
 
         // Check if the flight reaches 80 seats
@@ -971,6 +1030,26 @@ public class HomepageController implements Initializable {
                     Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
                     Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
             );
+
+            // Ticket_records
+            TicketNo ticketNo = new TicketNo();
+            String ticket_no = ticketNo.generateTicketNo(f_name.getText());
+            Database insertTicket_records = new Database();
+            insertTicket_records.insertData(
+                    "ticket_records",
+                    Arrays.asList("flight_no", "destination", "origin", "seat_no", "class"),
+                    Arrays.asList(flight_id, destination.getText(), origin.getText(), seat.getText(), s_class.getText())
+            );
+
+            Booking infos = Booking.getInstance();
+            TicketMaker receiptMaker = new TicketMaker();
+
+            // Ticket
+            String test = "test";
+            LocalDate date = booking_date.getValue();
+            receiptMaker.generateTicket(f_name.getText(), l_name.getText(), infos.getAge(),
+                    infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
+                    flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
 
 
         } else if (counter >= 80) {
@@ -1270,6 +1349,13 @@ public class HomepageController implements Initializable {
         booking.setClass(s_class.getText());
         booking.setSeatNo(seat.getText());
         booking.setBooking_date(LocalDate.now());
+        booking.setFlight_no(generateFlightID("ERM", origin.getText(), destination.getText()));
+
+
+
+        Double total = Double.valueOf(fare_price.getText());
+        total = total + 50 + 30;
+        booking.setAmount(total);
 
         booking.setTicketNo(TicketNo.generateTicketNo(booking.getFirst_name() + booking.getLast_name()));
     }
@@ -1436,7 +1522,7 @@ public class HomepageController implements Initializable {
     public void openPhoneDialer() {
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
-                Desktop.getDesktop().browse(new URI("https://www.facebook.com/genrey.cristobal.3/")); // You can replace this with the desired phone number
+                Desktop.getDesktop().browse(new URI("https://www.facebook.com/profile.php?id=61554275227122")); // You can replace this with the desired phone number
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
@@ -1899,6 +1985,11 @@ public class HomepageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Customer customer = Customer.getInstance();
+        String username = customer.getUsername();
+        System.out.println(username);
+        displayUserName.setText(username);
 
         // Check seats
         try {

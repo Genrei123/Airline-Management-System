@@ -3,6 +3,7 @@ package Receipt;
 
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -10,8 +11,12 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.draw.DashedLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.borders.DashedBorder;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.properties.HorizontalAlignment;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.properties.UnitValue;
 
 import java.awt.*;
 import java.io.File;
@@ -19,15 +24,27 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Table;
+
 public class TicketMaker {
 
-    public void generateTicket(String first_name, String last_name, int age, String destination, String origin, String class1, String seat, String flight_no, double amount) throws IOException {
+    public void generateTicket(String first_name, String last_name, int age, String destination, String origin, String class1,
+                               String seat, String flight_no,
+                               double amount, LocalDate departure,
+                               String ticket_no, String fare) throws IOException {
+
+        String total = Double.toString(amount);
 
 
         // Directory and name of the file
         String currentDir = System.getProperty("user.dir");
         StringBuilder path = new StringBuilder();
-        path.append(currentDir + "/src/Receipt/" + flight_no + ".pdf");
+        path.append(currentDir + "/src/Receipt/" + flight_no + ticket_no + ".pdf");
 
         // Properties of the said file
         PdfWriter pdfWriter = new PdfWriter(path.toString());
@@ -64,10 +81,9 @@ public class TicketMaker {
         Table passengerInfobody = new Table(twoColumnWidthBody);
 
         // Passenger Info
-        document.add(new Paragraph("PASSENGER INFO").setBold());
+        document.add(new Paragraph("PASSENGER DETAILS").setBold());
         passengerInfobody.addCell(new Cell().add(new Paragraph(
-                "PASSENGER NAME: " + first_name + "\n"
-                + "SEX: M" + "\n")).setBorder(Border.NO_BORDER));
+                "PASSENGER NAME: " + first_name)).setBorder(Border.NO_BORDER));
         passengerInfobody.addCell(new Cell().add(new Paragraph(
                 "PASSENGER SURNAME: " + last_name + "\n"
                 + "AGE: " + age + "\n")).setBorder(Border.NO_BORDER));
@@ -75,71 +91,75 @@ public class TicketMaker {
 
         // Space
         document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
+
 
         // Flight Info
         Table flightInfobody = new Table(twoColumnWidthBody);
-        document.add(new Paragraph("FLIGHT INFO").setBold());
+        document.add(new Paragraph("TICKET DETAILS").setBold());
         flightInfobody.addCell(new Cell().add(new Paragraph(
-                "PASSENGER NAME: " + first_name + "\n"
-                + "FLIGHT DATE: " + "12/12/2021" + "\n"
+                "TICKET NUMBER: " + ticket_no + "\n"
+                + "FLIGHT DATE: " + departure + "\n"
                 + "FLIGHT FROM: " + origin + "\n")).setBorder(Border.NO_BORDER));
 
         flightInfobody.addCell(new Cell().add(new Paragraph(
-                "FLIGHT NUMBER: " + "ER-123" + "\n"
-                + "FLIGHT TIME: " + "12:00" + "\n"
+                "FLIGHT NUMBER: " + flight_no + "\n"
+                + "FLIGHT TIME: " + "TO BE SET" + "\n"
                 + "FLIGHT TO: " + destination + "\n")).setBorder(Border.NO_BORDER));
         document.add(flightInfobody);
 
         // Space
         document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
 
-        // Cut here
-        DashedLine dashedLine = new DashedLine(1);
-        document.add(new LineSeparator(dashedLine));
+        // Create a 5-column, 2-row table
+        Table table = new Table(UnitValue.createPercentArray(5)).useAllAvailableWidth();
+
+        // Column headers
+        table.addCell(createHeaderCell("From"));
+        table.addCell(createHeaderCell("To"));
+        table.addCell(createHeaderCell("Flight"));
+        table.addCell(createHeaderCell("Flight Date"));
+        table.addCell(createHeaderCell("Seat Type"));
+
+        // Row 1 with information
+        table.addCell(createCell(origin));
+        table.addCell(createCell(destination));
+        table.addCell(createCell(flight_no));
+        table.addCell(createCell(departure.toString()));
+        table.addCell(createCell(class1));
+
+        document.add(table);
 
         // Space
         document.add(new Paragraph("\n"));
-
-        // Header2
-        float twoColumnWidth2[] = {285+150, 285};
-        Table header2 = new Table(twoColumnWidth2);
-
-        header2.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER));
-        header2.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + flight_no + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER).setFontSize(1));
-        document.add(header2);
-
-        // Space
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph("\n"));
         document.add(new Paragraph("\n"));
 
-        // Body2
-        float twoColumnWidthBody2[] = {285+150};
-        Table passengerInfobody2 = new Table(twoColumnWidthBody2);
+        // Fare Details Table
+        Table fareDetailsTable = new Table(UnitValue.createPercentArray(2)).useAllAvailableWidth();
+        fareDetailsTable.setHorizontalAlignment(HorizontalAlignment.RIGHT);
 
-        passengerInfobody2.addCell(new Cell().add(new Paragraph("FLIGHT NUMBER: " + flight_no +"\n"
-                + "CLASS SEAT: " + class1 + "\n"
-                + "SEAT NO. : " + seat + "\n")).setBorder(Border.NO_BORDER));
+        // Fare Details Header
+        fareDetailsTable.addCell(new Cell(1, 2).add(new Paragraph("Fare Details").setBold()));
 
-        document.add(passengerInfobody2);
+        // Fare Details Rows
+        fareDetailsTable.addCell(createFareDetailRow("Fare:", "PHP " + fare));
+        fareDetailsTable.addCell(createFareDetailRow("Taxes:", "PHP 50"));
+        fareDetailsTable.addCell(createFareDetailRow("Carrier Imposed Fees:",  "PHP 30"));
+        fareDetailsTable.addCell(createFareDetailRow("Total Amount:", "PHP " + total));
 
-        // Space
-        document.add(new Paragraph("\n"));
-
-        // Body3
-        float twoColumnWidthBody3[] = {285+150};
-        Table passengerInfobody3 = new Table(twoColumnWidthBody3);
-
-        passengerInfobody3.addCell(new Cell().add(new Paragraph("TOTAL AMOUNT: " + amount + "\n")).setBorder(Border.NO_BORDER));
-
-
+        document.add(fareDetailsTable);
         document.close();
-
-
     }
 
-    public String getReceiptPath(String flight_no) {
+    public String getReceiptPath(String flight_no, String ticket_no) {
         String currentDir = System.getProperty("user.dir");
         StringBuilder path = new StringBuilder();
-        path.append(currentDir + "/src/Receipt/" + flight_no + ".pdf");
+        path.append(currentDir + "/src/Receipt/" + flight_no + ticket_no + ".pdf");
         return path.toString();
     }
 
@@ -148,4 +168,18 @@ public class TicketMaker {
         File file = new File(path);
         Desktop.getDesktop().open(file);
     }
+
+    private static Cell createHeaderCell(String header) {
+        return new Cell().add(new Paragraph(header).setBackgroundColor(com.itextpdf.kernel.colors.Color.makeColor(ColorConstants.BLUE.getColorSpace())).setFontColor(ColorConstants.WHITE).setBold());
+    }
+
+    private static Cell createCell(String content) {
+        return new Cell().add(new Paragraph(content));
+    }
+
+    private static Cell createFareDetailRow(String label, String value) {
+        return new Cell().add(new Paragraph(label)).add(new Paragraph(value).setMarginLeft(10));
+    }
+
+
 }

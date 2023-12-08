@@ -59,7 +59,8 @@ public class NotifController implements Initializable {
         TicketMaker ticketMaker = new TicketMaker();
         Booking booking = Booking.getInstance();
 
-        ticketMaker.openReceipt(ticketMaker.getReceiptPath(booking.getTicketNo()));
+        ticketMaker.openReceipt(ticketMaker.getReceiptPath(booking.getFlight_no(), booking.getTicketNo()));
+        System.out.println(ticketMaker.getReceiptPath(booking.getTicketNo(), booking.getTicketNo()));
 
     }
 

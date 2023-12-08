@@ -165,6 +165,8 @@ public class LoginPageController implements Initializable {
 
     private Database checkAcc = new Database();
 
+    Customer customer = Customer.getInstance();
+
     //LOGIN FORM PART
 // Modified login function to handle both password and showPassword fields
     public void login() {
@@ -181,6 +183,7 @@ public class LoginPageController implements Initializable {
             // TEMPORARY STATEMENTS
             if (enteredAccountName.equals("Homepage") && enteredPassword.equals("12345678")) {
                 // Direct the specific user "Admin" to the dashboard
+                customer.setUsername(enteredAccountName);
                 alert.setAlertText("Successful Login!", "green");
 
                 try {
@@ -198,6 +201,7 @@ public class LoginPageController implements Initializable {
 
                     if (usernameExists) {
                         if (passwordCorrect) {
+                            customer.setUsername(enteredAccountName);
                             alert.setAlertText("Successful Login!", "green");
 
                             try {

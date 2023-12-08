@@ -159,6 +159,8 @@ public class AdminLoginController implements Initializable {
 
     private Database checkAcc = new Database();
 
+    Customer customer = Customer.getInstance();
+
     //LOGIN FORM PART
 // Modified login function to handle both password and showPassword fields
     public void login() {
@@ -181,6 +183,7 @@ public class AdminLoginController implements Initializable {
                 admin.setUsername(enteredAccountName);
 
                 try {
+                    customer.setUsername(enteredAccountName);
                     SwitchForms switchForms = new SwitchForms();
                     switchForms.Link((Stage) login_btn.getScene().getWindow(), "Dashboard");
 
@@ -196,6 +199,7 @@ public class AdminLoginController implements Initializable {
 
                     if (usernameExists) {
                         if (passwordCorrect) {
+                            customer.setUsername(enteredAccountName);
                             alert.setAlertText("Successful Login!", "green");
 
                             try {

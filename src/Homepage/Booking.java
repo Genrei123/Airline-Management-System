@@ -20,6 +20,8 @@ public class Booking {
 
     String TicketNo;
 
+    String flight_no;
+
     // Singleton
     private static Booking instance = null;
 
@@ -154,4 +156,11 @@ public class Booking {
     }
 
 
+    public String getFlight_no() {
+        return this.flight_no = flight_no;
+    }
+
+    public void setFlight_no(String flight_no) {
+        this.flight_no = flight_no;
+    }
 }
