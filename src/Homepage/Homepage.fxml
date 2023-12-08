@@ -2525,7 +2525,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="payingForm" layoutY="109.0" prefHeight="171.0" prefWidth="388.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0" />
+                  <AnchorPane fx:id="payingForm" layoutY="109.0" prefHeight="171.0" prefWidth="388.0" styleClass="paymentBG" stylesheets="@PaymentStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0" />
                </children>
             </AnchorPane>
          </children>

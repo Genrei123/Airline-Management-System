@@ -823,22 +823,20 @@ public class HomepageController implements Initializable {
                     Arrays.asList("flight_id", "destination", "origin", "passenger_number"),
                     Arrays.asList(flight_id, destination.getText(), origin.getText(), 1)
             );
-        }
-
-
-
-        else {
-
-            // Means that the flight is not unique
-            // Get the flight_id of the flight
-            Database getflight_id = new Database();
-            flight_id = getflight_id.getFlightID(destination.getText(), origin.getText());
 
             // Check if the flight reaches 80 seats
             Database booked_passengers = new Database();
             int counter = booked_passengers.flightCount(destination.getText(), origin.getText());
+
             if (counter < 80 && counter > 0) {
                 System.out.println("Flight is full");
+
+                // Get the flight_id of the flight
+                Database getflight_id = new Database();
+                flight_id = getflight_id.getFlightID(
+                        destination.getText(),
+                        origin.getText()
+                );
 
                 // Update passenger number
                 Database updatePassengerNumber = new Database();
@@ -863,12 +861,33 @@ public class HomepageController implements Initializable {
                 System.out.println("Flight is full");
                 // Update flight_manager
                 Database updateFlightManager = new Database();
-                updateFlightManager.insertData(
+                updateFlightManager.updateData(
                         "flight_manager",
-                        Arrays.asList("flight_no", "destination", "origin", "status", "destination_date"),
-                        Arrays.asList(flight_id, destination.getText(), origin.getText(), "FULLY BOOKED", booking_date.getValue().toString())
+                        Collections.singletonList("status"),
+                        Collections.singletonList("CLOSED"),
+                        Collections.singletonList("flight_id"),
+                        Collections.singletonList(flight_id)
                 );
+
+                
             }
+        }
+
+        else {
+                // Means that the flight is not unique
+                // Get the flight_id of the flight
+                Database getflight_id = new Database();
+                flight_id = getflight_id.getFlightID(destination.getText(), origin.getText());
+
+                // Update the passenger_number of the flight
+                Database updatePassengerNumber = new Database();
+                updatePassengerNumber.updateData(
+                        "flight_records",
+                        Collections.singletonList("passenger_number"),
+                        Collections.singletonList("passenger_number + 1"),
+                        Collections.singletonList("flight_id"),
+                        Collections.singletonList(flight_id)
+                );
         }
     }
 
