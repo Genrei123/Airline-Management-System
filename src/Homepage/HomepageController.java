@@ -36,6 +36,7 @@ import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -1709,7 +1710,6 @@ public class HomepageController implements Initializable {
             // Set up filters for sd_origin and sd_destination ComboBoxes
             setupComboBoxFilters();
 
-            filterTable();
         }
     }
 
@@ -1731,9 +1731,8 @@ public class HomepageController implements Initializable {
         });
     }
 
-    // Set up ComboBox filters based on a TableColumn
-    private void setupComboBoxFilter(TableColumn<String[], String> column, ComboBox<String> comboBox) {
-        ObservableList<String> uniqueValues = getUniqueColumnValues(column);
+    private void setupComboBoxFilter(TableColumn<String[], String> column, ComboBox<String> comboBox, String originFilter, String destinationFilter, String seatClassFilter) {
+        ObservableList<String> uniqueValues = getUniqueColumnValues(column, originFilter, destinationFilter, seatClassFilter);
         comboBox.setItems(uniqueValues);
 
         // Add listener to filter table based on the selected value
@@ -1743,19 +1742,29 @@ public class HomepageController implements Initializable {
     }
 
     private void setupComboBoxFilters() {
-        setupComboBoxFilter(sdTbl_origin, sd_origin);
-        setupComboBoxFilter(sdTbl_destination, sd_destination);
-        setupComboBoxFilter(sdTbl_seatClass, sd_seatClass);
+        setupComboBoxFilter(sdTbl_origin, sd_origin, null, null, null);
+        setupComboBoxFilter(sdTbl_destination, sd_destination, null, null, null);
+        setupComboBoxFilter(sdTbl_seatClass, sd_seatClass, null, null, null);
     }
 
-    // Get unique values from a TableColumn in the TableView
-    private ObservableList<String> getUniqueColumnValues(TableColumn<String[], String> column) {
+    private ObservableList<String> getUniqueColumnValues(TableColumn<String[], String> column, String originFilter, String destinationFilter, String seatClassFilter) {
         ObservableList<String> uniqueValues = FXCollections.observableArrayList();
 
         for (String[] item : sd_tableView.getItems()) {
-            String value = column.getCellObservableValue(sd_tableView.getItems().indexOf(item)).getValue();
-            if (!uniqueValues.contains(value)) {
-                uniqueValues.add(value);
+            String origin = item[0];
+            String destination = item[1];
+            String seatClass = item[2];
+
+            // Check if the item matches the current filters
+            boolean originMatch = originFilter == null || originFilter.isEmpty() || origin.equals(originFilter);
+            boolean destinationMatch = destinationFilter == null || destinationFilter.isEmpty() || destination.equals(destinationFilter);
+            boolean seatClassMatch = seatClassFilter == null || seatClassFilter.isEmpty() || seatClass.equals(seatClassFilter);
+
+            if (originMatch && destinationMatch && seatClassMatch) {
+                String value = column.getCellObservableValue(sd_tableView.getItems().indexOf(item)).getValue();
+                if (!uniqueValues.contains(value)) {
+                    uniqueValues.add(value);
+                }
             }
         }
 
@@ -1767,15 +1776,14 @@ public class HomepageController implements Initializable {
         String destinationFilter = sd_destination.getValue();
         String seatClassFilter = sd_seatClass.getValue();
 
-        System.out.println("Origin Filter: " + originFilter);
-        System.out.println("Destination Filter: " + destinationFilter);
-        System.out.println("SeatClass Filter: " + seatClassFilter);
-
         // Get the data from the table
         ObservableList<String[]> data = sd_tableView.getItems();
 
-        // Create a filtered list based on selected values
-        FilteredList<String[]> filteredData = new FilteredList<>(data, item -> {
+        // Create a new list for filtered data
+        ObservableList<String[]> filteredData = FXCollections.observableArrayList();
+
+        // Filter the data and add to the new list
+        for (String[] item : data) {
             String origin = item[0];
             String destination = item[1];
             String seatClass = item[2];
@@ -1785,15 +1793,53 @@ public class HomepageController implements Initializable {
             boolean destinationMatch = destinationFilter == null || destinationFilter.isEmpty() || destination.equals(destinationFilter);
             boolean seatClassMatch = seatClassFilter == null || seatClassFilter.isEmpty() || seatClass.equals(seatClassFilter);
 
-            return originMatch && destinationMatch && seatClassMatch;
-        });
+            if (originMatch && destinationMatch && seatClassMatch) {
+                filteredData.add(item);
+            }
+        }
 
         // Set the filtered data to the table
         sd_tableView.setItems(filteredData);
     }
 
+    // Function to handle sd_confirmBtn click
+    private void handleConfirmButtonClick() {
+        // Get the text from sdDi_origin, sdDi_destination, sdDi_seatClass, and sdDi_farePrice
+        String confirmedOrigin = sdDi_origin.getText();
+        String confirmedDestination = sdDi_destination.getText();
+        String confirmedSeatClass = sdDi_seatClass.getText();
+        String confirmedFarePrice = sdDi_farePrice.getText();
+
+        // Set the text to cs_origin, cs_destination, cs_seatClass, and cs_price
+        cs_origin.setText(confirmedOrigin);
+        cs_destination.setText(confirmedDestination);
+        cs_seatClass.setValue(confirmedSeatClass); // Assuming cs_seatClass is a JFXComboBox<String>
+        cs_price.setText(confirmedFarePrice);
+
+        // Switch form from hf_searchDesti to hf_chooseSeat
+        switchForm(hf_searchDesti, hf_chooseSeat);
+    }
+
+    // Function to check if text fields are empty and enable/disable sd_confirmBtn
+    private void checkFieldsNotEmpty() {
+        boolean fieldsNotEmpty = !sdDi_origin.getText().isEmpty()
+                && !sdDi_destination.getText().isEmpty()
+                && !sdDi_seatClass.getText().isEmpty()
+                && !sdDi_farePrice.getText().isEmpty();
+
+        sd_confirmBtn.setDisable(!fieldsNotEmpty);
+    }
+
+    // Function to switch forms
+    private void switchForm(AnchorPane fromForm, AnchorPane toForm) {
+        fromForm.setVisible(false);
+        toForm.setVisible(true);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        checkFieldsNotEmpty();
 
         Customer customer = Customer.getInstance();
         String username = customer.getUsername();
@@ -1843,11 +1889,21 @@ public class HomepageController implements Initializable {
         // Switch Forms for home_form
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
 
-        //Clear textFields of hf_chooseSeat textFields
-        //returnToDesti_btn.setOnAction(e -> handleReturnToDestiButtonClick());
-        //returnToDesti_btn1.setOnAction(e -> handleReturnToChooseSeatButtonClick());
         // Return actions for home_form
-        returnToHome_btn.setOnAction(e -> switchForm(hf_home, returnToHome_btn));
+        returnToHome_btn.setOnAction(e -> {
+            // Clear the text fields
+            sdDi_origin.clear();
+            sdDi_destination.clear();
+            sdDi_seatClass.clear();
+            sdDi_farePrice.clear();
+
+            sd_origin.getSelectionModel().clearSelection();
+            sd_destination.getSelectionModel().clearSelection();
+            sd_seatClass.getSelectionModel().clearSelection(); // Clear the selected item in cs_seatClass
+
+            // Switch form from hf_chooseSeat to hf_home
+            switchForm(hf_searchDesti, hf_home);
+        });
 
         // Add listeners to cs_seatNum and cs_seatClass
         cs_seatNum.textProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
@@ -2188,5 +2244,15 @@ public class HomepageController implements Initializable {
             // Update pf_farePrice and pf_farePrice1 labels based on the new value
             updateFarePriceLabels(newValue);
         });
+
+        // Handle sd_confirmBtn click
+        sd_confirmBtn.setOnAction(event -> handleConfirmButtonClick());
+
+        // Add a listener to all text fields for enabling/disabling sd_confirmBtn
+        sdDi_origin.textProperty().addListener((observable, oldValue, newValue) -> checkFieldsNotEmpty());
+        sdDi_destination.textProperty().addListener((observable, oldValue, newValue) -> checkFieldsNotEmpty());
+        sdDi_seatClass.textProperty().addListener((observable, oldValue, newValue) -> checkFieldsNotEmpty());
+        sdDi_farePrice.textProperty().addListener((observable, oldValue, newValue) -> checkFieldsNotEmpty());
+
     }
 }
