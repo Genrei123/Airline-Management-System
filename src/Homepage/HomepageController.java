@@ -492,7 +492,7 @@ public class HomepageController implements Initializable {
     @FXML
     private JFXComboBox<String> sd_seatClass;
 
-
+    
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
