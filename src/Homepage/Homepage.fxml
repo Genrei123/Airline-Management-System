@@ -2600,7 +2600,7 @@
                   <Hyperlink layoutX="202.0" layoutY="316.0" style="-fx-padding: -1 -1 -1 -1;" styleClass="hyperlink-no-border" stylesheets="@../LogIn/SigninStyles.css" text="Terms and Policies. " />
                   <AnchorPane layoutY="350.0" prefHeight="72.0" prefWidth="368.0" styleClass="bottomBG" stylesheets="@HomepageStyles1.css">
                      <children>
-                        <JFXButton fx:id="pf_payBtn" alignment="CENTER" layoutX="274.0" layoutY="18.0" onAction="#handleNextButtonClick" prefHeight="36.0" prefWidth="82.0" stylesheets="@HomepageStyles1.css" text="Pay" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
+                        <JFXButton fx:id="pf_payBtn" alignment="CENTER" layoutX="274.0" layoutY="18.0" onAction="#handlePayButtonClick" prefHeight="36.0" prefWidth="82.0" stylesheets="@HomepageStyles1.css" text="Pay" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
                            <font>
                               <Font name="Inter Bold" size="15.0" />
                            </font>
@@ -2609,7 +2609,7 @@
                               <String fx:value="paymentButton" />
                            </styleClass>
                         </JFXButton>
-                        <JFXButton fx:id="pf_backBtn" layoutX="7.0" layoutY="18.0" onAction="#switchPaypalForm" prefHeight="36.0" prefWidth="70.0" styleClass="backBtn" stylesheets="@HomepageStyles1.css" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
+                        <JFXButton fx:id="pf_backBtn" layoutX="7.0" layoutY="18.0" onAction="#switchPayingForm" prefHeight="36.0" prefWidth="70.0" styleClass="backBtn" stylesheets="@HomepageStyles1.css" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="18.0">
                            <font>
                               <Font name="Inter Bold" size="15.0" />
                            </font>

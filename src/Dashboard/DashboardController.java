@@ -112,9 +112,6 @@ public class DashboardController implements Initializable {
     private TableColumn<String[], String> trt_airplaneNo;
 
     @FXML
-    private TableColumn<String[], String> trt_initialDep;
-
-    @FXML
     private TableColumn<String[], String> trt_departure;
 
     @FXML
@@ -422,19 +419,18 @@ public class DashboardController implements Initializable {
         List<String> searchBy = Arrays.asList(trt_searchBy.getSelectionModel().getSelectedItem());
 
         Database database = new Database();
-        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "Airplane_no", "initial_depart", "departure", "destination", "origin", "seat_no", "class"), searchBy, text);
+        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "Airplane_no", "departure", "destination", "origin", "seat_no", "class"), searchBy, text);
         if (data != null) {
             System.out.println("Data is not null");
             tr_table.setItems(data);
 
             trt_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
             trt_airplaneNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
-            trt_initialDep.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
-            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
-            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
-            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
-            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
-            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
         }
 
         else {
@@ -452,19 +448,18 @@ public class DashboardController implements Initializable {
         System.out.println("Getting ticket records");
         // For Ticket Records
         Database database = new Database();
-        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "airplane_no", "initial_depart", "departure", "destination", "origin", "seat_no", "class"));
+        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "airplane_no", "departure", "destination", "origin", "seat_no", "class"));
 
         if (data != null) {
             tr_table.setItems(data);
 
             trt_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
             trt_airplaneNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
-            trt_initialDep.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
-            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
-            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
-            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
-            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
-            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
+            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
         }
 
         else {
@@ -1023,7 +1018,7 @@ public class DashboardController implements Initializable {
         }
 
         // For searching in ticket records
-        String[] search_choices = {"flight_no", "airplane_no", "initial_departure", "departure", "destination", "origin", "seat_no", "class"};
+        String[] search_choices = {"flight_no", "airplane_no", "departure", "destination", "origin", "seat_no", "class"};
         List<String> listQ = new ArrayList<>();
 
         for (String data1 : search_choices) {

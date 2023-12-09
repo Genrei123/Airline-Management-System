@@ -798,20 +798,35 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void handleNextButtonClick(ActionEvent event) throws SQLException, IOException {
+    public void handleNextButtonClick(ActionEvent event){
         // Determine which button was clicked
         Button clickedButton = (Button) event.getSource();
 
         // Check the ID or other properties of the button
         if (clickedButton.getId().equals("c_nextBtn2") || clickedButton.getId().equals("g_nextBtn") || clickedButton.getId().equals("p_nextBtn")) {
-            // Code for c_nextBtn2, g_nextBtn, and p_nextBtn 
+
+
+            // Set payment_form visibility to false
+            payment_form.setVisible(false);
+            payingForm.setVisible(true);
+        }
+
+    }
+
+    public void handlePayButtonClick(ActionEvent event) throws SQLException, IOException {
+        // Determine which button was clicked
+        Button clickedButton = (Button) event.getSource();
+
+        // Check the ID or other properties of the button
+        if (clickedButton.getId().equals("pf_payBtn")) {
+            // Code for c_nextBtn2, g_nextBtn, and p_nextBtn
 
             // Insert data into the database
             insertDataIntoDatabase();
             clearPaymentForms();
             clearBookSelectionFields();
             // Set payment_form visibility to false
-            payment_form.setVisible(false);
+            payingForm.setVisible(false);
             overlayPane1.setVisible(false);
             // Show notification
             showNotification();
@@ -1327,6 +1342,16 @@ public class HomepageController implements Initializable {
         }
     }
 
+    private void switchPayingForm(String buttonId) {
+        switch (buttonId) {
+            case "pf_backBtn":
+                payment_form.setVisible(true);
+                payingForm.setVisible(false);
+                break;
+            // Add more cases as needed
+        }
+    }
+
     public void handleBookButtonClick() {
         // Check if all fields in hf_bookFlight are empty
         if (areFieldsEmpty()) {
@@ -1392,6 +1417,11 @@ public class HomepageController implements Initializable {
     public void switchPaypalForm(ActionEvent event) {
         String buttonId = ((JFXButton) event.getSource()).getId();
         switchPaypalForm(buttonId);
+    }
+
+    public void switchPayingForm(ActionEvent event) {
+        String buttonId = ((JFXButton) event.getSource()).getId();
+        switchPayingForm(buttonId);
     }
 
     public void closeForm() {
