@@ -4,7 +4,6 @@ import Animations.SwitchForms;
 import Database.Database;
 import LogIn.AlertManager;
 import LogIn.Customer;
-import Receipt.ReceiptMaker;
 import Receipt.TicketMaker;
 import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
@@ -33,7 +32,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
@@ -56,15 +54,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
-
-import javax.xml.crypto.Data;
 
 public class HomepageController implements Initializable {
 
@@ -460,6 +455,21 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXButton closeButton1;
+
+    @FXML
+    private Label pf_farePrice;
+
+    @FXML
+    private Label pf_totalPrice;
+
+    @FXML
+    private Label pf_fatePrice1;
+
+    @FXML
+    private JFXButton pf_payBtn;
+
+    @FXML
+    private JFXButton pf_backBtn;
 
     private boolean menuOpen = false;
 
@@ -1171,6 +1181,7 @@ public class HomepageController implements Initializable {
         l_name.clear();
         suffix.clear();
         age.clear();
+        booking_date.getEditor().clear();
 
     }
 
@@ -1183,7 +1194,7 @@ public class HomepageController implements Initializable {
     // Method to handle return to destination button click
     public void handleReturnToChooseSeatButtonClick() {
         switchForm(hf_chooseSeat, returnToDesti_btn1);
-        clearBookSelectionFields();
+
     }
 
     // Method to handle proceed button click
@@ -1450,7 +1461,6 @@ public class HomepageController implements Initializable {
         boolean isDisabled = c_country.getSelectionModel().isEmpty()
                 || c_name.getText().isEmpty()
                 || c_address1.getText().isEmpty()
-                || c_address2.getText().isEmpty()
                 || c_city.getText().isEmpty()
                 || c_state.getText().isEmpty()
                 || c_postalCode.getText().length() != 4
@@ -1462,7 +1472,6 @@ public class HomepageController implements Initializable {
         boolean isDisabled = g_country.getSelectionModel().isEmpty()
                 || g_name.getText().isEmpty()
                 || g_address1.getText().isEmpty()
-                || g_address2.getText().isEmpty()
                 || g_city.getText().isEmpty()
                 || g_state.getText().isEmpty()
                 || g_postalCode.getText().length() != 4
