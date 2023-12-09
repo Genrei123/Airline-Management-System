@@ -1688,6 +1688,10 @@ public class HomepageController implements Initializable {
     }
 
     /*---------------------- HF CHOOSEDESTI CODE SHOULD BE HERE ----------------------*/
+    private String originFilter = null;
+    private String destinationFilter = null;
+    private String seatClassFilter = null;
+
     private void loadDestinations() {
         // Load the tables
         Database db = new Database();
@@ -1736,15 +1740,32 @@ public class HomepageController implements Initializable {
         comboBox.setItems(uniqueValues);
 
         // Add listener to filter table based on the selected value
-        comboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+        comboBox.setOnAction(event -> {
             filterTable();
+            updateComboBoxItems(); // Update combo box items after filtering
         });
     }
 
+    private void updateComboBoxItems() {
+        sd_origin.setItems(getUniqueColumnValues(sdTbl_origin, originFilter, destinationFilter, seatClassFilter));
+        sd_destination.setItems(getUniqueColumnValues(sdTbl_destination, originFilter, destinationFilter, seatClassFilter));
+    }
+
     private void setupComboBoxFilters() {
-        setupComboBoxFilter(sdTbl_origin, sd_origin, null, null, null);
-        setupComboBoxFilter(sdTbl_destination, sd_destination, null, null, null);
-        setupComboBoxFilter(sdTbl_seatClass, sd_seatClass, null, null, null);
+        sd_origin.setOnAction(event -> {
+            originFilter = sd_origin.getValue();
+            filterTable();
+        });
+
+        sd_destination.setOnAction(event -> {
+            destinationFilter = sd_destination.getValue();
+            filterTable();
+        });
+
+        sd_seatClass.setOnAction(event -> {
+            seatClassFilter = sd_seatClass.getValue();
+            filterTable();
+        });
     }
 
     private ObservableList<String> getUniqueColumnValues(TableColumn<String[], String> column, String originFilter, String destinationFilter, String seatClassFilter) {
@@ -1772,34 +1793,32 @@ public class HomepageController implements Initializable {
     }
 
     private void filterTable() {
-        String originFilter = sd_origin.getValue();
-        String destinationFilter = sd_destination.getValue();
-        String seatClassFilter = sd_seatClass.getValue();
+        if (originFilter != null && destinationFilter != null && seatClassFilter != null) {
+            // Get the data from the table
+            ObservableList<String[]> data = sd_tableView.getItems();
 
-        // Get the data from the table
-        ObservableList<String[]> data = sd_tableView.getItems();
+            // Create a new list for filtered data
+            ObservableList<String[]> filteredData = FXCollections.observableArrayList();
 
-        // Create a new list for filtered data
-        ObservableList<String[]> filteredData = FXCollections.observableArrayList();
+            // Filter the data and add to the new list
+            for (String[] item : data) {
+                String origin = item[0];
+                String destination = item[1];
+                String seatClass = item[2];
 
-        // Filter the data and add to the new list
-        for (String[] item : data) {
-            String origin = item[0];
-            String destination = item[1];
-            String seatClass = item[2];
+                // Check if the filter values are empty or null
+                boolean originMatch = originFilter.isEmpty() || origin.equals(originFilter);
+                boolean destinationMatch = destinationFilter.isEmpty() || destination.equals(destinationFilter);
+                boolean seatClassMatch = seatClassFilter.isEmpty() || seatClass.equals(seatClassFilter);
 
-            // Check if the filter values are empty or null
-            boolean originMatch = originFilter == null || originFilter.isEmpty() || origin.equals(originFilter);
-            boolean destinationMatch = destinationFilter == null || destinationFilter.isEmpty() || destination.equals(destinationFilter);
-            boolean seatClassMatch = seatClassFilter == null || seatClassFilter.isEmpty() || seatClass.equals(seatClassFilter);
-
-            if (originMatch && destinationMatch && seatClassMatch) {
-                filteredData.add(item);
+                if (originMatch && destinationMatch && seatClassMatch) {
+                    filteredData.add(item);
+                }
             }
-        }
 
-        // Set the filtered data to the table
-        sd_tableView.setItems(filteredData);
+            // Set the filtered data to the table
+            sd_tableView.setItems(filteredData);
+        }
     }
 
     // Function to handle sd_confirmBtn click
@@ -1840,6 +1859,7 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         checkFieldsNotEmpty();
+        setupComboBoxFilters();
 
         Customer customer = Customer.getInstance();
         String username = customer.getUsername();
