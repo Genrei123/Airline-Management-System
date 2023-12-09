@@ -65,7 +65,6 @@ public class Database {
                 }
             }
         }
-        System.out.println("Generated SQL Query for updateData: " + query);
 
         connector = connectDB.connectDB();
         prepare = connector.prepareStatement(query.toString());
@@ -100,7 +99,7 @@ public class Database {
             }
         }
         query.append(" FROM ").append(tableName);
-        System.out.println("Generated SQL Query for pullData: " + query);
+
 
 
         connector = connectDB.connectDB();
@@ -161,7 +160,7 @@ public class Database {
             }
         }
 
-        System.out.println("Generated SQL Query for pullData: " + query + " with condition values: " + conditionValue.get(0));
+
 
         connector = connectDB.connectDB();
         if (connector != null) {
@@ -207,7 +206,7 @@ public class Database {
                 }
             }
         }
-        System.out.println("Generated SQL Query for delete: " + query);
+
 
         for (int i = 0; i < conditionValue.size(); i++) {
             System.out.println("Condition values: " + conditionValue.get(i));
@@ -531,7 +530,6 @@ public class Database {
 
                 if (result.next()) {
                     int count = result.getInt(1);
-                    System.out.println(count);
                     return count;
 
                 } else {

@@ -2,12 +2,10 @@ package Dashboard;
 
 import Animations.SwitchForms;
 import Database.Database;
+import Homepage.Booking;
 import LogIn.Admin;
 import LogIn.AlertManager;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -26,12 +24,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -126,8 +126,6 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<String[], String> trt_class;
 
-    @FXML
-    private JFXComboBox<String> trt_searchBy;
 
     @FXML
     private JFXComboBox<String> sl_searchBy;
@@ -138,8 +136,6 @@ public class DashboardController implements Initializable {
     @FXML
     private Label fm_managerBtn;
 
-    @FXML
-    private Label fm_recordsBtn;
 
     @FXML
     private TextField fr_search;
@@ -147,8 +143,6 @@ public class DashboardController implements Initializable {
     @FXML
     private AnchorPane fm_managerForm;
 
-    @FXML
-    private AnchorPane fm_recordsForm;
 
     @FXML
     private AnchorPane bookedFlights_form;
@@ -249,13 +243,16 @@ public class DashboardController implements Initializable {
     private TableColumn<String[], String> fm_managerAirplaneID, fm_managerFlightNO, fm_managerDEST, fm_managerORIGIN, fm_managerSTATUS, fm_managerORIGINDATE, fm_managerDESTDATE;
 
     @FXML
-    private JFXComboBox<String> fm_managerAirplaneIDbox, fm_managerFlightNObox, fm_managerDESTbox, fm_managerORIGINbox, fm_managerSTATUSbox, fm_managerDESTDATEbox;
+    private JFXComboBox<String> fm_managerAirplaneIDbox, fm_managerSTATUSbox;
 
     @FXML
-    private TextField fm_managerFLIGHTNOtxt, cs_class;
+    private TextField fm_managerFLIGHTNOtxt, fm_managerORIGINtxt, fm_managerDESTtxt;
 
     @FXML
-    private JFXTimePicker fm_timeDeparture, ETOA;
+    private TextField cs_class;
+
+    @FXML
+    private JFXTimePicker fm_timeDeparture, fm_timeARRIVAL;
 
     @FXML
     private JFXDatePicker fm_dateDeparture, fm_dateArrival;
@@ -298,6 +295,35 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Label cs_alert;
+
+    @FXML
+    private JFXButton addPlanes_btn;
+
+    @FXML
+    private AnchorPane addPlanes_form;
+
+    @FXML
+    private TableView<String[]> ap_table;
+
+    @FXML
+    private TableColumn<String[], String> ap_airplaneID, ap_origin, ap_dest;
+
+    @FXML
+    private TextField ap_airplaneIDtxt, ap_airplaneOrigintxt, ap_airplaneDesttxt, pm_managerORIGINtxt
+            , pm_managerDESTtxt, pm_managerPrice;
+
+    @FXML
+    private TableView<String[]> pm_table;
+
+    @FXML
+    private TableColumn<String[], String> pm_airplaneID, pm_origin, pm_dest, pm_class, pm_price, pm_carousel;
+
+    @FXML
+    JFXComboBox<String> pm_managerClassBox, pm_managerAirplaneIDbox;
+
+    @FXML
+    JFXCheckBox pm_managerCarousel;
+
 
 
 
@@ -346,12 +372,12 @@ public class DashboardController implements Initializable {
 
     private void switchForm(AnchorPane targetForm, JFXButton selectedButton) {
         // Hide all forms
-
         bookedFlights_form.setVisible(false);
         flightManager_form.setVisible(false);
         ticketRecords_form.setVisible(false);
         sales_form.setVisible(false);
         customSupp_form.setVisible(false);
+        addPlanes_form.setVisible(false);
 
         // Show the selected form
         targetForm.setVisible(true);
@@ -363,29 +389,6 @@ public class DashboardController implements Initializable {
 
         currentSelectedButton = selectedButton;
         currentSelectedButton.getStyleClass().add("selected-button");
-    }
-
-    private void switchForm(AnchorPane targetForm, Label selectedLabel, Label unselectedLabel) {
-        // Hide all forms
-        fm_managerForm.setVisible(true);
-        fm_recordsForm.setVisible(false);
-
-        cs_rebookingForm.setVisible(true);
-
-        // Show the selected form
-        targetForm.setVisible(true);
-
-        // Update label styles
-        selectedLabel.setTextFill(Color.WHITE);
-        unselectedLabel.setTextFill(Color.web("#a18b8b"));
-    }
-
-    public void setBf_clearBtn() {
-        bf_clearBtn.setOnAction((ActionEvent event) -> {
-            // Lagyan pa ng name yung ibang textfields
-            bf_date.setValue(null);
-            bf_time.setValue(null);
-        });
     }
 
     public void bf_search() throws SQLException {
@@ -414,58 +417,6 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void tr_search() throws SQLException {
-        List<String> text = Arrays.asList(tr_search.getText());
-        List<String> searchBy = Arrays.asList(trt_searchBy.getSelectionModel().getSelectedItem());
-
-        Database database = new Database();
-        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "Airplane_no", "departure", "destination", "origin", "seat_no", "class"), searchBy, text);
-        if (data != null) {
-            System.out.println("Data is not null");
-            tr_table.setItems(data);
-
-            trt_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
-            trt_airplaneNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
-            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
-            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
-            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
-            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
-            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
-        }
-
-        else {
-            System.out.println("Data is null");
-        }
-
-    }
-
-    public void tr_clear() throws SQLException {
-        tr_search.setText("");
-        getTicketRecords();
-    }
-
-    public void getTicketRecords() throws SQLException {
-        System.out.println("Getting ticket records");
-        // For Ticket Records
-        Database database = new Database();
-        ObservableList<String[]> data = database.pullData("ticket_records", Arrays.asList("flight_no", "airplane_no", "departure", "destination", "origin", "seat_no", "class"));
-
-        if (data != null) {
-            tr_table.setItems(data);
-
-            trt_flightNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
-            trt_airplaneNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
-            trt_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
-            trt_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
-            trt_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
-            trt_seatNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
-            trt_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
-        }
-
-        else {
-            System.out.println("Data is null");
-        }
-    }
 
     public void getSales() throws SQLException {
         System.out.println("Getting sales");
@@ -596,7 +547,8 @@ public class DashboardController implements Initializable {
 
     public void load_fm_managerTable() throws SQLException {
         Database database = new Database();
-        ObservableList<String[]> data = database.pullData("flight_manager", Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"));
+        ObservableList<String[]> data = database.pullData("flight_manager",
+                Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"));
 
         if (data != null) {
             fm_managerTable.setItems(data);
@@ -614,93 +566,171 @@ public class DashboardController implements Initializable {
         }
     }
 
+    public void loadfmCombobox() {
+        System.out.println("Loading combobox");
+        // Load airplane IDs
+        Database planes = new Database();
+        ObservableList<String[]> data = planes.pullData("airplane_manager",
+                Arrays.asList("airplane_id", "origin", "destination")
+        );
+
+        if (data != null) {
+            List<String> airplaneIDs = new ArrayList<>();
+            for (String[] datum : data) {
+                airplaneIDs.add(datum[0]);
+            }
+
+            ObservableList<String> airplaneIDsData = FXCollections.observableArrayList(airplaneIDs);
+            fm_managerAirplaneIDbox.setItems(airplaneIDsData);
+
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+
+        // Load status combo box
+        List<String> status = Arrays.asList("Boarding", "On Time", "Delayed", "Cancelled");
+        ObservableList<String> statusData = FXCollections.observableArrayList(status);
+        fm_managerSTATUSbox.setItems(statusData);
+
+        fm_managerAirplaneIDbox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected airplane ID: " + newValue);
+
+            assert data != null;
+            fm_managerORIGINtxt.setText(data.get(fm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[1]);
+            fm_managerDESTtxt.setText(data.get(fm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[2]);
+        });
+
+        fm_managerTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected row: " + newValue);
+
+            if (fm_managerAirplaneIDbox == null) {
+                System.out.println("Airplane ID box is null");
+            }
+
+            else {
+                fm_managerAirplaneIDbox.getSelectionModel().select(newValue[0]);
+
+            }
+
+            fm_managerFLIGHTNOtxt.setText(newValue[1]);
+            fm_managerDESTtxt.setText(newValue[2]);
+            fm_managerORIGINtxt.setText(newValue[3]);
+            fm_managerSTATUSbox.getSelectionModel().select(newValue[4]);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            fm_dateDeparture.setValue(LocalDate.parse(newValue[5], formatter));
+            fm_timeDeparture.setValue(LocalTime.parse(newValue[5], formatter));
+            fm_dateArrival.setValue(LocalDate.parse(newValue[6], formatter));
+            fm_timeARRIVAL.setValue(LocalTime.parse(newValue[6], formatter));
+        });
+    }
+
     public void fm_managerADD() throws SQLException {
-        String airplane_id = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
-        String flightNo = fm_managerFLIGHTNOtxt.getText();
+        // Check if null
 
-        LocalDateTime departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
-        LocalDateTime arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String departure = departureDateTime.format(formatter);
-        String arrival = arrivalDateTime.format(formatter);
-
-        String destination = fm_managerDESTbox.getSelectionModel().getSelectedItem();
-        String origin = fm_managerORIGINbox.getSelectionModel().getSelectedItem();
-        String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
 
         Database database = new Database();
-        database.insertData("flight_manager", Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"), Arrays.asList(airplane_id, flightNo, destination, origin, status, departure, arrival));
+        String airplaneID = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String flightNO = fm_managerFLIGHTNOtxt.getText();
+        String destination = fm_managerDESTtxt.getText();
+        String origin = fm_managerORIGINtxt.getText();
+        String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
+        LocalDate originDate = fm_dateDeparture.getValue();
+        LocalDateTime origin_date = LocalDateTime.of(originDate, fm_timeDeparture.getValue());
+        LocalDateTime destDate = LocalDateTime.of(fm_dateArrival.getValue(), fm_timeARRIVAL.getValue());
+
+
+
+        database.insertData("flight_manager",
+                Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"),
+                Arrays.asList(airplaneID, flightNO, destination, origin, status, origin_date, destDate));
+
+        fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
+
+       // If fields are empty
+
 
         load_fm_managerTable();
     }
 
     public void fm_managerDELETE() throws SQLException {
-        String airplane_id = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
-        String flightNo = fm_managerFLIGHTNOtxt.getText();
-
-        LocalDateTime departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
-        LocalDateTime arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String departure = departureDateTime.format(formatter);
-        String arrival = arrivalDateTime.format(formatter);
-
-        String destination = fm_managerDESTbox.getSelectionModel().getSelectedItem();
-        String origin = fm_managerORIGINbox.getSelectionModel().getSelectedItem();
-        String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
-
         Database database = new Database();
-        database.deleteData("flight_manager", Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"), Arrays.asList(airplane_id, flightNo, destination, origin, status, departure, arrival));
+        String airplaneID = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String flightNO = fm_managerFLIGHTNOtxt.getText();
+        String destination = fm_managerDESTtxt.getText();
+        String origin = fm_managerORIGINtxt.getText();
+        String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
+        LocalDate originDate = fm_dateDeparture.getValue();
+        LocalDateTime origin_date = LocalDateTime.of(originDate, fm_timeDeparture.getValue());
+        LocalDateTime destDate = LocalDateTime.of(fm_dateArrival.getValue(), fm_timeARRIVAL.getValue());
+
+        database.deleteData("flight_manager",
+                Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"),
+                Arrays.asList(airplaneID, flightNO, destination, origin, status, origin_date, destDate));
+
+        fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
 
         load_fm_managerTable();
+
     }
 
     public void fm_managerUPDATE() throws SQLException {
-        String airplane_id = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
-        String flightNo = fm_managerFLIGHTNOtxt.getText();
+        // Get original
+        Database original = new Database();
+        ObservableList<String[]> originalData = original.pullData("flight_manager",
+                Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"));
 
-        LocalDateTime departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
-        LocalDateTime arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
+        String originalAirplaneID = originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[0];
+        String originalFlightNO = originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[1];
+        String originalDestination = originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[2];
+        String originalOrigin = originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[3];
+        String originalStatus = originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[4];
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String departure = departureDateTime.format(formatter);
-        String arrival = arrivalDateTime.format(formatter);
 
-        String destination = fm_managerDESTbox.getSelectionModel().getSelectedItem();
-        String origin = fm_managerORIGINbox.getSelectionModel().getSelectedItem();
+        LocalDateTime originalOriginDate = LocalDateTime.parse(originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[5], formatter);
+        LocalDateTime originalDestDate = LocalDateTime.parse(originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[6], formatter);
 
+
+        // Get new
+        String airplaneID = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String flightNO = fm_managerFLIGHTNOtxt.getText();
+        String destination = fm_managerDESTtxt.getText();
+        String origin = fm_managerORIGINtxt.getText();
         String status = fm_managerSTATUSbox.getSelectionModel().getSelectedItem();
+        LocalDate originDate = fm_dateDeparture.getValue();
+        LocalDateTime origin_date = LocalDateTime.of(originDate, fm_timeDeparture.getValue());
+        LocalDateTime destDate = LocalDateTime.of(fm_dateArrival.getValue(), fm_timeARRIVAL.getValue());
 
-        // Update with this values
-
-        String updated_airplane_id = fm_managerAirplaneIDbox.getValue();
-        String updated_flightNo = fm_managerFLIGHTNOtxt.getText();
-
-        LocalDateTime updated_departureDateTime = LocalDateTime.of(fm_dateDeparture.getValue(), fm_timeDeparture.getValue());
-        LocalDateTime updated_arrivalDateTime = LocalDateTime.of(fm_dateArrival.getValue(), ETOA.getValue());
-
-        DateTimeFormatter updated_formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String updated_departure = departureDateTime.format(formatter);
-        String updated_arrival = arrivalDateTime.format(formatter);
-
-        String updated_destination = fm_managerDESTbox.getValue();
-        String updated_origin = fm_managerORIGINbox.getValue();
-
-        String updated_status = fm_managerSTATUSbox.getValue();
-
+        // Update
         Database database = new Database();
-        database.updateData(
-                "flight_manager",
+        database.updateData("flight_manager",
                 Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"),
-                Arrays.asList(updated_airplane_id, updated_flightNo, updated_destination, updated_origin, updated_status, updated_departure, updated_arrival),
+                Arrays.asList(airplaneID, flightNO, destination, origin, status, origin_date, destDate),
                 Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"),
-                Arrays.asList(airplane_id, flightNo, destination, origin, status, departure, arrival)
+                Arrays.asList(originalAirplaneID, originalFlightNO, originalDestination, originalOrigin, originalStatus, originalOriginDate, originalDestDate));
 
-                );
+        fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
 
         load_fm_managerTable();
 
+
+
+    }
+
+    private void fm_clear() {
+        fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
+        fm_managerFLIGHTNOtxt.setText("");
+        fm_managerDESTtxt.setText("");
+        fm_managerORIGINtxt.setText("");
+        fm_managerSTATUSbox.getSelectionModel().clearSelection();
+        fm_dateDeparture.setValue(null);
+        fm_timeDeparture.setValue(null);
+        fm_dateArrival.setValue(null);
+        fm_timeARRIVAL.setValue(null);
     }
 
     private void loadBookedFlights() throws SQLException {
@@ -898,57 +928,206 @@ public class DashboardController implements Initializable {
         }
     }
 
-    private void loadFlightManager() {
-        String[] search_choices3 = {"ERM101", "ERM102", "ERM103", "ERM104", "ERM105", "ERM106", "ERM107", "ERM108", "ERM109"};
-        List<String> listQ3 = new ArrayList<>();
+    public void loadAddplanes() throws SQLException {
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("airplane_manager",
+                Arrays.asList("airplane_id", "origin", "destination"));
 
-        for (String data1 : search_choices3) {
-            listQ3.add(data1);
-        }
-        ObservableList listData3 = FXCollections.observableArrayList(listQ3);
-        fm_managerAirplaneIDbox.setItems(listData3);
-        fm_managerAirplaneIDbox.setValue("airplane_id");
-
-        String[] flightManagerStatus = {"Boarding", "En Route", "Arrived", "Delayed", "Cancelled"};
-        List<String> listQ4 = new ArrayList<>();
-
-        for (String data1 : flightManagerStatus) {
-            listQ4.add(data1);
-        }
-        ObservableList listData4 = FXCollections.observableArrayList(listQ4);
-        fm_managerSTATUSbox.setItems(listData4);
-        fm_managerSTATUSbox.setValue("status");
-
-        String[] flightManagerDestination = {"Manila", "Cebu", "Davao", "Bacolod", "Iloilo", "Cagayan de Oro", "Zamboanga", "Tacloban", "Dumaguete"};
-        List<String> listQ5 = new ArrayList<>();
-
-        for (String data1 : flightManagerDestination) {
-            listQ5.add(data1);
+        if (data != null) {
+            ap_table.setItems(data);
+            ap_airplaneID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            ap_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            ap_dest.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
         }
 
-        ObservableList listData5 = FXCollections.observableArrayList(listQ5);
-        fm_managerDESTbox.setItems(listData5);
-        fm_managerDESTbox.setValue("destination");
-
-        String[] flightManagerOrigin = {"Manila", "Cebu", "Davao", "Bacolod", "Iloilo", "Cagayan de Oro", "Zamboanga", "Tacloban", "Dumaguete"};
-        List<String> listQ6 = new ArrayList<>();
-
-        for (String data1 : flightManagerOrigin) {
-            listQ6.add(data1);
+        else {
+            System.out.println("Data is null");
         }
-
-        ObservableList listData6 = FXCollections.observableArrayList(listQ6);
-        fm_managerORIGINbox.setItems(listData6);
-        fm_managerORIGINbox.setValue("origin");
-
-
-
     }
+
+    public void ap_add() throws SQLException {
+        String airplaneID = ap_airplaneIDtxt.getText();
+        String origin = ap_airplaneOrigintxt.getText();
+        String destination = ap_airplaneDesttxt.getText();
+
+        Database database = new Database();
+        database.insertData("airplane_manager", Arrays.asList("airplane_id", "origin", "destination"), Arrays.asList(airplaneID, origin, destination));
+
+        database.insertData("price_manager", Arrays.asList("airplane_id", "origin", "destination"), Arrays.asList(airplaneID, origin, destination));
+
+        loadAddplanes();
+    }
+
+    public void ap_delete() throws SQLException {
+        String airplaneID = ap_airplaneIDtxt.getText();
+        String origin = ap_airplaneOrigintxt.getText();
+        String destination = ap_airplaneDesttxt.getText();
+
+        Database database = new Database();
+        database.deleteData("airplane_manager", Arrays.asList("airplane_id", "origin", "destination"), Arrays.asList(airplaneID, origin, destination));
+
+        loadAddplanes();
+    }
+
+    public void ap_update() throws SQLException {
+
+
+        // Get original
+        Database original = new Database();
+        ObservableList<String[]> originalList = original.pullData(
+                "airplane_manager",
+                Arrays.asList("airplane_id", "origin", "destination")
+        );
+
+        String original_airplaneID = originalList.get(0)[0];
+        String original_origin = originalList.get(0)[1];
+        String original_destination = originalList.get(0)[2];
+
+        // Get updated
+        String updated_airplaneID = ap_airplaneIDtxt.getText();
+        String updated_origin = ap_airplaneOrigintxt.getText();
+        String updated_destination = ap_airplaneDesttxt.getText();
+
+        // Update
+        Database database = new Database();
+        database.updateData(
+                "airplane_manager",
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(updated_airplaneID, updated_origin, updated_destination),
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(original_airplaneID, original_origin, original_destination)
+        );
+
+        loadAddplanes();
+    }
+
+    private void loadpm() {
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("price_manager",
+                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"));
+
+        if (data != null) {
+            pm_table.setItems(data);
+            pm_airplaneID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            pm_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            pm_dest.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            pm_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            pm_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+            pm_carousel.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+
+        // Load combo box
+        pm_managerClassBox.getItems().addAll("First Class", "Business Class", "Premium Economy", "Economy");
+
+        // Load assign airplane ID
+        Database planes = new Database();
+        ObservableList<String[]> data1 = planes.pullData("airplane_manager",
+                Arrays.asList("airplane_id", "origin", "destination")
+        );
+
+        if (data1 != null) {
+            List<String> airplaneIDs = new ArrayList<>();
+            for (String[] datum : data1) {
+                airplaneIDs.add(datum[0]);
+            }
+
+            ObservableList<String> airplaneIDsData = FXCollections.observableArrayList(airplaneIDs);
+            pm_managerAirplaneIDbox.setItems(airplaneIDsData);
+
+        }
+
+        else {
+            System.out.println("Data is null");
+        }
+
+        // Add listener
+        pm_managerAirplaneIDbox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected airplane ID: " + newValue);
+
+            assert data1 != null;
+            pm_managerORIGINtxt.setText(data1.get(pm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[1]);
+            pm_managerDESTtxt.setText(data1.get(pm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[2]);
+        });
+
+        // Add listener for table
+        pm_table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected row: " + newValue);
+
+            if (pm_managerAirplaneIDbox == null) {
+                System.out.println("Airplane ID box is null");
+            }
+
+            else {
+                pm_managerAirplaneIDbox.getSelectionModel().select(newValue[0]);
+
+            }
+
+            pm_managerORIGINtxt.setText(newValue[1]);
+            pm_managerDESTtxt.setText(newValue[2]);
+            pm_managerClassBox.getSelectionModel().select(newValue[3]);
+            pm_managerPrice.setText(newValue[4]);
+            pm_managerCarousel.setSelected(Boolean.parseBoolean(newValue[5]));
+        });
+    }
+
+    public void pm_update() throws SQLException {
+        String airplaneID = pm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String origin = pm_managerORIGINtxt.getText();
+        String destination = pm_managerDESTtxt.getText();
+
+        String seatClass = pm_managerClassBox.getSelectionModel().getSelectedItem();
+        Double price = Double.parseDouble(pm_managerPrice.getText());
+        Boolean carousel = pm_managerCarousel.isSelected();
+
+        Database update = new Database();
+        update.updateData(
+                "price_manager",
+                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
+                Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel),
+                Arrays.asList("airplane_id"),
+                Arrays.asList(airplaneID)
+        );
+
+        loadpm();
+    }
+
+    public void pm_delete() throws SQLException {
+        String airplaneID = pm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String origin = pm_managerORIGINtxt.getText();
+        String destination = pm_managerDESTtxt.getText();
+
+        String seatClass = pm_managerClassBox.getSelectionModel().getSelectedItem();
+        Double price = Double.parseDouble(pm_managerPrice.getText());
+        Boolean carousel = pm_managerCarousel.isSelected();
+
+        Database delete = new Database();
+        delete.deleteData(
+                "price_manager",
+                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
+                Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel)
+        );
+
+        loadpm();
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        loadpm();
+        loadfmCombobox();
         loadCustomerSupport();
+
+        try {
+            loadAddplanes();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // Set sales to be visible
         sales_form.setVisible(true);
@@ -983,25 +1162,9 @@ public class DashboardController implements Initializable {
         salesForm_btn.setOnAction(e -> switchForm(sales_form, salesForm_btn));
         flightManForm_btn.setOnAction(e -> switchForm(flightManager_form, flightManForm_btn));
         customerSupp_btn.setOnAction(e -> switchForm(customSupp_form, customerSupp_btn));
-
-        // Add button click event handlers
-        fm_managerBtn.setOnMouseClicked(e -> switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn));
-        fm_recordsBtn.setOnMouseClicked(e -> switchForm(fm_recordsForm, fm_recordsBtn, fm_managerBtn));
+        addPlanes_btn.setOnAction(e -> switchForm(addPlanes_form, addPlanes_btn));
 
 
-
-
-        // Set the default form to fm_managerForm
-        switchForm(fm_managerForm, fm_managerBtn, fm_recordsBtn);
-
-
-
-        // For Ticket Records
-        try {
-            getTicketRecords();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
         // For sales
         try {
@@ -1017,18 +1180,9 @@ public class DashboardController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        // For searching in ticket records
-        String[] search_choices = {"flight_no", "airplane_no", "departure", "destination", "origin", "seat_no", "class"};
-        List<String> listQ = new ArrayList<>();
 
-        for (String data1 : search_choices) {
-            listQ.add(data1);
-        }
-        ObservableList listData = FXCollections.observableArrayList(listQ);
-        trt_searchBy.setItems(listData);
-        trt_searchBy.setValue("flight_no");
 
-        // Ticket Records Ends here
+        // Flight manager ends here
 
         // For searching in sales
         String[] search_choices2 = {"ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"};
@@ -1043,32 +1197,6 @@ public class DashboardController implements Initializable {
 
         // Sales ends here
 
-        // For flight manager
-        fm_managerTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                String[] selected = fm_managerTable.getSelectionModel().getSelectedItem();
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDateTime dateTime = LocalDateTime.parse(selected[5], formatter);
-
-                fm_dateDeparture.setValue(dateTime.toLocalDate());
-                fm_timeDeparture.setValue(dateTime.toLocalTime());
-
-                LocalDateTime dateTime2 = LocalDateTime.parse(selected[6], formatter);
-                fm_dateArrival.setValue(dateTime2.toLocalDate());
-                ETOA.setValue(dateTime2.toLocalTime());
-
-                fm_managerAirplaneIDbox.setValue(selected[0]);
-                fm_managerFLIGHTNOtxt.setText(selected[1]);
-                fm_managerDESTbox.setValue(selected[2]);
-                fm_managerORIGINbox.setValue(selected[3]);
-                fm_managerSTATUSbox.setValue(selected[4]);
-
-            }
-        });
-
-        loadFlightManager();
-        // Flight manager ends here
 
         // Book flights starts here
         try {
@@ -1134,9 +1262,6 @@ public class DashboardController implements Initializable {
         bf_searchBy.setItems(listData5);
         bf_searchBy.setValue("flight_no");
 
-
-
-
         // Book flights ends here
 
         // For customer support
@@ -1187,13 +1312,20 @@ public class DashboardController implements Initializable {
             }
         });
 
+        // Add planes
+        ap_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                String[] selected = ap_table.getSelectionModel().getSelectedItem();
 
-
-
+                ap_airplaneIDtxt.setText(selected[0]);
+                ap_airplaneOrigintxt.setText(selected[1]);
+                ap_airplaneDesttxt.setText(selected[2]);
+            }
+        });
 
         // Auto requery when something is changed within the database
         // Create a timeline for periodic polling (adjust the Duration as needed)
-        Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(1), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
             // Code to re-query the database goes here
             System.out.println("Re-querying");
             try {
@@ -1201,16 +1333,24 @@ public class DashboardController implements Initializable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            try {
-                getTicketRecords();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+
             try {
                 load_fm_managerTable();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+
+            try {
+                loadAddplanes();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+
+            loadpm();
+
+
+            loadfmCombobox();
 
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
