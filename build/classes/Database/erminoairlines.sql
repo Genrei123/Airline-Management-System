@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 11:44 AM
+-- Generation Time: Dec 09, 2023 at 01:24 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -28,32 +28,86 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `booked_flights` (
-  `flight_id` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `middle_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `suffix` varchar(255) NOT NULL,
-  `age` int(11) NOT NULL,
-  `birth_date` date NOT NULL,
-  `destination` varchar(255) NOT NULL,
-  `origin` varchar(255) NOT NULL,
-  `class` varchar(255) NOT NULL,
-  `seat` varchar(255) NOT NULL,
-  `flight_no` varchar(255) NOT NULL,
-  `amount` double NOT NULL,
-  `departure` datetime DEFAULT NULL,
-  `arrival` datetime DEFAULT NULL,
-  `book_date` datetime DEFAULT NULL,
-  `ticket_no` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `flight_id` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `middle_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `suffix` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `destination` varchar(255) DEFAULT NULL,
+  `origin` varchar(255) DEFAULT NULL,
+  `class` varchar(255) DEFAULT NULL,
+  `seat` varchar(255) DEFAULT NULL,
+  `flight_no` varchar(255) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `departure` date DEFAULT NULL,
+  `arrival` date DEFAULT NULL,
+  `book_date` date DEFAULT NULL,
+  `ticket_no` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booked_flights`
 --
 
-INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `age`, `birth_date`, `destination`, `origin`, `class`, `seat`, `flight_no`, `amount`, `departure`, `arrival`, `book_date`, `ticket_no`, `status`) VALUES
-('111', 'Genrey', 'Omisol', 'Cristobal', '', 20, '2003-09-19', 'Boracay', 'Manila', 'First Class', '8A', 'ERM101', 5000, '2023-12-07 00:00:00', '2023-12-09 03:10:49', '2023-12-06 03:10:49', '2020456-N', 'Booked');
+INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `age`, `destination`, `origin`, `class`, `seat`, `flight_no`, `amount`, `departure`, `arrival`, `book_date`, `ticket_no`, `status`) VALUES
+('ERM818', 'Genrey', '', 'Cristobal', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '37D', 'ERM818', 1000, NULL, NULL, '2023-12-09', '2023-12-09ER', 'PAID'),
+('ERM818', 'Genrey', '', 'Cristobal', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '37D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', '', 'Cristobal', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '37D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', '', 'Cristobal', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '41D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasd', '', 'xzcz', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '45D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasd', '', 'xzcz', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '45D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadsad', '', 'asdasd', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '49D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadsad', '', 'asdasd', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '49D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadasd', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '53D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadasd', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '53D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsad', '', 'asdsad', '', 21, 'PALAWAN', 'BORACAY', 'ECONOMY', '57D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsad', '', 'asdsad', '', 21, 'PALAWAN', 'BORACAY', 'ECONOMY', '57D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadasdsad', '', 'asdsadsa', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '61D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadasdsad', '', 'asdsadsa', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '61D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasdsa', '', 'sadsad', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '65D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasdsa', '', 'sadsad', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '65D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsa', '', 'sadsad', '', 21, 'PALAWAN', 'BORACAY', 'ECONOMY', '69D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsa', '', 'sadsad', '', 21, 'PALAWAN', 'BORACAY', 'ECONOMY', '69D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'asdsad', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '73D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'asdsad', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '73D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'zxczxcxz', '', 'xzcxzcxz', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '77D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'zxczxcxz', '', 'xzcxzcxz', '', 22, 'PALAWAN', 'BORACAY', 'ECONOMY', '77D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasdsa', '', 'asdasda', '', 213, 'PALAWAN', 'BORACAY', 'ECONOMY', '38D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasdsa', '', 'asdasda', '', 213, 'PALAWAN', 'BORACAY', 'ECONOMY', '38D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '42D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '42D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsa', '', 'sadsadsa', '', 232, 'PALAWAN', 'BORACAY', 'ECONOMY', '46D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsa', '', 'sadsadsa', '', 232, 'PALAWAN', 'BORACAY', 'ECONOMY', '46D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadawsd', '', 'asdsadsad', '', 232, 'PALAWAN', 'BORACAY', 'ECONOMY', '50D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadawsd', '', 'asdsadsad', '', 232, 'PALAWAN', 'BORACAY', 'ECONOMY', '50D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasd', '', 'asdasd', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '54D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasd', '', 'asdasd', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '54D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadsadsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '58D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'sadsadsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '58D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'sadsadsa', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '62D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'sadsadsa', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '62D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsada', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '66D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsada', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '66D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '70D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '70D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasd', '', 'asdasd', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '74D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdasd', '', 'asdasd', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '74D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '78D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'asdsad', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '78D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', 'Omisol', 'Cristobal', '', 20, 'PALAWAN', 'BORACAY', 'ECONOMY', '39D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', 'Omisol', 'Cristobal', '', 20, 'PALAWAN', 'BORACAY', 'ECONOMY', '39D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', 'Omisol', 'Cristobal', '', 20, 'PALAWAN', 'BORACAY', 'ECONOMY', '43D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', 'Omisol', 'Cristobal', '', 20, 'PALAWAN', 'BORACAY', 'ECONOMY', '43D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', '', 'asdsad', '', 123, 'PALAWAN', 'BORACAY', 'ECONOMY', '47D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Genrey', '', 'asdsad', '', 123, 'PALAWAN', 'BORACAY', 'ECONOMY', '47D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'asdsads', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '51D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'asdsadsad', '', 'asdsads', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '51D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'genre', '', 'cr', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '55D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'genre', '', 'cr', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '55D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM567', 'asdsad', '', 'sadsad', '', 22, 'DAVAO', 'BORACAY', 'ECONOMY', '37D', 'ERM567', 1000, NULL, NULL, '2023-12-09', '2023-12-09ER', 'PAID'),
+('ERM567', 'asdsad', '', 'sadsad', '', 22, 'DAVAO', 'BORACAY', 'ECONOMY', '37D', 'ERM567', 1000, NULL, NULL, '2023-12-09', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -71,23 +125,6 @@ CREATE TABLE `customer_support` (
   `preferred_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `customer_support`
---
-
-INSERT INTO `customer_support` (`name`, `ticket_no`, `reason`, `contact`, `feedback`, `status`, `preferred_date`) VALUES
-('Cristobal', '2020456-N', 'Move Departure Date', 'tsts', 'TEsts', 'Approved', '2023-12-07'),
-('Cristobal', '2020456-N', 'Move Departure Date', 'tsts', 'test', 'Approved', '2023-12-07'),
-('Cristobal', '2312321321', 'Move Departure Date', 'tsts', 'test', 'Pending', '2023-12-07'),
-('Cristobal', '2312321321', 'Move Departure Date', 'tsts', 'test', 'Pending', '2023-12-07'),
-('sadsad', 'asdsadsads', 'Move Departure Date', 'asdsad', 'asdsad', 'Pending', '2023-12-07'),
-('sadasd', 'asdsadsa', 'Move Departure Date', 'sadsad', 'asdsad', 'Pending', '2023-12-08'),
-('12213', '231', 'Move Departure Date', '213', '213', 'Pending', '2023-12-07'),
-('213213', '123213', 'Move Departure Date', '21321', '213', 'Pending', '2023-12-06'),
-('213213', '20220456-N', 'Move Departure Date', '21321', '213', 'Pending', '2023-12-06'),
-('Cristobal', '20220456-N', 'Move Departure Date', 'asdsad', '213', 'Pending', '2023-12-06'),
-('Cristobal', '2020456-N', 'Move Departure Date', '09682345489', 'Tests', 'Approved', '2023-12-07');
-
 -- --------------------------------------------------------
 
 --
@@ -95,23 +132,14 @@ INSERT INTO `customer_support` (`name`, `ticket_no`, `reason`, `contact`, `feedb
 --
 
 CREATE TABLE `flight_manager` (
-  `airplane_id` varchar(255) NOT NULL,
-  `flight_no` varchar(255) NOT NULL,
-  `destination` varchar(255) NOT NULL,
-  `origin` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `origin_date` datetime NOT NULL,
-  `destination_date` datetime NOT NULL
+  `airplane_id` varchar(255) DEFAULT NULL,
+  `flight_no` varchar(255) DEFAULT NULL,
+  `destination` varchar(255) DEFAULT NULL,
+  `origin` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `origin_date` datetime DEFAULT NULL,
+  `destination_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `flight_manager`
---
-
-INSERT INTO `flight_manager` (`airplane_id`, `flight_no`, `destination`, `origin`, `status`, `origin_date`, `destination_date`) VALUES
-('test', 'test', 'tsts', 'tsts', 'sts', '2023-12-07 03:52:36', '2023-12-07 03:52:36'),
-('ststs', 'sts', 'st', 'st', 'st', '2023-12-07 03:52:36', '2023-12-07 03:52:36'),
-('ERM101', 'test', 'Manila', 'Cebu', 'On Time', '2023-12-07 03:52:36', '2023-12-07 03:52:36');
 
 -- --------------------------------------------------------
 
@@ -120,12 +148,20 @@ INSERT INTO `flight_manager` (`airplane_id`, `flight_no`, `destination`, `origin
 --
 
 CREATE TABLE `flight_records` (
-  `flight_id` int(11) NOT NULL,
+  `flight_id` varchar(11) NOT NULL,
   `destination` varchar(255) NOT NULL,
   `origin` varchar(255) NOT NULL,
-  `time_departure` date NOT NULL,
-  `passenger_number` int(11) NOT NULL
+  `time_departure` date DEFAULT NULL,
+  `passenger_number` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `flight_records`
+--
+
+INSERT INTO `flight_records` (`flight_id`, `destination`, `origin`, `time_departure`, `passenger_number`) VALUES
+('ERM567', 'DAVAO', 'BORACAY', NULL, 1),
+('ERM818', 'PALAWAN', 'BORACAY', NULL, 53);
 
 -- --------------------------------------------------------
 
@@ -134,16 +170,236 @@ CREATE TABLE `flight_records` (
 --
 
 CREATE TABLE `sales` (
-  `ticket_no` varchar(255) NOT NULL,
+  `ticket_no` varchar(255) DEFAULT NULL,
   `flight_no` varchar(255) NOT NULL,
   `seat` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `payment_date` date NOT NULL,
   `status` varchar(255) NOT NULL,
   `ticket_agent` varchar(255) NOT NULL,
-  `ticket_branch` varchar(255) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`ticket_no`, `flight_no`, `seat`, `name`, `payment_date`, `status`, `ticket_agent`, `price`) VALUES
+(NULL, 'ERM818', '1A', 'asdsads  asdsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '1A', 'asdsads  asdsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '2A', 'asdsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '2A', 'asdsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '37D', 'sadsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '37D', 'sadsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '41D', 'asdsadsa  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '41D', 'asdsadsa  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '45D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '45D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '49D', 'asdsadsasad  asdsadasdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '49D', 'asdsadsasad  asdsadasdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '53D', 'asdsadsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '53D', 'asdsadsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '57D', 'asdsadsa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '57D', 'asdsadsa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '61D', 'asdsadsa  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '61D', 'asdsadsa  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '65D', 'asdsadsadsa  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '65D', 'asdsadsadsa  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '69D', 'sadsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '69D', 'sadsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '73D', 'asdsadsad  sadsadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '73D', 'asdsadsad  sadsadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '77D', 'asdsadsadsad  asdsadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '77D', 'asdsadsadsad  asdsadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '38D', 'asdasdsad  xzcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '38D', 'asdasdsad  xzcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '42D', 'asdsadsad  sadsads', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '42D', 'asdsadsad  sadsads', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '46D', 'asdsadsad  zxczxcxz', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '46D', 'asdsadsad  zxczxcxz', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '50D', 'asdsadasd  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '50D', 'asdsadasd  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '54D', 'sadzxc  xzczxc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '54D', 'sadzxc  xzczxc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '58D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '58D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '62D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '62D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '66D', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '66D', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '70D', 'asdsadsadsad  sadsadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '70D', 'asdsadsadsad  sadsadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '74D', 'asdsadsadsa  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '74D', 'asdsadsadsa  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '78D', 'asdsadsads  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '78D', 'asdsadsads  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '39D', 'asdsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '39D', 'asdsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '43D', 'sadsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '43D', 'sadsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '47D', 'asdsadsadsa  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '47D', 'asdsadsadsa  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '51D', 'asdsadsad  sadsadas', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '51D', 'asdsadsad  sadsadas', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '55D', 'asdsadsadsa  sad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '55D', 'asdsadsadsa  sad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '59D', 'asdsadsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '59D', 'asdsadsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '63D', 'asdsadsad  asdsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '63D', 'asdsadsad  asdsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '67D', 'sadsadsadssa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '67D', 'sadsadsadssa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '71D', 'asdsadsads  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '71D', 'asdsadsads  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '75D', 'sadsadsadsad  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '75D', 'sadsadsadsad  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '79D', 'asdsadsadsa  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '79D', 'asdsadsadsa  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '40D', 'asdsadsax  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '40D', 'asdsadsax  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '44D', 'asdasd  zxcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '44D', 'asdasd  zxcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '48D', 'xzcxzcxzcasdsad  sadasdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '48D', 'xzcxzcxzcasdsad  sadasdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '52D', 'asdasdsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '52D', 'asdasdsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '56D', 'asdsadsad  zxcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '56D', 'asdsadsad  zxcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '60D', 'sadsadsads  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '60D', 'sadsadsads  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '64D', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '64D', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '68D', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '68D', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '72D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '72D', 'asdsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '76D', 'asdsadsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '76D', 'asdsadsadsad  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '80D', 'asdasd  asdasdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '80D', 'asdasd  asdasdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '5A', 'sadsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '5A', 'sadsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '6A', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '6A', 'asdsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '3A', 'asdsadsadasd  sadsadas', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '3A', 'asdsadsadasd  sadsadas', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '7A', 'asdsadsa  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '7A', 'asdsadsa  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '4A', 'asdasd  sadasd', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '4A', 'asdasd  sadasd', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '8A', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '8A', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '9B', 'dsadsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '9B', 'dsadsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '13B', 'asdsadsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '13B', 'asdsadsadsad  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '17B', 'sadsadsadxzd  zxdxzdxzd', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '17B', 'sadsadsadxzd  zxdxzdxzd', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '21B', 'asdasdasd  zxcxzxz', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '21B', 'asdasdasd  zxcxzxz', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '10B', 'asdsadsad  asdsadsa', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '10B', 'asdsadsad  asdsadsa', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '14B', 'zcxzcxzcxzc  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '14B', 'zcxzcxzcxzc  sadsadsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '18B', 'sadsadsa  dasdsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '18B', 'sadsadsa  dasdsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '22B', 'asdsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '22B', 'asdsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '11B', 'asdsadzxdzxd  zxdzxdxz', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '11B', 'asdsadzxdzxd  zxdzxdxz', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '15B', 'zxcxzcxzcxz  zxcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '15B', 'zxcxzcxzcxz  zxcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '19B', 'zxczxczx  cxzczxcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '19B', 'zxczxczx  cxzczxcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '23B', 'xzczxczxc  zxcxzcxz', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '23B', 'xzczxczxc  zxcxzcxz', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '12B', 'zxcvxzvzxv  zxvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '12B', 'zxcvxzvzxv  zxvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '16B', 'xzczxcxzc  zxczxcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '16B', 'xzczxcxzc  zxczxcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '20B', 'zxcxzcxzc  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '20B', 'zxcxzcxzc  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '24B', 'xzcxzcxzc  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '24B', 'xzcxzcxzc  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5499),
+(NULL, 'ERM818', '25C', 'xzvxzvxzv  zxvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '25C', 'xzvxzvxzv  zxvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '29C', 'xzvzxvxzv  xzvzxvxz', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '29C', 'xzvzxvxzv  xzvzxvxz', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '33C', 'xzcxzcxzc  xzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '33C', 'xzcxzcxzc  xzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '26C', 'xzcxzcxz  cxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '26C', 'xzcxzcxz  cxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '30C', 'xzvxzvxzv  xzvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '30C', 'xzvxzvxzv  xzvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '34C', 'xzvxzvzxvxz  xzvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '34C', 'xzvxzvzxvxz  xzvxzvxzv', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '27C', 'cxzasdsadsa  zxcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '27C', 'cxzasdsadsa  zxcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '31C', 'asdasdsadxzdzxd  xzdxzdxzd', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '31C', 'asdasdsadxzdzxd  xzdxzdxzd', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '35C', 'xzcxzcxzc  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '35C', 'xzcxzcxzc  xzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '28C', 'xzczxcxzcxz  xzcxzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '28C', 'xzczxcxzcxz  xzcxzcxzcxzc', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '32C', 'xzcxzcxz  zxcxzcxz', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'ERM818', '32C', 'xzcxzcxz  zxcxzcxz', '2023-12-09', 'PAID', 'CASHIER', 5000),
+(NULL, 'sadsad', 'AVAILABILITY', 'sadsad', '2023-12-09', 'PAID', 'CASHIER', 123213),
+(NULL, 'ERM818', '37D', 'Genrey  Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '37D', 'Genrey  Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '37D', 'Genrey  Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '41D', 'Genrey  Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '45D', 'asdasd  xzcz', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '45D', 'asdasd  xzcz', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '49D', 'sadsad  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '49D', 'sadsad  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '53D', 'sadasd  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '53D', 'sadasd  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '57D', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '57D', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '61D', 'sadasdsad  asdsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '61D', 'sadasdsad  asdsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '65D', 'asdasdsa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '65D', 'asdasdsa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '69D', 'asdsadsa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '69D', 'asdsadsa  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '73D', 'asdsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '73D', 'asdsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '77D', 'zxczxcxz  xzcxzcxz', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '77D', 'zxczxcxz  xzcxzcxz', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '38D', 'asdasdsa  asdasda', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '38D', 'asdasdsa  asdasda', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '42D', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '42D', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '46D', 'asdsadsa  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '46D', 'asdsadsa  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '50D', 'asdsadawsd  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '50D', 'asdsadawsd  asdsadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '54D', 'asdasd  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '54D', 'asdasd  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '58D', 'sadsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '58D', 'sadsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '62D', 'asdsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '62D', 'asdsadsad  sadsadsa', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '66D', 'asdsada  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '66D', 'asdsada  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '70D', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '70D', 'asdsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '74D', 'asdasd  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '74D', 'asdasd  asdasd', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '78D', 'asdsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '78D', 'asdsadsad  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '39D', 'Genrey Omisol Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '39D', 'Genrey Omisol Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '43D', 'Genrey Omisol Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '43D', 'Genrey Omisol Cristobal', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '47D', 'Genrey  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '47D', 'Genrey  asdsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '51D', 'asdsadsad  asdsads', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '51D', 'asdsadsad  asdsads', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '55D', 'genre  cr', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '55D', 'genre  cr', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM567', '37D', 'asdsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM567', '37D', 'asdsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000);
 
 -- --------------------------------------------------------
 
@@ -183,15 +439,72 @@ INSERT INTO `signin_users` (`user_id`, `username`, `password`, `question`, `answ
 --
 
 CREATE TABLE `ticket_records` (
-  `flight_no` int(11) NOT NULL,
-  `airplane_no` int(11) NOT NULL,
-  `initial_depart` datetime NOT NULL,
-  `departure` datetime NOT NULL,
-  `destination` varchar(255) NOT NULL,
-  `origin` varchar(255) NOT NULL,
-  `seat_no` int(11) NOT NULL,
-  `class` varchar(255) NOT NULL
+  `flight_no` varchar(255) DEFAULT NULL,
+  `airplane_no` varchar(255) DEFAULT NULL,
+  `departure` datetime DEFAULT NULL,
+  `destination` varchar(255) DEFAULT NULL,
+  `origin` varchar(255) DEFAULT NULL,
+  `seat_no` varchar(255) DEFAULT NULL,
+  `class` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ticket_records`
+--
+
+INSERT INTO `ticket_records` (`flight_no`, `airplane_no`, `departure`, `destination`, `origin`, `seat_no`, `class`) VALUES
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '45D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '45D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '49D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '49D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '53D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '53D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '57D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '57D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '61D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '61D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '65D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '65D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '69D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '69D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '73D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '73D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '77D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '77D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '38D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '38D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '42D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '42D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '46D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '46D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '50D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '50D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '54D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '54D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '58D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '58D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '62D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '62D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '66D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '66D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '70D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '70D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '74D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '74D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '78D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '78D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '39D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '39D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '43D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '43D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '47D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '47D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '51D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '51D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '55D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '55D', 'ECONOMY'),
+('ERM567', NULL, NULL, 'DAVAO', 'BORACAY', '37D', 'ECONOMY'),
+('ERM567', NULL, NULL, 'DAVAO', 'BORACAY', '37D', 'ECONOMY');
 
 --
 -- Indexes for dumped tables

@@ -463,7 +463,7 @@ public class HomepageController implements Initializable {
     private Label pf_totalPrice;
 
     @FXML
-    private Label pf_fatePrice1;
+    private Label pf_farePrice1;
 
     @FXML
     private JFXButton pf_payBtn;
@@ -798,13 +798,12 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void handleNextButtonClick(ActionEvent event){
+    public void handleNextButtonClick(ActionEvent event) {
         // Determine which button was clicked
         Button clickedButton = (Button) event.getSource();
 
         // Check the ID or other properties of the button
         if (clickedButton.getId().equals("c_nextBtn2") || clickedButton.getId().equals("g_nextBtn") || clickedButton.getId().equals("p_nextBtn")) {
-
 
             // Set payment_form visibility to false
             payment_form.setVisible(false);
@@ -819,7 +818,6 @@ public class HomepageController implements Initializable {
 
         // Check the ID or other properties of the button
         if (clickedButton.getId().equals("pf_payBtn")) {
-            // Code for c_nextBtn2, g_nextBtn, and p_nextBtn
 
             // Insert data into the database
             insertDataIntoDatabase();
@@ -886,8 +884,6 @@ public class HomepageController implements Initializable {
         }
     }
 
-
-
     public String generateFlightID(String prefix, String origin, String destination) {
         String combinedString = origin + destination;
         int hashcode = Objects.hash(combinedString);
@@ -905,7 +901,6 @@ public class HomepageController implements Initializable {
 
         randomNum = randomNum + counter;
         return prefix + randomNum;
-
 
     }
 
@@ -945,8 +940,8 @@ public class HomepageController implements Initializable {
             Database insertBooked_flights = new Database();
             insertBooked_flights.insertData(
                     "booked_flights",
-                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no"
-                    , "amount", "book_date", "ticket_no", "status"),
+                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no",
+                            "amount", "book_date", "ticket_no", "status"),
                     Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(),
                             age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id,
                             fare_price.getText(), now, ticket_no, "PAID")
@@ -963,63 +958,58 @@ public class HomepageController implements Initializable {
             Booking infos = Booking.getInstance();
             TicketMaker receiptMaker = new TicketMaker();
 
-
-
             // Ticket
             String test = "test";
             LocalDate date = booking_date.getValue();
             receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
                     infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
                     flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
-        }
+        } else {
 
-        else {
+            // Means that the flight is not unique
+            // Get the flight_id of the flight
+            Database getflight_id = new Database();
+            flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
+            System.out.println(flight_id + "else statement");
 
+            // Update the passenger_number of the flight
+            Database updatePassengerNumber = new Database();
+            updatePassengerNumber.updatePassengerNumber(flight_id);
 
-                // Means that the flight is not unique
-                // Get the flight_id of the flight
-                Database getflight_id = new Database();
-                flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
-                System.out.println(flight_id + "else statement");
-
-                // Update the passenger_number of the flight
-                Database updatePassengerNumber = new Database();
-                updatePassengerNumber.updatePassengerNumber(flight_id);
-
-                // Insert data into booked_flights
-                Database insertBooked_flights = new Database();
-                insertBooked_flights.insertData(
+            // Insert data into booked_flights
+            Database insertBooked_flights = new Database();
+            insertBooked_flights.insertData(
                     "booked_flights",
                     Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "book_date"),
                     Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(), age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id, fare_price.getText(), now)
-                );
+            );
 
-                // Add the data into sales
-                Database insertSales = new Database();
-                insertSales.insertData(
-                        "sales",
-                        Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
-                        Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
-                );
+            // Add the data into sales
+            Database insertSales = new Database();
+            insertSales.insertData(
+                    "sales",
+                    Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
+                    Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
+            );
 
-                // Ticket_records
-                TicketNo ticketNo = new TicketNo();
-                String ticket_no = ticketNo.generateTicketNo(f_name.getText());
-                Database insertTicket_records = new Database();
-                insertTicket_records.insertData(
+            // Ticket_records
+            TicketNo ticketNo = new TicketNo();
+            String ticket_no = ticketNo.generateTicketNo(f_name.getText());
+            Database insertTicket_records = new Database();
+            insertTicket_records.insertData(
                     "ticket_records",
                     Arrays.asList("flight_no", "destination", "origin", "seat_no", "class"),
                     Arrays.asList(flight_id, destination.getText(), origin.getText(), seat.getText(), s_class.getText())
-                );
+            );
 
-                Booking infos = Booking.getInstance();
-                TicketMaker receiptMaker = new TicketMaker();
+            Booking infos = Booking.getInstance();
+            TicketMaker receiptMaker = new TicketMaker();
 
-                // Ticket
-                String test = "test";
-                LocalDate date = booking_date.getValue();
-                receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
-                        infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
+            // Ticket
+            String test = "test";
+            LocalDate date = booking_date.getValue();
+            receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
+                    infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
                     flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
         }
 
@@ -1030,12 +1020,11 @@ public class HomepageController implements Initializable {
         if (counter < 80 && counter >= 0) {
 
             // Get the flight_id of the flight
-                /*Database getflight_id = new Database();
+            /*Database getflight_id = new Database();
                 flight_id = getflight_id.getFlightID(
                         destination.getText(),
                         origin.getText()
                 );*/
-
             flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
             System.out.println(flight_id);
 
@@ -1079,7 +1068,6 @@ public class HomepageController implements Initializable {
                     infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
                     flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
 
-
         } else if (counter >= 80) {
             // Update flight_manager
             System.out.println("Flight is full");
@@ -1092,7 +1080,7 @@ public class HomepageController implements Initializable {
         }
     }
 
-    private void checkSeats () throws SQLException {
+    private void checkSeats() throws SQLException {
         String flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
         Database checkSeats = new Database();
         int counter = checkSeats.flightCount(destination.getText(), origin.getText());
@@ -1107,7 +1095,6 @@ public class HomepageController implements Initializable {
             );
         }
     }
-
 
     //and Except middle name
     private boolean areAllFieldsExceptSuffixEmpty() {
@@ -1209,7 +1196,6 @@ public class HomepageController implements Initializable {
     // Method to handle return to destination button click
     public void handleReturnToChooseSeatButtonClick() {
         switchForm(hf_chooseSeat, returnToDesti_btn1);
-
     }
 
     // Method to handle proceed button click
@@ -1389,8 +1375,6 @@ public class HomepageController implements Initializable {
         booking.setSeatNo(seat.getText());
         booking.setBooking_date(LocalDate.now());
         booking.setFlight_no(generateFlightID("ERM", origin.getText(), destination.getText()));
-
-
 
         Double total = Double.valueOf(fare_price.getText());
         total = total + 50 + 30;
@@ -1573,7 +1557,6 @@ public class HomepageController implements Initializable {
         }
     }
 
-
     public void handleChangeInfoButtonClick() {
         CSswitchForm(cs_changeInfoForm, cs_rebookingBtn);
     }
@@ -1645,7 +1628,6 @@ public class HomepageController implements Initializable {
         cs_seatClass.setValue("ECONOMY");
         cs_seatClass.setDisable(true);
     }
-
 
     public void handleRebooking() throws SQLException {
         // Check for empty fields
@@ -2024,6 +2006,34 @@ public class HomepageController implements Initializable {
         }
     }
 
+    private void updateFarePriceLabels(String newValue) {
+        // Check if pf_farePrice is not null before accessing it
+        if (pf_farePrice != null) {
+            pf_farePrice.setText("₱" + newValue);
+        }
+
+        // Check if pf_farePrice1 is not null before accessing it
+        if (pf_farePrice1 != null) {
+            pf_farePrice1.setText("₱" + newValue);
+        }
+
+        // Calculate total price with 12% VAT
+        if (newValue != null && !newValue.isEmpty()) {
+            try {
+                double baseFare = Double.parseDouble(newValue);
+                double vatPercentage = 0.12; // 12% VAT
+                double totalFare = baseFare + (baseFare * vatPercentage);
+
+                // Update pf_totalPrice label with the calculated total fare including the peso sign
+                if (pf_totalPrice != null) {
+                    pf_totalPrice.setText("₱" + String.format("%.2f", totalFare) + "*");
+                }
+            } catch (NumberFormatException e) {
+                // Handle the case where newValue is not a valid number
+                e.printStackTrace(); // You might want to handle this differently in a production scenario
+            }
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -2492,6 +2502,16 @@ public class HomepageController implements Initializable {
 
         cs_seatClass.valueProperty().addListener((observable, oldSeatClass, newSeatClass) -> {
             updateCsPrice(newSeatClass);
+        });
+
+        cs_seatClass.valueProperty().addListener((observable, oldSeatClass, newSeatClass) -> {
+            // Clear the text in cs_seatNum
+            cs_seatNum.clear();
+        });
+
+        fare_price.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Update pf_farePrice and pf_farePrice1 labels based on the new value
+            updateFarePriceLabels(newValue);
         });
     }
 }

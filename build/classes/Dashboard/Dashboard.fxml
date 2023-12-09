@@ -123,62 +123,6 @@
                         <JFXButton buttonType="RAISED" layoutX="905.0" layoutY="23.0" onAction="#confirmRebook" prefHeight="49.0" prefWidth="155.0" style="-fx-background-color: #5b5b5b;" text="REBOOK CONFIRM" textFill="WHITE" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cs_updateForm" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="1200.0" visible="false">
-                     <children>
-                        <TableView layoutX="42.0" layoutY="106.0" prefHeight="390.0" prefWidth="300.0">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="78.0" text="C2" />
-                              <TableColumn prefWidth="72.0" text="C2" />
-                           </columns>
-                        </TableView>
-                        <AnchorPane layoutX="395.0" layoutY="145.0" prefHeight="264.0" prefWidth="317.0" style="-fx-background-color: #252525; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="14.0" layoutY="21.0" prefHeight="30.0" prefWidth="113.0" text="TICKET NO." textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" />
-                              <Label layoutX="16.0" layoutY="99.0" prefHeight="30.0" prefWidth="113.0" text="NAME" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="16.0" layoutY="129.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" />
-                              <Label layoutX="16.0" layoutY="174.0" prefHeight="30.0" prefWidth="113.0" text="DATE" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="16.0" layoutY="204.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="743.0" layoutY="145.0" prefHeight="264.0" prefWidth="317.0" style="-fx-background-color: #252525; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="15.0" layoutY="28.0" prefHeight="30.0" prefWidth="113.0" text="TICKET NO." textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="15.0" layoutY="58.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" stylesheets="@DashboardStyles.css" />
-                              <Label layoutX="17.0" layoutY="106.0" prefHeight="30.0" prefWidth="113.0" text="NAME" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="17.0" layoutY="181.0" prefHeight="30.0" prefWidth="113.0" text="DATE" textFill="#f5f5f5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="16.0" layoutY="136.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" stylesheets="@DashboardStyles.css" />
-                              <TextField layoutX="17.0" layoutY="211.0" prefHeight="25.0" prefWidth="286.0" styleClass="textField" stylesheets="@DashboardStyles.css" />
-                           </children>
-                        </AnchorPane>
-                        <JFXButton buttonType="RAISED" layoutX="901.0" layoutY="14.0" prefHeight="49.0" prefWidth="155.0" style="-fx-background-color: #5b5b5b;" text="UPDATE INFO" textFill="WHITE" />
-                     </children>
-                  </AnchorPane>
                   <Label layoutX="402.0" layoutY="21.0" prefHeight="30.0" prefWidth="113.0" text="TICKET NO." textFill="#f5f5f5">
                      <font>
                         <Font size="14.0" />
@@ -202,15 +146,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="cs_updateInfoBtn" layoutX="210.0" layoutY="76.0" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="UPDATE INFO" textFill="WHITE">
-                     <font>
-                        <Font name="Gill Sans MT" size="22.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Separator layoutX="199.0" layoutY="79.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="5.0" />
                   <Label fx:id="cs_alert" layoutX="908.0" layoutY="86.0" prefHeight="17.0" prefWidth="148.0" textFill="WHITE" />
                </children>
             </AnchorPane>
@@ -304,7 +239,6 @@
                         <TableColumn fx:id="s_paymentDate" prefWidth="194.0" resizable="false" text="PAYMENT DATE" />
                         <TableColumn fx:id="s_status" prefWidth="129.0" resizable="false" text="STATUS" />
                         <TableColumn fx:id="s_agent" prefWidth="137.0" text="TICKET AGENT" />
-                        <TableColumn fx:id="s_ticketBranch" prefWidth="141.0" resizable="false" text="TICKET BRANCH" />
                         <TableColumn fx:id="s_price" prefWidth="146.0" resizable="false" text="PRICE" />
                     </columns>
                   </TableView>
@@ -347,7 +281,7 @@
                </children></AnchorPane>
             <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="fm_managerBtn" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MANAGER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
+                  <Label fx:id="fm_managerBtn" prefHeight="35.0" prefWidth="148.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="MANAGER" textFill="WHITE" visible="false" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="11.0">
                      <font>
                         <Font name="Gill Sans MT" size="30.0" />
                      </font>
@@ -355,7 +289,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="fm_recordsBtn" layoutX="229.0" layoutY="11.0" prefHeight="35.0" prefWidth="138.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="RECORDS" textFill="#a18b8b">
+                  <Label fx:id="fm_recordsBtn" disable="true" layoutX="229.0" layoutY="11.0" opacity="0.0" prefHeight="35.0" prefWidth="138.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="RECORDS" textFill="#a18b8b">
                      <font>
                         <Font name="Gill Sans MT" size="30.0" />
                      </font>
@@ -363,14 +297,14 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <TextField fx:id="fr_search" layoutX="388.0" layoutY="18.0" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="388.0" AnchorPane.topAnchor="18.0">
+                  <TextField fx:id="fr_search" disable="true" layoutX="388.0" layoutY="18.0" opacity="0.0" prefHeight="26.0" prefWidth="300.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="388.0" AnchorPane.topAnchor="18.0">
                      <styleClass>
                         <String fx:value="search" />
                         <String fx:value="search-focused" />
                      </styleClass>
                   </TextField>
-                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="395.0" layoutY="38.0" size="20" AnchorPane.leftAnchor="395.0" />
-                  <Separator layoutX="221.0" layoutY="15.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="5.0" />
+                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="395.0" layoutY="38.0" size="20" visible="false" AnchorPane.leftAnchor="395.0" />
+                  <Separator layoutX="221.0" layoutY="15.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="5.0" visible="false" />
                   <AnchorPane fx:id="fm_managerForm" layoutY="55.0" prefHeight="497.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                      <children>
                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="446.0" prefWidth="748.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="438.0" AnchorPane.topAnchor="34.0">
@@ -483,7 +417,7 @@
                           </content>
                         </ScrollPane>
                         <AnchorPane layoutX="773.0" layoutY="-15.0" prefHeight="397.0" prefWidth="4.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="28.0" />
-                        <Label layoutX="18.0" layoutY="14.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Flight Board" textFill="#fffbfb">
+                        <Label layoutX="14.0" layoutY="4.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Flight Board" textFill="#fffbfb">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -629,13 +563,12 @@
             <AnchorPane fx:id="bookedFlights_form" layoutY="6.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane layoutX="312.0" layoutY="74.0" prefHeight="470.0" prefWidth="4.0" style="-fx-background-color: white; -fx-background-radius: 5px;" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="286.0" AnchorPane.topAnchor="25.0" />
-                  <TextField fx:id="bf_search" layoutX="304.0" layoutY="28.0" prefHeight="43.0" prefWidth="491.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="28.0">
+                  <TextField fx:id="bf_search" layoutX="304.0" layoutY="50.0" onKeyPressed="#bf_search" prefHeight="27.0" prefWidth="491.0" promptText="Search Records" stylesheets="@DashboardStyles.css" AnchorPane.rightAnchor="405.0" AnchorPane.topAnchor="50.0">
                      <styleClass>
                         <String fx:value="search" />
                         <String fx:value="search-focused" />
                      </styleClass>
                   </TextField>
-                  <FontAwesomeIconView fill="#c6c3c3" glyphName="SEARCH" layoutX="753.0" layoutY="60.0" size="30" AnchorPane.rightAnchor="429.1428565979004" AnchorPane.topAnchor="34.285715103149414" />
                   <AnchorPane layoutX="4.0" prefHeight="554.0" prefWidth="278.0">
                      <children>
                         <Label prefHeight="31.0" prefWidth="245.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="BOOKED FLIGHTS" textFill="WHITE" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="22.0">
@@ -731,7 +664,7 @@
                         <TableColumn fx:id="bf_amountTable" maxWidth="168.0" minWidth="0.0" prefWidth="102.0" text="AMOUNT" />
                     </columns>
                   </TableView>
-                  <JFXComboBox fx:id="bf_searchBy" focusColor="TRANSPARENT" layoutX="812.0" layoutY="28.0" prefHeight="43.0" prefWidth="203.0" styleClass="search" stylesheets="@DashboardStyles.css" unFocusColor="#f7f7f700" />
+                  <JFXComboBox fx:id="bf_searchBy" focusColor="TRANSPARENT" layoutX="807.0" layoutY="51.0" prefHeight="26.0" prefWidth="167.0" styleClass="search" stylesheets="@DashboardStyles.css" unFocusColor="#f7f7f700" />
                </children>
             </AnchorPane>
          </children>

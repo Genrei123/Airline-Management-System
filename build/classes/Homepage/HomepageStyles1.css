@@ -99,3 +99,13 @@
 .scrollpaneTransBG {
     -fx-background-color: transparent;
 }
+
+.tOpBG {
+    -fx-background-color: #103568;
+}
+
+.text-area {
+    -fx-control-inner-background: #103568;
+    -fx-background-color: #103568;
+    -fx-text-fill: white; /* Set text color to white for better visibility */
+}
