@@ -1585,22 +1585,22 @@
                               <AnchorPane layoutX="23.0" layoutY="365.0" prefHeight="200.0" prefWidth="287.0" style="-fx-background-color: #1e1f22; -fx-background-radius: 5;">
                                  <children>
                                     <JFXButton fx:id="sd_confirmBtn" layoutX="88.0" layoutY="145.0" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CONFIRM" textFill="WHITE" />
-                                    <JFXTextField fx:id="sdDi_origin" editable="false" focusColor="#ffffff00" layoutX="8.0" layoutY="14.0" prefHeight="25.0" prefWidth="269.0" promptText="Origin" style="-fx-padding: 0 3 0 3;" styleClass="interReg-FontStyle" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="sdDi_origin" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="14.0" prefHeight="25.0" prefWidth="269.0" promptText="Origin" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="sdDi_destination" editable="false" focusColor="#ffffff00" layoutX="9.0" layoutY="50.0" prefHeight="25.0" prefWidth="269.0" promptText="Destination" style="-fx-padding: 0 3 0 3;" styleClass="interReg-FontStyle" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="sdDi_destination" editable="false" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="57.0" prefHeight="25.0" prefWidth="269.0" promptText="Destination" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="sdDi_seatClass" editable="false" focusColor="#ffffff00" layoutX="10.0" layoutY="88.0" prefHeight="25.0" prefWidth="128.0" promptText="Seat Class" style="-fx-padding: 0 3 0 3;" styleClass="interReg-FontStyle" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="sdDi_seatClass" editable="false" focusColor="WHITE" labelFloat="true" layoutX="10.0" layoutY="100.0" prefHeight="25.0" prefWidth="128.0" promptText="Seat Class" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE" AnchorPane.leftAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="sdDi_farePrice" editable="false" focusColor="#ffffff00" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="128.0" promptText="Fare Price" style="-fx-padding: 0 3 0 3;" styleClass="interReg-FontStyle" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                    <JFXTextField fx:id="sdDi_farePrice" editable="false" focusColor="WHITE" labelFloat="true" layoutX="150.0" layoutY="100.0" prefHeight="25.0" prefWidth="128.0" promptText="Fare Price" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>

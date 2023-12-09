@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2023 at 01:24 AM
+-- Generation Time: Dec 09, 2023 at 02:14 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -107,7 +107,9 @@ INSERT INTO `booked_flights` (`flight_id`, `first_name`, `middle_name`, `last_na
 ('ERM818', 'genre', '', 'cr', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '55D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
 ('ERM818', 'genre', '', 'cr', '', 23, 'PALAWAN', 'BORACAY', 'ECONOMY', '55D', 'ERM818', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
 ('ERM567', 'asdsad', '', 'sadsad', '', 22, 'DAVAO', 'BORACAY', 'ECONOMY', '37D', 'ERM567', 1000, NULL, NULL, '2023-12-09', '2023-12-09ER', 'PAID'),
-('ERM567', 'asdsad', '', 'sadsad', '', 22, 'DAVAO', 'BORACAY', 'ECONOMY', '37D', 'ERM567', 1000, NULL, NULL, '2023-12-09', NULL, NULL);
+('ERM567', 'asdsad', '', 'sadsad', '', 22, 'DAVAO', 'BORACAY', 'ECONOMY', '37D', 'ERM567', 1000, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Ervhyne', '', 'Dalugdog', '', 18, 'PALAWAN', 'BORACAY', 'FIRST CLASS', '1A', 'ERM818', 5999, NULL, NULL, '2023-12-09', NULL, NULL),
+('ERM818', 'Ervhyne', '', 'Dalugdog', '', 18, 'PALAWAN', 'BORACAY', 'FIRST CLASS', '1A', 'ERM818', 5999, NULL, NULL, '2023-12-09', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,6 +126,33 @@ CREATE TABLE `customer_support` (
   `status` varchar(255) NOT NULL,
   `preferred_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `destination_price`
+--
+
+CREATE TABLE `destination_price` (
+  `origin` varchar(255) DEFAULT NULL,
+  `destination` varchar(255) DEFAULT NULL,
+  `seat_class` varchar(255) DEFAULT NULL,
+  `fare_price` int(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `destination_price`
+--
+
+INSERT INTO `destination_price` (`origin`, `destination`, `seat_class`, `fare_price`) VALUES
+('Manila', 'Palawan', 'ECONOMY', 1000),
+('Manila', 'Palawan', 'ECONOMY', 1000),
+('Manila', 'Cebu', 'ECONOMY', 1000),
+('Manila', 'Ilo-Ilo', 'ECONOMY', 1000),
+('Manila', 'Cebu', 'ECONOMY', 1000),
+('Manila', 'Ilo-Ilo', 'ECONOMY', 1000),
+('Manila', 'Davao', 'ECONOMY', 1000),
+('Manila', 'Davao', 'ECONOMY', 1000);
 
 -- --------------------------------------------------------
 
@@ -161,7 +190,7 @@ CREATE TABLE `flight_records` (
 
 INSERT INTO `flight_records` (`flight_id`, `destination`, `origin`, `time_departure`, `passenger_number`) VALUES
 ('ERM567', 'DAVAO', 'BORACAY', NULL, 1),
-('ERM818', 'PALAWAN', 'BORACAY', NULL, 53);
+('ERM818', 'PALAWAN', 'BORACAY', NULL, 55);
 
 -- --------------------------------------------------------
 
@@ -399,7 +428,9 @@ INSERT INTO `sales` (`ticket_no`, `flight_no`, `seat`, `name`, `payment_date`, `
 (NULL, 'ERM818', '55D', 'genre  cr', '2023-12-09', 'PAID', 'CASHIER', 1000),
 (NULL, 'ERM818', '55D', 'genre  cr', '2023-12-09', 'PAID', 'CASHIER', 1000),
 (NULL, 'ERM567', '37D', 'asdsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
-(NULL, 'ERM567', '37D', 'asdsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000);
+(NULL, 'ERM567', '37D', 'asdsad  sadsad', '2023-12-09', 'PAID', 'CASHIER', 1000),
+(NULL, 'ERM818', '1A', 'Ervhyne  Dalugdog', '2023-12-09', 'PAID', 'CASHIER', 5999),
+(NULL, 'ERM818', '1A', 'Ervhyne  Dalugdog', '2023-12-09', 'PAID', 'CASHIER', 5999);
 
 -- --------------------------------------------------------
 
@@ -504,7 +535,9 @@ INSERT INTO `ticket_records` (`flight_no`, `airplane_no`, `departure`, `destinat
 ('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '55D', 'ECONOMY'),
 ('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '55D', 'ECONOMY'),
 ('ERM567', NULL, NULL, 'DAVAO', 'BORACAY', '37D', 'ECONOMY'),
-('ERM567', NULL, NULL, 'DAVAO', 'BORACAY', '37D', 'ECONOMY');
+('ERM567', NULL, NULL, 'DAVAO', 'BORACAY', '37D', 'ECONOMY'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '1A', 'FIRST CLASS'),
+('ERM818', NULL, NULL, 'PALAWAN', 'BORACAY', '1A', 'FIRST CLASS');
 
 --
 -- Indexes for dumped tables
