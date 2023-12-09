@@ -111,7 +111,7 @@ public class HomepageController implements Initializable {
     private JFXTextField cs_destination;
 
     @FXML
-    private JFXTextField cs_origin;
+    private JFXTextField cs_origin, sd_searchByText;
 
     @FXML
     private JFXTextField cs_seatNum;
@@ -475,7 +475,7 @@ public class HomepageController implements Initializable {
     private JFXTextField sdDi_farePrice;
 
     @FXML
-    private JFXComboBox<String> sd_origin;
+    private JFXComboBox<String> sd_origin, sd_searchBy;
 
     @FXML
     private JFXComboBox<String> sd_destination;
@@ -1696,8 +1696,8 @@ public class HomepageController implements Initializable {
         // Load the tables
         Database db = new Database();
         ObservableList<String[]> data = db.pullData(
-                "destination_price",
-                Arrays.asList("origin", "destination", "seat_class", "fare_price")
+                "price_manager",
+                Arrays.asList("origin", "destination", "class", "price")
         );
 
         // Set the table data
@@ -1710,11 +1710,43 @@ public class HomepageController implements Initializable {
 
             // Setup the click event
             setupTableClickEvent();
+        }
+    }
 
-            // Set up filters for sd_origin and sd_destination ComboBoxes
-            setupComboBoxFilters();
+    public void destiSearchBy() {
+        List<String> listP = new ArrayList<>(Arrays.asList("Origin", "Destination", "Seat Class"));
+
+        ObservableList<String> listData = FXCollections.observableArrayList(listP);
+        sd_searchBy.setItems(listData);
+
+        // Add listener to sd_searchBy
+    }
+
+    public void desti_search() throws SQLException {
+        List<String> text = Arrays.asList(sd_searchByText.getText());
+        List<String> searchBy = Arrays.asList(sd_searchBy.getSelectionModel().getSelectedItem());
+
+        Database database = new Database();
+        ObservableList<String[]> data = database.pullData("price_manager",
+                Arrays.asList("origin", "destination", "class", "price"), searchBy, text);
+        if (data != null) {
+            System.out.println("Data is not null");
+            sd_tableView.setItems(data);
+
+            sdTbl_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            sdTbl_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+            sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
 
         }
+
+        else {
+            System.out.println("Data is null");
+        }
+    }
+
+    public void cleardesti_search() {
+
     }
 
     private void setupTableClickEvent() {
@@ -1735,91 +1767,6 @@ public class HomepageController implements Initializable {
         });
     }
 
-    private void setupComboBoxFilter(TableColumn<String[], String> column, ComboBox<String> comboBox, String originFilter, String destinationFilter, String seatClassFilter) {
-        ObservableList<String> uniqueValues = getUniqueColumnValues(column, originFilter, destinationFilter, seatClassFilter);
-        comboBox.setItems(uniqueValues);
-
-        // Add listener to filter table based on the selected value
-        comboBox.setOnAction(event -> {
-            filterTable();
-            updateComboBoxItems(); // Update combo box items after filtering
-        });
-    }
-
-    private void updateComboBoxItems() {
-        sd_origin.setItems(getUniqueColumnValues(sdTbl_origin, originFilter, destinationFilter, seatClassFilter));
-        sd_destination.setItems(getUniqueColumnValues(sdTbl_destination, originFilter, destinationFilter, seatClassFilter));
-    }
-
-    private void setupComboBoxFilters() {
-        sd_origin.setOnAction(event -> {
-            originFilter = sd_origin.getValue();
-            filterTable();
-        });
-
-        sd_destination.setOnAction(event -> {
-            destinationFilter = sd_destination.getValue();
-            filterTable();
-        });
-
-        sd_seatClass.setOnAction(event -> {
-            seatClassFilter = sd_seatClass.getValue();
-            filterTable();
-        });
-    }
-
-    private ObservableList<String> getUniqueColumnValues(TableColumn<String[], String> column, String originFilter, String destinationFilter, String seatClassFilter) {
-        ObservableList<String> uniqueValues = FXCollections.observableArrayList();
-
-        for (String[] item : sd_tableView.getItems()) {
-            String origin = item[0];
-            String destination = item[1];
-            String seatClass = item[2];
-
-            // Check if the item matches the current filters
-            boolean originMatch = originFilter == null || originFilter.isEmpty() || origin.equals(originFilter);
-            boolean destinationMatch = destinationFilter == null || destinationFilter.isEmpty() || destination.equals(destinationFilter);
-            boolean seatClassMatch = seatClassFilter == null || seatClassFilter.isEmpty() || seatClass.equals(seatClassFilter);
-
-            if (originMatch && destinationMatch && seatClassMatch) {
-                String value = column.getCellObservableValue(sd_tableView.getItems().indexOf(item)).getValue();
-                if (!uniqueValues.contains(value)) {
-                    uniqueValues.add(value);
-                }
-            }
-        }
-
-        return uniqueValues;
-    }
-
-    private void filterTable() {
-        if (originFilter != null && destinationFilter != null && seatClassFilter != null) {
-            // Get the data from the table
-            ObservableList<String[]> data = sd_tableView.getItems();
-
-            // Create a new list for filtered data
-            ObservableList<String[]> filteredData = FXCollections.observableArrayList();
-
-            // Filter the data and add to the new list
-            for (String[] item : data) {
-                String origin = item[0];
-                String destination = item[1];
-                String seatClass = item[2];
-
-                // Check if the filter values are empty or null
-                boolean originMatch = originFilter.isEmpty() || origin.equals(originFilter);
-                boolean destinationMatch = destinationFilter.isEmpty() || destination.equals(destinationFilter);
-                boolean seatClassMatch = seatClassFilter.isEmpty() || seatClass.equals(seatClassFilter);
-
-                if (originMatch && destinationMatch && seatClassMatch) {
-                    filteredData.add(item);
-                }
-            }
-
-            // Set the filtered data to the table
-            sd_tableView.setItems(filteredData);
-        }
-    }
 
     // Function to handle sd_confirmBtn click
     private void handleConfirmButtonClick() {
@@ -1859,7 +1806,6 @@ public class HomepageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         checkFieldsNotEmpty();
-        setupComboBoxFilters();
 
         Customer customer = Customer.getInstance();
         String username = customer.getUsername();
@@ -1879,7 +1825,7 @@ public class HomepageController implements Initializable {
 
         //Combo-Box initialize
         seatClass();
-        sdSeatClass();
+        destiSearchBy();
 
         // Initialize the menu slider in the closed state
         closeMenuSlider();

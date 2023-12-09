@@ -650,7 +650,7 @@ public class DashboardController implements Initializable {
 
         fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
 
-       // If fields are empty
+        // If fields are empty
 
 
         load_fm_managerTable();
@@ -884,7 +884,7 @@ public class DashboardController implements Initializable {
                     Arrays.asList("ticket_no"),
                     Arrays.asList(ticketNo)
             );
-            
+
 
 
             AlertManager success = new AlertManager(cs_alert);

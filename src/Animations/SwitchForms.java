@@ -9,6 +9,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SwitchForms {
 
@@ -45,7 +46,7 @@ public class SwitchForms {
 
         StringBuilder nextStageName = new StringBuilder("/" + toLink + "/" + toLink + ".fxml");
 
-        Parent root = FXMLLoader.load(getClass().getResource(nextStageName.toString()));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(nextStageName.toString())));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
 
