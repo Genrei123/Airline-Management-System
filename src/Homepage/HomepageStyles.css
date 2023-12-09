@@ -39,6 +39,15 @@
     -fx-prompt-text-fill: white;
 }
 
+.sdTextFill {
+    -fx-text-fill: white;
+}
+
+.sdTextFill:selected {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
 /* FOR COMBO BOX DESIGN */
 .combo-box {
     -fx-text-fill: white;
