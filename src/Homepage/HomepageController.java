@@ -861,6 +861,8 @@ public class HomepageController implements Initializable {
         }
     }
 
+
+
     public String generateFlightID(String prefix, String origin, String destination) {
         String combinedString = origin + destination;
         int hashcode = Objects.hash(combinedString);
@@ -868,7 +870,7 @@ public class HomepageController implements Initializable {
         int randomNum = Math.abs(hashcode) % 1000;
 
         Database flight_count = new Database();
-        int counter = flight_count.flightCount(destination, origin);
+        int counter = flight_count.flightCount(origin, destination);
 
         counter = counter - 80;
 
@@ -998,7 +1000,8 @@ public class HomepageController implements Initializable {
 
         // Check if the flight reaches 80 seats
         Database booked_passengers = new Database();
-        int counter = booked_passengers.flightCount(destination.getText(), origin.getText());
+        int counter = booked_passengers.flightCount(origin.getText(), destination.getText());
+        System.out.println("Counter in 1004 " + counter);
         if (counter < 80 && counter >= 0) {
 
             // Get the flight_id of the flight

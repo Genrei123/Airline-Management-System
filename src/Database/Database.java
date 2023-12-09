@@ -530,7 +530,10 @@ public class Database {
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    return result.getInt(1);
+                    int count = result.getInt(1);
+                    System.out.println(count);
+                    return count;
+
                 } else {
                     return 0;
                 }
