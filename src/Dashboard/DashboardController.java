@@ -592,7 +592,7 @@ public class DashboardController implements Initializable {
         }
 
         // Load status combo box
-        List<String> status = Arrays.asList("Boarding", "En Route", "Arrived", "Delayed", "Cancelled");
+        List<String> status = Arrays.asList("Boarding", "Arrived", "Delayed", "Cancelled");
         ObservableList<String> statusData = FXCollections.observableArrayList(status);
         fm_managerSTATUSbox.setItems(statusData);
 
@@ -1113,8 +1113,9 @@ public class DashboardController implements Initializable {
                 "price_manager",
                 Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
                 Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel),
-                Arrays.asList("airplane_id"),
-                Arrays.asList(airplaneID)
+                Arrays.asList("airplane_id", "seatClass"),
+                Arrays.asList(airplaneID, seatClass)
+
         );
 
         Database check = new Database();
@@ -1255,7 +1256,7 @@ public class DashboardController implements Initializable {
             }
         });
 
-        String[] search_choices4 = {"ECONOMY", "BUSINESS", "PREMIUM", "VIP"};
+        String[] search_choices4 = {"ECONOMY", "BUSINESS", "PREMIUM", "FIRST CLASS"};
         List<String> listQ4 = new ArrayList<>();
 
         for (String data1 : search_choices4) {
@@ -1278,7 +1279,7 @@ public class DashboardController implements Initializable {
                 bf_amount.setText("3000");
             }
 
-            else if (newValue == "VIP") {
+            else if (newValue == "FIRST CLASS") {
                 bf_amount.setText("4000");
             }
         });
