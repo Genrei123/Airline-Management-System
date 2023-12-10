@@ -939,9 +939,30 @@ public class HomepageController implements Initializable {
         String seat_num = seat.getText();
         String fare = fare_price.getText();
 
+        //Add booking in here
+        //Add arrival
 
+        LocalDate book_date = LocalDate.now();
 
+        String ticket_no = TicketNo.generateTicketNo(f_name.getText());
+        String status = "BOOKED";
 
+        Database insertData = new Database();
+        insertData.insertData(
+                "booked_flights",
+                Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "seat_class", "seat_num", "fare", "booking_date", "ticket_no", "status"),
+                Arrays.asList(flight_id, first_name, middle_name, last_name, suffix_name, age_name, destination_name, origin_name, seat_class, seat_num, fare, book_date.toString(), ticket_no, status)
+        );
+
+        // Add to sales
+        Database insertSales = new Database();
+        insertSales.insertData(
+                "sales",
+                Arrays.asList("ticket_no", "flight_no", "seat", "payment_date",
+                        "status", "ticket_agent", "price"),
+                Arrays.asList(ticket_no, flight_id, seat_num, book_date.toString(),
+                        status, "ONLINE", fare)
+        );
 
     }
 
