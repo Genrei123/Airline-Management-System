@@ -32,6 +32,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
@@ -923,179 +924,25 @@ public class HomepageController implements Initializable {
     }
 
     private void insertDataIntoDatabase() throws SQLException, IOException {
-        LocalDateTime now = LocalDateTime.now();
+        // Add into database
 
-        // First check if flight_id is UNIQUE
         String flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
-        Database check_flight_id = new Database();
-        Boolean isflight_id = check_flight_id.isFlightUnique(flight_id);
+        String first_name = f_name.getText();
+        String middle_name = m_name.getText();
+        String last_name = l_name.getText();
+        String suffix_name = suffix.getText();
+        String age_name = age.getText();
 
-        if (!isflight_id) {
-            // Means that the flight is unique
-            // Create new flight_id
-            flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
-            System.out.println(flight_id);
+        String destination_name = destination.getText();
+        String origin_name = origin.getText();
+        String seat_class = s_class.getText();
+        String seat_num = seat.getText();
+        String fare = fare_price.getText();
 
-            // Insert into database
-            Database insertFlight = new Database();
-            insertFlight.insertData(
-                    "flight_records",
-                    Arrays.asList("flight_id", "destination", "origin", "passenger_number"),
-                    Arrays.asList(flight_id, destination.getText(), origin.getText(), 0)
-            );
 
-            // Add the data into sales
-            Database insertSales = new Database();
-            insertSales.insertData(
-                    "sales",
-                    Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
-                    Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
-            );
 
-            // Insert data into booked_flights
-            TicketNo ticketNo = new TicketNo();
-            String ticket_no = ticketNo.generateTicketNo(f_name.getText());
-            Database insertBooked_flights = new Database();
-            insertBooked_flights.insertData(
-                    "booked_flights",
-                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no",
-                            "amount", "book_date", "ticket_no", "status"),
-                    Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(),
-                            age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id,
-                            fare_price.getText(), now, ticket_no, "PAID")
-            );
 
-            // Ticket_records
-            Database insertTicket_records = new Database();
-            insertTicket_records.insertData(
-                    "ticket_records",
-                    Arrays.asList("flight_no", "destination", "origin", "seat_no", "class"),
-                    Arrays.asList(flight_id, destination.getText(), origin.getText(), seat.getText(), s_class.getText())
-            );
 
-            Booking infos = Booking.getInstance();
-            TicketMaker receiptMaker = new TicketMaker();
-
-            // Ticket
-            String test = "test";
-            LocalDate date = booking_date.getValue();
-            receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
-                    infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
-                    flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
-        } else {
-
-            // Means that the flight is not unique
-            // Get the flight_id of the flight
-            Database getflight_id = new Database();
-            flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
-            System.out.println(flight_id + "else statement");
-
-            // Update the passenger_number of the flight
-            Database updatePassengerNumber = new Database();
-            updatePassengerNumber.updatePassengerNumber(flight_id);
-
-            // Insert data into booked_flights
-            Database insertBooked_flights = new Database();
-            insertBooked_flights.insertData(
-                    "booked_flights",
-                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "book_date"),
-                    Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(), age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id, fare_price.getText(), now)
-            );
-
-            // Add the data into sales
-            Database insertSales = new Database();
-            insertSales.insertData(
-                    "sales",
-                    Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
-                    Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
-            );
-
-            // Ticket_records
-            TicketNo ticketNo = new TicketNo();
-            String ticket_no = ticketNo.generateTicketNo(f_name.getText());
-            Database insertTicket_records = new Database();
-            insertTicket_records.insertData(
-                    "ticket_records",
-                    Arrays.asList("flight_no", "destination", "origin", "seat_no", "class"),
-                    Arrays.asList(flight_id, destination.getText(), origin.getText(), seat.getText(), s_class.getText())
-            );
-
-            Booking infos = Booking.getInstance();
-            TicketMaker receiptMaker = new TicketMaker();
-
-            // Ticket
-            String test = "test";
-            LocalDate date = booking_date.getValue();
-            receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
-                    infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
-                    flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
-        }
-
-        // Check if the flight reaches 80 seats
-        Database booked_passengers = new Database();
-        int counter = booked_passengers.flightCount(origin.getText(), destination.getText());
-        System.out.println("Counter in 1004 " + counter);
-        if (counter < 80 && counter >= 0) {
-
-            // Get the flight_id of the flight
-            /*Database getflight_id = new Database();
-                flight_id = getflight_id.getFlightID(
-                        destination.getText(),
-                        origin.getText()
-                );*/
-            flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
-            System.out.println(flight_id);
-
-            // Update passenger number
-            Database updatePassengerNumber = new Database();
-            updatePassengerNumber.updatePassengerNumber(flight_id);
-
-            // Insert data into booked_flights
-            Database insertBooked_flights = new Database();
-            insertBooked_flights.insertData(
-                    "booked_flights",
-                    Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "book_date"),
-                    Arrays.asList(flight_id, f_name.getText(), m_name.getText(), l_name.getText(), suffix.getText(), age.getText(), destination.getText(), origin.getText(), s_class.getText(), seat.getText(), flight_id, fare_price.getText(), now)
-            );
-
-            // Add the data into sales
-            Database insertSales = new Database();
-            insertSales.insertData(
-                    "sales",
-                    Arrays.asList("flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"),
-                    Arrays.asList(flight_id, seat.getText(), f_name.getText() + " " + m_name.getText() + " " + l_name.getText(), now, "PAID", "CASHIER", fare_price.getText())
-            );
-
-            // Ticket_records
-            TicketNo ticketNo = new TicketNo();
-            String ticket_no = ticketNo.generateTicketNo(f_name.getText());
-            Database insertTicket_records = new Database();
-            insertTicket_records.insertData(
-                    "ticket_records",
-                    Arrays.asList("flight_no", "destination", "origin", "seat_no", "class"),
-                    Arrays.asList(flight_id, destination.getText(), origin.getText(), seat.getText(), s_class.getText())
-            );
-
-            Booking infos = Booking.getInstance();
-            TicketMaker receiptMaker = new TicketMaker();
-
-            // Ticket
-            String test = "test";
-            LocalDate date = booking_date.getValue();
-            receiptMaker.generateTicket(f_name.getText(), m_name.getText(), l_name.getText(), infos.getAge(),
-                    infos.getDestination(), infos.getOrigin(), infos.getClass1(), origin.getText(),
-                    flight_id, infos.getAmount(), date, ticket_no, fare_price.getText());
-
-        } else if (counter >= 80) {
-            // Update flight_manager
-            System.out.println("Flight is full");
-            Database updateFlightManager = new Database();
-            updateFlightManager.insertData(
-                    "flight_manager",
-                    Arrays.asList("flight_id", "destination", "origin", "status"),
-                    Arrays.asList(flight_id, destination.getText(), origin.getText(), "FULL")
-            );
-        }
     }
 
     private void checkSeats() throws SQLException {
@@ -1231,6 +1078,40 @@ public class HomepageController implements Initializable {
         if (cs_seatClass.getSelectionModel().getSelectedItem() != null) {
             s_class.setText(cs_seatClass.getSelectionModel().getSelectedItem());
         }
+
+        String destination_name = destination.getText();
+        String origin_name = origin.getText();
+
+        Database bdate = new Database();
+        ObservableList<String[]> dep_date = bdate.pullData(
+                "flight_manager",
+                Arrays.asList("destination_date"),
+                Arrays.asList("destination", "origin"),
+                Arrays.asList(destination_name, origin_name)
+        );
+
+
+        // Convert string to date
+        String stringDate = dep_date.get(0)[0];
+        System.out.println(stringDate);
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.parse(stringDate, formatter);
+        LocalDate ldate = localDateTime.toLocalDate();
+        System.out.println(ldate);
+
+
+
+
+
+
+
+
+
+
+
+        booking_date.setDisable(true);
     }
 
     // Method to update the state of the proceed button based on cs_seatNum and cs_seatClass
@@ -1785,8 +1666,18 @@ public class HomepageController implements Initializable {
         // Set the text to cs_origin, cs_destination, cs_seatClass, and cs_price
         cs_origin.setText(confirmedOrigin);
         cs_destination.setText(confirmedDestination);
-        cs_seatClass.setValue(confirmedSeatClass); // Assuming cs_seatClass is a JFXComboBox<String>
+
+        // auto set the seat class based on the seat class selected
+        for (String item : classList) {
+            if (item.equals(confirmedSeatClass)) {
+                cs_seatClass.getSelectionModel().select(item);
+            }
+        }
+
+
+        //cs_seatClass.setValue(confirmedSeatClass); // Assuming cs_seatClass is a JFXComboBox<String>
         cs_price.setText(confirmedFarePrice);
+
 
         // Switch form from hf_searchDesti to hf_chooseSeat
         switchForm(hf_searchDesti, hf_chooseSeat);
