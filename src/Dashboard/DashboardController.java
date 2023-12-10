@@ -35,15 +35,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-
 public class DashboardController implements Initializable {
 
     @FXML
     private AnchorPane topPane;
-
-
-
-
 
     @FXML
     private Label d_flightsToday;
@@ -126,7 +121,6 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<String[], String> trt_class;
 
-
     @FXML
     private JFXComboBox<String> sl_searchBy;
 
@@ -136,13 +130,11 @@ public class DashboardController implements Initializable {
     @FXML
     private Label fm_managerBtn;
 
-
     @FXML
     private TextField fr_search;
 
     @FXML
     private AnchorPane fm_managerForm;
-
 
     @FXML
     private AnchorPane bookedFlights_form;
@@ -194,8 +186,6 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXButton bf_deleteBtn;
-
-
 
     @FXML
     private AnchorPane overlayPane;
@@ -309,8 +299,7 @@ public class DashboardController implements Initializable {
     private TableColumn<String[], String> ap_airplaneID, ap_origin, ap_dest, ap_status;
 
     @FXML
-    private TextField ap_airplaneIDtxt, ap_airplaneOrigintxt, ap_airplaneDesttxt, pm_managerORIGINtxt
-            , pm_managerDESTtxt, pm_managerPrice;
+    private TextField ap_airplaneIDtxt, ap_airplaneOrigintxt, ap_airplaneDesttxt, pm_managerORIGINtxt, pm_managerDESTtxt, pm_managerPrice;
 
     @FXML
     private TableView<String[]> pm_table;
@@ -324,13 +313,8 @@ public class DashboardController implements Initializable {
     @FXML
     JFXCheckBox pm_managerCarousel;
 
-
-
-
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
-
-
 
     public void toggleAdminMenu() {
         if (isMenuVisible) {
@@ -410,13 +394,10 @@ public class DashboardController implements Initializable {
             bf_cseat.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
             bf_bookDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
             bf_amountTable.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
     }
-
 
     public void getSales() throws SQLException {
         System.out.println("Getting sales");
@@ -447,9 +428,7 @@ public class DashboardController implements Initializable {
             double monthlyEarnings = monthlyEarnings();
             sl_bookedFlightsNo.setText("₱" + monthlyEarnings);
 
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
 
@@ -473,9 +452,7 @@ public class DashboardController implements Initializable {
                 earnings += Double.parseDouble(data1[8]);
             }
             return earnings;
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
         return 0;
@@ -484,11 +461,10 @@ public class DashboardController implements Initializable {
     private double todayEarnings() throws SQLException {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String formattedDate = currentDate.format(formatter) ;
+        String formattedDate = currentDate.format(formatter);
 
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("sales", Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"), Arrays.asList("payment_date"), Collections.singletonList(formattedDate));
-
 
         if (data != null) {
             // For earnings
@@ -501,9 +477,7 @@ public class DashboardController implements Initializable {
             sl_ticketSoldNo.setText(String.valueOf(data.size()));
 
             return earnings;
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
 
@@ -533,9 +507,7 @@ public class DashboardController implements Initializable {
             s_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
             s_agent.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
             s_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
     }
@@ -559,9 +531,7 @@ public class DashboardController implements Initializable {
             fm_managerSTATUS.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
             fm_managerORIGINDATE.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
             fm_managerDESTDATE.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
     }
@@ -585,9 +555,7 @@ public class DashboardController implements Initializable {
             ObservableList<String> airplaneIDsData = FXCollections.observableArrayList(airplaneIDs);
             fm_managerAirplaneIDbox.setItems(airplaneIDsData);
 
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
 
@@ -609,9 +577,7 @@ public class DashboardController implements Initializable {
 
             if (fm_managerAirplaneIDbox == null) {
                 System.out.println("Airplane ID box is null");
-            }
-
-            else {
+            } else {
                 fm_managerAirplaneIDbox.getSelectionModel().select(newValue[0]);
 
             }
@@ -633,7 +599,6 @@ public class DashboardController implements Initializable {
     public void fm_managerADD() throws SQLException {
         // Check if null
 
-
         Database database = new Database();
         String airplaneID = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
         String flightNO = fm_managerFLIGHTNOtxt.getText();
@@ -643,8 +608,6 @@ public class DashboardController implements Initializable {
         LocalDate originDate = fm_dateDeparture.getValue();
         LocalDateTime origin_date = LocalDateTime.of(originDate, fm_timeDeparture.getValue());
         LocalDateTime destDate = LocalDateTime.of(fm_dateArrival.getValue(), fm_timeARRIVAL.getValue());
-
-
 
         database.insertData("flight_manager",
                 Arrays.asList("airplane_id", "flight_no", "destination", "origin", "status", "origin_date", "destination_date"),
@@ -658,7 +621,6 @@ public class DashboardController implements Initializable {
                 Arrays.asList("airplane_id"),
                 Arrays.asList(airplaneID)
         );
-
 
         load_fm_managerTable();
     }
@@ -701,7 +663,6 @@ public class DashboardController implements Initializable {
         LocalDateTime originalOriginDate = LocalDateTime.parse(originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[5], formatter);
         LocalDateTime originalDestDate = LocalDateTime.parse(originalData.get(fm_managerTable.getSelectionModel().getSelectedIndex())[6], formatter);
 
-
         // Get new
         String airplaneID = fm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
         String flightNO = fm_managerFLIGHTNOtxt.getText();
@@ -723,8 +684,6 @@ public class DashboardController implements Initializable {
         fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
 
         load_fm_managerTable();
-
-
 
     }
 
@@ -755,9 +714,7 @@ public class DashboardController implements Initializable {
             bf_cseat.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
             bf_bookDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[6]));
             bf_amountTable.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[7]));
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
     }
@@ -772,7 +729,6 @@ public class DashboardController implements Initializable {
         LocalDate departureDate = bf_departDate.getValue();
         LocalDate arrivalDate = bf_arrivalDate.getValue();
         LocalDate bookingDate = bf_bookingDate.getValue();
-
 
         Database database = new Database();
         database.insertData("booked_flights",
@@ -807,7 +763,6 @@ public class DashboardController implements Initializable {
                 Arrays.asList("first_name", "destination", "class", "flight_no", "amount", "departure", "arrival", "book_date"),
                 Arrays.asList(name, destination, classSeat, flightID, amount, departureDate, arrivalDate, bookingDate));
 
-
         loadBookedFlights();
     }
 
@@ -829,15 +784,12 @@ public class DashboardController implements Initializable {
                 "customer_support",
                 Arrays.asList("ticket_no", "reason", "preferred_date"));
 
-
         if (data != null) {
             cs_ticketReq.setItems(data);
             cs_ticketNo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
             cs_reason.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
             cs_date.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
 
@@ -853,9 +805,7 @@ public class DashboardController implements Initializable {
         if (cs_ticketText.getText().isEmpty() || cs_nameText.getText().isEmpty() || cs_contactText.getText().isEmpty() || cs_statusCombo.getSelectionModel().isEmpty() || cs_statusSeatCombo.getSelectionModel().isEmpty() || cs_rebookDate.getValue() == null || cs_rebookreason.getText().isEmpty()) {
             AlertManager alertManager = new AlertManager(cs_alert);
             alertManager.setAlertText("Please fill in all the fields.", "Red");
-        }
-
-        else {
+        } else {
             // Get informations
             String ticketNo = cs_ticketText.getText();
             String name = cs_nameText.getText();
@@ -868,9 +818,7 @@ public class DashboardController implements Initializable {
 
             if ("Move Departure Date".equals(reason)) {
                 reasonOption = "departure";
-            }
-
-            else if ("Move Arrival Date".equals(reason)) {
+            } else if ("Move Arrival Date".equals(reason)) {
                 reasonOption = "arrival";
             }
 
@@ -892,12 +840,9 @@ public class DashboardController implements Initializable {
                     Arrays.asList(ticketNo)
             );
 
-
-
             AlertManager success = new AlertManager(cs_alert);
             success.setAlertText("Successfully rebooked flight.", "Green");
         }
-
 
     }
 
@@ -915,21 +860,14 @@ public class DashboardController implements Initializable {
         if (Objects.equals(seatClass, "FIRST CLASS")) {
             ObservableList<String> seats = FXCollections.observableArrayList(firstC_seats);
             cs_statusSeatCombo.setItems(seats);
-        }
-
-        else if (Objects.equals(seatClass, "BUSINESS")) {
+        } else if (Objects.equals(seatClass, "BUSINESS")) {
             ObservableList<String> seats = FXCollections.observableArrayList(businessC_seats);
             cs_statusSeatCombo.setItems(seats);
 
-
-        }
-
-        else if (Objects.equals(seatClass, "PREMIUM ECONOMY")) {
+        } else if (Objects.equals(seatClass, "PREMIUM ECONOMY")) {
             ObservableList<String> seats = FXCollections.observableArrayList(premiumE_seats);
             cs_statusSeatCombo.setItems(seats);
-        }
-
-        else if (Objects.equals(seatClass, "ECONOMY")) {
+        } else if (Objects.equals(seatClass, "ECONOMY")) {
             ObservableList<String> seats = FXCollections.observableArrayList(economy_seats);
             cs_statusSeatCombo.setItems(seats);
         }
@@ -946,9 +884,7 @@ public class DashboardController implements Initializable {
             ap_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
             ap_dest.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
             ap_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
     }
@@ -978,7 +914,6 @@ public class DashboardController implements Initializable {
     }
 
     public void ap_update() throws SQLException {
-
 
         // Get original
         Database original = new Database();
@@ -1022,9 +957,7 @@ public class DashboardController implements Initializable {
             pm_class.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
             pm_price.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
             pm_carousel.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
 
@@ -1046,9 +979,7 @@ public class DashboardController implements Initializable {
             ObservableList<String> airplaneIDsData = FXCollections.observableArrayList(airplaneIDs);
             pm_managerAirplaneIDbox.setItems(airplaneIDsData);
 
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
 
@@ -1057,8 +988,10 @@ public class DashboardController implements Initializable {
             System.out.println("Selected airplane ID: " + newValue);
 
             assert data1 != null;
-            pm_managerORIGINtxt.setText(data1.get(pm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[1]);
-            pm_managerDESTtxt.setText(data1.get(pm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[2]);
+            if (pm_managerAirplaneIDbox != null) {
+                pm_managerORIGINtxt.setText(data1.get(pm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[1]);
+                pm_managerDESTtxt.setText(data1.get(pm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[2]);
+            }
         });
 
         // Add listener for table
@@ -1067,20 +1000,20 @@ public class DashboardController implements Initializable {
 
             if (pm_managerAirplaneIDbox == null) {
                 System.out.println("Airplane ID box is null");
+            } else {
+                if (newValue != null && newValue.length > 0) {
+                    pm_managerAirplaneIDbox.getSelectionModel().select(newValue[0]);
+                }
+
+                pm_managerORIGINtxt.setText(newValue != null && newValue.length > 1 ? newValue[1] : "");
+                pm_managerDESTtxt.setText(newValue != null && newValue.length > 2 ? newValue[2] : "");
+                pm_managerClassBox.getSelectionModel().select(newValue != null && newValue.length > 3 ? newValue[3] : "");
+                pm_managerPrice.setText(newValue != null && newValue.length > 4 ? newValue[4] : "");
+                pm_managerCarousel.setSelected(newValue != null && newValue.length > 5 ? Boolean.parseBoolean(newValue[5]) : false);
             }
-
-            else {
-                pm_managerAirplaneIDbox.getSelectionModel().select(newValue[0]);
-
-            }
-
-            pm_managerORIGINtxt.setText(newValue[1]);
-            pm_managerDESTtxt.setText(newValue[2]);
-            pm_managerClassBox.getSelectionModel().select(newValue[3]);
-            pm_managerPrice.setText(newValue[4]);
-            pm_managerCarousel.setSelected(Boolean.parseBoolean(newValue[5]));
         });
     }
+    
 
     public void pm_add() throws SQLException {
         String airplaneID = pm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
@@ -1115,7 +1048,6 @@ public class DashboardController implements Initializable {
                 Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel),
                 Arrays.asList("airplane_id", "seatClass"),
                 Arrays.asList(airplaneID, seatClass)
-
         );
 
         Database check = new Database();
@@ -1132,22 +1064,36 @@ public class DashboardController implements Initializable {
         String airplaneID = pm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
         String origin = pm_managerORIGINtxt.getText();
         String destination = pm_managerDESTtxt.getText();
-
         String seatClass = pm_managerClassBox.getSelectionModel().getSelectedItem();
-        Double price = Double.parseDouble(pm_managerPrice.getText());
+
+        // Double value can be null, so use a wrapper type
+        Double price = null;
+        try {
+            price = Double.parseDouble(pm_managerPrice.getText());
+        } catch (NumberFormatException e) {
+            // Handle the case where the price is not a valid double
+            e.printStackTrace(); // You might want to log this or handle it differently
+        }
+
         Boolean carousel = pm_managerCarousel.isSelected();
 
+        List<String> columnNames = new ArrayList<>(Arrays.asList("airplane_id", "origin", "destination", "class", "price"));
+        List<Object> values = new ArrayList<>(Arrays.asList(airplaneID, origin, destination, seatClass, price));
+
+        // Remove null values from the lists
+        Iterator<Object> iterator = values.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next() == null) {
+                iterator.remove();
+                columnNames.remove(0); // Remove the corresponding column name
+            }
+        }
+
         Database delete = new Database();
-        delete.deleteData(
-                "price_manager",
-                Arrays.asList("airplane_id", "origin", "destination", "class", "price"),
-                Arrays.asList(airplaneID, origin, destination, seatClass, price)
-        );
+        delete.deleteData("price_manager", columnNames, values);
 
         loadpm();
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -1185,7 +1131,6 @@ public class DashboardController implements Initializable {
             }
         });
 
-
         // Create a reference to the currently selected button
         currentSelectedButton = dashboardForm_btn;
 
@@ -1196,8 +1141,6 @@ public class DashboardController implements Initializable {
         flightManForm_btn.setOnAction(e -> switchForm(flightManager_form, flightManForm_btn));
         customerSupp_btn.setOnAction(e -> switchForm(customSupp_form, customerSupp_btn));
         addPlanes_btn.setOnAction(e -> switchForm(addPlanes_form, addPlanes_btn));
-
-
 
         // For sales
         try {
@@ -1213,10 +1156,7 @@ public class DashboardController implements Initializable {
             throw new RuntimeException(e);
         }
 
-
-
         // Flight manager ends here
-
         // For searching in sales
         String[] search_choices2 = {"ticket_no", "flight_no", "seat", "name", "payment_date", "status", "ticket_agent", "price"};
         List<String> listQ2 = new ArrayList<>();
@@ -1229,8 +1169,6 @@ public class DashboardController implements Initializable {
         sl_searchBy.setValue("ticket_no");
 
         // Sales ends here
-
-
         // Book flights starts here
         try {
             loadBookedFlights();
@@ -1241,7 +1179,6 @@ public class DashboardController implements Initializable {
         bookedFlights_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 String[] selected = bookedFlights_table.getSelectionModel().getSelectedItem();
-
 
                 bf_bookingDate.setValue(LocalDate.parse(selected[6]));
                 bf_departDate.setValue(LocalDate.parse(selected[1]));
@@ -1269,17 +1206,11 @@ public class DashboardController implements Initializable {
         bf_class.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == "ECONOMY") {
                 bf_amount.setText("1000");
-            }
-
-            else if (newValue == "BUSINESS") {
+            } else if (newValue == "BUSINESS") {
                 bf_amount.setText("2000");
-            }
-
-            else if (newValue == "PREMIUM") {
+            } else if (newValue == "PREMIUM") {
                 bf_amount.setText("3000");
-            }
-
-            else if (newValue == "FIRST CLASS") {
+            } else if (newValue == "FIRST CLASS") {
                 bf_amount.setText("4000");
             }
         });
@@ -1296,12 +1227,10 @@ public class DashboardController implements Initializable {
         bf_searchBy.setValue("flight_no");
 
         // Book flights ends here
-
         // For customer support
         cs_ticketReq.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 String[] selected = cs_ticketReq.getSelectionModel().getSelectedItem();
-
 
                 // Query the database for the ticket information
                 Database database = new Database();
@@ -1313,7 +1242,6 @@ public class DashboardController implements Initializable {
                         Arrays.asList(selected[0], selected[1], selected[2])
                 );
 
-
                 String ticket_no = change.get(0)[1];
                 String name = change.get(0)[0];
                 String reason = change.get(0)[2];
@@ -1321,16 +1249,12 @@ public class DashboardController implements Initializable {
                 String feedback = change.get(0)[4];
                 LocalDate date = LocalDate.parse(change.get(0)[6]);
 
-
                 cs_ticketText.setText(ticket_no);
                 cs_nameText.setText(name);
                 cs_contactText.setText(contact);
                 cs_feedbackText.setText(feedback);
                 cs_rebookDate.setValue(date);
                 cs_rebookreason.setText(reason);
-
-
-
 
                 ObservableList<String[]> data1 = database.pullData(
                         "booked_flights",
@@ -1379,9 +1303,7 @@ public class DashboardController implements Initializable {
                 throw new RuntimeException(e);
             }
 
-
             loadpm();
-
 
             loadfmCombobox();
 
@@ -1390,6 +1312,5 @@ public class DashboardController implements Initializable {
         timeline.play();
 
     }
-
 
 }
