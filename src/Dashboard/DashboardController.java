@@ -592,7 +592,7 @@ public class DashboardController implements Initializable {
         }
 
         // Load status combo box
-        List<String> status = Arrays.asList("Boarding", "On Time", "Delayed", "Cancelled");
+        List<String> status = Arrays.asList("Boarding", "En Route", "Arrived", "Delayed", "Cancelled");
         ObservableList<String> statusData = FXCollections.observableArrayList(status);
         fm_managerSTATUSbox.setItems(statusData);
 
@@ -652,7 +652,12 @@ public class DashboardController implements Initializable {
 
         fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
 
-        // If fields are empty
+        database.updateData("airplane_manager",
+                Arrays.asList("status"),
+                Arrays.asList("ACTIVE"),
+                Arrays.asList("airplane_id"),
+                Arrays.asList(airplaneID)
+        );
 
 
         load_fm_managerTable();
@@ -1024,7 +1029,7 @@ public class DashboardController implements Initializable {
         }
 
         // Load combo box
-        pm_managerClassBox.getItems().addAll("First Class", "Business Class", "Premium Economy", "Economy");
+        pm_managerClassBox.getItems().setAll("First Class", "Business Class", "Premium Economy", "Economy");
 
         // Load assign airplane ID
         Database planes = new Database();
@@ -1077,6 +1082,23 @@ public class DashboardController implements Initializable {
         });
     }
 
+    public void pm_add() throws SQLException {
+        String airplaneID = pm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
+        String origin = pm_managerORIGINtxt.getText();
+        String destination = pm_managerDESTtxt.getText();
+
+        String seatClass = pm_managerClassBox.getSelectionModel().getSelectedItem();
+        Double price = Double.parseDouble(pm_managerPrice.getText());
+        Boolean carousel = pm_managerCarousel.isSelected();
+
+        Database database = new Database();
+        database.insertData("price_manager",
+                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
+                Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel));
+
+        loadpm();
+    }
+
     public void pm_update() throws SQLException {
         String airplaneID = pm_managerAirplaneIDbox.getSelectionModel().getSelectedItem();
         String origin = pm_managerORIGINtxt.getText();
@@ -1091,6 +1113,13 @@ public class DashboardController implements Initializable {
                 "price_manager",
                 Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
                 Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel),
+                Arrays.asList("airplane_id"),
+                Arrays.asList(airplaneID)
+        );
+
+        Database check = new Database();
+        ObservableList<String[]> data = check.pullData("price_manager",
+                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
                 Arrays.asList("airplane_id"),
                 Arrays.asList(airplaneID)
         );
@@ -1110,8 +1139,8 @@ public class DashboardController implements Initializable {
         Database delete = new Database();
         delete.deleteData(
                 "price_manager",
-                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
-                Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel)
+                Arrays.asList("airplane_id", "origin", "destination", "class", "price"),
+                Arrays.asList(airplaneID, origin, destination, seatClass, price)
         );
 
         loadpm();

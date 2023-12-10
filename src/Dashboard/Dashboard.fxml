@@ -401,7 +401,7 @@
                                        </font>
                                     </Label>
                                     <AnchorPane layoutX="12.0" layoutY="488.0" prefHeight="4.0" prefWidth="359.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;" stylesheets="@DashboardStyles.css" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="488.0" />
-                                    <Label layoutX="13.0" layoutY="188.0" prefHeight="19.0" prefWidth="131.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="ORIGIN" textFill="#ffffffe5" AnchorPane.topAnchor="188.0">
+                                    <Label layoutX="13.0" layoutY="188.0" prefHeight="19.0" prefWidth="131.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION" textFill="#ffffffe5" AnchorPane.topAnchor="188.0">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
@@ -411,7 +411,7 @@
                                           <JFXComboBox fx:id="fm_managerSTATUSbox" focusColor="#7b7b7b" layoutX="5.0" layoutY="5.0" prefHeight="25.0" prefWidth="349.0" styleClass="textFill" stylesheets="@DashboardStyles.css" unFocusColor="#7b7b7b" />
                                        </children>
                                     </AnchorPane>
-                                    <Label layoutX="18.0" layoutY="262.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="DESTINATION" textFill="#ffffffe5" AnchorPane.topAnchor="262.0">
+                                    <Label layoutX="18.0" layoutY="262.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="ORIGIN" textFill="#ffffffe5" AnchorPane.topAnchor="262.0">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>

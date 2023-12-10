@@ -1730,16 +1730,12 @@ public class HomepageController implements Initializable {
     }
 
     public void desti_search() throws SQLException {
-        String origin = sd_origin.getSelectionModel().getSelectedItem();
-        String destination = sd_destination.getSelectionModel().getSelectedItem();
-        String seatClass = sd_seatClass.getSelectionModel().getSelectedItem();
+        List<String> text = Arrays.asList(sd_searchByText.getText());
+        List<String> searchBy = Arrays.asList(sd_searchBy.getSelectionModel().getSelectedItem());
 
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("price_manager",
-                Arrays.asList("origin", "destination", "class", "price"),
-                Arrays.asList("origin", "destination", "class"),
-                Arrays.asList(origin, destination, seatClass));
-
+                Arrays.asList("origin", "destination", "class", "price"), searchBy, text);
         if (data != null) {
             System.out.println("Data is not null");
             sd_tableView.setItems(data);
@@ -1749,7 +1745,9 @@ public class HomepageController implements Initializable {
             sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
             sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
 
-        } else {
+        }
+
+        else {
             System.out.println("Data is null");
         }
     }
