@@ -483,6 +483,9 @@ public class HomepageController implements Initializable {
     @FXML
     private JFXComboBox<String> sd_seatClass;
 
+    @FXML
+    private JFXButton returnToCS_btn;
+
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
@@ -754,7 +757,7 @@ public class HomepageController implements Initializable {
         System.out.println(targetName);
     }
 
-    //SWITCH FORM FUNCTIONS FOR home_form
+    //SWITCH FORM FUNCTIONS FOR MENU SLIDER
     public void switchForm(ActionEvent event) {
         if (event.getSource() == menu_home) {
             //For PARENT FORMS
@@ -786,6 +789,9 @@ public class HomepageController implements Initializable {
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
+
+            switchForm(cs_reBookingform, background);
+
         } else if (event.getSource() == menu_account) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
@@ -1575,6 +1581,7 @@ public class HomepageController implements Initializable {
 
     public void handleRebookingButtonClick() {
         CSswitchForm(cs_reBookingform, cs_changeInfoBtn);
+        returnToCS_btn.setVisible(true);
 
         // Initialize combo box
         cs_rebookingCombo.getItems().addAll(
@@ -1723,12 +1730,16 @@ public class HomepageController implements Initializable {
     }
 
     public void desti_search() throws SQLException {
-        List<String> text = Arrays.asList(sd_searchByText.getText());
-        List<String> searchBy = Arrays.asList(sd_searchBy.getSelectionModel().getSelectedItem());
+        String origin = sd_origin.getSelectionModel().getSelectedItem();
+        String destination = sd_destination.getSelectionModel().getSelectedItem();
+        String seatClass = sd_seatClass.getSelectionModel().getSelectedItem();
 
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("price_manager",
-                Arrays.asList("origin", "destination", "class", "price"), searchBy, text);
+                Arrays.asList("origin", "destination", "class", "price"),
+                Arrays.asList("origin", "destination", "class"),
+                Arrays.asList(origin, destination, seatClass));
+
         if (data != null) {
             System.out.println("Data is not null");
             sd_tableView.setItems(data);
@@ -1738,9 +1749,7 @@ public class HomepageController implements Initializable {
             sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
             sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
 
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
     }
@@ -1766,7 +1775,6 @@ public class HomepageController implements Initializable {
             }
         });
     }
-
 
     // Function to handle sd_confirmBtn click
     private void handleConfirmButtonClick() {
@@ -1802,8 +1810,19 @@ public class HomepageController implements Initializable {
         toForm.setVisible(true);
     }
 
+    /* ---------------------------------------------- HFSearchDesti Functions Ends Here  ----------------------------------------- */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Set the initial state
+        returnToCS_btn.setVisible(false);
+
+        // Add an event handler to returnToCS_btn
+        returnToCS_btn.setOnAction(event -> {
+            // Switch forms and set returnToCS_btn to false
+            switchForm(cs_reBookingform, background);
+            returnToCS_btn.setVisible(false);
+        });
 
         checkFieldsNotEmpty();
 
@@ -1863,9 +1882,17 @@ public class HomepageController implements Initializable {
             sdDi_seatClass.clear();
             sdDi_farePrice.clear();
 
-            sd_origin.getSelectionModel().clearSelection();
-            sd_destination.getSelectionModel().clearSelection();
-            sd_seatClass.getSelectionModel().clearSelection(); // Clear the selected item in cs_seatClass
+            if (sd_origin != null && sd_origin.getSelectionModel() != null) {
+                sd_origin.getSelectionModel().clearSelection();
+            }
+
+            if (sd_destination != null && sd_destination.getSelectionModel() != null) {
+                sd_destination.getSelectionModel().clearSelection();
+            }
+
+            if (sd_seatClass != null && sd_seatClass.getSelectionModel() != null) {
+                sd_seatClass.getSelectionModel().clearSelection();
+            }
 
             // Switch form from hf_chooseSeat to hf_home
             switchForm(hf_searchDesti, hf_home);

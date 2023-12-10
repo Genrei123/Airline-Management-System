@@ -52,11 +52,11 @@
                   <AnchorPane fx:id="cs_rebookingForm" prefHeight="554.0" prefWidth="1200.0">
                      <children>
                         <TableView fx:id="cs_ticketReq" layoutX="52.0" layoutY="117.0" prefHeight="417.0" prefWidth="317.0">
-                          <columns>
-                            <TableColumn fx:id="cs_ticketNo" prefWidth="75.0" text="TICKET #" />
-                            <TableColumn fx:id="cs_reason" prefWidth="78.0" text="REASON" />
+                           <columns>
+                              <TableColumn fx:id="cs_ticketNo" prefWidth="75.0" text="TICKET #" />
+                              <TableColumn fx:id="cs_reason" prefWidth="78.0" text="REASON" />
                               <TableColumn fx:id="cs_date" prefWidth="145.0" text="PREFERRED DATE" />
-                          </columns>
+                           </columns>
                         </TableView>
                         <AnchorPane layoutX="407.0" layoutY="117.0" prefHeight="417.0" prefWidth="317.0" style="-fx-background-color: #252525; -fx-background-radius: 10;">
                            <children>
@@ -231,8 +231,8 @@
                      </children>
                   </AnchorPane>
                   <TableView fx:id="sl_table" layoutX="30.0" layoutY="207.0" prefHeight="308.0" prefWidth="1138.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="206.0">
-                    <columns>
-                      <TableColumn fx:id="s_ticketNo" prefWidth="77.0" resizable="false" text="TICKET NO." />
+                     <columns>
+                        <TableColumn fx:id="s_ticketNo" prefWidth="77.0" resizable="false" text="TICKET NO." />
                         <TableColumn fx:id="s_flightNo" prefWidth="82.0" resizable="false" text="FLIGHT NO." />
                         <TableColumn fx:id="s_seat" prefWidth="100.0" resizable="false" text="CLASS-SEAT" />
                         <TableColumn fx:id="s_name" prefWidth="163.0" resizable="false" text="NAME" />
@@ -240,7 +240,7 @@
                         <TableColumn fx:id="s_status" prefWidth="129.0" resizable="false" text="STATUS" />
                         <TableColumn fx:id="s_agent" prefWidth="137.0" text="TICKET AGENT" />
                         <TableColumn fx:id="s_price" prefWidth="146.0" resizable="false" text="PRICE" />
-                    </columns>
+                     </columns>
                   </TableView>
                   <JFXComboBox fx:id="sl_searchBy" focusColor="#405aa800" layoutX="702.0" layoutY="21.0" prefHeight="25.0" prefWidth="148.0" styleClass="search" stylesheets="@DashboardStyles.css" unFocusColor="TRANSPARENT" />
                   <JFXButton layoutX="599.0" layoutY="20.0" onAction="#sl_clear" style="-fx-background-color: #5b5b5b;" styleClass="jfx-button-dashboard" stylesheets="@DashboardStyles.css" text="Clear Searches" textFill="WHITE" />
@@ -312,14 +312,14 @@
                      </font>
                   </Label>
                   <TableView fx:id="pm_table" layoutX="426.0" layoutY="86.0" prefHeight="442.0" prefWidth="733.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="426.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="86.0">
-                    <columns>
+                     <columns>
                         <TableColumn fx:id="pm_airplaneID" prefWidth="88.0" resizable="false" text="AIRPLANE ID" />
-                      <TableColumn fx:id="pm_origin" prefWidth="118.0" resizable="false" text="ORIGIN" />
-                      <TableColumn fx:id="pm_dest" prefWidth="140.0" resizable="false" text="DESTINATION" />
+                        <TableColumn fx:id="pm_origin" prefWidth="118.0" resizable="false" text="ORIGIN" />
+                        <TableColumn fx:id="pm_dest" prefWidth="140.0" resizable="false" text="DESTINATION" />
                         <TableColumn fx:id="pm_class" prefWidth="124.0" resizable="false" text="CLASS" />
                         <TableColumn fx:id="pm_price" prefWidth="123.0" text="PRICE" />
                         <TableColumn fx:id="pm_carousel" prefWidth="157.0" resizable="false" text="CAROUSEL" />
-                    </columns>
+                     </columns>
                   </TableView>
                </children></AnchorPane>
             <AnchorPane fx:id="flightManager_form" prefHeight="554.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -337,8 +337,8 @@
                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="446.0" prefWidth="748.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="438.0" AnchorPane.topAnchor="34.0">
                            <children>
                               <ScrollPane layoutY="19.0" prefHeight="426.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="524.0" prefWidth="970.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="524.0" prefWidth="970.0" styleClass="pane-bg" stylesheets="@DashboardStyles.css">
                                        <children>
                                           <TableView fx:id="fm_managerTable" layoutY="82.0" prefHeight="447.0" prefWidth="968.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                                              <columns>
@@ -353,13 +353,13 @@
                                           </TableView>
                                        </children>
                                     </AnchorPane>
-                                </content>
+                                 </content>
                               </ScrollPane>
                            </children>
                         </AnchorPane>
                         <ScrollPane layoutX="788.0" layoutY="35.0" prefHeight="424.0" prefWidth="398.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="34.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="383.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="383.0" styleClass="scrollpane-background-design" stylesheets="@DashboardStyles.css">
                                  <children>
                                     <Label layoutX="22.0" layoutY="499.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="TIME OF ARRIVAL" textFill="#ffffffe5" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="499.0">
                                        <font>
@@ -433,7 +433,7 @@
                                     <JFXTimePicker fx:id="fm_timeARRIVAL" defaultColor="#008f81" layoutX="26.0" layoutY="528.0" prefHeight="26.0" prefWidth="164.0" stylesheets="@DashboardStyles.css" />
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                         </ScrollPane>
                         <AnchorPane layoutX="773.0" layoutY="-15.0" prefHeight="397.0" prefWidth="4.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="28.0" />
                         <Label layoutX="44.0" layoutY="4.0" styleClass="label-shadow" stylesheets="@DashboardStyles.css" text="Flight Board" textFill="#fffbfb">
@@ -537,16 +537,16 @@
                      </children>
                   </AnchorPane>
                   <TableView fx:id="bookedFlights_table" layoutX="304.0" layoutY="83.0" prefHeight="449.0" prefWidth="885.0">
-                    <columns>
-                      <TableColumn fx:id="bf_flightNO" prefWidth="109.0" text="FLIGHT NO." />
-                      <TableColumn fx:id="bf_depart" prefWidth="102.0" text="DEPARTURE" />
+                     <columns>
+                        <TableColumn fx:id="bf_flightNO" prefWidth="109.0" text="FLIGHT NO." />
+                        <TableColumn fx:id="bf_depart" prefWidth="102.0" text="DEPARTURE" />
                         <TableColumn fx:id="bf_dest" minWidth="2.0" prefWidth="108.0" text="DESTINATION" />
                         <TableColumn fx:id="bf_arrival" minWidth="0.0" prefWidth="99.0" text="ARRIVAL" />
                         <TableColumn fx:id="bf_tableName" minWidth="0.0" prefWidth="113.0" text="NAME" />
                         <TableColumn fx:id="bf_cseat" maxWidth="200.0" prefWidth="121.0" text="CLASS SEAT" />
                         <TableColumn fx:id="bf_bookDate" minWidth="0.0" prefWidth="130.0" text="BOOK DATE" />
                         <TableColumn fx:id="bf_amountTable" maxWidth="168.0" minWidth="0.0" prefWidth="102.0" text="AMOUNT" />
-                    </columns>
+                     </columns>
                   </TableView>
                   <JFXComboBox fx:id="bf_searchBy" focusColor="TRANSPARENT" layoutX="807.0" layoutY="51.0" prefHeight="26.0" prefWidth="167.0" styleClass="search" stylesheets="@DashboardStyles.css" unFocusColor="#f7f7f700" />
                </children>
@@ -601,7 +601,8 @@
                      <columns>
                         <TableColumn fx:id="ap_airplaneID" prefWidth="221.0" resizable="false" text="AIRPLANE ID" />
                         <TableColumn fx:id="ap_origin" prefWidth="255.0" resizable="false" text="ORIGIN" />
-                        <TableColumn fx:id="ap_dest" prefWidth="256.0" resizable="false" text="DESTINATION" />
+                        <TableColumn fx:id="ap_dest" prefWidth="153.0" resizable="false" text="DESTINATION" />
+                        <TableColumn fx:id="ap_status" prefWidth="102.0" resizable="false" text="STATUS" />
                      </columns>
                   </TableView>
                </children>

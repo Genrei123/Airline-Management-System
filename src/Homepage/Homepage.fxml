@@ -291,7 +291,6 @@
                   </AnchorPane>
                   <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <JFXButton buttonType="RAISED" layoutX="977.0" layoutY="14.0" onAction="#handleReturnButton" prefHeight="35.0" prefWidth="70.0" text="RETURN" textFill="WHITE" />
                         <AnchorPane fx:id="cs_changeInfoForm" prefHeight="602.0" prefWidth="1061.0">
                            <children>
                               <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" />
@@ -338,7 +337,7 @@
                                  </children></AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="cs_chat" prefHeight="602.0" prefWidth="1061.0">
+                        <AnchorPane fx:id="cs_chat" prefHeight="602.0" prefWidth="1061.0" visible="false">
                            <children>
                               <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;">
                                  <children>
@@ -348,7 +347,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
+                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" visible="false" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
                            <children>
                               <AnchorPane layoutX="323.0" layoutY="103.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
                                  <children>
@@ -369,6 +368,9 @@
                                              </children>
                                           </AnchorPane>
                                        </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
@@ -417,9 +419,20 @@
                                        </children>
                                     </AnchorPane>
                                  </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </JFXButton>
                            </children>
                         </AnchorPane>
+                        <JFXButton fx:id="returnToCS_btn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="0.0" prefHeight="38.0" prefWidth="20.0" ripplerFill="#fcf9f9" style="-fx-padding: 4 4 4 4; -fx-background-radius: 50%;" styleClass="returnBtn" stylesheets="@HomepageStyles.css" textFill="WHITE" AnchorPane.rightAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <MaterialDesignIconView fill="WHITE" glyphName="REPLAY" size="40" />
+                           </graphic>
+                        </JFXButton>
                         <Label layoutX="386.0" layoutY="-45.0" text="SUPPORT" textFill="WHITE">
                            <graphic>
                               <Label text="CUSTOMER" textFill="WHITE">

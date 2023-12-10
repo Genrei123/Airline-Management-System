@@ -291,7 +291,6 @@
                   </AnchorPane>
                   <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <JFXButton buttonType="RAISED" layoutX="977.0" layoutY="14.0" onAction="#handleReturnButton" prefHeight="35.0" prefWidth="70.0" text="RETURN" textFill="WHITE" />
                         <AnchorPane fx:id="cs_changeInfoForm" prefHeight="602.0" prefWidth="1061.0">
                            <children>
                               <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" />
@@ -338,7 +337,7 @@
                                  </children></AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="cs_chat" prefHeight="602.0" prefWidth="1061.0">
+                        <AnchorPane fx:id="cs_chat" prefHeight="602.0" prefWidth="1061.0" visible="false">
                            <children>
                               <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;">
                                  <children>
@@ -348,7 +347,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
+                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" visible="false" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
                            <children>
                               <AnchorPane layoutX="323.0" layoutY="103.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
                                  <children>
@@ -369,6 +368,9 @@
                                              </children>
                                           </AnchorPane>
                                        </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
@@ -417,9 +419,20 @@
                                        </children>
                                     </AnchorPane>
                                  </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </JFXButton>
                            </children>
                         </AnchorPane>
+                        <JFXButton fx:id="returnToCS_btn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="0.0" prefHeight="38.0" prefWidth="20.0" ripplerFill="#fcf9f9" style="-fx-padding: 4 4 4 4; -fx-background-radius: 50%;" styleClass="returnBtn" stylesheets="@HomepageStyles.css" textFill="WHITE" AnchorPane.rightAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <MaterialDesignIconView fill="WHITE" glyphName="REPLAY" size="40" />
+                           </graphic>
+                        </JFXButton>
                         <Label layoutX="386.0" layoutY="-45.0" text="SUPPORT" textFill="WHITE">
                            <graphic>
                               <Label text="CUSTOMER" textFill="WHITE">
@@ -1543,7 +1556,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="605.0" fitWidth="1061.0" opacity="0.71" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <image>
@@ -1576,13 +1589,13 @@
                                     <String fx:value="tableBg" />
                                  </styleClass>
                               </TableView>
-                              <AnchorPane layoutX="32.0" layoutY="324.0" prefHeight="47.0" prefWidth="269.0" style="-fx-background-color: #313338; -fx-background-radius: 8 8 0 0;">
+                              <AnchorPane layoutX="29.0" layoutY="238.0" prefHeight="47.0" prefWidth="269.0" style="-fx-background-color: #313338; -fx-background-radius: 8 8 0 0;">
                                  <children>
                                     <Label layoutX="9.0" layoutY="11.0" style="-fx-font-size: 20;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION INFORMATION" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="20.0" layoutY="128.0" prefHeight="25.0" prefWidth="718.0" AnchorPane.rightAnchor="15.0" />
-                              <AnchorPane layoutX="23.0" layoutY="365.0" prefHeight="200.0" prefWidth="287.0" style="-fx-background-color: #1e1f22; -fx-background-radius: 5;">
+                              <AnchorPane layoutX="20.0" layoutY="279.0" prefHeight="200.0" prefWidth="287.0" style="-fx-background-color: #1e1f22; -fx-background-radius: 5;">
                                  <children>
                                     <JFXButton fx:id="sd_confirmBtn" layoutX="88.0" layoutY="145.0" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CONFIRM" textFill="WHITE" />
                                     <JFXTextField fx:id="sdDi_origin" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="14.0" prefHeight="25.0" prefWidth="269.0" promptText="Origin" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
@@ -1607,22 +1620,20 @@
                                     </JFXTextField>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="41.0" layoutY="128.0" prefHeight="47.0" prefWidth="128.0" style="-fx-background-color: #3f4248; -fx-background-radius: 8 8 0 0;">
+                              <AnchorPane layoutX="612.0" layoutY="71.0" prefHeight="45.0" prefWidth="251.0" style="-fx-background-color: #313338; -fx-background-radius: 0 5 5 5;">
                                  <children>
-                                    <Label layoutX="9.0" layoutY="11.0" style="-fx-font-size: 20;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="FILTERS" textFill="WHITE" />
-                                    <FontAwesomeIconView fill="#aeaaaa" glyphName="FILTER" layoutX="89.0" layoutY="35.0" size="30" />
+                                    <JFXComboBox fx:id="sd_searchBy" focusColor="#405aa800" layoutX="13.0" layoutY="13.0" prefHeight="25.0" prefWidth="108.0" promptText="SEARCH BY" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="41.0" layoutY="169.0" prefHeight="115.0" prefWidth="251.0" style="-fx-background-color: #313338; -fx-background-radius: 0 5 5 5;">
-                                 <children>
-                                    <JFXComboBox fx:id="sd_origin" focusColor="#405aa800" layoutX="13.0" layoutY="13.0" prefHeight="25.0" prefWidth="108.0" promptText="ORIGIN" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                                    <JFXComboBox fx:id="sd_destination" focusColor="#405aa800" layoutX="10.0" layoutY="41.0" prefHeight="25.0" prefWidth="231.0" promptText="DESTINATION" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.topAnchor="45.0" />
-                                    <JFXComboBox fx:id="sd_seatClass" focusColor="#405aa800" layoutX="10.0" layoutY="73.0" prefHeight="25.0" prefWidth="231.0" promptText="SEAT CLASS" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.topAnchor="80.0" />
-                                 </children>
-                              </AnchorPane>
+                              <JFXTextField fx:id="sd_searchByText" focusColor="WHITE" labelFloat="true" layoutX="328.0" layoutY="81.0" onKeyPressed="#desti_search" prefHeight="25.0" prefWidth="269.0" promptText="SEARCH BY" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <JFXButton fx:id="sd_confirmBtn1" layoutX="906.0" layoutY="72.0" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CLEAR SEARCHES" textFill="WHITE" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="228.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -1844,7 +1855,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
