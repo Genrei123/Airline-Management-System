@@ -601,7 +601,8 @@
                      <columns>
                         <TableColumn fx:id="ap_airplaneID" prefWidth="221.0" resizable="false" text="AIRPLANE ID" />
                         <TableColumn fx:id="ap_origin" prefWidth="255.0" resizable="false" text="ORIGIN" />
-                        <TableColumn fx:id="ap_dest" prefWidth="256.0" resizable="false" text="DESTINATION" />
+                        <TableColumn fx:id="ap_dest" prefWidth="153.0" resizable="false" text="DESTINATION" />
+                        <TableColumn fx:id="ap_status" prefWidth="102.0" resizable="false" text="STATUS" />
                      </columns>
                   </TableView>
                </children>

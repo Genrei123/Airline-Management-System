@@ -306,7 +306,7 @@ public class DashboardController implements Initializable {
     private TableView<String[]> ap_table;
 
     @FXML
-    private TableColumn<String[], String> ap_airplaneID, ap_origin, ap_dest;
+    private TableColumn<String[], String> ap_airplaneID, ap_origin, ap_dest, ap_status;
 
     @FXML
     private TextField ap_airplaneIDtxt, ap_airplaneOrigintxt, ap_airplaneDesttxt, pm_managerORIGINtxt
@@ -571,7 +571,9 @@ public class DashboardController implements Initializable {
         // Load airplane IDs
         Database planes = new Database();
         ObservableList<String[]> data = planes.pullData("airplane_manager",
-                Arrays.asList("airplane_id", "origin", "destination")
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList("status"),
+                Arrays.asList("RESERVED")
         );
 
         if (data != null) {
@@ -931,13 +933,14 @@ public class DashboardController implements Initializable {
     public void loadAddplanes() throws SQLException {
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("airplane_manager",
-                Arrays.asList("airplane_id", "origin", "destination"));
+                Arrays.asList("airplane_id", "origin", "destination", "status"));
 
         if (data != null) {
             ap_table.setItems(data);
             ap_airplaneID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
             ap_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
             ap_dest.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+            ap_status.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
         }
 
         else {
@@ -951,7 +954,7 @@ public class DashboardController implements Initializable {
         String destination = ap_airplaneDesttxt.getText();
 
         Database database = new Database();
-        database.insertData("airplane_manager", Arrays.asList("airplane_id", "origin", "destination"), Arrays.asList(airplaneID, origin, destination));
+        database.insertData("airplane_manager", Arrays.asList("airplane_id", "origin", "destination", "status"), Arrays.asList(airplaneID, origin, destination, "RESERVED"));
 
         database.insertData("price_manager", Arrays.asList("airplane_id", "origin", "destination"), Arrays.asList(airplaneID, origin, destination));
 
