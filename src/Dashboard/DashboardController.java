@@ -912,24 +912,24 @@ public class DashboardController implements Initializable {
         // Do it until 80
         String[] economy_seats = {"37D", "38D", "39D", "40D", "41D", "42D", "43D", "44D", "45D", "46D", "47D", "48D", "49D", "50D", "51D", "52D", "53D", "54D", "55D", "56D", "57D", "58D", "59D", "60D", "61D", "62D", "63D", "64D", "65D", "66D", "67D", "68D", "69D", "70D", "71D", "72D", "73D", "74D", "75D", "76D", "77D", "78D", "79D", "80D"};
 
-        if (Objects.equals(seatClass, "First Class")) {
+        if (Objects.equals(seatClass, "FIRST CLASS")) {
             ObservableList<String> seats = FXCollections.observableArrayList(firstC_seats);
             cs_statusSeatCombo.setItems(seats);
         }
 
-        else if (Objects.equals(seatClass, "Business Class")) {
+        else if (Objects.equals(seatClass, "BUSINESS")) {
             ObservableList<String> seats = FXCollections.observableArrayList(businessC_seats);
             cs_statusSeatCombo.setItems(seats);
 
 
         }
 
-        else if (Objects.equals(seatClass, "Premium Economy")) {
+        else if (Objects.equals(seatClass, "PREMIUM ECONOMY")) {
             ObservableList<String> seats = FXCollections.observableArrayList(premiumE_seats);
             cs_statusSeatCombo.setItems(seats);
         }
 
-        else if (Objects.equals(seatClass, "Economy")) {
+        else if (Objects.equals(seatClass, "ECONOMY")) {
             ObservableList<String> seats = FXCollections.observableArrayList(economy_seats);
             cs_statusSeatCombo.setItems(seats);
         }
@@ -1029,7 +1029,7 @@ public class DashboardController implements Initializable {
         }
 
         // Load combo box
-        pm_managerClassBox.getItems().setAll("First Class", "Business Class", "Premium Economy", "Economy");
+        pm_managerClassBox.getItems().setAll("FIRST CLASS", "BUSINESS", "PREMIUM ECONOMY", "ECONOMY");
 
         // Load assign airplane ID
         Database planes = new Database();
