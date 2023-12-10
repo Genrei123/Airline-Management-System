@@ -464,6 +464,9 @@ public class HomepageController implements Initializable {
     private JFXButton sd_confirmBtn;
 
     @FXML
+    private JFXButton sd_clearSearchBtn;
+
+    @FXML
     private JFXTextField sdDi_origin;
 
     @FXML
@@ -941,7 +944,6 @@ public class HomepageController implements Initializable {
 
         //Add booking in here
         //Add arrival
-
         LocalDate book_date = LocalDate.now();
 
         String ticket_no = TicketNo.generateTicketNo(f_name.getText());
@@ -1111,26 +1113,14 @@ public class HomepageController implements Initializable {
                 Arrays.asList(destination_name, origin_name)
         );
 
-
         // Convert string to date
         String stringDate = dep_date.get(0)[0];
         System.out.println(stringDate);
-
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime localDateTime = LocalDateTime.parse(stringDate, formatter);
         LocalDate ldate = localDateTime.toLocalDate();
         System.out.println(ldate);
-
-
-
-
-
-
-
-
-
-
 
         booking_date.setDisable(true);
     }
@@ -1632,12 +1622,15 @@ public class HomepageController implements Initializable {
     }
 
     public void desti_search() throws SQLException {
-        List<String> text = Arrays.asList(sd_searchByText.getText());
+        String searchText = sd_searchByText.getText().toLowerCase(); // Convert to lowercase
+
+        List<String> text = Arrays.asList(searchText);
         List<String> searchBy = Arrays.asList(sd_searchBy.getSelectionModel().getSelectedItem());
 
         Database database = new Database();
         ObservableList<String[]> data = database.pullData("price_manager",
                 Arrays.asList("origin", "destination", "class", "price"), searchBy, text);
+
         if (data != null) {
             System.out.println("Data is not null");
             sd_tableView.setItems(data);
@@ -1647,17 +1640,20 @@ public class HomepageController implements Initializable {
             sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
             sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
 
-        }
-
-        else {
+        } else {
             System.out.println("Data is null");
         }
     }
 
     public void cleardesti_search() {
+        // Clear the selection of the ComboBox
+        sd_searchBy.getSelectionModel().clearSelection();
 
+        // Clear the text of the TextField
+        sd_searchByText.clear();
     }
 
+    /*------------------------------------------- HF CHOOSEDESTI CODE ENDS ABOVE -----------------------------------------------------------------*/
     private void setupTableClickEvent() {
         sd_tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -1695,10 +1691,8 @@ public class HomepageController implements Initializable {
             }
         }
 
-
         //cs_seatClass.setValue(confirmedSeatClass); // Assuming cs_seatClass is a JFXComboBox<String>
         cs_price.setText(confirmedFarePrice);
-
 
         // Switch form from hf_searchDesti to hf_chooseSeat
         switchForm(hf_searchDesti, hf_chooseSeat);
@@ -1729,9 +1723,9 @@ public class HomepageController implements Initializable {
 
         // Add an event handler to returnToCS_btn
         returnToCS_btn.setOnAction(event -> {
+            returnToCS_btn.setVisible(false);
             // Switch forms and set returnToCS_btn to false
             switchForm(cs_reBookingform, background);
-            returnToCS_btn.setVisible(false);
         });
 
         checkFieldsNotEmpty();
@@ -2157,5 +2151,16 @@ public class HomepageController implements Initializable {
         sdDi_seatClass.textProperty().addListener((observable, oldValue, newValue) -> checkFieldsNotEmpty());
         sdDi_farePrice.textProperty().addListener((observable, oldValue, newValue) -> checkFieldsNotEmpty());
 
+        // Add listener to ComboBox
+        sd_searchBy.valueProperty().addListener((observable, oldValue, newValue) -> {
+            // Check if the selected value is null or empty
+            boolean isSearchByEmpty = newValue == null || newValue.isEmpty();
+
+            // Enable or disable the TextField accordingly
+            sd_searchByText.setDisable(isSearchByEmpty);
+        });
+
+        // Initial check to disable the TextField if ComboBox is initially empty
+        sd_searchByText.setDisable(sd_searchBy.getValue() == null || sd_searchBy.getValue().isEmpty());
     }
 }
