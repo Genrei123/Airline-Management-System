@@ -1557,7 +1557,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="605.0" fitWidth="1061.0" opacity="0.71" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <image>
@@ -1577,10 +1577,12 @@
                               </JFXButton>
                               <TableView fx:id="sd_tableView" layoutX="329.0" layoutY="128.0" prefHeight="460.0" prefWidth="718.0" stylesheets="@HomepageStyles.css">
                                 <columns>
-                                  <TableColumn fx:id="sdTbl_origin" editable="false" minWidth="-Infinity" prefWidth="220.0" resizable="false" sortable="false" text="ORIGIN" />
-                                  <TableColumn fx:id="sdTbl_destination" editable="false" prefWidth="220.0" resizable="false" sortable="false" text="DESTINATION" />
-                                    <TableColumn fx:id="sdTbl_seatClass" editable="false" prefWidth="150.0" resizable="false" sortable="false" text="SEAT CLASS" />
-                                    <TableColumn fx:id="sdTbl_farePrice" editable="false" prefWidth="127.0" resizable="false" sortable="false" text="FARE PRICE" />
+                                  <TableColumn fx:id="sdTbl_origin" editable="false" minWidth="-Infinity" prefWidth="175.0" resizable="false" sortable="false" text="ORIGIN" />
+                                  <TableColumn fx:id="sdTbl_destination" editable="false" prefWidth="175.0" resizable="false" sortable="false" text="DESTINATION" />
+                                    <TableColumn fx:id="sdTbl_seatClass" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="SEAT CLASS" />
+                                    <TableColumn fx:id="sdTbl_farePrice" editable="false" prefWidth="87.0" resizable="false" sortable="false" text="FARE PRICE" />
+                                    <TableColumn fx:id="sdTbl_departure" editable="false" prefWidth="83.0" resizable="false" sortable="false" text="DEPARTURE" />
+                                    <TableColumn fx:id="sdTbl_arrival" editable="false" prefWidth="83.0" resizable="false" sortable="false" text="ARRIVAL" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -1590,12 +1592,12 @@
                                     <String fx:value="tableBg" />
                                  </styleClass>
                               </TableView>
+                              <AnchorPane layoutX="20.0" layoutY="128.0" prefHeight="25.0" prefWidth="718.0" visible="false" AnchorPane.rightAnchor="15.0" />
                               <AnchorPane layoutX="29.0" layoutY="238.0" prefHeight="47.0" prefWidth="269.0" style="-fx-background-color: #313338; -fx-background-radius: 8 8 0 0;">
                                  <children>
                                     <Label layoutX="9.0" layoutY="11.0" style="-fx-font-size: 20;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION INFORMATION" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="20.0" layoutY="128.0" prefHeight="25.0" prefWidth="718.0" AnchorPane.rightAnchor="15.0" />
                               <AnchorPane layoutX="20.0" layoutY="279.0" prefHeight="200.0" prefWidth="287.0" style="-fx-background-color: #1e1f22; -fx-background-radius: 5;">
                                  <children>
                                     <JFXButton fx:id="sd_confirmBtn" layoutX="88.0" layoutY="145.0" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CONFIRM" textFill="WHITE" />
@@ -1621,20 +1623,21 @@
                                     </JFXTextField>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="612.0" layoutY="71.0" prefHeight="45.0" prefWidth="251.0" style="-fx-background-color: #313338; -fx-background-radius: 0 5 5 5;">
+                              <AnchorPane layoutX="329.0" layoutY="72.0" prefHeight="45.0" prefWidth="472.0" style="-fx-background-color: #313338; -fx-background-radius: 5 5 5 5;">
                                  <children>
-                                    <JFXComboBox fx:id="sd_searchBy" focusColor="#405aa800" layoutX="13.0" layoutY="13.0" prefHeight="25.0" prefWidth="108.0" promptText="SEARCH BY" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                    <JFXComboBox fx:id="sd_searchBy" focusColor="#405aa800" layoutX="266.0" layoutY="10.0" prefHeight="25.0" prefWidth="198.0" promptText="SEARCH BY" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.topAnchor="10.0" />
+                                    <JFXTextField fx:id="sd_searchByText" focusColor="WHITE" labelFloat="true" layoutX="36.0" layoutY="10.0" onKeyPressed="#desti_search" prefHeight="25.0" prefWidth="210.0" promptText="SEARCH BY" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                    </JFXTextField>
+                                    <MaterialDesignIconView fill="#c6bdbd" glyphName="FILTER" layoutX="6.0" layoutY="33.0" size="30" />
                                  </children>
                               </AnchorPane>
-                              <JFXTextField fx:id="sd_searchByText" focusColor="WHITE" labelFloat="true" layoutX="328.0" layoutY="81.0" onKeyPressed="#desti_search" prefHeight="25.0" prefWidth="269.0" promptText="SEARCH BY" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor>
-                              </JFXTextField>
-                              <JFXButton fx:id="sd_clearSearchBtn" layoutX="906.0" layoutY="72.0" onAction="#cleardesti_search" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CLEAR SEARCHES" textFill="WHITE" />
+                              <JFXButton fx:id="sd_clearSearchBtn" layoutX="812.0" layoutY="78.0" onAction="#cleardesti_search" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CLEAR SEARCHES" textFill="WHITE" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="228.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -1856,7 +1859,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>

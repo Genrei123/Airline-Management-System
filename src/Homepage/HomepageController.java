@@ -50,6 +50,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -375,7 +376,6 @@ public class HomepageController implements Initializable {
 
     @FXML
     private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat, fare_price;
-
 
     @FXML
     private AnchorPane firstC_seats;
@@ -961,8 +961,6 @@ public class HomepageController implements Initializable {
 
         LocalDate book_date = LocalDate.now();
 
-
-
         String ticket_no = TicketNo.generateTicketNo(f_name.getText());
         String status = "BOOKED";
 
@@ -972,7 +970,7 @@ public class HomepageController implements Initializable {
         insertData1.insertData(
                 "booked_flights",
                 Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "departure", "arrival", "book_date", "ticket_no", "status"),
-                Arrays.asList(flight_id, first_name, middle_name, last_name, suffix_name, age_name, destination_name, origin_name, seat_class, seat_num, flight_id, fare, depart, arrival, now , ticket_no, status)
+                Arrays.asList(flight_id, first_name, middle_name, last_name, suffix_name, age_name, destination_name, origin_name, seat_class, seat_num, flight_id, fare, depart, arrival, now, ticket_no, status)
         );
 
         // Add to sales
@@ -1137,12 +1135,10 @@ public class HomepageController implements Initializable {
                 Arrays.asList(origin_name, destination_name)
         );
 
-
         if (!dep_date.isEmpty()) {
             departure_date.setText(dep_date.get(0)[0]);
             arrival_date.setText(dep_date.get(0)[1]);
         }
-
 
     }
 
@@ -1181,7 +1177,7 @@ public class HomepageController implements Initializable {
 
     private List<String> getAllCountries() {
         String[] countriesArray = {
-                "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor (Timor-Leste)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North (North Korea)", "Korea, South (South Korea)", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia (formerly Macedonia)", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor (Timor-Leste)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North (North Korea)", "Korea, South (South Korea)", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia (formerly Macedonia)", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
         };
 
         // Convert array to a List
@@ -1608,10 +1604,6 @@ public class HomepageController implements Initializable {
     }
 
     /*---------------------- HF CHOOSEDESTI CODE SHOULD BE HERE ----------------------*/
-    private String originFilter = null;
-    private String destinationFilter = null;
-    private String seatClassFilter = null;
-
     private void loadDestinations() {
         // Load the tables
         Database db = new Database();
@@ -2152,6 +2144,31 @@ public class HomepageController implements Initializable {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+
+        // Check seats
+        try {
+            desti_search();
+            loadDestinations();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Auto requery when something is changed within the database
+        // Create a timeline for periodic polling (adjust the Duration as needed)
+        Timeline destiTimeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+            // Code to re-query the database goes here
+            System.out.println("Re-querying");
+
+            // Check destinations
+            try {
+                desti_search();
+                loadDestinations();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }));
+        destiTimeline.setCycleCount(Timeline.INDEFINITE);
+        destiTimeline.play();
 
         cs_seatClass.valueProperty().addListener((observable, oldSeatClass, newSeatClass) -> {
             // Clear the text in cs_seatNum
