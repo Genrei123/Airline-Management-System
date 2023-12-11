@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
@@ -490,16 +489,7 @@
                                     <TextField fx:id="suffix" layoutX="186.0" layoutY="213.0" prefHeight="10.0" prefWidth="310.0" promptText="(Optional)" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
                                     <Label focusTraversable="false" layoutX="126.0" layoutY="273.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="AGE:" textFill="WHITE" AnchorPane.rightAnchor="880.0" AnchorPane.topAnchor="273.0" />
                                     <TextField fx:id="age" layoutX="186.0" layoutY="272.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: white; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" />
-                                    <Label focusTraversable="false" layoutX="-1.0" layoutY="334.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text=" SET DEPARTURE:" textFill="WHITE" AnchorPane.rightAnchor="880.0" AnchorPane.topAnchor="334.0" />
-                                    <AnchorPane layoutX="186.0" layoutY="333.0" prefHeight="27.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 28;">
-                                       <children>
-                                          <JFXDatePicker fx:id="booking_date" defaultColor="#405aeb" editable="false" layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="287.0" style="-fx-padding: 3 8 3 6;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor></JFXDatePicker>
-                                          <AnchorPane layoutX="17.0" layoutY="27.0" prefHeight="4.0" prefWidth="244.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="1.0" />
-                                       </children>
-                                    </AnchorPane>
+                                    <Label alignment="CENTER_RIGHT" focusTraversable="false" layoutX="-1.0" layoutY="334.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="DEPARTURE:" textFill="WHITE" AnchorPane.rightAnchor="880.0" AnchorPane.topAnchor="334.0" />
                                     <Label focusTraversable="false" layoutX="587.0" layoutY="24.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="DESTINATION:" textFill="WHITE" AnchorPane.leftAnchor="587.0" AnchorPane.topAnchor="24.0" />
                                     <TextField fx:id="destination" editable="false" focusTraversable="false" layoutX="745.0" layoutY="23.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: #a8d8e9; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
                                        <cursor>
@@ -529,6 +519,17 @@
                                     <AnchorPane layoutX="547.0" layoutY="13.0" prefHeight="359.0" prefWidth="5.0" style="-fx-background-color: white; -fx-background-radius: 5;" />
                                     <Label focusTraversable="false" layoutX="609.0" layoutY="273.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="FARE PRICE:" textFill="WHITE" AnchorPane.rightAnchor="331.0" />
                                     <TextField fx:id="fare_price" editable="false" focusTraversable="false" layoutX="745.0" layoutY="272.0" prefHeight="27.0" prefWidth="280.0" style="-fx-border-color: transparent; -fx-background-color: #a8d8e9; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                    </TextField>
+                                    <Label alignment="CENTER_RIGHT" focusTraversable="false" layoutX="86.0" layoutY="370.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="ARRIVAL:" textFill="WHITE" />
+                                    <TextField fx:id="departure_date" editable="false" focusTraversable="false" layoutX="186.0" layoutY="334.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: #a8d8e9; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                    </TextField>
+                                    <TextField fx:id="arrival_date" editable="false" focusTraversable="false" layoutX="186.0" layoutY="369.0" prefHeight="27.0" prefWidth="310.0" style="-fx-border-color: transparent; -fx-background-color: #a8d8e9; -fx-background-radius: 28; -fx-font-size: 14; -fx-padding: 3 8 3 8;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css">
                                        <cursor>
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>

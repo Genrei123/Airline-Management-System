@@ -4,6 +4,7 @@ import Animations.SwitchForms;
 import Database.Database;
 import LogIn.AlertManager;
 import LogIn.Customer;
+import Receipt.ReceiptMaker;
 import Receipt.TicketMaker;
 import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
@@ -65,6 +66,9 @@ import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
 
 public class HomepageController implements Initializable {
+
+    @FXML
+    private TextField departure_date, arrival_date;
 
     @FXML
     private Label displayUserName;
@@ -372,8 +376,6 @@ public class HomepageController implements Initializable {
     @FXML
     private TextField f_name, m_name, l_name, suffix, age, destination, origin, s_class, seat, fare_price;
 
-    @FXML
-    private JFXDatePicker booking_date;
 
     @FXML
     private AnchorPane firstC_seats;
@@ -930,41 +932,66 @@ public class HomepageController implements Initializable {
         // Add into database
 
         String flight_id = generateFlightID("ERM", origin.getText(), destination.getText());
+
         String first_name = f_name.getText();
+
         String middle_name = m_name.getText();
+        if (middle_name.isEmpty()) {
+            middle_name = "N/A";
+        }
+
         String last_name = l_name.getText();
         String suffix_name = suffix.getText();
+        if (suffix_name.isEmpty()) {
+            suffix_name = "N/A";
+        }
+
         String age_name = age.getText();
 
         String destination_name = destination.getText();
         String origin_name = origin.getText();
         String seat_class = s_class.getText();
         String seat_num = seat.getText();
-        String fare = fare_price.getText();
+        Double fare = Double.valueOf(fare_price.getText());
 
         //Add booking in here
+        String depart = departure_date.getText();
         //Add arrival
+<<<<<<< Updated upstream
+=======
+        String arrival = arrival_date.getText();
+
+>>>>>>> Stashed changes
         LocalDate book_date = LocalDate.now();
 
         String ticket_no = TicketNo.generateTicketNo(f_name.getText());
         String status = "BOOKED";
 
-        Database insertData = new Database();
-        insertData.insertData(
+        LocalDate now = LocalDate.now();
+
+        Database insertData1 = new Database();
+        insertData1.insertData(
                 "booked_flights",
-                Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "seat_class", "seat_num", "fare", "booking_date", "ticket_no", "status"),
-                Arrays.asList(flight_id, first_name, middle_name, last_name, suffix_name, age_name, destination_name, origin_name, seat_class, seat_num, fare, book_date.toString(), ticket_no, status)
+                Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "departure", "arrival", "book_date", "ticket_no", "status"),
+                Arrays.asList(flight_id, first_name, middle_name, last_name, suffix_name, age_name, destination_name, origin_name, seat_class, seat_num, flight_id, fare, depart, arrival, now , ticket_no, status)
         );
 
         // Add to sales
         Database insertSales = new Database();
         insertSales.insertData(
                 "sales",
-                Arrays.asList("ticket_no", "flight_no", "seat", "payment_date",
+                Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date",
                         "status", "ticket_agent", "price"),
-                Arrays.asList(ticket_no, flight_id, seat_num, book_date.toString(),
+                Arrays.asList(ticket_no, flight_id, seat_num, last_name, book_date.toString(),
                         status, "ONLINE", fare)
         );
+
+        // Generate ticket
+        Booking infos = Booking.getInstance();
+        TicketMaker ticketMaker = new TicketMaker();
+        ticketMaker.generateTicket(first_name, middle_name,
+                last_name, age_name, destination_name, origin_name, seat_class,
+                seat_num, flight_id, infos.getAmount(), depart, ticket_no, fare);
 
     }
 
@@ -989,7 +1016,7 @@ public class HomepageController implements Initializable {
         return f_name.getText().isEmpty()
                 && l_name.getText().isEmpty()
                 && age.getText().isEmpty()
-                && (booking_date.getValue() == null) // Check if JFXDatePicker value is null
+                // Check if JFXDatePicker value is null
                 && destination.getText().isEmpty()
                 && origin.getText().isEmpty()
                 && s_class.getText().isEmpty()
@@ -1014,7 +1041,6 @@ public class HomepageController implements Initializable {
         boolean anyFieldEmpty = isNullOrEmpty(f_name)
                 || isNullOrEmpty(l_name)
                 || isNullOrEmpty(age)
-                || isNullOrEmpty(booking_date)
                 || isNullOrEmpty(destination)
                 || isNullOrEmpty(origin)
                 || isNullOrEmpty(s_class)
@@ -1071,7 +1097,6 @@ public class HomepageController implements Initializable {
         l_name.clear();
         suffix.clear();
         age.clear();
-        booking_date.getEditor().clear();
 
     }
 
@@ -1106,13 +1131,14 @@ public class HomepageController implements Initializable {
         String origin_name = origin.getText();
 
         Database bdate = new Database();
-        ObservableList<String[]> dep_date = bdate.pullData(
+        ObservableList<String[]> date = bdate.pullData(
                 "flight_manager",
-                Arrays.asList("destination_date"),
-                Arrays.asList("destination", "origin"),
-                Arrays.asList(destination_name, origin_name)
+                Arrays.asList("origin_date", "destination_date"),
+                Arrays.asList("origin", "destination"),
+                Arrays.asList(origin_name, destination_name)
         );
 
+<<<<<<< Updated upstream
         // Convert string to date
         String stringDate = dep_date.get(0)[0];
         System.out.println(stringDate);
@@ -1123,6 +1149,13 @@ public class HomepageController implements Initializable {
         System.out.println(ldate);
 
         booking_date.setDisable(true);
+=======
+        if (!date.isEmpty()) {
+            departure_date.setText(date.get(0)[0]);
+            arrival_date.setText(date.get(0)[1]);
+        }
+
+>>>>>>> Stashed changes
     }
 
     // Method to update the state of the proceed button based on cs_seatNum and cs_seatClass

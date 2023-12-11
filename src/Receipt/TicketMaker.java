@@ -33,10 +33,11 @@ import com.itextpdf.layout.element.Table;
 
 public class TicketMaker {
 
-    public void generateTicket(String first_name, String middle_name, String last_name, int age, String destination, String origin, String class1,
+    public void generateTicket(String first_name, String middle_name, String last_name,
+                               String age, String destination, String origin, String class1,
                                String seat, String flight_no,
-                               double amount, LocalDate departure,
-                               String ticket_no, String fare) throws IOException {
+                               double amount, String departure,
+                               String ticket_no, Double fare) throws IOException {
 
         String total = Double.toString(amount);
 
@@ -62,7 +63,7 @@ public class TicketMaker {
         Table header = new Table(twoColumnWidth);
 
         header.addCell(new Cell().add(new Paragraph("ERMINO AIRLINES").setFontSize(25).setBold()).setBorder(Border.NO_BORDER).setFont(PdfFontFactory.createFont("Helvetica")));
-        header.addCell(new Cell().add(new Paragraph("TICKET NUMBER: " + flight_no + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
+        header.addCell(new Cell().add(new Paragraph("SEAT #: " + seat + "TICKET NUMBER: " + flight_no + "\n" + "DATE: " + formattedDate)).setBorder(Border.NO_BORDER));
         document.add(header);
 
         // Watermark
@@ -83,9 +84,14 @@ public class TicketMaker {
         float twoColumnWidthBody[] = {285+150, 285};
         Table passengerInfobody = new Table(twoColumnWidthBody);
 
+        if (middle_name == null) {
+            middle_name = "";
+        }
+
         // Passenger Info
         document.add(new Paragraph("PASSENGER DETAILS").setBold());
         passengerInfobody.addCell(new Cell().add(new Paragraph(
+
                 "PASSENGER NAME: " + " " + first_name + " " + middle_name + " " + last_name)).setBorder(Border.NO_BORDER));
         passengerInfobody.addCell(new Cell().add(new Paragraph(
                 "AGE: " + age + "\n")).setBorder(Border.NO_BORDER));
@@ -104,7 +110,7 @@ public class TicketMaker {
 
         flightInfobody.addCell(new Cell().add(new Paragraph(
                 "FLIGHT NUMBER: " + flight_no + "\n"
-                + "FLIGHT TIME: " + "TO BE SET" + "\n"
+                + "FLIGHT TIME: " + departure + "\n"
                 + "FLIGHT TO: " + destination + "\n")).setBorder(Border.NO_BORDER));
         document.add(flightInfobody);
 

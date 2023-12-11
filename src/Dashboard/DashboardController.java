@@ -622,6 +622,8 @@ public class DashboardController implements Initializable {
                 Arrays.asList(airplaneID)
         );
 
+
+
         load_fm_managerTable();
     }
 
@@ -643,6 +645,15 @@ public class DashboardController implements Initializable {
         fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
 
         load_fm_managerTable();
+
+        Database check = new Database();
+        check.updateData(
+                "airplane_manager",
+                Arrays.asList("status"),
+                Arrays.asList("RESERVED"),
+                Arrays.asList("airplane_id"),
+                Arrays.asList(airplaneID)
+        );
 
     }
 
@@ -1046,7 +1057,7 @@ public class DashboardController implements Initializable {
                 "price_manager",
                 Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
                 Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel),
-                Arrays.asList("airplane_id", "seatClass"),
+                Arrays.asList("airplane_id", "class"),
                 Arrays.asList(airplaneID, seatClass)
         );
 
@@ -1091,6 +1102,9 @@ public class DashboardController implements Initializable {
 
         Database delete = new Database();
         delete.deleteData("price_manager", columnNames, values);
+
+
+
 
         loadpm();
     }
@@ -1282,7 +1296,7 @@ public class DashboardController implements Initializable {
 
         // Auto requery when something is changed within the database
         // Create a timeline for periodic polling (adjust the Duration as needed)
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(25), event -> {
             // Code to re-query the database goes here
             System.out.println("Re-querying");
             try {
