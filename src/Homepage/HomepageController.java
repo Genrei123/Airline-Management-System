@@ -8,6 +8,7 @@ import Receipt.ReceiptMaker;
 import Receipt.TicketMaker;
 import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 
@@ -127,7 +128,7 @@ public class HomepageController implements Initializable {
     private JFXTextField cs_price;
 
     @FXML
-    private JFXComboBox<String> cs_seatClass;
+    private JFXTextField cs_seatClass;
 
     @FXML
     private JFXButton proceed_btn;
@@ -492,6 +493,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXButton returnToCS_btn;
+
+    @FXML
+    private JFXCheckBox checkBox_btn;
 
     private boolean menuOpen = false;
 
@@ -1065,27 +1069,10 @@ public class HomepageController implements Initializable {
         return textField != null && textField.getText().trim().isEmpty();
     }
 
-    // Method to check if a JFXDatePicker is null or its value is empty
-    private boolean isNullOrEmpty(JFXDatePicker datePicker) {
-        return datePicker == null || datePicker.getValue() == null;
-    }
-
-    //COMBO-BOX for Seat Class
-    private String[] classList = {"ECONOMY", "PREMIUM ECONOMY", "BUSINESS", "FIRST CLASS"};
-
-    public void seatClass() {
-        List<String> listC = new ArrayList<>();
-
-        listC.addAll(Arrays.asList(classList));
-
-        ObservableList listData = FXCollections.observableArrayList(listC);
-        cs_seatClass.setItems(listData);
-    }
-
     // Method to clear seat selection fields
     private void clearSeatSelectionFields() {
         cs_seatNum.clear();
-        cs_seatClass.getSelectionModel().clearSelection(); // Clear the selection
+        cs_seatClass.clear(); // Clear the selection
     }
 
     // Method to clear seat selection fields
@@ -1095,7 +1082,7 @@ public class HomepageController implements Initializable {
         l_name.clear();
         suffix.clear();
         age.clear();
-
+        checkBox_btn.setSelected(false);
     }
 
     // Method to handle return to destination button click
@@ -1107,6 +1094,12 @@ public class HomepageController implements Initializable {
     // Method to handle return to destination button click
     public void handleReturnToChooseSeatButtonClick() {
         switchForm(hf_chooseSeat, returnToDesti_btn1);
+        // Check if checkBox_btn is not null before calling setSelected
+        if (checkBox_btn != null) {
+            checkBox_btn.setSelected(false);
+        } else {
+            System.out.println("checkBox_btn is null");
+        }
     }
 
     // Method to handle proceed button click
@@ -1119,11 +1112,7 @@ public class HomepageController implements Initializable {
         destination.setText(cs_destination.getText());
         origin.setText(cs_origin.getText());
         fare_price.setText(cs_price.getText());
-
-        // Check if cs_seatClass has a selected item before accessing it
-        if (cs_seatClass.getSelectionModel().getSelectedItem() != null) {
-            s_class.setText(cs_seatClass.getSelectionModel().getSelectedItem());
-        }
+        s_class.setText(cs_seatClass.getText());
 
         String destination_name = destination.getText();
         String origin_name = origin.getText();
@@ -1145,7 +1134,7 @@ public class HomepageController implements Initializable {
 
     // Method to update the state of the proceed button based on cs_seatNum and cs_seatClass
     private void updateProceedButtonState() {
-        boolean isDisabled = cs_seatNum.getText().isEmpty() || cs_seatClass.getSelectionModel().isEmpty();
+        boolean isDisabled = cs_seatNum.getText().isEmpty() || cs_seatClass.getText().isEmpty();
         proceed_btn.setDisable(isDisabled);
     }
 
@@ -1438,7 +1427,7 @@ public class HomepageController implements Initializable {
     //"Economy", "Premium Economy", "Business", "First Class"
 
     private boolean areFieldsFilled() {
-        return !cs_origin.getText().isEmpty() && !cs_destination.getText().isEmpty() && !cs_seatClass.getSelectionModel().isEmpty();
+        return !cs_origin.getText().isEmpty() && !cs_destination.getText().isEmpty() && !cs_seatClass.getText().isEmpty();
     }
 
     private void seatButtons() throws SQLException {
@@ -1724,15 +1713,10 @@ public class HomepageController implements Initializable {
         cs_origin.setText(confirmedOrigin);
         cs_destination.setText(confirmedDestination);
 
-        // auto set the seat class based on the seat class selected
-        for (String item : classList) {
-            if (item.equals(confirmedSeatClass)) {
-                cs_seatClass.getSelectionModel().select(item);
-            }
-        }
 
         //cs_seatClass.setValue(confirmedSeatClass); // Assuming cs_seatClass is a JFXComboBox<String>
         cs_price.setText(confirmedFarePrice);
+        cs_seatClass.setText(confirmedSeatClass);
 
         // Switch form from hf_searchDesti to hf_chooseSeat
         switchForm(hf_searchDesti, hf_chooseSeat);
@@ -1787,7 +1771,6 @@ public class HomepageController implements Initializable {
         loadDestinations();
 
         //Combo-Box initialize
-        seatClass();
         destiSearchBy();
 
         // Initialize the menu slider in the closed state
@@ -1846,7 +1829,7 @@ public class HomepageController implements Initializable {
 
         // Add listeners to cs_seatNum and cs_seatClass
         cs_seatNum.textProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
-        cs_seatClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
+        cs_seatClass.textProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());
 
         // Initially update the state of the proceed button
         updateProceedButtonState();
@@ -2088,7 +2071,7 @@ public class HomepageController implements Initializable {
         premEconomyC_seats.setVisible(false);
         economyC_seats.setVisible(false);
 
-        cs_seatClass.valueProperty().addListener((observable, oldValue, newValue) -> {
+        cs_seatClass.textProperty().addListener((observable, oldValue, newValue) -> {
             // Disable all anchor panes by default
             firstC_seats.setVisible(false);
             businessC_seats.setVisible(false);
@@ -2174,11 +2157,6 @@ public class HomepageController implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-        cs_seatClass.valueProperty().addListener((observable, oldSeatClass, newSeatClass) -> {
-            // Clear the text in cs_seatNum
-            cs_seatNum.clear();
-        });
-
         fare_price.textProperty().addListener((observable, oldValue, newValue) -> {
             // Update pf_farePrice and pf_farePrice1 labels based on the new value
             updateFarePriceLabels(newValue);
@@ -2204,5 +2182,11 @@ public class HomepageController implements Initializable {
 
         // Initial check to disable the TextField if ComboBox is initially empty
         sd_searchByText.setDisable(sd_searchBy.getValue() == null || sd_searchBy.getValue().isEmpty());
+
+        book_btn.setDisable(true);
+        checkBox_btn.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            // Check the state of checkBox_Btn and disable book_btn accordingly
+            book_btn.setDisable(!newValue);
+        });
     }
 }

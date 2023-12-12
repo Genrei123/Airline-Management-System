@@ -36,7 +36,7 @@
 
 .textFill {
     -fx-text-fill: white;
-    -fx-prompt-text-fill: white;
+    -fx-prompt-text-fill: #8d9ba0;
 }
 
 .sdTextFill {
