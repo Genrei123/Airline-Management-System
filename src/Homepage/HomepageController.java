@@ -933,13 +933,13 @@ public class HomepageController implements Initializable {
 
         String middle_name = m_name.getText();
         if (middle_name.isEmpty()) {
-            middle_name = " ";
+            middle_name = "";
         }
 
         String last_name = l_name.getText();
         String suffix_name = suffix.getText();
         if (suffix_name.isEmpty()) {
-            suffix_name = " ";
+            suffix_name = "";
         }
 
         String age_name = age.getText();
