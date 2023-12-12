@@ -1754,39 +1754,39 @@
                         </AnchorPane>
                         <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="228.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="208.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/Cloud%201.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="107.0" fitWidth="278.0" layoutX="426.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="107.0" fitWidth="278.0" layoutX="415.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/Cloud%202.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="121.0" fitWidth="282.0" layoutX="581.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="121.0" fitWidth="282.0" layoutX="603.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/Cloud%203.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="107.0" fitWidth="160.0" layoutX="209.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="209.0">
+                              <ImageView fitHeight="107.0" fitWidth="160.0" layoutX="250.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="250.0">
                                  <image>
                                     <Image url="@../Images/plane_butt.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="93.0" fitWidth="179.0" layoutX="587.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="93.0" fitWidth="179.0" layoutX="628.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/Star.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="107.0" fitWidth="160.0" layoutX="630.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="107.0" fitWidth="160.0" layoutX="671.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/plane_head.png" />
                                  </image>
                               </ImageView>
-                              <AnchorPane layoutX="266.0" layoutY="112.0" prefHeight="68.0" prefWidth="530.0" style="-fx-background-radius: 50;" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="266.0" AnchorPane.topAnchor="112.0">
+                              <AnchorPane layoutX="279.0" layoutY="97.0" prefHeight="68.0" prefWidth="530.0" style="-fx-background-radius: 50;" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="97.0">
                                  <children>
-                                    <Label ellipsisString="" graphicTextGap="5.0" layoutX="67.0" layoutY="11.0" prefHeight="47.0" prefWidth="396.0" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="cheapest flights" textFill="WHITE" textOverrun="CLIP">
+                                    <Label ellipsisString="" graphicTextGap="5.0" layoutX="67.0" layoutY="11.0" prefHeight="47.0" prefWidth="396.0" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="CULTURES PH" textFill="WHITE" textOverrun="CLIP">
                                        <graphic>
                                           <Label ellipsisString="" prefHeight="40.0" prefWidth="161.0" style="-fx-font-size: 32;" styleClass="inriaSans-FontStyle" stylesheets="@HomepageStyles.css" text="Explore the" textFill="WHITE">
                                              <font>
@@ -1800,7 +1800,7 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="282.0" layoutY="262.0" prefHeight="50.0" prefWidth="322.0" style="-fx-background-radius: 50;" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="339.0" AnchorPane.topAnchor="496.0">
+                              <AnchorPane layoutX="380.0" layoutY="491.0" prefHeight="50.0" prefWidth="322.0" style="-fx-background-radius: 50;" styleClass="topPane" stylesheets="@HomepageStyles.css" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="491.0">
                                  <children>
                                     <Label ellipsisString="" layoutX="77.0" layoutY="5.0" prefHeight="40.0" prefWidth="168.0" text="a flight" textFill="WHITE" textOverrun="CLIP">
                                        <graphic>
@@ -1861,6 +1861,27 @@
                                     <Font name="Arial Bold" size="27.0" />
                                  </font>
                               </Label>
+                              <JFXButton layoutX="222.0" layoutY="177.0" prefHeight="265.0" prefWidth="281.0" text="." />
+                              <ImageView fx:id="image1" fitHeight="246.0" fitWidth="376.0" layoutX="134.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/Carousel/BOHOL.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="image2" fitHeight="117.0" fitWidth="183.0" layoutX="520.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/Carousel/Palawan1-1125x624_o9hhe8.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="image3" fitHeight="245.0" fitWidth="200.0" layoutX="722.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/Carousel/CEBU.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="image4" fitHeight="121.0" fitWidth="200.0" layoutX="520.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/Carousel/where-is-boracay-located-in-aklan.jpg" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
@@ -1877,7 +1898,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>

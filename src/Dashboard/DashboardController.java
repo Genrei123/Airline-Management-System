@@ -586,7 +586,6 @@ public class DashboardController implements Initializable {
                 System.out.println("Airplane ID box is null");
             } else {
                 fm_managerAirplaneIDbox.getSelectionModel().select(newValue[0]);
-
             }
 
             fm_airplaneID.setText(newValue[0]);

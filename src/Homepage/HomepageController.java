@@ -16,7 +16,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,12 +41,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.ParallelTransition;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -496,6 +490,9 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXCheckBox checkBox_btn;
+
+    @FXML
+    private ImageView image1, image2, image3, image4;
 
 
 
@@ -1782,9 +1779,89 @@ public class HomepageController implements Initializable {
         carousel.addCarousel(slides, count, locations);
     }
 
+    public void hoverFX() {
+        ScaleTransition zoomIn = new ScaleTransition(Duration.seconds(0.5), image1);
+        ScaleTransition zoomOut = new ScaleTransition(Duration.seconds(0.5), image1);
+
+        image1.setOnMouseEntered(event -> {
+            zoomIn.setFromX(1);
+            zoomIn.setFromY(1);
+            zoomIn.setToX(1.1);
+            zoomIn.setToY(1.1);
+            zoomIn.play();
+        });
+
+        image1.setOnMouseEntered(event -> {
+            zoomOut.setFromX(1.1);
+            zoomOut.setFromY(1.1);
+            zoomOut.setToX(1);
+            zoomOut.setToY(1);
+            zoomOut.play();
+        });
+
+        ScaleTransition zoomIn1 = new ScaleTransition(Duration.seconds(0.5), image2);
+        ScaleTransition zoomOut1 = new ScaleTransition(Duration.seconds(0.5), image2);
+
+        image2.setOnMouseEntered(event -> {
+            zoomIn1.setFromX(1);
+            zoomIn1.setFromY(1);
+            zoomIn1.setToX(1.1);
+            zoomIn1.setToY(1.1);
+            zoomIn1.play();
+        });
+
+        image2.setOnMouseEntered(event -> {
+            zoomOut1.setFromX(1.1);
+            zoomOut1.setFromY(1.1);
+            zoomOut1.setToX(1);
+            zoomOut1.setToY(1);
+            zoomOut1.play();
+        });
+
+        ScaleTransition zoomIn2 = new ScaleTransition(Duration.seconds(0.5), image3);
+        ScaleTransition zoomOut2 = new ScaleTransition(Duration.seconds(0.5), image3);
+
+        image3.setOnMouseEntered(event -> {
+            zoomIn2.setFromX(1);
+            zoomIn2.setFromY(1);
+            zoomIn2.setToX(1.1);
+            zoomIn2.setToY(1.1);
+            zoomIn2.play();
+        });
+
+        image3.setOnMouseEntered(event -> {
+            zoomOut2.setFromX(1.1);
+            zoomOut2.setFromY(1.1);
+            zoomOut2.setToX(1);
+            zoomOut2.setToY(1);
+            zoomOut2.play();
+        });
+
+        ScaleTransition zoomIn3 = new ScaleTransition(Duration.seconds(0.5), image4);
+        ScaleTransition zoomOut3 = new ScaleTransition(Duration.seconds(0.5), image4);
+
+        image4.setOnMouseEntered(event -> {
+            zoomIn3.setFromX(1);
+            zoomIn3.setFromY(1);
+            zoomIn3.setToX(1.1);
+            zoomIn3.setToY(1.1);
+            zoomIn3.play();
+        });
+
+        image4.setOnMouseEntered(event -> {
+            zoomOut3.setFromX(1.1);
+            zoomOut3.setFromY(1.1);
+            zoomOut3.setToX(1);
+            zoomOut3.setToY(1);
+            zoomOut3.play();
+        });
+    }
+
     /* ---------------------------------------------- HFSearchDesti Functions Ends Here  ----------------------------------------- */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        hoverFX();
 
         initCarousel();
 
