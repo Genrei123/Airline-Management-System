@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 02:00 AM
+-- Generation Time: Dec 12, 2023 at 03:58 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,10 @@ CREATE TABLE `airplane_manager` (
 --
 
 INSERT INTO `airplane_manager` (`airplane_id`, `origin`, `destination`, `status`) VALUES
-('ERM101', 'CEBU', 'MANILA', 'RESERVED');
+('ERM101', 'CEBU', 'MANILA', 'RESERVED'),
+('ERM102', 'MANILA', 'PALAWAN', 'ACTIVE'),
+('ERM103', 'MANILA', 'SIARGAO', 'RESERVED'),
+('ERM104', 'MANILA', 'DAVAO', 'RESERVED');
 
 -- --------------------------------------------------------
 
@@ -148,19 +151,6 @@ CREATE TABLE `customer_support` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `destination_price`
---
-
-CREATE TABLE `destination_price` (
-  `origin` varchar(255) NOT NULL,
-  `destination` varchar(255) NOT NULL,
-  `seat_class` varchar(255) NOT NULL,
-  `fare_price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `flight_manager`
 --
 
@@ -179,7 +169,8 @@ CREATE TABLE `flight_manager` (
 --
 
 INSERT INTO `flight_manager` (`airplane_id`, `flight_no`, `destination`, `origin`, `status`, `origin_date`, `destination_date`) VALUES
-('ERM102', 'ERM1020219', 'CEBU', 'MANILA', 'Boarding', '2023-12-09 22:14:00', '2023-12-09 22:15:00');
+('ERM102', 'ERM1020219', 'CEBU', 'MANILA', 'Boarding', '2023-12-09 22:14:00', '2023-12-09 22:15:00'),
+('ERM102', 'ERM121223', 'PALAWAN', 'MANILA', 'Boarding', '2023-12-14 03:40:00', '2023-12-15 16:41:00');
 
 -- --------------------------------------------------------
 
@@ -223,13 +214,12 @@ CREATE TABLE `price_manager` (
 --
 
 INSERT INTO `price_manager` (`airplane_id`, `origin`, `destination`, `class`, `price`, `carousel`) VALUES
-('ERM103', 'MANILA', 'DAVAO', 'First Class', 10000, 0),
-('ERM103', 'MANILA', 'DAVAO', 'First Class', 10000, 0),
-('ERM104', 'MANILA', 'TONDO', 'First Class', 121212, 0),
-('ERM104', 'MANILA', 'TONDO', 'First Class', 121212, 0),
-('12312', '21321', '12321', NULL, NULL, NULL),
-('ERM101', 'CEBU', 'MANILA', NULL, NULL, NULL),
-('ERM101', 'CEBU', 'MANILA', NULL, NULL, NULL);
+('ERM103', 'MANILA', 'DAVAO', 'FIRST CLASS', 10000, 0),
+('ERM103', 'MANILA', 'DAVAO', 'FIRST CLASS', 10000, 0),
+('ERM104', 'MANILA', 'TONDO', 'BUSINESS', 121212, 0),
+('ERM104', 'MANILA', 'TONDO', 'BUSINESS', 121212, 0),
+('ERM102', 'MANILA', 'PALAWAN', 'FIRST CLASS', 5500, 0),
+('ERM102', 'MANILA', 'PALAWAN', 'BUSINESS', 4200, 0);
 
 -- --------------------------------------------------------
 

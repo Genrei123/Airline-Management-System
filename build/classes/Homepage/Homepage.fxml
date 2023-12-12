@@ -1557,7 +1557,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="605.0" fitWidth="1061.0" opacity="0.71" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <image>
@@ -1640,7 +1640,7 @@
                               <JFXButton fx:id="sd_clearSearchBtn" layoutX="812.0" layoutY="78.0" onAction="#cleardesti_search" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CLEAR SEARCHES" textFill="WHITE" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="121.0" fitWidth="259.0" layoutX="228.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
