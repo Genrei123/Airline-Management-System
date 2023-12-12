@@ -1,4 +1,4 @@
-package ReceiptMaker;
+package Receipt;
 
 
 import com.itextpdf.io.image.ImageData;
@@ -8,14 +8,11 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.canvas.draw.DashedLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.borders.DashedBorder;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.properties.HorizontalAlignment;
-import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 
 import java.awt.*;
@@ -25,9 +22,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
 
@@ -153,9 +147,13 @@ public class TicketMaker {
 
         // Fare Details Rows
         fareDetailsTable.addCell(createFareDetailRow("Fare:", "PHP " + fare));
-        fareDetailsTable.addCell(createFareDetailRow("Taxes:", "PHP 50"));
-        fareDetailsTable.addCell(createFareDetailRow("Carrier Imposed Fees:",  "PHP 30"));
-        fareDetailsTable.addCell(createFareDetailRow("Total Amount:", "PHP " + total));
+
+        double vatPercentage = 0.12;
+        double taxes = (fare * vatPercentage);
+        double totalAmount = taxes + fare;
+        fareDetailsTable.addCell(createFareDetailRow("Taxes:", "PHP " + taxes ));
+        fareDetailsTable.addCell(createFareDetailRow("Carrier Imposed Fees:",  "PHP 0"));
+        fareDetailsTable.addCell(createFareDetailRow("Total Amount:", "PHP " + totalAmount));
 
         document.add(fareDetailsTable);
         document.close();

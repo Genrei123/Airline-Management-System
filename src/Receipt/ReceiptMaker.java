@@ -1,4 +1,4 @@
-package ReceiptMaker;
+package Receipt;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;

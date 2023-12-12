@@ -957,8 +957,11 @@ public class DashboardController implements Initializable {
         );
 
         String original_airplaneID = originalList.get(0)[0];
+        System.out.println("Original airplane ID: " + original_airplaneID);
         String original_origin = originalList.get(0)[1];
+        System.out.println("Original origin: " + original_origin);
         String original_destination = originalList.get(0)[2];
+        System.out.println("Original destination: " + original_destination);
 
         // Get updated
         String updated_airplaneID = ap_airplaneIDtxt.getText();
@@ -971,8 +974,8 @@ public class DashboardController implements Initializable {
                 "airplane_manager",
                 Arrays.asList("airplane_id", "origin", "destination"),
                 Arrays.asList(updated_airplaneID, updated_origin, updated_destination),
-                Arrays.asList("airplane_id", "origin", "destination"),
-                Arrays.asList(original_airplaneID, original_origin, original_destination)
+                Arrays.asList("airplane_id"),
+                Arrays.asList(original_airplaneID)
         );
 
         // Update flight_manager

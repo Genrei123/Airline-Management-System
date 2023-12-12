@@ -4,13 +4,11 @@ import Animations.SwitchForms;
 import Database.Database;
 import LogIn.AlertManager;
 import LogIn.Customer;
-import ReceiptMaker.ReceiptMaker;
-import ReceiptMaker.TicketMaker;
-import ReceiptMaker.TicketNo;
+import Receipt.TicketMaker;
+import Receipt.TicketNo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 
 import java.awt.*;
 import java.io.IOException;
@@ -33,19 +31,14 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -1298,7 +1291,6 @@ public class HomepageController implements Initializable {
         booking.setFlight_no(generateFlightID("ERM", origin.getText(), destination.getText()));
 
         Double total = Double.valueOf(fare_price.getText());
-        total = total + 50 + 30;
         booking.setAmount(total);
 
         booking.setTicketNo(TicketNo.generateTicketNo(booking.getFirst_name() + booking.getLast_name()));
