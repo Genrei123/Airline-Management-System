@@ -4,9 +4,9 @@ import Animations.SwitchForms;
 import Database.Database;
 import LogIn.AlertManager;
 import LogIn.Customer;
-import Receipt.ReceiptMaker;
-import Receipt.TicketMaker;
-import Receipt.TicketNo;
+import ReceiptMaker.ReceiptMaker;
+import ReceiptMaker.TicketMaker;
+import ReceiptMaker.TicketNo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -852,12 +852,14 @@ public class HomepageController implements Initializable {
             insertDataIntoDatabase();
             clearPaymentForms();
             clearBookSelectionFields();
+            clearSeatSelectionFields();
+            resetHomeForm();
             // Set payment_form visibility to false
             payingForm.setVisible(false);
             overlayPane1.setVisible(false);
             // Show notification
             showNotification();
-            switchForm(hf_searchDesti, returnToDesti_btn1);
+            switchForm(hf_home, returnToDesti_btn1);
         }
 
     }
@@ -942,13 +944,13 @@ public class HomepageController implements Initializable {
 
         String middle_name = m_name.getText();
         if (middle_name.isEmpty()) {
-            middle_name = "N/A";
+            middle_name = " ";
         }
 
         String last_name = l_name.getText();
         String suffix_name = suffix.getText();
         if (suffix_name.isEmpty()) {
-            suffix_name = "N/A";
+            suffix_name = " ";
         }
 
         String age_name = age.getText();
@@ -1681,6 +1683,30 @@ public class HomepageController implements Initializable {
         loadDestinations(); // Reload the data
     }
 
+    private void resetHomeForm() {
+        cleardesti_search();
+
+        // Clear the text fields
+        sdDi_origin.clear();
+        sdDi_destination.clear();
+        sdDi_seatClass.clear();
+        sdDi_farePrice.clear();
+
+        if (sd_origin != null && sd_origin.getSelectionModel() != null) {
+            sd_origin.getSelectionModel().clearSelection();
+        }
+
+        if (sd_destination != null && sd_destination.getSelectionModel() != null) {
+            sd_destination.getSelectionModel().clearSelection();
+        }
+
+        if (sd_seatClass != null && sd_seatClass.getSelectionModel() != null) {
+            sd_seatClass.getSelectionModel().clearSelection();
+        }
+
+        // Switch form from hf_chooseSeat to hf_home
+        switchForm(hf_searchDesti, hf_home);
+    }
 
     /*------------------------------------------- HF CHOOSEDESTI CODE ENDS ABOVE -----------------------------------------------------------------*/
     private void setupTableClickEvent() {
@@ -1712,7 +1738,6 @@ public class HomepageController implements Initializable {
         // Set the text to cs_origin, cs_destination, cs_seatClass, and cs_price
         cs_origin.setText(confirmedOrigin);
         cs_destination.setText(confirmedDestination);
-
 
         //cs_seatClass.setValue(confirmedSeatClass); // Assuming cs_seatClass is a JFXComboBox<String>
         cs_price.setText(confirmedFarePrice);
@@ -1802,30 +1827,7 @@ public class HomepageController implements Initializable {
         bookFlight_btn.setOnAction(e -> switchForm(hf_searchDesti, bookFlight_btn));
 
         // Return actions for home_form
-        returnToHome_btn.setOnAction(e -> {
-            cleardesti_search();
-
-            // Clear the text fields
-            sdDi_origin.clear();
-            sdDi_destination.clear();
-            sdDi_seatClass.clear();
-            sdDi_farePrice.clear();
-
-            if (sd_origin != null && sd_origin.getSelectionModel() != null) {
-                sd_origin.getSelectionModel().clearSelection();
-            }
-
-            if (sd_destination != null && sd_destination.getSelectionModel() != null) {
-                sd_destination.getSelectionModel().clearSelection();
-            }
-
-            if (sd_seatClass != null && sd_seatClass.getSelectionModel() != null) {
-                sd_seatClass.getSelectionModel().clearSelection();
-            }
-
-            // Switch form from hf_chooseSeat to hf_home
-            switchForm(hf_searchDesti, hf_home);
-        });
+        returnToHome_btn.setOnAction(e -> resetHomeForm());
 
         // Add listeners to cs_seatNum and cs_seatClass
         cs_seatNum.textProperty().addListener((observable, oldValue, newValue) -> updateProceedButtonState());

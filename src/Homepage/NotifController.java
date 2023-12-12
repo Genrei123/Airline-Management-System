@@ -4,8 +4,8 @@
  */
 package Homepage;
 
-import Receipt.TicketMaker;
-import Receipt.TicketNo;
+import ReceiptMaker.TicketMaker;
+import ReceiptMaker.TicketNo;
 import com.jfoenix.controls.JFXButton;
 
 import java.io.IOException;

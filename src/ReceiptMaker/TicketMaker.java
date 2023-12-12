@@ -1,4 +1,4 @@
-package Receipt;
+package ReceiptMaker;
 
 
 import com.itextpdf.io.image.ImageData;

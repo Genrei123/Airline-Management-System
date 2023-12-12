@@ -1,4 +1,4 @@
-package Receipt;
+package ReceiptMaker;
 
 import java.time.LocalDate;
 
