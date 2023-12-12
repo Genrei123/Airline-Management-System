@@ -15,18 +15,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.xml.crypto.Data;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -305,16 +306,20 @@ public class DashboardController implements Initializable {
     private TableView<String[]> pm_table;
 
     @FXML
-    private TableColumn<String[], String> pm_airplaneID, pm_origin, pm_dest, pm_class, pm_price, pm_carousel;
+    private TableColumn<String[], String> pm_airplaneID, pm_origin, pm_dest, pm_class, pm_price, pm_carousel, pm_id;
 
     @FXML
     JFXComboBox<String> pm_managerClassBox, pm_managerAirplaneIDbox;
+
+    @FXML Label pm_alert;
 
     @FXML
     JFXCheckBox pm_managerCarousel;
 
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
+
+    int clickedIndex = 0;
 
     public void toggleAdminMenu() {
         if (isMenuVisible) {
@@ -565,8 +570,6 @@ public class DashboardController implements Initializable {
         fm_managerSTATUSbox.setItems(statusData);
 
         fm_managerAirplaneIDbox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Selected airplane ID: " + newValue);
-
             assert data != null;
             fm_managerORIGINtxt.setText(data.get(fm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[1]);
             fm_managerDESTtxt.setText(data.get(fm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[2]);
@@ -621,6 +624,10 @@ public class DashboardController implements Initializable {
                 Arrays.asList("airplane_id"),
                 Arrays.asList(airplaneID)
         );
+
+
+
+
 
 
 
@@ -696,18 +703,6 @@ public class DashboardController implements Initializable {
 
         load_fm_managerTable();
 
-    }
-
-    private void fm_clear() {
-        fm_managerAirplaneIDbox.getSelectionModel().clearSelection();
-        fm_managerFLIGHTNOtxt.setText("");
-        fm_managerDESTtxt.setText("");
-        fm_managerORIGINtxt.setText("");
-        fm_managerSTATUSbox.getSelectionModel().clearSelection();
-        fm_dateDeparture.setValue(null);
-        fm_timeDeparture.setValue(null);
-        fm_dateArrival.setValue(null);
-        fm_timeARRIVAL.setValue(null);
     }
 
     private void loadBookedFlights() throws SQLException {
@@ -908,8 +903,6 @@ public class DashboardController implements Initializable {
         Database database = new Database();
         database.insertData("airplane_manager", Arrays.asList("airplane_id", "origin", "destination", "status"), Arrays.asList(airplaneID, origin, destination, "RESERVED"));
 
-        database.insertData("price_manager", Arrays.asList("airplane_id", "origin", "destination"), Arrays.asList(airplaneID, origin, destination));
-
         loadAddplanes();
     }
 
@@ -1007,7 +1000,6 @@ public class DashboardController implements Initializable {
 
         // Add listener for table
         pm_table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Selected row: " + newValue);
 
             if (pm_managerAirplaneIDbox == null) {
                 System.out.println("Airplane ID box is null");
@@ -1020,7 +1012,9 @@ public class DashboardController implements Initializable {
                 pm_managerDESTtxt.setText(newValue != null && newValue.length > 2 ? newValue[2] : "");
                 pm_managerClassBox.getSelectionModel().select(newValue != null && newValue.length > 3 ? newValue[3] : "");
                 pm_managerPrice.setText(newValue != null && newValue.length > 4 ? newValue[4] : "");
-                pm_managerCarousel.setSelected(newValue != null && newValue.length > 5 ? Boolean.parseBoolean(newValue[5]) : false);
+
+                System.out.println("Carousel: " + newValue[5]);
+
             }
         });
     }
@@ -1052,20 +1046,15 @@ public class DashboardController implements Initializable {
         Double price = Double.parseDouble(pm_managerPrice.getText());
         Boolean carousel = pm_managerCarousel.isSelected();
 
+
+
         Database update = new Database();
         update.updateData(
                 "price_manager",
                 Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
                 Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel),
-                Arrays.asList("airplane_id", "class"),
-                Arrays.asList(airplaneID, seatClass)
-        );
-
-        Database check = new Database();
-        ObservableList<String[]> data = check.pullData("price_manager",
-                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
-                Arrays.asList("airplane_id"),
-                Arrays.asList(airplaneID)
+                Arrays.asList("airplane_id", "class", "id"),
+                Arrays.asList(airplaneID, seatClass, clickedIndex + 1)
         );
 
         loadpm();
@@ -1076,41 +1065,83 @@ public class DashboardController implements Initializable {
         String origin = pm_managerORIGINtxt.getText();
         String destination = pm_managerDESTtxt.getText();
         String seatClass = pm_managerClassBox.getSelectionModel().getSelectedItem();
-
-        // Double value can be null, so use a wrapper type
-        Double price = null;
-        try {
-            price = Double.parseDouble(pm_managerPrice.getText());
-        } catch (NumberFormatException e) {
-            // Handle the case where the price is not a valid double
-            e.printStackTrace(); // You might want to log this or handle it differently
-        }
-
+        Double price = Double.parseDouble(pm_managerPrice.getText());
         Boolean carousel = pm_managerCarousel.isSelected();
 
-        List<String> columnNames = new ArrayList<>(Arrays.asList("airplane_id", "origin", "destination", "class", "price"));
-        List<Object> values = new ArrayList<>(Arrays.asList(airplaneID, origin, destination, seatClass, price));
-
-        // Remove null values from the lists
-        Iterator<Object> iterator = values.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next() == null) {
-                iterator.remove();
-                columnNames.remove(0); // Remove the corresponding column name
-            }
-        }
-
         Database delete = new Database();
-        delete.deleteData("price_manager", columnNames, values);
 
-
-
+        delete.deleteData(
+                "price_manager",
+                Arrays.asList("airplane_id", "origin", "destination", "class", "price", "carousel"),
+                Arrays.asList(airplaneID, origin, destination, seatClass, price, carousel)
+        );
 
         loadpm();
     }
 
+    private static final String IMAGES_FOLDER = "src/Images/Carousel";
+
+    private void uploadPhoto(File sourceFile, String destination, String origin) {
+        // Check if the Images folder exists, create it if not
+        File imagesFolder = new File(IMAGES_FOLDER);
+        if (!imagesFolder.exists()) {
+            imagesFolder.mkdirs();
+        }
+
+        // Generate a new file name (you may want to implement a more robust method)
+        String newFileName = destination + origin + ".jpg";
+
+        // Set the destination file path in the Images folder
+        File destinationFile = new File(IMAGES_FOLDER, newFileName);
+
+        try {
+            // Copy the file to the destination
+            Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            // Show a confirmation dialog
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Photo Upload Successful");
+            alert.setHeaderText(null);
+            alert.setContentText("The photo has been successfully uploaded to the Images folder.");
+            alert.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Show an error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("An error occurred during the photo upload.");
+            alert.showAndWait();
+        }
+    }
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        if (pm_managerCarousel != null) {
+            pm_managerCarousel.setOnAction(event -> {
+                if (pm_managerCarousel.isSelected()) {
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Select Photo to Upload");
+                    File selectedFile = fileChooser.showOpenDialog(null);
+
+                    if (selectedFile != null && pm_managerDESTtxt.getText() != null && pm_managerORIGINtxt.getText() != null && pm_managerAirplaneIDbox.getSelectionModel().getSelectedItem() != null && pm_managerClassBox.getSelectionModel().getSelectedItem() != null && pm_managerPrice.getText() != null) {
+                        uploadPhoto(selectedFile, pm_managerDESTtxt.getText(), pm_managerORIGINtxt.getText());
+                    } else {
+
+                        pm_managerCarousel.setSelected(false);
+                        AlertManager alertManager = new AlertManager(pm_alert);
+                        alertManager.setAlertText("Please fill in all the fields.", "Red");
+                    }
+
+
+                } else {
+                    System.out.println("Not Selected");
+                }
+            });
+        }
 
         loadpm();
         loadfmCombobox();

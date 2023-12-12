@@ -36,14 +36,10 @@
 
 .textFill {
     -fx-text-fill: white;
-    -fx-prompt-text-fill: white;
+    -fx-prompt-text-fill: #8d9ba0;
 }
 
 .sdTextFill {
-    -fx-text-fill: white;
-}
-
-.sdTextFill:selected {
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
 }
@@ -195,7 +191,7 @@
     -fx-text-fill: #d8d8d8;
 }
 .tableBg .column-header .label {
-    -fx-font-size: 15;
+    -fx-font-size: 13;
     -fx-font-weight: bold;
     -fx-text-fill: #d8d8d8;
     -fx-alignment: center;
@@ -203,9 +199,9 @@
 }
 
 .table-cell {
-    -fx-font-size: 20px;
+    -fx-font-size: 15px;
     -fx-text-fill: #d8d8d8;
-    -fx-alignment: center;
+    -fx-alignment: center-left;
 }
 
 .tableBg:focused .table-row-cell:filled:focused:selected {

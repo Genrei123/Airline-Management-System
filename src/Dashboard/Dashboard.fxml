@@ -298,6 +298,7 @@
                                  </children>
                               </AnchorPane>
                               <JFXButton layoutX="145.0" layoutY="374.0" onAction="#pm_update" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #686868;" stylesheets="@DashboardStyles.css" text="UPDATE" textFill="WHITE" />
+                              <Label fx:id="pm_alert" layoutX="204.0" layoutY="335.0" prefHeight="17.0" prefWidth="167.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -320,6 +321,7 @@
                         <TableColumn fx:id="pm_class" prefWidth="124.0" resizable="false" text="CLASS" />
                         <TableColumn fx:id="pm_price" prefWidth="123.0" text="PRICE" />
                         <TableColumn fx:id="pm_carousel" prefWidth="157.0" resizable="false" text="CAROUSEL" />
+                        <TableColumn fx:id="pm_id" prefWidth="157.0" resizable="false" text="CAROUSEL" />
                      </columns>
                   </TableView>
                </children></AnchorPane>
@@ -647,7 +649,7 @@
                         <MaterialDesignIconView fill="#dfdfdf" glyphName="AIRPLANE" size="30" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="ticketForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Location Manager" textFill="#dfdfdf">
+                  <JFXButton fx:id="ticketForm_btn" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="210.0" ripplerFill="BLACK" stylesheets="@DashboardStyles.css" text="Price Manager" textFill="#dfdfdf">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

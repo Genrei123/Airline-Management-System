@@ -462,7 +462,7 @@ public class HomepageController implements Initializable {
     private TableView<String[]> sd_tableView;
 
     @FXML
-    private TableColumn<String[], String> sdTbl_origin, sdTbl_destination, sdTbl_seatClass, sdTbl_farePrice;
+    private TableColumn<String[], String> sdTbl_origin, sdTbl_destination, sdTbl_seatClass, sdTbl_farePrice, sdTbl_departure, sdTbl_arrival;
 
     @FXML
     private JFXButton sd_confirmBtn;
@@ -496,6 +496,8 @@ public class HomepageController implements Initializable {
 
     @FXML
     private JFXCheckBox checkBox_btn;
+
+
 
     private boolean menuOpen = false;
 
@@ -708,6 +710,9 @@ public class HomepageController implements Initializable {
             switchForm(c_slide2);
             show++;
         } else if (show == 1) {
+            switchForm(c_slide3);
+            show++;
+        } else if (show == 2) {
             switchForm(c_slide1);
             show = 0;
         }
@@ -720,14 +725,14 @@ public class HomepageController implements Initializable {
     @FXML
     private void slideToLeft(ActionEvent event) {
         if (show == 0) {
-            switchForm(c_slide1);
+            switchForm(c_slide3);
             show = 2;
         } else if (show == 1) {
-            switchForm(c_slide2);
+            switchForm(c_slide1);
             show--;
         } else if (show == 2) {
             switchForm(c_slide2);
-            show = 1;
+            show--;
         }
 
         // Record the time of the manual slide change
@@ -1603,10 +1608,7 @@ public class HomepageController implements Initializable {
         // Load the tables only if data is not already loaded
         if (destinationData.isEmpty()) {  // Change the condition to isEmpty()
             Database db = new Database();
-            destinationData = db.pullData(
-                    "price_manager",
-                    Arrays.asList("origin", "destination", "class", "price")
-            );
+            destinationData = db.searchDesti();
 
             // Set the table data
             if (destinationData != null) {
@@ -1615,6 +1617,8 @@ public class HomepageController implements Initializable {
                 sdTbl_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
                 sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
                 sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+                sdTbl_departure.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[4]));
+                sdTbl_arrival.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[5]));
 
                 // Setup the click event
                 setupTableClickEvent();
@@ -1763,9 +1767,26 @@ public class HomepageController implements Initializable {
         toForm.setVisible(true);
     }
 
+    private void initCarousel() {
+        Database countCarousel = new Database();
+        int count = countCarousel.countCarousel();
+
+        Database listLocations = new Database();
+        ObservableList<String[]> locations = listLocations.listLocations();
+
+        //Carousel
+        Carousel carousel = new Carousel();
+
+
+        AnchorPane[] slides = {c_slide1, c_slide2, c_slide3};
+        carousel.addCarousel(slides, count, locations);
+    }
+
     /* ---------------------------------------------- HFSearchDesti Functions Ends Here  ----------------------------------------- */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        initCarousel();
 
         // Set the initial state
         returnToCS_btn.setVisible(false);

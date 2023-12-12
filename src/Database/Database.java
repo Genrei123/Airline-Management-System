@@ -656,5 +656,114 @@ public class Database {
         }
     }
 
+    public int countCarousel() {
+        String query = "SELECT COUNT(carousel) FROM price_manager WHERE carousel = 1";
+        connector = connectDB.connectDB();
+
+        if (connector == null) {
+            System.out.println("Cannot connect to the database.");
+            return 0;
+        } else {
+            try {
+                prepare = connector.prepareStatement(query);
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    return result.getInt(1);
+                } else {
+                    return 0;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return 0;
+    }
+
+    public ObservableList<String[]> listLocations() {
+        String query = "SELECT origin, destination FROM price_manager WHERE carousel = 1";
+        connector = connectDB.connectDB();
+
+        if (connector != null) {
+            try {
+                Statement statement = connector.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+
+                List<String[]> rows = new ArrayList<>();
+                while (resultSet.next()) {
+                    String[] row = new String[2];
+                    row[0] = resultSet.getString("origin");
+                    row[1] = resultSet.getString("destination");
+                    rows.add(row);
+                }
+                return FXCollections.observableArrayList(rows);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connector.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            System.out.println("Cannot connect to the database");
+        }
+
+        return null;
+    }
+
+    public ObservableList<String[]> searchDesti() {
+        String query = "SELECT price_manager.origin, " +
+                "price_manager.destination, " +
+                "price_manager.class, " +
+                "price_manager.price, " +
+                "flight_manager.origin_date," +
+                "flight_manager.destination_date " +
+                "FROM price_manager " +
+                "JOIN flight_manager ON " +
+                "price_manager.airplane_id = flight_manager.airplane_id";
+
+        connector = connectDB.connectDB();
+
+        if (connector != null) {
+            try {
+                Statement statement = connector.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+
+                List<String[]> rows = new ArrayList<>();
+                while (resultSet.next()) {
+                    String[] row = new String[6];
+                    row[0] = resultSet.getString("origin");
+                    row[1] = resultSet.getString("destination");
+                    row[2] = resultSet.getString("class");
+                    row[3] = resultSet.getString("price");
+                    row[4] = resultSet.getString("origin_date");
+                    row[5] = resultSet.getString("destination_date");
+                    rows.add(row);
+                }
+                return FXCollections.observableArrayList(rows);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connector.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            System.out.println("Cannot connect to the database");
+        }
+
+        return null;
+    }
+
 
 }

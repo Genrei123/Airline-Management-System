@@ -1824,102 +1824,12 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="carousel" layoutX="22.0" layoutY="396.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="173.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="36.0">
+                              <AnchorPane fx:id="carousel" layoutX="22.0" layoutY="396.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="173.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="36.0">
                                  <children>
-                                    <AnchorPane fx:id="c_slide1" prefHeight="375.0" prefWidth="994.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <JFXButton fx:id="c_bookingBtn1" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" prefHeight="200.0" prefWidth="303.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/Boracay.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn2" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="346.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/Coron.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn3" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="692.0" layoutY="5.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/Puerto%20Prinsesa.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                          </JFXButton>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane fx:id="c_slide2" prefHeight="375.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <JFXButton fx:id="c_bookingBtn4" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" prefHeight="200.0" prefWidth="303.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/Samar.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn5" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="346.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/Bohol.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn6" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="692.0" layoutY="5.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/Cebu%20City.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                          </JFXButton>
-                                       </children>
-                                    </AnchorPane>
+                                    <AnchorPane fx:id="c_slide1" prefHeight="375.0" prefWidth="994.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <AnchorPane fx:id="c_slide2" prefHeight="375.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                     <AnchorPane fx:id="c_slide3" prefHeight="375.0" prefWidth="994.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <JFXButton fx:id="c_bookingBtn7" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" prefHeight="200.0" prefWidth="303.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/El%20Nido.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                          </JFXButton>
                                           <JFXButton fx:id="c_bookingBtn8" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="346.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font size="1.0" />
@@ -1932,28 +1842,16 @@
                                                 </ImageView>
                                              </graphic>
                                           </JFXButton>
-                                          <JFXButton fx:id="c_bookingBtn9" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="692.0" layoutY="5.0" prefHeight="200.0" prefWidth="238.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <graphic>
-                                                <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/LOCATION%20IMAGES/Siargao.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                          </JFXButton>
                                        </children>
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <JFXButton fx:id="slideToLeft_btn" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="-4.0" layoutY="300.0" onAction="#slideToLeft" prefHeight="48.0" prefWidth="35.0" ripplerFill="WHITE" AnchorPane.leftAnchor="-4.0">
+                              <JFXButton fx:id="slideToLeft_btn" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="-4.0" layoutY="300.0" onAction="#slideToLeft" prefHeight="48.0" prefWidth="35.0" ripplerFill="WHITE" visible="false" AnchorPane.leftAnchor="-4.0">
                                  <graphic>
                                     <OctIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="40" />
                                  </graphic>
                               </JFXButton>
-                              <JFXButton fx:id="slideToRight_btn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="968.0" layoutY="300.0" onAction="#slideToRight" prefHeight="48.0" prefWidth="35.0" ripplerFill="WHITE" textAlignment="RIGHT" AnchorPane.rightAnchor="0.0">
+                              <JFXButton fx:id="slideToRight_btn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="968.0" layoutY="300.0" onAction="#slideToRight" prefHeight="48.0" prefWidth="35.0" ripplerFill="WHITE" textAlignment="RIGHT" visible="false" AnchorPane.rightAnchor="0.0">
                                  <graphic>
                                     <OctIconView fill="WHITE" glyphName="CHEVRON_RIGHT" size="40" textAlignment="RIGHT" />
                                  </graphic>
