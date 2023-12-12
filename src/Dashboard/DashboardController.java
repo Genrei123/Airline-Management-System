@@ -316,6 +316,9 @@ public class DashboardController implements Initializable {
     @FXML
     JFXCheckBox pm_managerCarousel;
 
+    @FXML
+    TextField fm_airplaneID;
+
     private boolean isMenuVisible = false;
     private JFXButton currentSelectedButton;
 
@@ -585,6 +588,7 @@ public class DashboardController implements Initializable {
 
             }
 
+            fm_airplaneID.setText(newValue[0]);
             fm_managerFLIGHTNOtxt.setText(newValue[1]);
             fm_managerDESTtxt.setText(newValue[2]);
             fm_managerORIGINtxt.setText(newValue[3]);
@@ -911,8 +915,40 @@ public class DashboardController implements Initializable {
         String origin = ap_airplaneOrigintxt.getText();
         String destination = ap_airplaneDesttxt.getText();
 
+        // Delete in airplane_manager
         Database database = new Database();
-        database.deleteData("airplane_manager", Arrays.asList("airplane_id", "origin", "destination"), Arrays.asList(airplaneID, origin, destination));
+        database.deleteData("airplane_manager",
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(airplaneID, origin, destination)
+        );
+
+        // Delete in flight_manager
+        ObservableList<String[]> fm = database.pullData("flight_manager",
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(airplaneID, origin, destination)
+        );
+        if (fm != null) {
+            database.deleteData("flight_manager",
+                    Arrays.asList("airplane_id", "origin", "destination"),
+                    Arrays.asList(airplaneID, origin, destination)
+            );
+        }
+
+        // Delete in price_manager
+        ObservableList<String[]> pm = database.pullData("price_manager",
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(airplaneID, origin, destination)
+        );
+        if (pm != null) {
+            database.deleteData("price_manager",
+                    Arrays.asList("airplane_id", "origin", "destination"),
+                    Arrays.asList(airplaneID, origin, destination)
+            );
+        }
+
+
 
         loadAddplanes();
     }
@@ -935,10 +971,28 @@ public class DashboardController implements Initializable {
         String updated_origin = ap_airplaneOrigintxt.getText();
         String updated_destination = ap_airplaneDesttxt.getText();
 
-        // Update
+        // Update airplane_manager
         Database database = new Database();
         database.updateData(
                 "airplane_manager",
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(updated_airplaneID, updated_origin, updated_destination),
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(original_airplaneID, original_origin, original_destination)
+        );
+
+        // Update flight_manager
+        database.updateData(
+                "flight_manager",
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(updated_airplaneID, updated_origin, updated_destination),
+                Arrays.asList("airplane_id", "origin", "destination"),
+                Arrays.asList(original_airplaneID, original_origin, original_destination)
+        );
+
+        // Update price_manager
+        database.updateData(
+                "price_manager",
                 Arrays.asList("airplane_id", "origin", "destination"),
                 Arrays.asList(updated_airplaneID, updated_origin, updated_destination),
                 Arrays.asList("airplane_id", "origin", "destination"),
@@ -1115,11 +1169,10 @@ public class DashboardController implements Initializable {
         }
     }
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        pm_managerCarousel.setVisible(false);
         if (pm_managerCarousel != null) {
             pm_managerCarousel.setOnAction(event -> {
                 if (pm_managerCarousel.isSelected()) {

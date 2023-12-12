@@ -275,9 +275,9 @@
                               </JFXButton>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="419.0" layoutY="-47.0" text="ACCOUNT">
+                        <Label layoutX="419.0" layoutY="-47.0" text="ACCOUNT" textFill="WHITE">
                            <graphic>
-                              <Label text="YOUR ">
+                              <Label text="YOUR " textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="27.0" />
                                  </font>
@@ -611,6 +611,18 @@
                               <MaterialDesignIconView fill="#464545" glyphName="SEAT_RECLINE_EXTRA" layoutX="613.0" layoutY="260.0" size="30" />
                               <MaterialDesignIconView fill="#464545" glyphName="NUMERIC_0_BOX" layoutX="612.0" layoutY="337.0" size="30" AnchorPane.rightAnchor="420.0" />
                               <FontAwesomeIconView fill="#464545" glyphName="MONEY" layoutX="614.0" layoutY="411.0" size="25" />
+                              <Label contentDisplay="RIGHT" layoutX="470.0" layoutY="18.0" text="Fill in the " textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                                 <font>
+                                    <Font name="Arial" size="27.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="information" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="hf_chooseSeat" prefHeight="578.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1631,6 +1643,18 @@
                                     <AnchorPane layoutX="546.0" layoutY="-2.0" prefHeight="306.0" prefWidth="53.0" style="-fx-background-color: #201414; -fx-opacity: 0.3;" />
                                  </children>
                               </AnchorPane>
+                              <Label contentDisplay="RIGHT" layoutX="430.0" layoutY="8.0" text="Choose your" textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                                 <font>
+                                    <Font name="Arial" size="27.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="seat" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="hf_searchDesti" prefHeight="599.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1714,6 +1738,18 @@
                                  </children>
                               </AnchorPane>
                               <JFXButton fx:id="sd_clearSearchBtn" layoutX="812.0" layoutY="78.0" onAction="#cleardesti_search" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CLEAR SEARCHES" textFill="WHITE" />
+                              <Label contentDisplay="RIGHT" layoutX="451.0" layoutY="9.0" text="Search " textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="27.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="Destination" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial" size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="hf_home" prefHeight="578.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1820,6 +1856,11 @@
                                     <OctIconView fill="WHITE" glyphName="CHEVRON_RIGHT" size="40" textAlignment="RIGHT" />
                                  </graphic>
                               </JFXButton>
+                              <Label layoutX="503.0" layoutY="-50.0" text="HOME" textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="27.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
