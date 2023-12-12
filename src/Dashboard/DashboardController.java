@@ -576,6 +576,7 @@ public class DashboardController implements Initializable {
             assert data != null;
             fm_managerORIGINtxt.setText(data.get(fm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[1]);
             fm_managerDESTtxt.setText(data.get(fm_managerAirplaneIDbox.getSelectionModel().getSelectedIndex())[2]);
+            fm_airplaneID.setText("");
         });
 
         fm_managerTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -628,12 +629,6 @@ public class DashboardController implements Initializable {
                 Arrays.asList("airplane_id"),
                 Arrays.asList(airplaneID)
         );
-
-
-
-
-
-
 
         load_fm_managerTable();
     }
