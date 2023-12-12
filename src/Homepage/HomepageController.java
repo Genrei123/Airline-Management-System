@@ -65,6 +65,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
+import javafx.scene.Cursor;
 
 public class HomepageController implements Initializable {
 
@@ -1604,34 +1605,49 @@ public class HomepageController implements Initializable {
     }
 
     /*---------------------- HF CHOOSEDESTI CODE SHOULD BE HERE ----------------------*/
+    private ObservableList<String[]> destinationData = FXCollections.observableArrayList();
+    // Load destinations initially, for example in your initialize method
+
     private void loadDestinations() {
-        // Load the tables
-        Database db = new Database();
-        ObservableList<String[]> data = db.pullData(
-                "price_manager",
-                Arrays.asList("origin", "destination", "class", "price")
-        );
+        // Load the tables only if data is not already loaded
+        if (destinationData.isEmpty()) {  // Change the condition to isEmpty()
+            Database db = new Database();
+            destinationData = db.pullData(
+                    "price_manager",
+                    Arrays.asList("origin", "destination", "class", "price")
+            );
 
-        // Set the table data
-        if (data != null) {
-            sd_tableView.setItems(data);
-            sdTbl_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
-            sdTbl_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
-            sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
-            sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+            // Set the table data
+            if (destinationData != null) {
+                sd_tableView.setItems(destinationData);
+                sdTbl_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+                sdTbl_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+                sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
+                sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
 
-            // Setup the click event
-            setupTableClickEvent();
+                // Setup the click event
+                setupTableClickEvent();
+            }
         }
     }
 
     public void destiSearchBy() {
         List<String> listP = new ArrayList<>(Arrays.asList("Origin", "Destination", "Seat Class"));
-
         ObservableList<String> listData = FXCollections.observableArrayList(listP);
         sd_searchBy.setItems(listData);
 
         // Add listener to sd_searchBy
+        sd_searchBy.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Enable or disable sd_searchByText based on the selected item
+            sd_searchByText.setDisable(newValue == null);
+
+            // Change cursor based on the enabled state
+            if (sd_searchByText.isDisabled()) {
+                sd_searchByText.setCursor(Cursor.DEFAULT);
+            } else {
+                sd_searchByText.setCursor(Cursor.TEXT);
+            }
+        });
     }
 
     public void desti_search() throws SQLException {
@@ -1640,21 +1656,27 @@ public class HomepageController implements Initializable {
         List<String> text = Arrays.asList(searchText);
         List<String> searchBy = Arrays.asList(sd_searchBy.getSelectionModel().getSelectedItem());
 
-        Database database = new Database();
-        ObservableList<String[]> data = database.pullData("price_manager",
-                Arrays.asList("origin", "destination", "class", "price"), searchBy, text);
+        FilteredList<String[]> filteredData = new FilteredList<>(destinationData, e -> true);
 
-        if (data != null) {
-            System.out.println("Data is not null");
-            sd_tableView.setItems(data);
+        // Apply search criteria based on the selected item in sd_searchBy
+        filteredData.setPredicate(data -> dataMatchesSearchCriteria(data, searchBy.get(0), searchText));
 
-            sdTbl_origin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
-            sdTbl_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
-            sdTbl_seatClass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[2]));
-            sdTbl_farePrice.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[3]));
+        // Update the TableView with filtered data
+        sd_tableView.setItems(filteredData);
+    }
 
-        } else {
-            System.out.println("Data is null");
+    private boolean dataMatchesSearchCriteria(String[] data, String searchBy, String searchCriteria) {
+        // Placeholder logic; adjust based on your actual data structure and searchBy value
+        switch (searchBy) {
+            case "Origin":
+                return data[0].toLowerCase().contains(searchCriteria);
+            case "Destination":
+                return data[1].toLowerCase().contains(searchCriteria);
+            case "Seat Class":
+                return data[2].toLowerCase().contains(searchCriteria);
+            // Add more cases as needed
+            default:
+                return false;
         }
     }
 
@@ -1664,7 +1686,12 @@ public class HomepageController implements Initializable {
 
         // Clear the text of the TextField
         sd_searchByText.clear();
+
+        // Reload the original data to revert the TableView
+        destinationData.clear(); // Clear the existing data
+        loadDestinations(); // Reload the data
     }
+
 
     /*------------------------------------------- HF CHOOSEDESTI CODE ENDS ABOVE -----------------------------------------------------------------*/
     private void setupTableClickEvent() {
@@ -1793,6 +1820,8 @@ public class HomepageController implements Initializable {
 
         // Return actions for home_form
         returnToHome_btn.setOnAction(e -> {
+            cleardesti_search();
+
             // Clear the text fields
             sdDi_origin.clear();
             sdDi_destination.clear();
@@ -2144,31 +2173,6 @@ public class HomepageController implements Initializable {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-
-        // Check seats
-        try {
-            desti_search();
-            loadDestinations();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Auto requery when something is changed within the database
-        // Create a timeline for periodic polling (adjust the Duration as needed)
-        Timeline destiTimeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
-            // Code to re-query the database goes here
-            System.out.println("Re-querying");
-
-            // Check destinations
-            try {
-                desti_search();
-                loadDestinations();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }));
-        destiTimeline.setCycleCount(Timeline.INDEFINITE);
-        destiTimeline.play();
 
         cs_seatClass.valueProperty().addListener((observable, oldSeatClass, newSeatClass) -> {
             // Clear the text in cs_seatNum

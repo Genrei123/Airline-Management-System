@@ -41,10 +41,6 @@
 
 .sdTextFill {
     -fx-text-fill: white;
-}
-
-.sdTextFill:selected {
-    -fx-text-fill: white;
     -fx-prompt-text-fill: white;
 }
 

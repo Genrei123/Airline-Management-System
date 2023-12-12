@@ -1625,8 +1625,11 @@
                               </AnchorPane>
                               <AnchorPane layoutX="329.0" layoutY="72.0" prefHeight="45.0" prefWidth="472.0" style="-fx-background-color: #313338; -fx-background-radius: 5 5 5 5;">
                                  <children>
-                                    <JFXComboBox fx:id="sd_searchBy" focusColor="#405aa800" layoutX="266.0" layoutY="10.0" prefHeight="25.0" prefWidth="198.0" promptText="SEARCH BY" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.topAnchor="10.0" />
-                                    <JFXTextField fx:id="sd_searchByText" focusColor="WHITE" labelFloat="true" layoutX="36.0" layoutY="10.0" onKeyPressed="#desti_search" prefHeight="25.0" prefWidth="210.0" promptText="SEARCH BY" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
+                                    <JFXComboBox fx:id="sd_searchBy" focusColor="#405aa800" layoutX="266.0" layoutY="10.0" prefHeight="25.0" prefWidth="198.0" promptText="SELECT FILTER" style="-fx-background-color: #D9D9D9; -fx-padding: -5 0 -5 10;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles1.css" unFocusColor="#4d4d4d00" AnchorPane.topAnchor="10.0">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></JFXComboBox>
+                                    <JFXTextField fx:id="sd_searchByText" focusColor="WHITE" layoutX="36.0" layoutY="10.0" onKeyPressed="#desti_search" prefHeight="25.0" prefWidth="210.0" promptText="SEARCH" style="-fx-background-insets: 0 3 0 3;" styleClass="sdTextFill" stylesheets="@HomepageStyles.css" unFocusColor="WHITE">
                                        <cursor>
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>
