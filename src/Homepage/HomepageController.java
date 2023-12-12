@@ -35,7 +35,6 @@ import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -61,9 +60,6 @@ public class HomepageController implements Initializable {
     private TextField departure_date, arrival_date;
 
     @FXML
-    private Label displayUserName;
-
-    @FXML
     private AnchorPane topPane;
 
     @FXML
@@ -82,7 +78,49 @@ public class HomepageController implements Initializable {
     private AnchorPane account_form;
 
     @FXML
-    private AnchorPane customerSupp_form;
+    private AnchorPane userNameField;
+
+    @FXML
+    private Label displayUserName;
+
+    @FXML
+    private AnchorPane bg;
+
+    @FXML
+    private AnchorPane innerBG;
+
+    @FXML
+    private JFXButton acc_bookedFlightbtn;
+
+    @FXML
+    private JFXButton acc_pastTransacbtn;
+
+    @FXML
+    private JFXButton acc_customerSuppbtn;
+
+    @FXML
+    private AnchorPane acc_imgBg;
+
+    @FXML
+    private AnchorPane acc_bookedFlights;
+
+    @FXML
+    private TableView<?> acc_bookedFlightTable;
+
+    @FXML
+    private JFXButton acc_bookedFlightsBTN;
+
+    @FXML
+    private AnchorPane acc_pastTransaction;
+
+    @FXML
+    private TableView<?> acc_pastTransacTable;
+
+    @FXML
+    private JFXButton acc_pastTransReceiptBTN;
+
+    @FXML
+    private JFXButton acc_flightStatusBTN;
 
     @FXML
     private AnchorPane flightStats_form;
@@ -394,22 +432,7 @@ public class HomepageController implements Initializable {
     private ImageView seat_icon;
 
     @FXML
-    private JFXButton cs_rebookingBtn, cs_changeInfoBtn, cs_contactUsBTN, cs_return;
-
-    @FXML
     private AnchorPane cs_changeInfoForm, cs_reBookingform, background, cs_chat;
-
-    @FXML
-    private ComboBox<String> cs_rebookingCombo;
-
-    @FXML
-    private DatePicker cs_rebookingDate;
-
-    @FXML
-    private TextField cs_rebookingTicketNo, cs_rebookingLastName, cs_rebookingFeedback, cs_rebookingActive;
-
-    @FXML
-    private Label cs_alert;
 
     @FXML
     private TableView<String[]> flightStatTable;
@@ -479,15 +502,10 @@ public class HomepageController implements Initializable {
     private JFXComboBox<String> sd_seatClass;
 
     @FXML
-    private JFXButton returnToCS_btn;
-
-    @FXML
     private JFXCheckBox checkBox_btn;
 
     @FXML
     private ImageView image1, image2, image3, image4;
-
-
 
     private boolean menuOpen = false;
 
@@ -751,25 +769,12 @@ public class HomepageController implements Initializable {
         targetForm.setVisible(true);
     }
 
-    private void CSswitchForm(AnchorPane targetForm, JFXButton selectedButton) {
-        background.setVisible(false);
-        cs_changeInfoForm.setVisible(false);
-        cs_reBookingform.setVisible(false);
-        cs_chat.setVisible(false);
-        // Show the selected form
-        targetForm.setVisible(true);
-
-        String targetName = targetForm.getId();
-        System.out.println(targetName);
-    }
-
     //SWITCH FORM FUNCTIONS FOR MENU SLIDER
     public void switchForm(ActionEvent event) {
         if (event.getSource() == menu_home) {
             //For PARENT FORMS
             home_form.setVisible(true);
             flightStats_form.setVisible(false);
-            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
@@ -783,39 +788,28 @@ public class HomepageController implements Initializable {
         } else if (event.getSource() == menu_flightStats) {
             home_form.setVisible(false);
             flightStats_form.setVisible(true);
-            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
-
-        } else if (event.getSource() == menu_customerSupp) {
-            home_form.setVisible(false);
-            flightStats_form.setVisible(false);
-            customerSupp_form.setVisible(true);
-            account_form.setVisible(false);
-            top_form.setVisible(false);
-            aboutUs_form.setVisible(false);
-
-            switchForm(cs_reBookingform, background);
 
         } else if (event.getSource() == menu_account) {
             home_form.setVisible(false);
-            flightStats_form.setVisible(false);
-            customerSupp_form.setVisible(false);
+            flightStats_form.setVisible(false);          
             account_form.setVisible(true);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
+
+            switchAccForms();
+            acc_imgBg.setVisible(true);
         } else if (event.getSource() == menu_TOP) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
-            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(true);
             aboutUs_form.setVisible(false);
         } else if (event.getSource() == menu_aboutUs) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
-            customerSupp_form.setVisible(false);
             account_form.setVisible(false);
             top_form.setVisible(false);
             aboutUs_form.setVisible(true);
@@ -1291,6 +1285,7 @@ public class HomepageController implements Initializable {
         booking.setFlight_no(generateFlightID("ERM", origin.getText(), destination.getText()));
 
         Double total = Double.valueOf(fare_price.getText());
+        total = total + 50 + 30;
         booking.setAmount(total);
 
         booking.setTicketNo(TicketNo.generateTicketNo(booking.getFirst_name() + booking.getLast_name()));
@@ -1467,68 +1462,6 @@ public class HomepageController implements Initializable {
             }
         } else {
             System.out.println("Desktop not supported. Cannot open phone dialer.");
-        }
-    }
-
-    public void handleChangeInfoButtonClick() {
-        CSswitchForm(cs_changeInfoForm, cs_rebookingBtn);
-    }
-
-    public void handleRebookingButtonClick() {
-        CSswitchForm(cs_reBookingform, cs_changeInfoBtn);
-        returnToCS_btn.setVisible(true);
-
-        // Initialize combo box
-        cs_rebookingCombo.getItems().addAll(
-                "Move Departure Date",
-                "Move Arrival Date");
-    }
-
-    public void handleReturnButton() {
-        CSswitchForm(background, cs_return);
-    }
-
-    public void handleRebooking() throws SQLException {
-        // Check for empty fields
-        if (cs_rebookingTicketNo.getText().isEmpty() || cs_rebookingLastName.getText().isEmpty() || cs_rebookingFeedback.getText().isEmpty() || cs_rebookingActive.getText().isEmpty() || cs_rebookingDate.getValue() == null) {
-            AlertManager alert = new AlertManager(cs_alert);
-            alert.setAlertText("Please fill in all required fields.", "red");
-
-            // Schedule a task to hide the alert after 5 seconds
-            PauseTransition delay = new PauseTransition(Duration.seconds(5));
-            delay.setOnFinished(event -> alert.hideAlert());
-            delay.play();
-            return;
-        }
-
-        String issue = cs_rebookingCombo.getValue();
-        String ticketNo = cs_rebookingTicketNo.getText();
-        String last_name = cs_rebookingLastName.getText();
-        String feedback = cs_rebookingFeedback.getText();
-        String active = cs_rebookingActive.getText();
-        LocalDate date = cs_rebookingDate.getValue();
-
-        // Check if flight exists
-        Database db = new Database();
-
-        if (db.checkFlight(ticketNo, last_name)) {
-            // Insert into database.
-            db.insertData(
-                    "customer_support",
-                    Arrays.asList("name", "ticket_no", "reason", "contact", "feedback", "status", "preferred_date"),
-                    Arrays.asList(last_name, ticketNo, issue, active, feedback, "Pending", date)
-            );
-
-            AlertManager alert = new AlertManager(cs_alert);
-            alert.setAlertText("Rebooking request sent.", "green");
-
-        } else {
-            System.out.println("Flight does not exist!");
-
-            AlertManager alert = new AlertManager(cs_alert);
-            alert.setAlertText("Flight does not exist!", "red");
-
-            System.out.println(last_name + " " + ticketNo);
         }
     }
 
@@ -1766,9 +1699,8 @@ public class HomepageController implements Initializable {
         //Carousel
         Carousel carousel = new Carousel();
 
-
         AnchorPane[] slides = {c_slide1, c_slide2, c_slide3};
-        carousel.addCarousel(slides, count, locations);
+        //carousel.addCarousel(slides, count, locations);
     }
 
     public void hoverFX() {
@@ -1850,28 +1782,39 @@ public class HomepageController implements Initializable {
     }
 
     /* ---------------------------------------------- HFSearchDesti Functions Ends Here  ----------------------------------------- */
+    private void switchAccForms() {
+        // Set initial visibility
+        acc_bookedFlights.setVisible(false);
+        acc_pastTransaction.setVisible(false);
+
+        // Handle acc_bookedFlightbtn click
+        acc_bookedFlightbtn.setOnAction(event -> {
+            acc_bookedFlights.setVisible(true);
+            acc_pastTransaction.setVisible(false);
+            acc_imgBg.setVisible(false);
+        });
+
+        // Handle acc_pastTransacbtn click
+        acc_pastTransacbtn.setOnAction(event -> {
+            acc_bookedFlights.setVisible(false);
+            acc_pastTransaction.setVisible(true);
+            acc_imgBg.setVisible(false);
+        });
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         hoverFX();
+        switchAccForms();
 
         initCarousel();
-
-        // Set the initial state
-        returnToCS_btn.setVisible(false);
-
-        // Add an event handler to returnToCS_btn
-        returnToCS_btn.setOnAction(event -> {
-            returnToCS_btn.setVisible(false);
-            // Switch forms and set returnToCS_btn to false
-            switchForm(cs_reBookingform, background);
-        });
 
         checkFieldsNotEmpty();
 
         Customer customer = Customer.getInstance();
         String username = customer.getUsername();
-        System.out.println(username);
+        System.out.println("User: " + username);
         displayUserName.setText(username);
 
         // Check seats
