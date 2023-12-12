@@ -825,25 +825,21 @@ public class HomepageController implements Initializable {
         }
     }
 
-
     //TOP and Privacy Policy selectors?
     public void switchTOPForms() {
 
         top_form.setVisible(false);
         top_form_pp.setVisible(false);
 
-
         //TO privacy Policy
-
-        TOPbtn.setOnAction (event -> {
+        TOPbtn.setOnAction(event -> {
             top_form.setVisible(false);
             top_form_pp.setVisible(true);
 
         });
 
         //Back to TOP
-
-        Policybtn.setOnAction (event -> {
+        Policybtn.setOnAction(event -> {
             top_form.setVisible(true);
             top_form_pp.setVisible(false);
 
@@ -852,7 +848,6 @@ public class HomepageController implements Initializable {
         Policybtn.setOnAction(e -> switchForm(top_form, top_form_pp));
         TOPbtn.setOnAction(e -> switchForm(top_form_pp, top_form));
     }
-
 
     public void handleNextButtonClick(ActionEvent event) {
         // Determine which button was clicked
@@ -2261,5 +2256,14 @@ public class HomepageController implements Initializable {
             // Check the state of checkBox_Btn and disable book_btn accordingly
             book_btn.setDisable(!newValue);
         });
+
+        acc_flightStatusBTN.setOnAction(e -> {
+            switchAccForms();
+            acc_imgBg.setVisible(true);
+            flightStats_form.setVisible(true);
+            account_form.setVisible(false);
+            
+        });
+
     }
 }

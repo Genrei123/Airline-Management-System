@@ -11,6 +11,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -172,7 +173,7 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
-                        <Label layoutX="47.0" layoutY="40.0" text="AIRLINE POLICIES" textFill="WHITE">
+                        <Label layoutX="47.0" layoutY="40.0" text="AIRLINE TERMS AND POLICIES" textFill="WHITE">
                            <font>
                               <Font name="Inter Bold" size="29.0" />
                            </font>
@@ -184,6 +185,11 @@
                               <Font name="Arial Bold" size="27.0" />
                            </font>
                         </Label>
+                        <Button fx:id="Policybtn" layoutX="888.0" layoutY="42.0" mnemonicParsing="false" text="Privacy Policies">
+                           <font>
+                              <Font name="Inter Bold" size="16.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1756,6 +1762,107 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="top_form_pp" prefHeight="639.0" prefWidth="1040.0" visible="false">
+                     <children>
+                        <ScrollPane layoutX="1.0" layoutY="102.0" prefHeight="499.0" prefWidth="1061.0" style="-fx-background-color: #201414;">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1603.0" prefWidth="1045.0" style="-fx-background-color: #201414; -fx-border-color: #201414;">
+                                 <children>
+                                    <AnchorPane layoutX="33.0" layoutY="23.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="16.0" layoutY="-3.0" prefHeight="138.0" prefWidth="976.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="&#10;This Privacy Policy outlines how Ermino Airlines collects, uses, discloses, and protects the personal &#10;information of our passengers and users. We are committed to maintaining the privacy and security of &#10;your information in compliance with applicable data protection laws." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="183.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="1. Information Collection:&#10;   - We collect personal information such as names, contact details, and payment information during &#10;the booking process.&#10;   - Information may also be collected through customer support interactions, website usage, and &#10;participation in promotions or surveys." AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="343.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="2. Use of Information:&#10;   - Personal information is used for flight reservations, ticket issuance, and communication related to &#10;your travel.&#10;   - We may use your information for marketing purposes, with the option to opt-out.&#10;   - Data is utilized for customer service, including responding to inquiries and addressing issues." AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="499.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="3. Data Security;&#10;   - We employ industry-standard security measures to protect your information from unauthorized &#10;access, disclosure, alteration, and destruction.&#10;   - Payment information is encrypted and handled securely." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="655.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="4. Information Sharing:&#10;   - Personal information is shared with third-party service providers, such as payment processors, to &#10;facilitate transactions.&#10;   - We may share information with government authorities as required by law or for security reasons." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="810.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="5. Data Retention:&#10;&#10;   - We retain personal information for as long as necessary for the purposes outlined in this policy or as &#10;required by law." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="966.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="6. Updates to Privacy Policy:&#10;&#10;   - We reserve the right to update this Privacy Policy. Users will be notified of any material changes.&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="1124.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="&#10;By using our services, you agree to the terms outlined in this Privacy Policy. It is recommended to review &#10;                                                           this policy periodically for updates." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                        <Label layoutX="47.0" layoutY="40.0" text="PRIVACY POLICY " textFill="WHITE">
+                           <font>
+                              <Font name="Inter Bold" size="29.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutY="83.0" prefHeight="10.0" prefWidth="630.0" styleClass="lineGrad2" stylesheets="@HomepageStyles.css" />
+                        <AnchorPane layoutX="166.0" layoutY="22.0" prefHeight="10.0" prefWidth="896.0" styleClass="lineGrad1" stylesheets="@HomepageStyles.css" />
+                        <Label layoutX="408.0" layoutY="42.0" text="Terms and Policies" textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                           <font>
+                              <Font name="Arial Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="TOPbtn" layoutX="844.0" layoutY="42.0" mnemonicParsing="false" text="Terms and Conditions">
+                           <font>
+                              <Font name="Inter Bold" size="16.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>
