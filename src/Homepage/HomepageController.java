@@ -794,7 +794,7 @@ public class HomepageController implements Initializable {
 
         } else if (event.getSource() == menu_account) {
             home_form.setVisible(false);
-            flightStats_form.setVisible(false);          
+            flightStats_form.setVisible(false);
             account_form.setVisible(true);
             top_form.setVisible(false);
             aboutUs_form.setVisible(false);
@@ -1700,7 +1700,7 @@ public class HomepageController implements Initializable {
         Carousel carousel = new Carousel();
 
         AnchorPane[] slides = {c_slide1, c_slide2, c_slide3};
-        //carousel.addCarousel(slides, count, locations);
+        carousel.addCarousel(slides, count, locations);
     }
 
     public void hoverFX() {

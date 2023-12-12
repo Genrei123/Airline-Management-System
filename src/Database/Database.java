@@ -100,8 +100,6 @@ public class Database {
         }
         query.append(" FROM ").append(tableName);
 
-
-
         connector = connectDB.connectDB();
         if (connector != null) {
             try {
@@ -160,8 +158,6 @@ public class Database {
             }
         }
 
-
-
         connector = connectDB.connectDB();
         if (connector != null) {
             try {
@@ -184,7 +180,6 @@ public class Database {
 
                 return FXCollections.observableArrayList(rows);
 
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -206,7 +201,6 @@ public class Database {
                 }
             }
         }
-
 
         for (int i = 0; i < conditionValue.size(); i++) {
             System.out.println("Condition values: " + conditionValue.get(i));
@@ -475,7 +469,6 @@ public class Database {
         return false;
     }
 
-
     // Check if flight exists
     public boolean checkFlight(String ticket_no, String last_name) throws SQLException {
         String query = "SELECT ticket_no FROM `booked_flights` WHERE ticket_no = ? AND last_name = ? AND status = ?";
@@ -490,7 +483,6 @@ public class Database {
                 prepare.setString(1, ticket_no);
                 prepare.setString(2, last_name);
                 prepare.setString(3, "Booked");
-
 
                 result = prepare.executeQuery();
 
@@ -719,15 +711,15 @@ public class Database {
     }
 
     public ObservableList<String[]> searchDesti() {
-        String query = "SELECT price_manager.origin, " +
-                "price_manager.destination, " +
-                "price_manager.class, " +
-                "price_manager.price, " +
-                "flight_manager.origin_date," +
-                "flight_manager.destination_date " +
-                "FROM price_manager " +
-                "JOIN flight_manager ON " +
-                "price_manager.airplane_id = flight_manager.airplane_id";
+        String query = "SELECT price_manager.origin, "
+                + "price_manager.destination, "
+                + "price_manager.class, "
+                + "price_manager.price, "
+                + "flight_manager.origin_date,"
+                + "flight_manager.destination_date "
+                + "FROM price_manager "
+                + "JOIN flight_manager ON "
+                + "price_manager.airplane_id = flight_manager.airplane_id";
 
         connector = connectDB.connectDB();
 
@@ -764,6 +756,5 @@ public class Database {
 
         return null;
     }
-
 
 }
