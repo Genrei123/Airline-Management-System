@@ -185,7 +185,7 @@
                               <Font name="Arial Bold" size="27.0" />
                            </font>
                         </Label>
-                        <Button layoutX="888.0" layoutY="42.0" mnemonicParsing="false" text="Privacy Policies">
+                        <Button fx:id="Policybtn" layoutX="888.0" layoutY="42.0" mnemonicParsing="false" text="Privacy Policies">
                            <font>
                               <Font name="Inter Bold" size="16.0" />
                            </font>
@@ -1858,7 +1858,7 @@
                               <Font name="Arial Bold" size="27.0" />
                            </font>
                         </Label>
-                        <Button layoutX="844.0" layoutY="42.0" mnemonicParsing="false" text="Terms and Conditions">
+                        <Button fx:id="TOPbtn" layoutX="844.0" layoutY="42.0" mnemonicParsing="false" text="Terms and Conditions">
                            <font>
                               <Font name="Inter Bold" size="16.0" />
                            </font>

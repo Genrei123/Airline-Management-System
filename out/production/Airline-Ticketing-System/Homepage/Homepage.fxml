@@ -11,8 +11,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -24,7 +23,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
@@ -64,7 +62,7 @@
                               </JFXTextArea>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="459.0" layoutY="-47.0" text=" US" textFill="WHITE">
+                        <Label layoutX="459.0" layoutY="-47.0" text=" US" textFill="WHITE" AnchorPane.topAnchor="-50.0">
                            <graphic>
                               <Label text="ABOUT" textFill="WHITE">
                                  <font>
@@ -175,91 +173,119 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
-                        <Label layoutX="47.0" layoutY="40.0" text="AIRLINE POLICIES" textFill="WHITE">
+                        <Label layoutX="47.0" layoutY="40.0" text="AIRLINE TERMS AND POLICIES" textFill="WHITE">
                            <font>
                               <Font name="Inter Bold" size="29.0" />
                            </font>
                         </Label>
                         <AnchorPane layoutY="83.0" prefHeight="10.0" prefWidth="630.0" styleClass="lineGrad2" stylesheets="@HomepageStyles.css" />
                         <AnchorPane layoutX="166.0" layoutY="22.0" prefHeight="10.0" prefWidth="896.0" styleClass="lineGrad1" stylesheets="@HomepageStyles.css" />
+                        <Label layoutX="408.0" layoutY="42.0" text="Terms and Policies" textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                           <font>
+                              <Font name="Arial Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="Policybtn" layoutX="888.0" layoutY="42.0" mnemonicParsing="false" text="Privacy Policies">
+                           <font>
+                              <Font name="Inter Bold" size="16.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="account_form" layoutX="20.0" layoutY="20.0" prefHeight="629.0" prefWidth="1030.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane fx:id="userNameField" layoutX="39.0" layoutY="44.0" prefHeight="48.0" prefWidth="410.0" style="-fx-background-color: #004AAD; -fx-background-radius: 50;">
+                        <AnchorPane fx:id="userNameField" layoutX="39.0" layoutY="44.0" prefHeight="48.0" prefWidth="400.0" style="-fx-background-radius: 50;" styleClass="accountBackground" stylesheets="@HomepageStyles.css" AnchorPane.topAnchor="36.0">
                            <children>
-                              <Label layoutX="26.0" layoutY="11.0" text="USERNAME:" textFill="WHITE">
+                              <Label layoutX="24.0" layoutY="13.0" style="-fx-font-size: 19;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="USERNAME: " textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="23.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="displayUserName" layoutX="180.0" layoutY="13.0" text="MARK RANNIELE" textFill="WHITE">
+                              <Label fx:id="displayUserName" layoutX="142.0" layoutY="13.0" prefHeight="25.0" prefWidth="237.0" style="-fx-font-size: 19;" styleClass="interReg-FontStyle" stylesheets="@HomepageStyles.css" text="MARK RANNIELE" textFill="WHITE" underline="true">
                                  <font>
                                     <Font name="Arial" size="20.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="bg" layoutY="81.0" prefHeight="460.0" prefWidth="1061.0" styleClass="accountBackground" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <AnchorPane fx:id="bg" layoutY="81.0" prefHeight="460.0" prefWidth="1061.0" styleClass="accountBackground" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
                            <children>
-                              <AnchorPane fx:id="innerBG" layoutX="32.0" layoutY="47.0" prefHeight="359.0" prefWidth="976.0" style="-fx-background-color: white; -fx-background-radius: 23;" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="35.0">
+                              <AnchorPane fx:id="innerBG" layoutX="32.0" layoutY="47.0" prefHeight="359.0" prefWidth="976.0" style="-fx-background-color: #2b2d31; -fx-background-radius: 23;" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="35.0">
                                  <children>
-                                    <ImageView fitHeight="310.0" fitWidth="314.0" layoutX="572.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/ICONS/EA%20Logo.png" />
-                                       </image>
-                                    </ImageView>
-                                    <JFXButton fx:id="acc_bookedFlightbtn" alignment="BASELINE_LEFT" layoutX="29.0" layoutY="55.0" prefHeight="62.0" prefWidth="343.0" text="Booked Flights" textFill="#101010">
+                                    <JFXButton fx:id="acc_bookedFlightbtn" alignment="BASELINE_LEFT" focusTraversable="false" layoutX="29.0" layoutY="138.0" prefHeight="77.0" style="-fx-padding: -20 0 -20 30; -fx-font-size: 40;" stylesheets="@HomepageStyles.css" text="Booked Flights" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="137.0">
                                        <font>
                                           <Font name="Arial Bold" size="32.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="interBold-FontStyle" />
+                                          <String fx:value="accButton" />
+                                       </styleClass>
                                     </JFXButton>
-                                    <JFXButton fx:id="acc_pastTransacbtn" alignment="BASELINE_LEFT" layoutX="29.0" layoutY="174.0" prefHeight="62.0" prefWidth="343.0" text="Past Transaction" textFill="#101010">
+                                    <JFXButton fx:id="acc_pastTransacbtn" alignment="BASELINE_LEFT" focusTraversable="false" layoutX="29.0" layoutY="215.0" prefHeight="77.0" style="-fx-padding: -20 0 -20 30; -fx-font-size: 40;" stylesheets="@HomepageStyles.css" text="Past Transaction" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="214.0">
                                        <font>
                                           <Font name="Arial Bold" size="32.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="interBold-FontStyle" />
+                                          <String fx:value="accButton" />
+                                       </styleClass>
                                     </JFXButton>
-                                    <JFXButton fx:id="acc_customerSuppbtn" alignment="BASELINE_LEFT" layoutX="29.0" layoutY="284.0" prefHeight="62.0" prefWidth="343.0" text="Customer Support" textFill="#101010">
+                                    <JFXButton fx:id="acc_customerSuppbtn" alignment="BASELINE_LEFT" focusTraversable="false" layoutX="29.0" layoutY="325.0" onAction="#openPhoneDialer" prefHeight="77.0" style="-fx-padding: -20 0 -20 30; -fx-font-size: 40;" stylesheets="@HomepageStyles.css" text="Customer Support" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="292.0">
                                        <font>
                                           <Font name="Arial Bold" size="32.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="interBold-FontStyle" />
+                                          <String fx:value="accButton" />
+                                       </styleClass>
                                     </JFXButton>
-                                    <Line endX="213.0" layoutX="115.0" layoutY="146.0" startX="-100.0" />
-                                    <Line endX="213.0" layoutX="115.0" layoutY="263.0" startX="-100.0" />
-                                    <AnchorPane fx:id="acc_bookedFlights" layoutX="483.0" layoutY="22.0" prefHeight="350.0" prefWidth="471.0" styleClass="accountTableWindowBackground" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="483.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="22.0">
+                                    <AnchorPane layoutY="354.0" prefHeight="2.5" prefWidth="200.0" style="-fx-background-color: #2169AC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="290.0" />
+                                    <AnchorPane layoutY="275.0" prefHeight="2.5" prefWidth="200.0" style="-fx-background-color: #2169AC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="213.0" />
+                                    <AnchorPane layoutX="10.0" layoutY="285.0" prefHeight="2.5" prefWidth="200.0" style="-fx-background-color: #2169AC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="136.0" />
+                                    <AnchorPane layoutX="10.0" layoutY="364.0" prefHeight="2.5" prefWidth="200.0" style="-fx-background-color: #2169AC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="367.0" />
+                                    <AnchorPane fx:id="acc_imgBg" layoutX="635.0" layoutY="156.0" prefHeight="310.0" prefWidth="314.0" style="-fx-background-color: #2b2d31;" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="108.0">
                                        <children>
-                                          <TableView fx:id="acc_bookedFlightTable" layoutX="14.0" layoutY="68.0" prefHeight="228.0" prefWidth="443.0" stylesheets="@HomepageStyles.css" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="68.0">
+                                          <ImageView fitHeight="310.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="0.0">
+                                             <image>
+                                                <Image url="@../Images/ICONS/EA%20Logo.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="acc_bookedFlights" layoutX="499.0" layoutY="88.0" prefHeight="339.0" prefWidth="472.0" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="91.0">
+                                       <children>
+                                          <TableView fx:id="acc_bookedFlightTable" layoutX="15.0" layoutY="39.0" prefHeight="245.0" prefWidth="443.0" styleClass="tableBg" stylesheets="@HomepageStyles.css" AnchorPane.topAnchor="41.0">
                                             <columns>
-                                              <TableColumn prefWidth="226.0" text="Location" />
-                                              <TableColumn prefWidth="216.0" text="Departure Date" />
+                                              <TableColumn fx:id="accClm_location" prefWidth="221.0" text="Location" />
+                                              <TableColumn fx:id="accClm_departDate" prefWidth="221.0" text="Departure Date" />
                                             </columns>
                                           </TableView>
-                                          <Label layoutX="160.0" layoutY="23.0" text="Booked Flights" textFill="WHITE" AnchorPane.bottomAnchor="303.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="23.0">
+                                          <Label layoutX="164.0" layoutY="1.0" prefHeight="38.0" prefWidth="146.0" style="-fx-font-size: 20;" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Booked Flights" textFill="WHITE" AnchorPane.topAnchor="1.0">
                                              <font>
                                                 <Font name="Arial" size="20.0" />
                                              </font>
                                           </Label>
-                                          <JFXButton fx:id="acc_bookedFlightsBTN" layoutX="123.0" layoutY="308.0" prefHeight="18.0" prefWidth="225.0" styleClass="receiptBTN" stylesheets="@HomepageStyles.css" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="310.0">
+                                          <JFXButton fx:id="acc_bookedFlightsBTN" layoutX="125.0" layoutY="292.0" prefHeight="18.0" prefWidth="225.0" styleClass="receiptBTN" stylesheets="@HomepageStyles.css" text="Booking Details" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="125.0">
                                              <font>
                                                 <Font name="Arial Bold" size="18.0" />
                                              </font>
                                           </JFXButton>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="acc_pastTransaction" layoutX="15.0" layoutY="22.0" prefHeight="349.0" prefWidth="471.0" styleClass="accountTableWindowBackground" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="483.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="22.0">
+                                    <AnchorPane fx:id="acc_pastTransaction" prefHeight="339.0" prefWidth="472.0" stylesheets="@HomepageStyles.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="91.0">
                                        <children>
-                                          <TableView fx:id="acc_pastTransacTable" layoutX="14.0" layoutY="86.0" prefHeight="228.0" prefWidth="443.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="68.0">
+                                          <TableView fx:id="acc_pastTransacTable" layoutX="15.0" layoutY="47.0" prefHeight="245.0" prefWidth="443.0" styleClass="tableBg" stylesheets="@HomepageStyles.css" AnchorPane.topAnchor="41.0">
                                             <columns>
-                                              <TableColumn prefWidth="216.0" text="Destination" />
-                                              <TableColumn prefWidth="226.0" text="Booking Date" />
+                                              <TableColumn fx:id="accClm_destination" prefWidth="216.0" text="Destination" />
+                                              <TableColumn fx:id="accClm_bookingDate" prefWidth="226.0" text="Booking Date" />
                                             </columns>
                                           </TableView>
-                                          <Label layoutX="160.0" layoutY="24.0" text="Past Transaction" textFill="WHITE" AnchorPane.bottomAnchor="302.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="24.0">
+                                          <Label layoutX="161.0" layoutY="14.0" prefHeight="38.0" styleClass="interBold-FontStyle" stylesheets="@HomepageStyles.css" text="Past Transaction" textFill="WHITE" AnchorPane.topAnchor="1.0">
                                              <font>
                                                 <Font name="Arial" size="20.0" />
                                              </font>
                                           </Label>
-                                          <JFXButton fx:id="acc_pastTransReceiptBTN" layoutX="123.0" layoutY="310.0" prefHeight="18.0" prefWidth="225.0" styleClass="receiptBTN" stylesheets="@HomepageStyles.css" text="Receipt" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="310.0">
+                                          <JFXButton fx:id="acc_pastTransReceiptBTN" layoutX="124.0" layoutY="292.0" prefHeight="18.0" prefWidth="225.0" styleClass="receiptBTN" stylesheets="@HomepageStyles.css" text="Receipt" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="125.0">
                                              <font>
                                                 <Font name="Arial Bold" size="18.0" />
                                              </font>
@@ -268,16 +294,18 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
+                              <AnchorPane prefHeight="51.0" prefWidth="1062.0" style="-fx-opacity: 0.8;" styleClass="accountLineBackground" stylesheets="@HomepageStyles.css" AnchorPane.topAnchor="75.0" />
                               <JFXButton fx:id="acc_flightStatusBTN" contentDisplay="TEXT_ONLY" ellipsisString="" layoutX="776.0" layoutY="-30.0" prefHeight="51.0" prefWidth="244.0" ripplerFill="WHITE" style="-fx-background-color: white; -fx-background-radius: 50; -fx-border-radius: 50;" text="Flight Status" textFill="#141414">
                                  <font>
                                     <Font name="Arial Bold" size="25.0" />
                                  </font>
                               </JFXButton>
+                              <Label layoutX="60.0" layoutY="86.0" style="-fx-font-size: 25;" styleClass="inriaSansBold-FontStyle" stylesheets="@HomepageStyles.css" text="Explore your…" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="86.0" />
                            </children>
                         </AnchorPane>
-                        <Label layoutX="419.0" layoutY="-47.0" text="ACCOUNT" textFill="WHITE">
+                        <Label layoutX="419.0" layoutY="-47.0" stylesheets="@HomepageStyles.css" text="ACCOUNT" textFill="WHITE" AnchorPane.topAnchor="-50.0">
                            <graphic>
-                              <Label text="YOUR " textFill="WHITE">
+                              <Label stylesheets="@HomepageStyles.css" text="YOUR " textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="27.0" />
                                  </font>
@@ -289,178 +317,28 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="customerSupp_form" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="1010.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <AnchorPane fx:id="cs_changeInfoForm" prefHeight="602.0" prefWidth="1061.0">
-                           <children>
-                              <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="cs_reBookingform" prefHeight="602.0" prefWidth="1061.0">
-                           <children>
-                              <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;">
-                                 <children>
-                                    <Label layoutX="68.0" layoutY="81.0" text="Get in Touch" textFill="WHITE" underline="true">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="cs_rebookingTicketNo" layoutX="68.0" layoutY="215.0" prefHeight="30.0" prefWidth="269.0" promptText="Input 12 Digit Ticket # (e,g ERM101123456) " />
-                                    <TextField fx:id="cs_rebookingLastName" layoutX="68.0" layoutY="250.0" prefHeight="30.0" prefWidth="269.0" promptText="Input Last Name on Ticket" />
-                                    <ImageView fx:id="seat_icon1" fitHeight="236.0" fitWidth="160.0" layoutX="716.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/ICONS/EA%20Logo.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TextField fx:id="cs_rebookingFeedback" layoutX="68.0" layoutY="288.0" prefHeight="32.0" prefWidth="269.0" promptText="Feedback" />
-                                    <JFXButton fx:id="cs_proceed" layoutX="151.0" layoutY="345.0" onAction="#handleRebooking" prefHeight="47.0" prefWidth="103.0" style="-fx-background-radius: 20; -fx-background-color: #29ABE2;" styleClass="topPane" stylesheets="@HomepageStyles.css" text="PROCEED" textFill="#fcfcfc">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </JFXButton>
-                                    <TextField fx:id="cs_rebookingActive" layoutX="348.0" layoutY="215.0" prefHeight="30.0" prefWidth="269.0" promptText="Active Phone / Email" />
-                                    <ComboBox fx:id="cs_rebookingCombo" layoutX="68.0" layoutY="180.0" prefWidth="150.0" promptText="Select Issue" />
-                                    <Label layoutX="71.0" layoutY="153.0" prefHeight="27.0" prefWidth="160.0" text="Please select below" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <DatePicker fx:id="cs_rebookingDate" layoutX="348.0" layoutY="253.0" promptText="Preferred Date" />
-                                    <Label fx:id="cs_alert" layoutX="276.0" layoutY="358.0" prefHeight="21.0" prefWidth="343.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                 </children></AnchorPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="cs_chat" prefHeight="602.0" prefWidth="1061.0" visible="false">
-                           <children>
-                              <AnchorPane layoutX="78.0" layoutY="43.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;">
-                                 <children>
-                                    <VBox layoutX="9.0" layoutY="13.0" prefHeight="407.0" prefWidth="889.0" />
-                                    <TextField layoutX="14.0" layoutY="434.0" prefHeight="25.0" prefWidth="871.0" promptText="What do you have in mind?" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="background" layoutX="78.0" layoutY="42.0" prefHeight="516.0" prefWidth="905.0" style="-fx-background-color: #7CD0EC; -fx-border-radius: 21; -fx-background-radius: 21;" visible="false" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="42.0">
-                           <children>
-                              <AnchorPane layoutX="323.0" layoutY="103.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
-                                 <children>
-                                    <JFXButton fx:id="cs_rebookingBtn" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="14.0" onAction="#handleRebookingButtonClick" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 20;">
-                                       <graphic>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label layoutX="39.0" layoutY="191.0" text="Re-booking">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="28.0" />
-                                                   </font>
-                                                </Label>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="17.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/Rebooking%20Logo%20copy.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </children>
-                                          </AnchorPane>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </JFXButton>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="101.0" layoutY="91.0" prefHeight="310.0" prefWidth="276.0" style="-fx-background-color: white; -fx-background-radius: 21; -fx-border-radius: 21;" visible="false">
-                                 <children>
-                                    <JFXButton fx:id="cs_changeInfoBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" layoutX="14.0" layoutY="14.0" onAction="#handleChangeInfoButtonClick" prefHeight="283.0" prefWidth="248.0" ripplerFill="WHITE" style="-fx-background-color: #7CD0EC; -fx-background-radius: 21; -fx-border-radius: 21;" textOverrun="CENTER_ELLIPSIS">
-                                       <graphic>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label layoutX="50.0" layoutY="178.0" text="Change your">
-                                                   <font>
-                                                      <Font name="Arial" size="23.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="42.0" layoutY="204.0" text="Information">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="27.0" />
-                                                   </font>
-                                                </Label>
-                                                <ImageView fitHeight="121.0" fitWidth="128.0" layoutX="53.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../Images/Change%20Information%20Logo.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </children>
-                                          </AnchorPane>
-                                       </graphic>
-                                    </JFXButton>
-                                 </children>
-                              </AnchorPane>
-                              <JFXButton fx:id="cs_contactUsBTN" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="345.0" layoutY="431.0" onAction="#openPhoneDialer" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 50;">
-                                 <graphic>
-                                    <AnchorPane>
-                                       <children>
-                                          <Label layoutX="149.0" layoutY="4.0" text="us">
-                                             <font>
-                                                <Font size="25.0" />
-                                             </font>
-                                          </Label>
-                                          <FontAwesomeIconView glyphName="PHONE" layoutX="8.0" layoutY="32.0" size="26" wrappingWidth="20.00000080652535" />
-                                          <Label layoutX="49.0" layoutY="7.0" text="Contact">
-                                             <font>
-                                                <Font name="Arial Bold" size="25.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </graphic>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
-                           </children>
-                        </AnchorPane>
-                        <JFXButton fx:id="returnToCS_btn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="0.0" prefHeight="38.0" prefWidth="20.0" ripplerFill="#fcf9f9" style="-fx-padding: 4 4 4 4; -fx-background-radius: 50%;" styleClass="returnBtn" stylesheets="@HomepageStyles.css" textFill="WHITE" AnchorPane.rightAnchor="0.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <graphic>
-                              <MaterialDesignIconView fill="WHITE" glyphName="REPLAY" size="40" />
-                           </graphic>
-                        </JFXButton>
-                        <Label layoutX="386.0" layoutY="-45.0" text="SUPPORT" textFill="WHITE">
-                           <graphic>
-                              <Label text="CUSTOMER" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Bold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </graphic>
-                           <font>
-                              <Font name="Arial" size="27.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
                   <AnchorPane fx:id="flightStats_form" prefHeight="599.0" prefWidth="1000.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TableView fx:id="flightStatTable" layoutX="51.0" layoutY="99.0" prefHeight="460.0" prefWidth="976.0">
+                        <TableView fx:id="flightStatTable" layoutX="51.0" layoutY="99.0" prefHeight="460.0" prefWidth="976.0" styleClass="tableBg" stylesheets="@HomepageStyles.css">
                           <columns>
-                            <TableColumn fx:id="fs_airplaneID" text="AIRPLANE ID" />
-                            <TableColumn fx:id="fs_flightNo" prefWidth="94.0" text="FLIGHT NO." />
-                              <TableColumn fx:id="fs_destination" prefWidth="98.0" text="DESTINATION" />
-                              <TableColumn fx:id="fs_origin" minWidth="6.0" prefWidth="111.0" text="ORIGIN" />
-                              <TableColumn fx:id="fs_status" prefWidth="120.0" text="STATUS" />
-                              <TableColumn fx:id="fs_departDate" prefWidth="192.0" text="DATE &amp; TIME OF DEPARTURE " />
-                              <TableColumn fx:id="fs_arrivalDate" prefWidth="280.0" text="DATE &amp; TIME OF ARRIVAL " />
+                            <TableColumn fx:id="fs_airplaneID" editable="false" resizable="false" text="AIRPLANE ID" />
+                            <TableColumn fx:id="fs_flightNo" editable="false" prefWidth="94.0" resizable="false" text="FLIGHT NO." />
+                              <TableColumn fx:id="fs_destination" editable="false" prefWidth="98.0" resizable="false" text="DESTINATION" />
+                              <TableColumn fx:id="fs_origin" editable="false" minWidth="6.0" prefWidth="111.0" resizable="false" text="ORIGIN" />
+                              <TableColumn fx:id="fs_status" editable="false" prefWidth="120.0" resizable="false" text="STATUS" />
+                              <TableColumn fx:id="fs_departDate" editable="false" prefWidth="192.0" resizable="false" text="DATE &amp; TIME OF DEPARTURE " />
+                              <TableColumn fx:id="fs_arrivalDate" editable="false" prefWidth="280.0" resizable="false" text="DATE &amp; TIME OF ARRIVAL " />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                         <TextField layoutX="751.0" layoutY="58.0" prefHeight="25.0" prefWidth="276.0" promptText="Search by Flight #" />
+                        <Label layoutX="449.0" layoutY="42.0" text="Flight Status" textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                           <font>
+                              <Font name="Arial Bold" size="27.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="home_form" prefHeight="599.0" prefWidth="1061.0">
@@ -611,7 +489,7 @@
                               <MaterialDesignIconView fill="#464545" glyphName="SEAT_RECLINE_EXTRA" layoutX="613.0" layoutY="260.0" size="30" />
                               <MaterialDesignIconView fill="#464545" glyphName="NUMERIC_0_BOX" layoutX="612.0" layoutY="337.0" size="30" AnchorPane.rightAnchor="420.0" />
                               <FontAwesomeIconView fill="#464545" glyphName="MONEY" layoutX="614.0" layoutY="411.0" size="25" />
-                              <Label contentDisplay="RIGHT" layoutX="470.0" layoutY="18.0" text="Fill in the " textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                              <Label contentDisplay="RIGHT" layoutX="397.0" layoutY="19.0" text="Fill in the " textFill="WHITE" AnchorPane.topAnchor="-50.0">
                                  <font>
                                     <Font name="Arial" size="27.0" />
                                  </font>
@@ -1738,7 +1616,7 @@
                                  </children>
                               </AnchorPane>
                               <JFXButton fx:id="sd_clearSearchBtn" layoutX="812.0" layoutY="78.0" onAction="#cleardesti_search" prefHeight="33.0" prefWidth="111.0" style="-fx-background-radius: 5;" styleClass="chooseButton" stylesheets="@HomepageStyles.css" text="CLEAR SEARCHES" textFill="WHITE" />
-                              <Label contentDisplay="RIGHT" layoutX="451.0" layoutY="9.0" text="Search " textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                              <Label contentDisplay="RIGHT" layoutX="412.0" layoutY="-2.0" text="Search " textFill="WHITE" AnchorPane.topAnchor="-50.0">
                                  <font>
                                     <Font name="Arial Bold" size="27.0" />
                                  </font>
@@ -1856,7 +1734,7 @@
                                     <OctIconView fill="WHITE" glyphName="CHEVRON_RIGHT" size="40" textAlignment="RIGHT" />
                                  </graphic>
                               </JFXButton>
-                              <Label layoutX="503.0" layoutY="-50.0" text="HOME" textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                              <Label layoutX="493.0" layoutY="8.0" text="Home" textFill="WHITE" AnchorPane.topAnchor="-50.0">
                                  <font>
                                     <Font name="Arial Bold" size="27.0" />
                                  </font>
@@ -1886,6 +1764,107 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="top_form_pp" prefHeight="639.0" prefWidth="1040.0" visible="false">
+                     <children>
+                        <ScrollPane layoutX="1.0" layoutY="102.0" prefHeight="499.0" prefWidth="1061.0" style="-fx-background-color: #201414;">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1603.0" prefWidth="1045.0" style="-fx-background-color: #201414; -fx-border-color: #201414;">
+                                 <children>
+                                    <AnchorPane layoutX="33.0" layoutY="23.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="16.0" layoutY="-3.0" prefHeight="138.0" prefWidth="976.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="&#10;This Privacy Policy outlines how Ermino Airlines collects, uses, discloses, and protects the personal &#10;information of our passengers and users. We are committed to maintaining the privacy and security of &#10;your information in compliance with applicable data protection laws." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="183.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="1. Information Collection:&#10;   - We collect personal information such as names, contact details, and payment information during &#10;the booking process.&#10;   - Information may also be collected through customer support interactions, website usage, and &#10;participation in promotions or surveys." AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="343.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="2. Use of Information:&#10;   - Personal information is used for flight reservations, ticket issuance, and communication related to &#10;your travel.&#10;   - We may use your information for marketing purposes, with the option to opt-out.&#10;   - Data is utilized for customer service, including responding to inquiries and addressing issues." AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="499.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="3. Data Security;&#10;   - We employ industry-standard security measures to protect your information from unauthorized &#10;access, disclosure, alteration, and destruction.&#10;   - Payment information is encrypted and handled securely." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="655.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="4. Information Sharing:&#10;   - Personal information is shared with third-party service providers, such as payment processors, to &#10;facilitate transactions.&#10;   - We may share information with government authorities as required by law or for security reasons." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="810.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="5. Data Retention:&#10;&#10;   - We retain personal information for as long as necessary for the purposes outlined in this policy or as &#10;required by law." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="966.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="6. Updates to Privacy Policy:&#10;&#10;   - We reserve the right to update this Privacy Policy. Users will be notified of any material changes.&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="35.0" layoutY="1124.0" prefHeight="130.0" prefWidth="976.0" style="-fx-background-radius: 20;" styleClass="tOpBG" stylesheets="@HomepageStyles1.css">
+                                       <children>
+                                          <TextArea editable="false" layoutX="13.0" layoutY="-5.0" prefHeight="141.0" prefWidth="950.0" styleClass="tOpBG" stylesheets="@HomepageStyles1.css" text="&#10;By using our services, you agree to the terms outlined in this Privacy Policy. It is recommended to review &#10;                                                           this policy periodically for updates." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="21.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                        <Label layoutX="47.0" layoutY="40.0" text="PRIVACY POLICY " textFill="WHITE">
+                           <font>
+                              <Font name="Inter Bold" size="29.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutY="83.0" prefHeight="10.0" prefWidth="630.0" styleClass="lineGrad2" stylesheets="@HomepageStyles.css" />
+                        <AnchorPane layoutX="166.0" layoutY="22.0" prefHeight="10.0" prefWidth="896.0" styleClass="lineGrad1" stylesheets="@HomepageStyles.css" />
+                        <Label layoutX="408.0" layoutY="42.0" text="Terms and Policies" textFill="WHITE" AnchorPane.topAnchor="-50.0">
+                           <font>
+                              <Font name="Arial Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="TOPbtn" layoutX="844.0" layoutY="42.0" mnemonicParsing="false" text="Terms and Conditions">
+                           <font>
+                              <Font name="Inter Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="overlayPane" prefHeight="662.0" prefWidth="1061.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -1898,7 +1877,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="317.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <AnchorPane fx:id="menuSlider" layoutY="4.0" prefHeight="265.0" prefWidth="280.0" style="-fx-background-color: #29ABE2; -fx-background-radius: 0 20 20 0;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <JFXButton fx:id="menu_home" alignment="BASELINE_LEFT" maxHeight="-Infinity" onAction="#switchForm" prefHeight="43.0" prefWidth="280.0" ripplerFill="WHITE" style="-fx-background-radius: 0 20 0 0;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
@@ -1957,12 +1936,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="menu_customerSupp" alignment="BASELINE_LEFT" layoutY="229.0" maxHeight="-Infinity" onAction="#switchForm" prefHeight="47.0" prefWidth="280.0" text="Customer Support" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <font>
-                        <Font name="Arial Black" size="20.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="menu_logout" alignment="BASELINE_LEFT" layoutY="274.0" maxHeight="-Infinity" onAction="#logout" prefHeight="43.0" prefWidth="280.0" style="-fx-background-radius: 0 0 20 0;" text="Log out" textFill="WHITE">
+                  <JFXButton fx:id="menu_logout" alignment="BASELINE_LEFT" layoutY="229.0" maxHeight="-Infinity" onAction="#logout" prefHeight="43.0" prefWidth="280.0" style="-fx-background-radius: 0 0 20 0;" text="Log out" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -1980,7 +1954,6 @@
                   <Line endX="115.0" layoutX="115.0" layoutY="137.0" startX="-104.0" stroke="WHITE" />
                   <Line endX="115.0" layoutX="115.0" layoutY="185.0" startX="-104.0" stroke="WHITE" />
                   <Line endX="115.0" layoutX="115.0" layoutY="228.0" startX="-104.0" stroke="WHITE" />
-                  <Line endX="115.0" layoutX="115.0" layoutY="274.0" startX="-104.0" stroke="WHITE" />
                   <JFXButton fx:id="menuBtn" ellipsisString="" layoutX="195.0" layoutY="2.0" onAction="#toggleMenuSlider" prefHeight="43.0" prefWidth="47.0" style="-fx-background-radius: 0 20 0 0;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="BARS" size="30" />

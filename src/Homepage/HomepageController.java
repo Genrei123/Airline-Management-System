@@ -75,6 +75,9 @@ public class HomepageController implements Initializable {
     private AnchorPane top_form;
 
     @FXML
+    private AnchorPane top_form_pp;
+
+    @FXML
     private AnchorPane account_form;
 
     @FXML
@@ -507,6 +510,12 @@ public class HomepageController implements Initializable {
     @FXML
     private ImageView image1, image2, image3, image4;
 
+    @FXML
+    private Button TOPbtn;
+
+    @FXML
+    private Button Policybtn;
+
     private boolean menuOpen = false;
 
     private double defaultSliderWidth = 280;
@@ -815,6 +824,35 @@ public class HomepageController implements Initializable {
             aboutUs_form.setVisible(true);
         }
     }
+
+
+    //TOP and Privacy Policy selectors?
+    public void switchTOPForms() {
+
+        top_form.setVisible(false);
+        top_form_pp.setVisible(false);
+
+
+        //TO privacy Policy
+
+        TOPbtn.setOnAction (event -> {
+            top_form.setVisible(false);
+            top_form_pp.setVisible(true);
+
+        });
+
+        //Back to TOP
+
+        Policybtn.setOnAction (event -> {
+            top_form.setVisible(true);
+            top_form_pp.setVisible(false);
+
+        });
+
+        Policybtn.setOnAction(e -> switchForm(top_form, top_form_pp));
+        TOPbtn.setOnAction(e -> switchForm(top_form_pp, top_form));
+    }
+
 
     public void handleNextButtonClick(ActionEvent event) {
         // Determine which button was clicked
