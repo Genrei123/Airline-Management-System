@@ -99,6 +99,17 @@
     -fx-background-color: linear-gradient(to bottom left, #004AAD, #3c94c4);
 }
 
+.accountLineBackground {
+    -fx-background-color: linear-gradient(to bottom left, #0c468f, #aaebf1);
+}
+
+.accountBackground{
+    -fx-background-color: linear-gradient(to bottom left, #184270, #3f8187);
+}
+
+.accButton:hover{
+    -fx-background-color: #404249;
+}
 /*------------------ FOR SEARCH TEXT FIELD ---------------------*/
 
 .searchText {

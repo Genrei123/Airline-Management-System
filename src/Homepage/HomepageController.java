@@ -816,6 +816,8 @@ public class HomepageController implements Initializable {
             account_form.setVisible(false);
             top_form.setVisible(true);
             aboutUs_form.setVisible(false);
+
+            top_form_pp.setVisible(false);
         } else if (event.getSource() == menu_aboutUs) {
             home_form.setVisible(false);
             flightStats_form.setVisible(false);
@@ -825,29 +827,7 @@ public class HomepageController implements Initializable {
         }
     }
 
-    //TOP and Privacy Policy selectors?
-    public void switchTOPForms() {
 
-        top_form.setVisible(false);
-        top_form_pp.setVisible(false);
-
-        //TO privacy Policy
-        TOPbtn.setOnAction(event -> {
-            top_form.setVisible(false);
-            top_form_pp.setVisible(true);
-
-        });
-
-        //Back to TOP
-        Policybtn.setOnAction(event -> {
-            top_form.setVisible(true);
-            top_form_pp.setVisible(false);
-
-        });
-
-        Policybtn.setOnAction(e -> switchForm(top_form, top_form_pp));
-        TOPbtn.setOnAction(e -> switchForm(top_form_pp, top_form));
-    }
 
     public void handleNextButtonClick(ActionEvent event) {
         // Determine which button was clicked
@@ -1835,11 +1815,36 @@ public class HomepageController implements Initializable {
         });
     }
 
+    //TOP and Privacy Policy selectors?
+    private void switchTOPForms() {
+
+        top_form.setVisible(false);
+        top_form_pp.setVisible(false);
+
+        //TO privacy Policy
+        Policybtn.setOnAction(event -> {
+            top_form.setVisible(false);
+            top_form_pp.setVisible(true);
+
+        });
+
+        //Back to TOP
+        TOPbtn.setOnAction(event -> {
+            top_form.setVisible(true);
+            top_form_pp.setVisible(false);
+
+        });
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         hoverFX();
+
+        //SwitchForms Functions
         switchAccForms();
+        switchTOPForms();
 
         initCarousel();
 
@@ -2262,7 +2267,6 @@ public class HomepageController implements Initializable {
             acc_imgBg.setVisible(true);
             flightStats_form.setVisible(true);
             account_form.setVisible(false);
-            
         });
 
     }
