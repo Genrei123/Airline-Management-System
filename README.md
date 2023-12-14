@@ -24,6 +24,7 @@ We hope that this program lays a foundation for future work to stand upon. But i
 - Add Customer Support integration
 - Enable resizing
 - Make flights actually be CANCELLED and AUTOMATICALLY COMPENSATE AFFECTED USERS.
+- Transfer the whole customer features into a Web App
 
 This program is in compliance for our OBJECT ORIENTED PROGRAMMING (2nd year - 1st Semester) subject in University of Caloocan City.
 
