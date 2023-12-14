@@ -1,38 +1,34 @@
-# Airline-Ticketing-System
+<p align="center">
+  <img width="460" height="300" src="https://i.imgur.com/UkhKSJP.png">
+</p>
+
+
+# Airline-Management-System
 
 ## Description
-This program aims to create an airline seat reservation system.
+
+This program is composed of two parts, The Administrator and Customers. This program allows the Administrator of the program to Add and Manage seats which allows the customer to reserve seats.
+
+The <b>Administrator's</b> capabilities in this program are the following:
+- ADD / EDIT / REMOVE planes for active duty
+- SET / EDIT plane's origin and destination place.
+- SET / ADD seat classes and set an appropriate prices.
+
+The <b>Customer</b> is able to:
+- RESERVE seats for flights posted by the Administrator
+- VIEW past transactions in the Profile Menu
+- RECEIVE receipts based on the information filled in.
+
+We hope that this program lays a foundation for future work to stand upon. But if we were given more time to work on this project, the following features below are a recommendation.
+- FINISH the carousel feature (remnants of the carousel feature can be seen in the HomepageController and Homepage.fxml)
+- Add Customer Support integration
+- Enable resizing
+- Make flights actually be CANCELLED and AUTOMATICALLY COMPENSATE AFFECTED USERS.
+
+This program is in compliance for our OBJECT ORIENTED PROGRAMMING (2nd year - 1st Semester) subject in University of Caloocan City.
 
 ## How to run this application
 - Download Java JDK (1.8)
-- Download SceneBuilder Java 8
-- Download IDE for Java (IntelliJ/Eclipse/Netbeans)
-- Include the JAR files in the Libraries folder to your classpath
-
-### IntelliJ way
-- Open the project with IntelliJ
-- Open File -> Project Structure
-  
-![image](https://github.com/Genrei123/Airline-Ticketing-System/assets/109770981/5e2c56ef-40b3-4439-8f88-a9068f29ebe7)
-
-- Import everything in Airline-Ticketing-System -> lib folder
-- (Optional) If problem occurs TRY adding JavaFX files into the dependency
-
-- Look for the .FXML files and Right Click and Open in Scenebuilder.
-  
-![image](https://github.com/Genrei123/Airline-Ticketing-System/assets/109770981/7d4e97d1-8240-481a-b88b-b3a67b99619d)
-
-#### If Scenebuilder is unable to open the FXML file do the following:
-- Open SceneBuilder
-- Press Create New Project
-- Then look for the widget.
-  
-![image](https://github.com/Genrei123/Airline-Ticketing-System/assets/109770981/3a0b4856-fb43-47da-a6d3-69717753ff46)
-
-- Click JAR/FXML Manager then import the jar files THE SAME WAY with PROJECT STRUCTURE.
-
-Itlog123123
-
-
-
-
+- Download SceneBuilder Java 8 (Optional)
+- Include the JAR files in the Libraries folder to your classpath AND import 'lib' contents in Scenebuilder.
+- We recommend that you use XAMPP and import the .db file in the Database folder of this project. But in theory even MySQL Workbench and other similar applications should work.
