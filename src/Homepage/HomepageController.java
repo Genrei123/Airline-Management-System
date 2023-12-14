@@ -57,6 +57,9 @@ import javafx.scene.Cursor;
 public class HomepageController implements Initializable {
 
     @FXML
+    private TableColumn<String[], String> accClm_location, accClm_departDate, accClm_destination, accClm_bookingDate;
+
+    @FXML
     private TextField departure_date, arrival_date;
 
     @FXML
@@ -108,7 +111,7 @@ public class HomepageController implements Initializable {
     private AnchorPane acc_bookedFlights;
 
     @FXML
-    private TableView<?> acc_bookedFlightTable;
+    private TableView<String[]> acc_bookedFlightTable;
 
     @FXML
     private JFXButton acc_bookedFlightsBTN;
@@ -117,7 +120,7 @@ public class HomepageController implements Initializable {
     private AnchorPane acc_pastTransaction;
 
     @FXML
-    private TableView<?> acc_pastTransacTable;
+    private TableView<String[]> acc_pastTransacTable;
 
     @FXML
     private JFXButton acc_pastTransReceiptBTN;
@@ -975,11 +978,13 @@ public class HomepageController implements Initializable {
 
         LocalDate now = LocalDate.now();
 
+        Customer username = Customer.getInstance();
+
         Database insertData1 = new Database();
         insertData1.insertData(
                 "booked_flights",
-                Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "departure", "arrival", "book_date", "ticket_no", "status"),
-                Arrays.asList(flight_id, first_name, middle_name, last_name, suffix_name, age_name, destination_name, origin_name, seat_class, seat_num, flight_id, fare, depart, arrival, now, ticket_no, status)
+                Arrays.asList("flight_id", "first_name", "middle_name", "last_name", "suffix", "age", "destination", "origin", "class", "seat", "flight_no", "amount", "departure", "arrival", "book_date", "ticket_no", "status", "username"),
+                Arrays.asList(flight_id, first_name, middle_name, last_name, suffix_name, age_name, destination_name, origin_name, seat_class, seat_num, flight_id, fare, depart, arrival, now, ticket_no, status, username.getUsername())
         );
 
         // Add to sales
@@ -987,9 +992,9 @@ public class HomepageController implements Initializable {
         insertSales.insertData(
                 "sales",
                 Arrays.asList("ticket_no", "flight_no", "seat", "name", "payment_date",
-                        "status", "ticket_agent", "price"),
+                        "status", "ticket_agent", "price", "username"),
                 Arrays.asList(ticket_no, flight_id, seat_num, last_name, book_date.toString(),
-                        status, "ONLINE", fare)
+                        status, "ONLINE", fare, username.getUsername())
         );
 
         // Generate ticket
@@ -1794,6 +1799,51 @@ public class HomepageController implements Initializable {
         });
     }
 
+    private void loadBflights() {
+        Database acc_bf = new Database();
+
+        Customer username = Customer.getInstance();
+
+        ObservableList<String[]> data = acc_bf.pullData(
+                "booked_flights",
+                Arrays.asList("destination", "departure"),
+                Arrays.asList("username"),
+                Arrays.asList(username.getUsername())
+        );
+
+
+        if (data != null) {
+            System.out.println("Data is not null");
+            acc_bookedFlightTable.setItems(data);
+
+            accClm_location.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            accClm_departDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+
+        } else {
+            System.out.println("Data is null");
+        }
+
+        ObservableList<String[]> data1 = acc_bf.pullData(
+                "sales",
+                Arrays.asList("ticket_no", "payment_date"),
+                Arrays.asList("username"),
+                Arrays.asList(username.getUsername())
+        );
+
+        if (data1 != null) {
+            System.out.println("Data is not null");
+            acc_pastTransacTable.setItems(data1);
+
+            accClm_destination.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[0]));
+            accClm_bookingDate.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()[1]));
+
+        } else {
+            System.out.println("Data is null");
+        }
+
+    }
+
+
     /* ---------------------------------------------- HFSearchDesti Functions Ends Here  ----------------------------------------- */
     private void switchAccForms() {
         // Set initial visibility
@@ -1839,6 +1889,8 @@ public class HomepageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        loadBflights();
 
         hoverFX();
 
