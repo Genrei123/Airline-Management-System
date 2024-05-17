@@ -33,6 +33,7 @@ This program is in compliance for our OBJECT ORIENTED PROGRAMMING (2nd year - 1s
 - Download SceneBuilder Java 8 (Optional)
 - Include the JAR files in the Libraries folder to your classpath AND import 'lib' contents in Scenebuilder.
 - We recommend that you use XAMPP and import the .db file in the Database folder of this project. But in theory even MySQL Workbench and other similar applications should work.
+- Make sure that your project SDK is running in Java 1.8
 
 ## Proceed if you are running this project on IntelliJ IDEA
 - Clone the project by logging in through GitHub
